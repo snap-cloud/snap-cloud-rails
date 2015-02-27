@@ -53,5 +53,14 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+<<<<<<< Local Changes
+<<<<<<< Local Changes
+  get 'pages/snap' => 'high_voltage/pages#show', id: 'snap'
+
+=======
   get ':run' => 'static#:snap'
+>>>>>>> External Changes
+=======
+  get ':run' => 'static#:snap'
+>>>>>>> External Changes
 end
