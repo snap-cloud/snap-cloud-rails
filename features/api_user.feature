@@ -8,13 +8,12 @@ Feature: User Accounts
     And I have entered in a birthday
     And I have agreed to the ToS
     When I click Signup
-    Then an account will be created for me
+    Then an account will be created
     
   Scenario: Log In
     Given I can see the login screen
     And I have entered in my username
     And I have entered in my password
     When I click log in
-    Then I will be logged in.
-    
-    x
+    Then I will be logged in
+  
