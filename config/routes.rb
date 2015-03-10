@@ -8,8 +8,12 @@ Rails.application.routes.draw do
     scope module: :v1,
           constraints: ApiConstraints.new(version: 1, default: true) do
       resources :user do
+        resource :new # OPTIONAL
         resources :projects
       end
+      resources :projects
+      resource :login
+      resource :logout
     end
   end
 
