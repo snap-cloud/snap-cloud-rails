@@ -3,6 +3,10 @@ Feature: Sharing Projects
   As a user of Snap!
   I would like to share my projects with others
 
+Background:
+  Given I have the following projects:
+  | title | owner | # project_id | date_created | last_modified | 
+
 Scenario: Sharing
   Given I am logged in
   And I open "thisproject"

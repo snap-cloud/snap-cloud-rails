@@ -3,6 +3,11 @@ Feature: Saving Loading Projects
   As a user of Snap!
   I would like to save and load my projects.
 
+Background:
+  Given I have the following projects:
+  | title | owner | # project_id | date_created | last_modified | 
+
+
 Scenario: View a list of projects
   Given I am logged in
   When I click Projects
