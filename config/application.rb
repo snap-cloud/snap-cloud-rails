@@ -24,7 +24,7 @@ module SnapCloud
     config.active_record.raise_in_transactional_callbacks = true
 
     # From Rails API tutorial
-    # http://apionrails.icalialabs.com/book/chapter_two
+    # http://apionrails.icalialabs.com/book/chapter_two\
     # don't generate RSpec tests for views and helpers
     config.generators do |g|
       g.test_framework :rspec, fixture: true
