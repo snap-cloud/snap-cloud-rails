@@ -3,30 +3,51 @@ Feature: Saving Loading Projects
   As a user of Snap!
   I would like to save and load my projects.
 
-  Scenario: View a list of projects
-  Given I am logged in
-  When I click Projects
-  Then I will see all my projects
+Background:
+  Given I am logged in as Alice
 
-  Scenario: Open a new project
-  Given I am on the list of projects
-  When I click the New buttion
-  Then a new project should be open
+  And the following projects exist:
+  | title | description | owner | shared_with |  
+  |  Foo  | foo foo foo | Alice |    nil      |
+  |  Bar  | bar bar bar | Alice |    Bob      |
+  |  Not  | not not not |  Bob  |    nil      |
 
-  Scenario: Save a new project
-  Given I have a project open
-  When I click the Save button
-  Then the project will be created
-  And the project will be saved
-  And my list of projects should be updated with the new project
+  Given I am on the list of projects pagge
 
-  Scenario: Open an existing project
-  Given I am on the list of projects
-  And I have at least one project
-  When I click the Open button of a project
-  Then the project should be open
+Scenario: Dashboard view--the list of projects
+  Then I should see Foo, Bar
+  And I should not see Not
 
-  Scenario: Save an existing project
-  Given I have a project open
-  When I click the save button
-  And the project will be saved
+Scenario: Viewing an existing Project
+  And if I click on Foo
+  Then I will be on Foo's edit page
+
+Scenario: New project
+  Given I create a project FooBar
+  Then FooBar should be created
+  Then I should be on Foobar's edit page
+
+Scenario: Editing an existing project
+  Given if I click on Foo
+  Then I will be on Foo's edit page
+  And if I edit Foo's description to "new new new"
+  And save my changes to Foo
+  Then Foo's description should be "new new new"
+
+Scenario: Sharing and unsharing a project
+  Given I click on Foo
+  Then I will be on Foo's edit page
+  And I share Foo with Bob
+  When that I log out
+  And I log in as Bob
+  Then I should see Foo
+
+Scenario: Unsharing a project
+  Given I click on Bar
+  Then I will be on Bar's edit page
+  And I unshare Bar with Bob
+  When I log out
+  And I log in as Bob
+  Then I should not see Bar
+
+
