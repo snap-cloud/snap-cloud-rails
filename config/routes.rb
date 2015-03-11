@@ -11,7 +11,7 @@ Rails.application.routes.draw do
         resource :new # OPTIONAL
         resources :projects
       end
-      resources :projects
+      resources :project
       resource :login
       resource :logout
     end
