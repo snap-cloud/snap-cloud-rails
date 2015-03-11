@@ -1,8 +1,12 @@
 class Api::V1::UsersController < ApplicationController
-  respond_to :json
+  # respond_to :json
 
   def show
     respond_with User.find(params[:id])
+  end
+
+  def index
+    render json: User.all
   end
 
   def create

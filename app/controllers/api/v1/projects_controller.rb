@@ -5,6 +5,11 @@ class Api::V1::ProjectsController < ApplicationController
     respond_with Project.find(params[:id])
   end
 
+  # FIXME THIS IS A HORRIBLE IDEA
+  def index
+    Project.find_all
+  end
+  
   def create
     project = Project.new(project_params)
     if project.save
