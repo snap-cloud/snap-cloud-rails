@@ -1,12 +1,13 @@
 class Api::V1::UsersController < ApplicationController
-  # respond_to :json
+  respond_to :json
 
   def show
     respond_with User.find(params[:id])
   end
 
+  # FIXME -- this is pretty bad for privacy but good for debugging.
   def index
-    render json: User.all
+    respond_with User.all
   end
 
   def create
