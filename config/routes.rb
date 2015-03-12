@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # Redirect simple requets for the viewable app
   get '/login', to: redirect('api/users/login')
   get '/logout', to: redirect('')
-  get '/sigup', to: redirect('api/users/sigup')
+  get '/signup', to: redirect('api/users/signup')
 
   # NOTE: We should probably use a subdomain in the future, add:
   # constraints: { subdomain: 'api' }, path: '/'
