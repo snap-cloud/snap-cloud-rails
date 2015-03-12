@@ -7,7 +7,7 @@ class Api::V1::ProjectsController < ApplicationController
 
   # FIXME THIS IS A HORRIBLE IDEA
   def index
-    respond_with Project.find_all
+    respond_with Project.all
   end
 
   def create
