@@ -4,5 +4,6 @@ class ApplicationController < ActionController::Base
   # FIXME --- we should fix this.
   # skip_before_filter :verify_authenticity_token
 
-  protect_from_forgery with: :exception => :create
+  # This is for JSON APIs
+  protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format == 'application/json' }
 end

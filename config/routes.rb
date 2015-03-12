@@ -7,7 +7,7 @@ Rails.application.routes.draw do
                                             :sign_out => 'logout',
                                             :sign_up => 'signup' }
 
-                                            
+
   # Redirect simple requets for the viewable app
   # FIXME -- these redirects should be changed later.
   get '/login', to: redirect('api/users/login')
@@ -25,6 +25,7 @@ Rails.application.routes.draw do
         resources :projects
       end
       resources :projects
+      # Comments eventually?
     end
   end
 
