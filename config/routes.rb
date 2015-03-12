@@ -7,8 +7,11 @@ Rails.application.routes.draw do
                                             :sign_out => 'logout',
                                             :sign_up => 'signup' }
 
+                                            
   # Redirect simple requets for the viewable app
+  # FIXME -- these redirects should be changed later.
   get '/login', to: redirect('api/users/login')
+  # This doesn't do anything for now...
   get '/logout', to: redirect('')
   get '/signup', to: redirect('api/users/signup')
 
