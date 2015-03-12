@@ -1,3 +1,3 @@
 class Project < ActiveRecord::Base
-  attr_accessible :title, :description, :owner, :shared_with, :project_id, :date_created, :last_modified
+  attr_accessible :last_modified, :owner, :is_public, :contents, :thumbnail, :notes, :title,
 end
