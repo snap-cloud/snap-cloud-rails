@@ -2,9 +2,15 @@
 require 'api_constraints'
 
 Rails.application.routes.draw do
-  devise_for :users, :path_names => {:sign_in => 'login',
-                                                  :sign_out => 'logout',
-                                                  :sign_up => "signup"}
+  devise_for :users, :path => 'api/users', :path_names => {
+                                            :sign_in => 'login',
+                                            :sign_out => 'logout',
+                                            :sign_up => 'signup' }
+
+  # Redirect simple requets for the viewable app
+  get '/login', to: redirect('api/users/login')
+  get '/logout', to: redirect('')
+  get '/sigup', to: redirect('api/users/sigup')
 
   # NOTE: We should probably use a subdomain in the future, add:
   # constraints: { subdomain: 'api' }, path: '/'
@@ -18,5 +24,6 @@ Rails.application.routes.draw do
       resources :projects
     end
   end
+
 
 end
