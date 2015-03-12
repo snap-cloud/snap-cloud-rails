@@ -7,9 +7,9 @@ class Api::V1::ProjectsController < ApplicationController
 
   # FIXME THIS IS A HORRIBLE IDEA
   def index
-    Project.find_all
+    respond_with Project.find_all
   end
-  
+
   def create
     project = Project.new(project_params)
     if project.save
@@ -38,6 +38,6 @@ class Api::V1::ProjectsController < ApplicationController
   private
 
     def project_params
-      params.require(:project).permit(:email, :password, :password_confirmation)
+      params.require(:project).permit(:name, :content)
     end
 end
