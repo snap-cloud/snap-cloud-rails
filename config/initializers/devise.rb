@@ -62,7 +62,6 @@ Devise.setup do |config|
   # config.http_authenticatable = false
 
   config.http_authenticatable_on_xhr = false
-  # config.navigational_formats = ["*/*", :html, :json]
 
 
   # The realm used in Http Basic Authentication. 'Application' by default.

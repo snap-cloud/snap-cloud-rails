@@ -51,6 +51,7 @@ group :development, :test do
   gem 'simplecov'
   gem "factory_girl_rails"
   gem 'ffaker'
+  gem "shoulda-matchers"
 end
 
 group :production do

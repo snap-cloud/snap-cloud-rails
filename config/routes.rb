@@ -17,7 +17,6 @@ Rails.application.routes.draw do
   get '/logout', to: redirect('')
   get '/signup', to: redirect('api/users/signup')
 
-
   # NOTE: We should probably use a subdomain in the future, add:
   # constraints: { subdomain: 'api' }, path: '/'
   # Scoping is used so that there isn't a version in the URL
