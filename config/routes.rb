@@ -2,10 +2,12 @@
 require 'api_constraints'
 
 Rails.application.routes.draw do
-  devise_for :users, :path => 'api/users', :path_names => {
-                                            :sign_in => 'login',
-                                            :sign_out => 'logout',
-                                            :sign_up => 'signup' }
+  devise_for :users, :path => 'api/users',
+                     :controllers => { sessions: 'sessions',
+                                       registrations: 'registrations'},
+                     :path_names => { :sign_in => 'login',
+                                      :sign_out => 'logout',
+                                      :sign_up => 'signup' }
 
 
   # Redirect simple requets for the viewable app
