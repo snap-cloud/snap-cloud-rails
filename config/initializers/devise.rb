@@ -229,6 +229,9 @@ Devise.setup do |config|
   # config.navigational_formats = ['*/*', :html]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
+
+  # FIXME -- should not be get
+  # config.sign_out_via = :delete
   config.sign_out_via = [:get, :delete]
 
   # ==> OmniAuth
