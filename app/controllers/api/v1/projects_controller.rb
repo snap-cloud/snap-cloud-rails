@@ -1,6 +1,12 @@
 class Api::V1::ProjectsController < ApplicationController
   respond_to :json
 
+  #added getters and setters for project attributes
+  def user_params
+    params.require(:project).permit(:title, :notes, :thumbnail, 
+      :contents, :is_public, :owner, :last_modified, :created_at, :updated_at)
+  end
+
   def show
     respond_with Project.find(params[:id])
   end
