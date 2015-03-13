@@ -38,7 +38,7 @@ class Api::V1::ProjectsController < ApplicationController
   private
 
     def project_params
-      params.require(:project).permit(:title, :notes, :thumbnail, 
-      :contents, :is_public, :owner, :last_modified, :created_at, :updated_at)
+      params.require(:project).permit(:title, :notes, :thumbnail, :contents, 
+        :is_public, :owner, :last_modified, :created_at, :updated_at)
     end
 end
