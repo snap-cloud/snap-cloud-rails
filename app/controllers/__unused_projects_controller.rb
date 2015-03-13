@@ -1,5 +1,9 @@
 class ProjectsController < ApplicationController
 
+   def user_params
+      params.require(:project).permit(:title, :notes, :thumbnail, 
+        :contents, :is_public, :owner, :last_modified, :created_at, :updated_at)
+    end
   # def new
   #   raise NotImplementedError
   # end
