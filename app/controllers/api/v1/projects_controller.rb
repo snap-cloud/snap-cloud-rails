@@ -1,6 +1,7 @@
 class Api::V1::ProjectsController < ApplicationController
   respond_to :json
 
+  # FIXME -- this method needs auth checking as well.`
   def show
     respond_with Project.find(params[:id])
   end
@@ -43,7 +44,7 @@ class Api::V1::ProjectsController < ApplicationController
   private
 
     def project_params
-      params.require(:project).permit(:title, :notes, :thumbnail, 
+      params.require(:project).permit(:title, :notes, :thumbnail,
       :contents, :is_public, :owner, :last_modified, :created_at, :updated_at)
     end
 end
