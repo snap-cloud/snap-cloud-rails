@@ -5,9 +5,14 @@ class Api::V1::ProjectsController < ApplicationController
     respond_with Project.find(params[:id])
   end
 
-  # FIXME THIS IS A HORRIBLE IDEA
+  # returns all projects if user is looking at own projects
+  # returns public projects for users if otherwise
   def index
-    respond_with Project.all
+    if !current_user.nil? && current_user.id == params[:id]
+      respond_with Project.where(id: params[:id])
+    else
+      respond_with Project.where(id: params[:id], is_public: true)
+    end
   end
 
   def create
@@ -38,6 +43,7 @@ class Api::V1::ProjectsController < ApplicationController
   private
 
     def project_params
-      params.require(:project).permit(:title, :content)
+      params.require(:project).permit(:title, :notes, :thumbnail, :contents, 
+        :is_public, :owner, :last_modified, :created_at, :updated_at)
     end
 end
