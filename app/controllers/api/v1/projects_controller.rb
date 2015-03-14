@@ -49,7 +49,7 @@ class Api::V1::ProjectsController < ApplicationController
   def destroy
     project = Project.find(params[:id])
     project.destroy
-    head 204
+    render :nothing => true, :status => 200 #ok
   end
 
   def getCurrentUser

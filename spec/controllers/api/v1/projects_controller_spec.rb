@@ -59,8 +59,6 @@ describe Api::V1::ProjectsController do
       put :update, { project_params: proj.attributes, id:(proj.id+1) }, format: :json
       expect(response.status).to eq(404)
     end
-
-
   end
 
 
@@ -103,12 +101,32 @@ describe Api::V1::ProjectsController do
 
   describe "DELETE #destroy" do
     before(:each) do
-      @project = FactoryGirl.create :project
-      delete :destroy, { id: @project.id }, format: :json
+      Project.stub(:valid?).and_return(true)
+      Project.any_instance.stub(:valid?).and_return(true)
+      User.stub(:valid?).and_return(true)
+      User.any_instance.stub(:valid?).and_return(true)
+      user1 = User.create(email: "linda@berk.edu")
+      user2 = User.create(email: "ellen@berk.edu")
+      Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user)
+      user1_proj = Project.create(title: "user1 proj", owner:user.id)
+      user2_proj = Project.create(title: "user2 proj", owner:user.id)
     end
     
-    it { should respond_with 204 }
+    #regardless of if it is the owner or not
+    it "should delete the project" do
+      delete :destroy, {id: id}
+      project_response = JSON.parse(response.body, symbolize_names: true)
+      expect(project_response.status).to eq(200)
+    end
+
+    #it "should delete the project if user is an owner" do
+    #  delete :destroy, ##### this doesn't work: {owner: }
+    #  project_response = JSON.parse(response.body, symbolize_names: true)
+    #  expect(project_response.status).to eq(200)
+    #end
     
+    #it "should reject the request if user is not an owner" do 
+    #end 
   end
 
   describe "GET #index" do
@@ -147,7 +165,6 @@ describe Api::V1::ProjectsController do
       expect(project_response.length).to eq(1)
       expect(project_response[0][:title]).to eq("user public")
     end
-
   end
 
   # describe "PUT/PATCH #update" do
