@@ -39,6 +39,11 @@ module SnapCloud
     # config.autoload_paths += %W(\#{config.root}/lib)
     config.autoload_paths += %W(#{config.root}/lib)
 
+    # URL Security Settings
+    config.action_dispatch.default_headers.merge!({
+      'Access-Control-Allow-Origin' => '*',
+      'Access-Control-Request-Method' => '*'
+    })
   end
 end
 
