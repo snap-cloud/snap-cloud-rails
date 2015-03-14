@@ -9,10 +9,14 @@ class Api::V1::ProjectsController < ApplicationController
   # returns all projects if user is looking at own projects
   # returns public projects for users if otherwise
   def index
-    if !current_user.nil? && current_user.id == params[:id]
-      respond_with Project.where(id: params[:id])
+    begin
+      id = Integer(params[:user_id])
+    rescue
+    end
+    if !getCurrentUser.nil? && getCurrentUser.id == id
+      respond_with Project.where(owner: id)
     else
-      respond_with Project.where(id: params[:id], is_public: true)
+      respond_with Project.where(owner: id, is_public: true)
     end
   end
 
@@ -25,21 +29,41 @@ class Api::V1::ProjectsController < ApplicationController
     end
   end
 
-  def update
-    project = Project.find(params[:id])
 
-    if project.update(project_params)
-      render json: project, status: 200, location: [:api, project]
+  def update
+    if self.getCurrentUser
+        project = Project.find_by_id(params[:id])
+      if project
+        if project.owner == self.getCurrentUser.id
+          project.update_attributes(params[:project_params])
+          project.save
+          render :nothing => true, status: 204 #:no_content
+        else
+          render :nothing => true, status: 401 #:unauthorized
+        end
+      else
+        render :nothing => true, status: 404 #:not_found
+      end
     else
-      render json: { errors: project.errors }, status: 422
+      render :nothing => true, status: 401 #:unauthorized
     end
   end
 
+
   def destroy
     project = Project.find(params[:id])
-    project.destroy
-    head 204
+    if project.owner == self.getCurrentUser.id 
+      project.destroy
+      render :nothing => true, status: 200 #:ok
+    else 
+      render :nothing => true, status: 401 #:unauthorized
+    end
   end
+
+  def getCurrentUser
+    return current_user
+  end
+
 
   private
 
@@ -47,4 +71,6 @@ class Api::V1::ProjectsController < ApplicationController
       params.require(:project).permit(:title, :notes, :thumbnail, :contents,
         :is_public, :owner, :last_modified, :created_at, :updated_at)
     end
+
+
 end
