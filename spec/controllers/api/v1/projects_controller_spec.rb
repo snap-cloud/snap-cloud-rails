@@ -124,7 +124,7 @@ describe Api::V1::ProjectsController do
       delete :destroy, {id: user1_proj.id}
       #project_response = JSON.parse(response.body, symbolize_names: true)
       ## response is populated with last response; last line is unnecessary for now
-      expect(response.status).to eq(:ok)
+      expect(response.status).to eq(200) #:ok
     end
     
     it "should reject the request if user is not an owner" do 
@@ -136,7 +136,7 @@ describe Api::V1::ProjectsController do
       delete :destroy, {id: user1_proj.id} 
       #project_response = JSON.parse(response.body, symbolize_names: true)
       ## response is populated with last response; last line is unnecessary for now
-      expect(response.status).to eq(:unauthorized)
+      expect(response.status).to eq(401) #:unauthorized
     end 
   end
 

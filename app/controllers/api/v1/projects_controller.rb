@@ -50,9 +50,9 @@ class Api::V1::ProjectsController < ApplicationController
     project = Project.find(params[:id])
     if project.owner == self.getCurrentUser.id 
       project.destroy
-      render :nothing => true, :status => :ok #200
+      render :nothing => true, status: 200 #:ok
     else 
-      render :nothing => true, :status => :unauthorized
+      render :nothing => true, status: 401 #:unauthorized
     end
   end
 
