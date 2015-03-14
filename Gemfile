@@ -25,6 +25,9 @@ gem "devise"
 # allows for user sessions in JSON APIs
 gem 'simple_token_authentication', '~> 1.0' # see semver.org
 
+# Because security is hard, man. :'(
+gem 'rack-cors', :require => 'rack/cors'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
