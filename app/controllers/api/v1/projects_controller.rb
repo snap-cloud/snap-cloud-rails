@@ -21,7 +21,7 @@ class Api::V1::ProjectsController < ApplicationController
 
   def create
     if !getCurrentUser.nil?
-      project = Project.new(project_params)
+      project = Project.new(params[:project_params])
       project.save
       render :nothing => true, status: 200
       ## old code
