@@ -220,7 +220,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   cucumber-rails
-  devise (= 3.4.1)
+  devise
   factory_girl_rails
   ffaker
   jbuilder (~> 2.0)
