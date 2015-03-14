@@ -25,6 +25,11 @@ describe Api::V1::ProjectsController do
       Project.any_instance.stub(:valid?).and_return(true)
       User.stub(:valid?).and_return(true)
       User.any_instance.stub(:valid?).and_return(true)
+
+      fakeuser = double('user')
+      allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
+      allow(controller).to receive(:current_user).and_return(fakeuser)
+
     end
     
     it "should update the project when I own it and it exists" do
@@ -36,11 +41,11 @@ describe Api::V1::ProjectsController do
       expect(response.status).to eq(204)
     end
 
-    it "should redirect when I am not logged in" do
+    it "should reject the request when I am not logged in" do
       proj = Project.create(title: "Test proj")
       Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(nil)
       put :update, { project_params: proj.attributes, id:proj.id}, format: :json
-      expect(response.status).to eq(301)
+      expect(response.status).to eq(401)
     end
 
     it "should reject the request when I don't own the project" do
@@ -135,6 +140,11 @@ describe Api::V1::ProjectsController do
       Project.any_instance.stub(:valid?).and_return(true)
       User.stub(:valid?).and_return(true)
       User.any_instance.stub(:valid?).and_return(true)
+
+      fakeuser = double('user')
+      allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
+      allow(controller).to receive(:current_user).and_return(fakeuser)
+
     end
 
     it "Should show all projects belonging to user if logged in" do
@@ -158,7 +168,7 @@ describe Api::V1::ProjectsController do
       Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(nil)
       proj1 = Project.create(title: "user public", owner:user.id, is_public: 1)
       proj2 = Project.create(title: "user private", owner:user.id, is_public: 0)
-      proj3 = Project.create(title: "nonuser public", owner:unot_users_id, is_public: 1)
+      proj3 = Project.create(title: "nonuser public", owner:not_users_id, is_public: 1)
       proj4 = Project.create(title: "nonuser private", owner:not_users_id, is_public: 0)
       get :index, {user_id: user.id}, format: :json
       project_response = JSON.parse(response.body, symbolize_names: true)
