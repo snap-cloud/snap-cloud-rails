@@ -3,7 +3,5 @@ class Project < ActiveRecord::Base
 
   belongs_to :user
 
-  attr_accessor :title, :notes, :thumbnail, :contents, :is_public
-  attr_accessor :owner, :last_modified, :created_at, :updated_at
 
 end
