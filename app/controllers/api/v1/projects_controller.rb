@@ -24,21 +24,33 @@ class Api::V1::ProjectsController < ApplicationController
     end
   end
 
-  def update
-    project = Project.find(params[:id])
 
-    if project.update(project_params)
-      render json: project, status: 200, location: [:api, project]
+  def update
+    if self.current_user
+      project = Project.find(params[:id])
+      if project
+        if project.owner == current_user.id
+          project.update_attributes(params[:project_params])
+          project.save
+          render :nothing => true, :status => :no_content
+        else
+          render :nothing => true, :status => :unauthorized
+        end
+      else
+        render :nothing => true, :status => :not_found
+      end
     else
-      render json: { errors: project.errors }, status: 422
+      render :nothing => true, :status => :unauthorized
     end
   end
+
 
   def destroy
     project = Project.find(params[:id])
     project.destroy
     head 204
   end
+
 
   private
 
