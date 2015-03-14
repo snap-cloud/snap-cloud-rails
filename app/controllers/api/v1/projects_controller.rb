@@ -26,7 +26,7 @@ class Api::V1::ProjectsController < ApplicationController
     render :nothing => true, status: 200
     ## old code
     #render json: project, status: 201, location: [:api, project]
-    
+
 
   end
 
@@ -53,10 +53,10 @@ class Api::V1::ProjectsController < ApplicationController
 
   def destroy
     project = Project.find(params[:id])
-    if project.owner == self.getCurrentUser.id 
+    if project.owner == self.getCurrentUser.id
       project.destroy
       render :nothing => true, status: 200 #:ok
-    else 
+    else
       render :nothing => true, status: 401 #:unauthorized
     end
   end

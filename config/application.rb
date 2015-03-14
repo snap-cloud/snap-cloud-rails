@@ -39,11 +39,14 @@ module SnapCloud
     # config.autoload_paths += %W(\#{config.root}/lib)
     config.autoload_paths += %W(#{config.root}/lib)
 
-    # URL Security Settings
+    # URL SECURITY SETTINGS
+    # =====================
+    # Configure CORS Settings Based on URLs.
     config.action_dispatch.default_headers.merge!({
       'Access-Control-Allow-Origin' => '*',
       'Access-Control-Request-Method' => '*'
     })
+
   end
 end
 
