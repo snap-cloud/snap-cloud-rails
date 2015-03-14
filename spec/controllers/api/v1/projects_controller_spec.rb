@@ -129,7 +129,7 @@ describe Api::V1::ProjectsController do
       project_response = JSON.parse(response.body, symbolize_names: true)
       expect(project_response.length).to eq(2)
       expect(project_response[0][:title]).to eq("user public")
-      expect(project_response[0][:title]).to eq("user private")
+      expect(project_response[1][:title]).to eq("user private")
     end
 
     it "Should show only public projects if user not logged in" do
