@@ -53,6 +53,7 @@ class Api::V1::ProjectsController < ApplicationController
       render :nothing => true, :status => :ok #200
     else 
       render :nothing => true, :status => :unauthorized
+    end
   end
 
   def getCurrentUser

@@ -29,7 +29,6 @@ describe Api::V1::ProjectsController do
       fakeuser = double('user')
       allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
       allow(controller).to receive(:current_user).and_return(fakeuser)
-
     end
     
     it "should update the project when I own it and it exists" do
@@ -151,7 +150,6 @@ describe Api::V1::ProjectsController do
       fakeuser = double('user')
       allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
       allow(controller).to receive(:current_user).and_return(fakeuser)
-
     end
 
     it "Should show all projects belonging to user if logged in" do
