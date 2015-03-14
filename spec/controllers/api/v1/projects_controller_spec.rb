@@ -110,6 +110,43 @@ describe Api::V1::ProjectsController do
     
   end
 
+  describe "GET #index" do
+    before(:each) do
+      Project.stub(:valid?).and_return(true)
+      Project.any_instance.stub(:valid?).and_return(true)
+      User.stub(:valid?).and_return(true)
+      User.any_instance.stub(:valid?).and_return(true)
+    end
+
+    it "Should show all projects belonging to user if logged in" do
+      User.create(email: "jwang@berk.edu")
+      Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user)
+      proj1 = Project.create(title: "user public", owner:user.id, is_public: 1)
+      proj2 = Project.create(title: "user private", owner:user.id, is_public: 0)
+      proj3 = Project.create(title: "nonuser public", owner:user.id+1, is_public: 1)
+      proj4 = Project.create(title: "nonuser private", owner:user.id+1, is_public: 0)
+      get :index, {user_id: user.id}, format: :json
+      project_response = JSON.parse(response.body, symbolize_names: true)
+      expect(project_response.length).to eq(2)
+      expect(project_response[0][:title]).to eq("user public")
+      expect(project_response[0][:title]).to eq("user private")
+    end
+
+    it "Should show only public projects if user not logged in" do
+      User.create(email: "jwang@berk.edu")
+      Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(nil)
+      proj1 = Project.create(title: "user public", owner:user.id, is_public: 1)
+      proj2 = Project.create(title: "user private", owner:user.id, is_public: 0)
+      proj3 = Project.create(title: "nonuser public", owner:user.id+1, is_public: 1)
+      proj4 = Project.create(title: "nonuser private", owner:user.id+1, is_public: 0)
+      get :index, {user_id: user.id}, format: :json
+      project_response = JSON.parse(response.body, symbolize_names: true)
+      expect(project_response.length).to eq(1)
+      expect(project_response[0][:title]).to eq("user public")
+    end
+
+  end
+
   # describe "PUT/PATCH #update" do
 
   #   context "when is successfully updated" do
