@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20150314024623) do
     t.datetime "last_modified"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "users", force: :cascade do |t|

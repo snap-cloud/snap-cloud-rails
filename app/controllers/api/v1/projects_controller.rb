@@ -8,10 +8,14 @@ class Api::V1::ProjectsController < ApplicationController
   # returns all projects if user is looking at own projects
   # returns public projects for users if otherwise
   def index
-    if !getCurrentUser.nil? && getCurrentUser.id == params[:user_id]
-      respond_with Project.where(owner: params[:user_id])
+    begin
+      id = Integer(params[:user_id])
+    rescue
+    end
+    if !getCurrentUser.nil? && getCurrentUser.id == id
+      respond_with Project.where(owner: id)
     else
-      respond_with Project.where(owner: params[:user_id], is_public: 1)
+      respond_with Project.where(owner: id, is_public: true)
     end
   end
 

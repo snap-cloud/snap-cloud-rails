@@ -9,13 +9,14 @@ describe Api::V1::UsersController do
 
   describe "GET #show" do
     before(:each) do
-      @user = FactoryGirl.create :user
-      get :show, id: @user.id, format: :json
-
       #Added by steve for alec
       fakeuser = double('user')
       allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
       allow(controller).to receive(:current_user).and_return(fakeuser)
+      
+
+      @user = FactoryGirl.create :user
+      get :show, id: @user.id, format: :json
 
     end
 
