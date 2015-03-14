@@ -71,6 +71,11 @@ describe Api::V1::ProjectsController do
     context "when is successfully created" do
       before(:each) do
         @project_attributes = FactoryGirl.attributes_for :project
+
+        fakeuser = double('user')
+        allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
+        allow(controller).to receive(:current_user).and_return(fakeuser)
+
         post :create, { project: @project_attributes }, format: :json
       end
 
@@ -86,6 +91,11 @@ describe Api::V1::ProjectsController do
       before(:each) do
         #notice I'm not including the title
         @invalid_project_attributes = { note: "example_note", is_public: 0 }
+
+        fakeuser = double('user')
+        allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
+        allow(controller).to receive(:current_user).and_return(fakeuser)
+
         post :create, { project: @invalid_project_attributes }, format: :json
       end
 
