@@ -13,7 +13,6 @@ class Api::V1::ProjectsController < ApplicationController
     else
       respond_with Project.where(owner: params[:user_id], is_public: 1)
     end
-    debugger
   end
 
   def create
