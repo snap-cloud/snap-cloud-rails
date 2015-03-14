@@ -15,10 +15,10 @@ describe Project do
 
   it { should be_valid }
 
-  #it { should validate_presence_of(:id) }
-  #it { should validate_uniqueness_of(:id) }
-  #it { should validate_presence_of(:created_at) }
-  #it { should validate_presence_of(:updated_at) }
+  it { should validate_presence_of(:id) }
+  it { should validate_uniqueness_of(:id) }
+  it { should validate_presence_of(:created_at) }
+  it { should validate_presence_of(:updated_at) }
 
   it { should allow_value('example_title').for(:title) }
   it { should allow_value('example_note').for(:notes) }
