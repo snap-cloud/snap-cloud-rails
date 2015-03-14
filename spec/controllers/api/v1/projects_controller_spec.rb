@@ -36,11 +36,11 @@ describe Api::V1::ProjectsController do
       expect(response.status).to eq(204)
     end
 
-    it "should reject when I am not logged in" do
+    it "should redirect when I am not logged in" do
       proj = Project.create(title: "Test proj")
       Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(nil)
       put :update, { project_params: proj.attributes, id:proj.id}, format: :json
-      expect(response.status).to eq(401)
+      expect(response.status).to eq(301)
     end
 
     it "should reject the request when I don't own the project" do
@@ -119,7 +119,7 @@ describe Api::V1::ProjectsController do
     end
 
     it "Should show all projects belonging to user if logged in" do
-      User.create(email: "jwang@berk.edu")
+      user = User.create(email: "jwang@berk.edu")
       Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user)
       proj1 = Project.create(title: "user public", owner:user.id, is_public: 1)
       proj2 = Project.create(title: "user private", owner:user.id, is_public: 0)
@@ -133,7 +133,7 @@ describe Api::V1::ProjectsController do
     end
 
     it "Should show only public projects if user not logged in" do
-      User.create(email: "jwang@berk.edu")
+      user = User.create(email: "jwang@berk.edu")
       Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(nil)
       proj1 = Project.create(title: "user public", owner:user.id, is_public: 1)
       proj2 = Project.create(title: "user private", owner:user.id, is_public: 0)
