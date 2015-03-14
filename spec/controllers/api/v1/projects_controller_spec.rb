@@ -9,12 +9,12 @@ describe Api::V1::ProjectsController do
   describe "GET #show" do
     before(:each) do
       @project = FactoryGirl.create :project
-      get :show, id: @project.id, format: :json
-    end
 
-    it "returns the information about a reporter on a hash" do
-      project_response = JSON.parse(response.body, symbolize_names: true)
-      expect(project_response[:title]).to eql @project.title
+      fakeuser = double('user')
+      allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
+      allow(controller).to receive(:current_user).and_return(fakeuser)
+
+      get :show, id: @project.id, format: :json
     end
 
     it { should respond_with 200 }
