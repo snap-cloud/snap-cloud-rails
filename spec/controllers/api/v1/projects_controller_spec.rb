@@ -74,39 +74,25 @@ describe Api::V1::ProjectsController do
       allow(controller).to receive(:current_user).and_return(fakeuser)
     end
 
-    context "when is successfully created" do
-      before(:each) do
-        @project_attributes = FactoryGirl.attributes_for :project
-        post :create, { project: @project_attributes }, format: :json
-      end
+    it "should create a project for the user if user is present" do
+      user1 = User.create(email: "linda@berk.edu")
+      Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user1)
+      user1_proj = Project.create(title: "user1 proj", owner:user1.id)
 
-      it "renders the json representation for the project record just created" do
-        project_response = JSON.parse(response.body, symbolize_names: true)
-        expect(project_response[:title]).to eql @project_attributes[:title]
-      end
-
-      it { should respond_with 201 }
+      post :create, {project_params: proj.attributes}
+      expect(response.status).to eq(200) #:ok
     end
 
-    context "when is not created" do
-      before(:each) do
-        #notice I'm not including the title
-        @invalid_project_attributes = { note: "example_note", is_public: 0 }
-        post :create, { project: @invalid_project_attributes }, format: :json
-      end
+    it "should return an error if there is no user present" do
+      user1 = User.create(email: "linda@berk.edu")
+      Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user1)
+      user1_proj = Project.create(title: "user1 proj", owner:user1.id)
 
-      it "renders an errors json" do
-        project_response = JSON.parse(response.body, symbolize_names: true)
-        expect(project_response).to have_key(:errors)
-      end
-
-      it "renders the json errors on why the project could not be created" do
-        project_response = JSON.parse(response.body, symbolize_names: true)
-        expect(project_response[:errors][:title]).to include "can't be blank"
-      end
-
-      it { should respond_with 422 }
+      post :create, {project_params: proj.attributes}
+      expect(response.status).to eq(401) #:unauthorized
     end
+
+ 
   end
 
   describe "DELETE #destroy" do
