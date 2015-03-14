@@ -20,6 +20,7 @@ describe Api::V1::ProjectsController do
     it { should respond_with 200 }
   end
 
+
   describe "PUT #update" do
     before(:each) do
       Project.stub(:valid?).and_return(true)
@@ -68,6 +69,11 @@ describe Api::V1::ProjectsController do
 
 
   describe "POST #create" do
+    before(:each) do
+      fakeuser = double('user')
+      allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
+      allow(controller).to receive(:current_user).and_return(fakeuser)
+    end
 
     context "when is successfully created" do
       before(:each) do
