@@ -79,7 +79,7 @@ describe Api::V1::ProjectsController do
       Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user1)
       user1_proj = Project.create(title: "user1 proj", owner:user1.id)
 
-      post :create, {project_params: proj.attributes}
+      post :create, {project_params: user1_proj.attributes}
       expect(response.status).to eq(200) #:ok
     end
 
@@ -88,7 +88,7 @@ describe Api::V1::ProjectsController do
       Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user1)
       user1_proj = Project.create(title: "user1 proj", owner:user1.id)
 
-      post :create, {project_params: proj.attributes}
+      post :create, {project_params: user1_proj.attributes}
       expect(response.status).to eq(401) #:unauthorized
     end
 
