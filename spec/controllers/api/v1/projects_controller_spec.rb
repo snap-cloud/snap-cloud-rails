@@ -36,11 +36,11 @@ describe Api::V1::ProjectsController do
       expect(response.status).to eq(204)
     end
 
-    it "should reject when I am not logged in" do
+    it "should redirect when I am not logged in" do
       proj = Project.create(title: "Test proj")
       Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(nil)
       put :update, { project_params: proj.attributes, id:proj.id}, format: :json
-      expect(response.status).to eq(401)
+      expect(response.status).to eq(302)
     end
 
     it "should reject the request when I don't own the project" do
