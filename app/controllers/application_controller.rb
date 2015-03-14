@@ -10,15 +10,15 @@ class ApplicationController < ActionController::Base
   # for session tokens
   acts_as_token_authentication_handler_for User
 
-  protected
-    # Modify th native render to always check for JSONP callbacks
-    # FIXME == this should only modify JSON formatted renders or /api/
-    def render(options = nil, deprecated_status = nil, &block)
-      # call the ActionController::Base render to show the page
-      if params && params[:callback]
-        options[:callback] = params[:callback]
-        puts 'test'
-      end
-      super
+  # Modify th native render to always check for JSONP callbacks
+  # FIXME == this should only modify JSON formatted renders or /api/
+  def render(options = nil, deprecated_status = nil, &block)
+    if params && params[:callback]
+      options[:callback] = params[:callback]
+      puts 'test'
     end
+    
+    # call the ActionController::Base render to show the page
+    super
+  end
 end
