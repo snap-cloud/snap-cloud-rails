@@ -21,12 +21,18 @@ class Api::V1::ProjectsController < ApplicationController
   end
 
   def create
-    project = Project.new(project_params)
-    if project.save
-      render json: project, status: 201, location: [:api, project]
+    if !getCurrentUser.nil?
+      project = Project.new(project_params)
+      project.save
+      render :nothing => true, status: 200
+      ## old code
+      #render json: project, status: 201, location: [:api, project]
     else
-      render json: { errors: project.errors }, status: 422
+      render :nothing => true, status: 401
+      ## old code; don't know what this does. also 422 isn't an http status code
+      #render json: { errors: project.errors }, status: 422
     end
+
   end
 
 
