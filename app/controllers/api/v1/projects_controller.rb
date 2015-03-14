@@ -33,15 +33,15 @@ class Api::V1::ProjectsController < ApplicationController
         if project.owner == self.getCurrentUser.id
           project.update_attributes(params[:project_params])
           project.save
-          render :nothing => true, :status => :no_content
+          render :nothing => true, status: 204 #:no_content
         else
-          render :nothing => true, :status => :unauthorized
+          render :nothing => true, status: 401 #:unauthorized
         end
       else
-        render :nothing => true, :status => :not_found
+        render :nothing => true, status: 404 #:not_found
       end
     else
-      render :nothing => true, :status => :unauthorized
+      render :nothing => true, status: 401 #:unauthorized
     end
   end
 
