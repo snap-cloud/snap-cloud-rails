@@ -1,18 +1,4 @@
 class SessionsController < Devise::SessionsController
-<<<<<<< HEAD
-    respond_to :json
-
-    def create
-      self.resource = warden.authenticate!(auth_options)
-       set_flash_message(:notice, :signed_in) if is_flashing_format?
-       sign_in(resource_name, resource)
-       yield resource if block_given?
-       respond_with resource, :location => after_sign_in_path_for(resource) do |format|
-         format.json {render :json => resource } # this code will get executed for json request
-       end
-    end
-end
-=======
   respond_to :json
   # https://github.com/plataformatec/devise/blob/master/app/controllers/devise/sessions_controller.rb
 
@@ -22,9 +8,9 @@ end
   def create
     self.resource = warden.authenticate!(auth_options)
     sign_in(resource_name, resource)
- 
+
     current_user.update authentication_token: nil
- 
+
     respond_to do |format|
       format.json {
         render :json => {
@@ -38,7 +24,7 @@ end
 
   # DELETE /resource/sign_out
   def destroy
- 
+
     respond_to do |format|
       format.json {
         if current_user
@@ -48,11 +34,10 @@ end
         else
           render :json => {}.to_json, :status => :unprocessable_entity
         end
-       
+
       }
     end
   end
 
 
 end
->>>>>>> FETCH_HEAD
