@@ -21,7 +21,7 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem "devise", "3.4.1"
+gem "devise"
 # allows for user sessions in JSON APIs
 gem 'simple_token_authentication', '~> 1.0' # see semver.org
 
@@ -56,7 +56,7 @@ group :development, :test do
   gem "shoulda-matchers"
 end
 
-group :production do
+group :development do
   # Postgres for Heroku
   gem 'pg'
 end
