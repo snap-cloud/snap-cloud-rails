@@ -45,7 +45,8 @@ describe Api::V1::ProjectsController do
 
     it "should reject the request when I don't own the project" do
       user = User.create(email: "steven@berk.edu")
-      proj = Project.create(title: "Test proj", owner:(user.id+1))
+      not_users_id = user.id+1
+      proj = Project.create(title: "Test proj", owner:(not_users_id))
       Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user)
       put :update, { project_params: proj.attributes, id:proj.id }, format: :json
       expect(response.status).to eq(401)
@@ -120,11 +121,12 @@ describe Api::V1::ProjectsController do
 
     it "Should show all projects belonging to user if logged in" do
       user = User.create(email: "jwang@berk.edu")
+      not_users_id = user.id+1
       Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user)
       proj1 = Project.create(title: "user public", owner:user.id, is_public: 1)
       proj2 = Project.create(title: "user private", owner:user.id, is_public: 0)
-      proj3 = Project.create(title: "nonuser public", owner:user.id+1, is_public: 1)
-      proj4 = Project.create(title: "nonuser private", owner:user.id+1, is_public: 0)
+      proj3 = Project.create(title: "nonuser public", owner:not_users_id, is_public: 1)
+      proj4 = Project.create(title: "nonuser private", owner:not_users_id, is_public: 0)
       get :index, {user_id: user.id}, format: :json
       project_response = JSON.parse(response.body, symbolize_names: true)
       expect(project_response.length).to eq(2)
@@ -134,11 +136,12 @@ describe Api::V1::ProjectsController do
 
     it "Should show only public projects if user not logged in" do
       user = User.create(email: "jwang@berk.edu")
+      not_users_id = user.id+1
       Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(nil)
       proj1 = Project.create(title: "user public", owner:user.id, is_public: 1)
       proj2 = Project.create(title: "user private", owner:user.id, is_public: 0)
-      proj3 = Project.create(title: "nonuser public", owner:user.id+1, is_public: 1)
-      proj4 = Project.create(title: "nonuser private", owner:user.id+1, is_public: 0)
+      proj3 = Project.create(title: "nonuser public", owner:unot_users_id, is_public: 1)
+      proj4 = Project.create(title: "nonuser private", owner:not_users_id, is_public: 0)
       get :index, {user_id: user.id}, format: :json
       project_response = JSON.parse(response.body, symbolize_names: true)
       expect(project_response.length).to eq(1)
