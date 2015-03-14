@@ -13,7 +13,7 @@ describe Api::V1::ProjectsController do
 
     it "returns the information about a reporter on a hash" do
       project_response = JSON.parse(response.body, symbolize_names: true)
-      expect(project_response[:id]).to eql @project.id
+      expect(project_response[:title]).to eql @project.title
     end
 
     it { should respond_with 200 }
@@ -73,7 +73,7 @@ describe Api::V1::ProjectsController do
 
       it "renders the json representation for the project record just created" do
         project_response = JSON.parse(response.body, symbolize_names: true)
-        expect(project_response[:email]).to eql @project_attributes[:email]
+        expect(project_response[:title]).to eql @project_attributes[:title]
       end
 
       it { should respond_with 201 }
@@ -81,9 +81,8 @@ describe Api::V1::ProjectsController do
 
     context "when is not created" do
       before(:each) do
-        #notice I'm not including the email
-        @invalid_project_attributes = { password: "12345678",
-                                     password_confirmation: "12345678" }
+        #notice I'm not including the title
+        @invalid_project_attributes = { note: "example_note", is_public: 0 }
         post :create, { project: @invalid_project_attributes }, format: :json
       end
 
@@ -94,7 +93,7 @@ describe Api::V1::ProjectsController do
 
       it "renders the json errors on why the project could not be created" do
         project_response = JSON.parse(response.body, symbolize_names: true)
-        expect(project_response[:errors][:email]).to include "can't be blank"
+        expect(project_response[:errors][:title]).to include "can't be blank"
       end
 
       it { should respond_with 422 }

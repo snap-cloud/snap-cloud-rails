@@ -226,12 +226,13 @@ Devise.setup do |config|
   #
   # The "*/*" below is required to match Internet Explorer requests.
   # config.navigational_formats = ['*/*', :html]
+  config.navigational_formats = ["/", :json]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
 
   # FIXME -- should not be get
   # config.sign_out_via = :delete
-  config.sign_out_via = [:get, :delete]
+  config.sign_out_via = [:delete]
 
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
