@@ -13,7 +13,7 @@ describe Api::V1::ProjectsController do
 
     it "returns the information about a reporter on a hash" do
       project_response = JSON.parse(response.body, symbolize_names: true)
-      expect(project_response[:email]).to eql @project.email
+      expect(project_response[:id]).to eql @project.id
     end
 
     it { should respond_with 200 }
@@ -48,7 +48,7 @@ describe Api::V1::ProjectsController do
         expect(project_response).to have_key(:errors)
       end
 
-      it "renders the json errors on whye the project could not be created" do
+      it "renders the json errors on why the project could not be created" do
         project_response = JSON.parse(response.body, symbolize_names: true)
         expect(project_response[:errors][:email]).to include "can't be blank"
       end
@@ -73,12 +73,12 @@ describe Api::V1::ProjectsController do
       before(:each) do
         @project = FactoryGirl.create :project
         patch :update, { id: @project.id,
-                         project: { email: "newmail@example.com" } }, format: :json
+                         project: { title: "new title" } }, format: :json
       end
 
       it "renders the json representation for the updated project" do
         project_response = JSON.parse(response.body, symbolize_names: true)
-        expect(project_response[:email]).to eql "newmail@example.com"
+        expect(project_response[:title]).to eql "new title"
       end
 
       it { should respond_with 200 }
@@ -88,7 +88,7 @@ describe Api::V1::ProjectsController do
       before(:each) do
         @project = FactoryGirl.create :project
         patch :update, { id: @project.id,
-                         project: { email: "bademail.com" } }, format: :json
+                         project: { title: "bad title" } }, format: :json
       end
 
       it "renders an errors json" do
@@ -96,9 +96,9 @@ describe Api::V1::ProjectsController do
         expect(project_response).to have_key(:errors)
       end
 
-      it "renders the json errors on whye the project could not be created" do
+      it "renders the json errors on why the project could not be created" do
         project_response = JSON.parse(response.body, symbolize_names: true)
-        expect(project_response[:errors][:email]).to include "is invalid"
+        expect(project_response[:errors][:title]).to include "is invalid"
       end
 
       it { should respond_with 422 }
