@@ -48,8 +48,12 @@ class Api::V1::ProjectsController < ApplicationController
 
   def destroy
     project = Project.find(params[:id])
-    project.destroy
-    head 204
+    if project.owner == self.getCurrentUser.id 
+      project.destroy
+      render :nothing => true, status: 200 #:ok
+    else 
+      render :nothing => true, status: 401 #:unauthorized
+    end
   end
 
   def getCurrentUser

@@ -29,7 +29,6 @@ describe Api::V1::ProjectsController do
       fakeuser = double('user')
       allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
       allow(controller).to receive(:current_user).and_return(fakeuser)
-
     end
     
     it "should update the project when I own it and it exists" do
@@ -64,8 +63,6 @@ describe Api::V1::ProjectsController do
       put :update, { project_params: proj.attributes, id:(proj.id+1) }, format: :json
       expect(response.status).to eq(404)
     end
-
-
   end
 
 
@@ -108,12 +105,39 @@ describe Api::V1::ProjectsController do
 
   describe "DELETE #destroy" do
     before(:each) do
-      @project = FactoryGirl.create :project
-      delete :destroy, { id: @project.id }, format: :json
+      Project.stub(:valid?).and_return(true)
+      Project.any_instance.stub(:valid?).and_return(true)
+      User.stub(:valid?).and_return(true)
+      User.any_instance.stub(:valid?).and_return(true)
+
+      fakeuser = double('user')
+      allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
+      allow(controller).to receive(:current_user).and_return(fakeuser)
+    end
+
+    it "should delete the project if user is an owner" do
+      user1 = User.create(email: "linda@berk.edu")
+      user2 = User.create(email: "ellen@berk.edu")
+      Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user1)
+      user1_proj = Project.create(title: "user1 proj", owner:user1.id)
+
+      delete :destroy, {id: user1_proj.id}
+      #project_response = JSON.parse(response.body, symbolize_names: true)
+      ## response is populated with last response; last line is unnecessary for now
+      expect(response.status).to eq(200) #:ok
     end
     
-    it { should respond_with 204 }
-    
+    it "should reject the request if user is not an owner" do 
+      user1 = User.create(email: "linda@berk.edu")
+      user2 = User.create(email: "ellen@berk.edu")
+      Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user2)
+      user1_proj = Project.create(title: "user1 proj", owner:user1.id)
+
+      delete :destroy, {id: user1_proj.id} 
+      #project_response = JSON.parse(response.body, symbolize_names: true)
+      ## response is populated with last response; last line is unnecessary for now
+      expect(response.status).to eq(401) #:unauthorized
+    end 
   end
 
   describe "GET #index" do
@@ -126,7 +150,6 @@ describe Api::V1::ProjectsController do
       fakeuser = double('user')
       allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
       allow(controller).to receive(:current_user).and_return(fakeuser)
-
     end
 
     it "Should show all projects belonging to user if logged in" do
@@ -157,7 +180,6 @@ describe Api::V1::ProjectsController do
       expect(project_response.length).to eq(1)
       expect(project_response[0][:title]).to eq("user public")
     end
-
   end
 
   # describe "PUT/PATCH #update" do
