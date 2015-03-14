@@ -110,6 +110,11 @@ describe Api::V1::ProjectsController do
       Project.any_instance.stub(:valid?).and_return(true)
       User.stub(:valid?).and_return(true)
       User.any_instance.stub(:valid?).and_return(true)
+
+      fakeuser = double('user')
+      allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
+      allow(controller).to receive(:current_user).and_return(fakeuser)
+
       user1 = User.create(email: "linda@berk.edu")
       user2 = User.create(email: "ellen@berk.edu")
       Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user)
