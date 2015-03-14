@@ -19,6 +19,7 @@ describe Api::V1::ProjectsController do
     it { should respond_with 200 }
   end
 
+
   describe "PUT #update" do
     before(:each) do
       Project.stub(:valid?).and_return(true)
