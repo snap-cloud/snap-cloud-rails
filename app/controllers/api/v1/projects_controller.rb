@@ -8,11 +8,12 @@ class Api::V1::ProjectsController < ApplicationController
   # returns all projects if user is looking at own projects
   # returns public projects for users if otherwise
   def index
-    if !current_user.nil? && current_user.id == params[:id]
-      respond_with Project.where(id: params[:id])
+    if !current_user.nil? && current_user.id == params[:user_id]
+      respond_with Project.where(owner: params[:user_id])
     else
-      respond_with Project.where(id: params[:id], is_public: true)
+      respond_with Project.where(owner: params[:user_id], is_public: 1)
     end
+    debugger
   end
 
   def create
@@ -24,15 +25,26 @@ class Api::V1::ProjectsController < ApplicationController
     end
   end
 
-  def update
-    project = Project.find(params[:id])
 
-    if project.update(project_params)
-      render json: project, status: 200, location: [:api, project]
+  def update
+    if self.getCurrentUser
+        project = Project.find_by_id(params[:id])
+      if project
+        if project.owner == self.getCurrentUser.id
+          project.update_attributes(params[:project_params])
+          project.save
+          render :nothing => true, :status => :no_content
+        else
+          render :nothing => true, :status => :unauthorized
+        end
+      else
+        render :nothing => true, :status => :not_found
+      end
     else
-      render json: { errors: project.errors }, status: 422
+      render :nothing => true, :status => :unauthorized
     end
   end
+
 
   def destroy
     project = Project.find(params[:id])
@@ -40,10 +52,17 @@ class Api::V1::ProjectsController < ApplicationController
     head 204
   end
 
+  def getCurrentUser
+    return current_user
+  end
+
+
   private
 
     def project_params
       params.require(:project).permit(:title, :notes, :thumbnail, :contents, 
         :is_public, :owner, :last_modified, :created_at, :updated_at)
     end
+
+
 end

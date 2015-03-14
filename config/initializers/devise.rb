@@ -232,7 +232,7 @@ Devise.setup do |config|
 
   # FIXME -- should not be get
   # config.sign_out_via = :delete
-  config.sign_out_via = [:get, :delete]
+  config.sign_out_via = [:delete]
 
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
