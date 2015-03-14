@@ -16,7 +16,8 @@ class SessionsController < Devise::SessionsController
         render :json => {
           :user => current_user,
           :status => :ok,
-          :authentication_token => current_user.authentication_token
+          :authentication_token => current_user.authentication_token,
+          :callback => params[:callback]
         }
       }
     end
@@ -30,9 +31,9 @@ class SessionsController < Devise::SessionsController
         if current_user
           current_user.update authentication_token: nil
           signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
-          render :json => {}.to_json, :status => :ok
+          render :json => {}.to_json, :status => :ok, :callback => params[:callback]
         else
-          render :json => {}.to_json, :status => :unprocessable_entity
+          render :json => {}.to_json, :status => :unprocessable_entity, :callback => params[:callback]
         end
 
       }
