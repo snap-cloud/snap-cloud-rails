@@ -56,7 +56,7 @@ group :development, :test do
   gem "shoulda-matchers"
 end
 
-group :development do
+group :production do
   # Postgres for Heroku
   gem 'pg'
 end
