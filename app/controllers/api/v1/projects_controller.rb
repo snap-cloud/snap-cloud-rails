@@ -26,10 +26,10 @@ class Api::V1::ProjectsController < ApplicationController
 
 
   def update
-    if self.current_user
-      project = Project.find(params[:id])
+    if self.getCurrentUser
+        project = Project.find_by_id(params[:id])
       if project
-        if project.owner == current_user.id
+        if project.owner == self.getCurrentUser.id
           project.update_attributes(params[:project_params])
           project.save
           render :nothing => true, :status => :no_content
@@ -51,6 +51,10 @@ class Api::V1::ProjectsController < ApplicationController
     head 204
   end
 
+  def getCurrentUser
+    return current_user
+  end
+
 
   private
 
@@ -58,4 +62,6 @@ class Api::V1::ProjectsController < ApplicationController
       params.require(:project).permit(:title, :notes, :thumbnail, :contents, 
         :is_public, :owner, :last_modified, :created_at, :updated_at)
     end
+
+
 end
