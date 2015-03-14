@@ -40,7 +40,7 @@ describe Api::V1::ProjectsController do
       proj = Project.create(title: "Test proj")
       Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(nil)
       put :update, { project_params: proj.attributes, id:proj.id}, format: :json
-      expect(response.status).to eq(302)
+      expect(response.status).to eq(301)
     end
 
     it "should reject the request when I don't own the project" do
