@@ -122,6 +122,11 @@ describe Api::V1::ProjectsController do
       Project.any_instance.stub(:valid?).and_return(true)
       User.stub(:valid?).and_return(true)
       User.any_instance.stub(:valid?).and_return(true)
+
+      fakeuser = double('user')
+      allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
+      allow(controller).to receive(:current_user).and_return(fakeuser)
+
     end
 
     it "Should show all projects belonging to user if logged in" do
@@ -145,7 +150,7 @@ describe Api::V1::ProjectsController do
       Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(nil)
       proj1 = Project.create(title: "user public", owner:user.id, is_public: 1)
       proj2 = Project.create(title: "user private", owner:user.id, is_public: 0)
-      proj3 = Project.create(title: "nonuser public", owner:unot_users_id, is_public: 1)
+      proj3 = Project.create(title: "nonuser public", owner:not_users_id, is_public: 1)
       proj4 = Project.create(title: "nonuser private", owner:not_users_id, is_public: 0)
       get :index, {user_id: user.id}, format: :json
       project_response = JSON.parse(response.body, symbolize_names: true)
