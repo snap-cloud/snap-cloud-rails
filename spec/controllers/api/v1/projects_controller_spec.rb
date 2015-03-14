@@ -114,29 +114,31 @@ describe Api::V1::ProjectsController do
       fakeuser = double('user')
       allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
       allow(controller).to receive(:current_user).and_return(fakeuser)
+    end
 
+    it "should delete the project if user is an owner" do
       user1 = User.create(email: "linda@berk.edu")
       user2 = User.create(email: "ellen@berk.edu")
-      Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user)
-      user1_proj = Project.create(title: "user1 proj", owner:user.id)
-      user2_proj = Project.create(title: "user2 proj", owner:user.id)
-    end
-    
-    #regardless of if it is the owner or not
-    it "should delete the project" do
-      delete :destroy, {id: id}
-      project_response = JSON.parse(response.body, symbolize_names: true)
-      expect(project_response.status).to eq(200)
-    end
+      Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user1)
+      user1_proj = Project.create(title: "user1 proj", owner:user1.id)
 
-    #it "should delete the project if user is an owner" do
-    #  delete :destroy, ##### this doesn't work: {owner: }
-    #  project_response = JSON.parse(response.body, symbolize_names: true)
-    #  expect(project_response.status).to eq(200)
-    #end
+      delete :destroy, {id: user1_proj.id}
+      #project_response = JSON.parse(response.body, symbolize_names: true)
+      ## response is populated with last response; last line is unnecessary for now
+      expect(response.status).to eq(:ok)
+    end
     
-    #it "should reject the request if user is not an owner" do 
-    #end 
+    it "should reject the request if user is not an owner" do 
+      user1 = User.create(email: "linda@berk.edu")
+      user2 = User.create(email: "ellen@berk.edu")
+      Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user2)
+      user1_proj = Project.create(title: "user1 proj", owner:user1.id)
+
+      delete :destroy, {id: user1_proj.id} 
+      #project_response = JSON.parse(response.body, symbolize_names: true)
+      ## response is populated with last response; last line is unnecessary for now
+      expect(response.status).to eq(:unauthorized)
+    end 
   end
 
   describe "GET #index" do
