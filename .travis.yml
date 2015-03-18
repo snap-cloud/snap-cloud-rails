@@ -3,3 +3,6 @@ rvm:
   - 2.2.0
 bundler_args: --without production
 script: bundle exec rake
+cache: bundler
+addons:
+  postgresql: "9.3"

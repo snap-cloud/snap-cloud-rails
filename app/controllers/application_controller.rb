@@ -20,7 +20,8 @@ class ApplicationController < ActionController::Base
     response.headers['Access-Control-Allow-Origin'] = '*'
     response.headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS, PUT, DELETE'
     response.headers['Access-Control-Allow-Credentials'] = 'true'
-
+    remove_keys = %w(X-Frame-Options)
+    response.headers.delete_if{|key| remove_keys.include? key}
 
     # call the ActionController::Base render to show the page
     super
