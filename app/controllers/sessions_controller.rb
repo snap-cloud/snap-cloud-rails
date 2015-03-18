@@ -1,16 +1,17 @@
 class SessionsController < Devise::SessionsController
   respond_to :json
-  # https://github.com/plataformatec/devise/blob/master/app/controllers/devise/sessions_controller.rb
+  # github.com/plataformatec/devise/blob/master/app/controllers/devise/sessions_controller.rb
 
-  # POST /resource/sign_in
-  # Resets the authentication token each time! Won't allow you to login on two devices
+  # POST /api/users/login
+  # Resets the authentication token each time!
+  # FIXME Won't allow you to login on two devices
   # at the same time (so does logout).
   def create
     self.resource = warden.authenticate!(auth_options)
     sign_in(resource_name, resource)
- 
+
     current_user.update authentication_token: nil
- 
+
     respond_to do |format|
       format.json {
         render :json => {
@@ -24,7 +25,7 @@ class SessionsController < Devise::SessionsController
 
   # DELETE /resource/sign_out
   def destroy
- 
+
     respond_to do |format|
       format.json {
         if current_user
@@ -34,7 +35,6 @@ class SessionsController < Devise::SessionsController
         else
           render :json => {}.to_json, :status => :unprocessable_entity
         end
-       
       }
     end
   end

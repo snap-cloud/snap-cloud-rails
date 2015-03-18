@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-    respond_to :json
+  respond_to :json
 
   def create
     @user = User.create(user_params)
@@ -10,7 +10,7 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
   end
-  
+
   private
 
   def user_params

@@ -12,6 +12,7 @@ This project uses Rails 4.2 and Ruby 2.2.0.
 
 The Heroku destination for the app is `http://ucbsnap.herokuapp.com`
 
+1. **CLONE WITH `-r`** `git clone -r git@github.com:snap-cloud/snap-cloud.git`
 1. You should have `rvm` or similar installed.
 2. `bundle install --without production`
 3. `git remote add heroku git@heroku.com:ucbsnap.git`
