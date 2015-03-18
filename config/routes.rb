@@ -35,7 +35,9 @@ Rails.application.routes.draw do
   end
 
   # Shortcuts to the Snap! submodule
-  get '/run', to: redirect('/snap')
-  # get '/snap' => 'snap/snap.html'
+  # NOTE: the redirect needs a trailing / to load the JS properly.
+  # TODO: Serving this way is probably not the best...
+  get '/run', to: redirect('/snap/')
+  get '/snap', to: redirect('/snap/')
 
 end
