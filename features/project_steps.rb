@@ -41,4 +41,4 @@ Given /the following projects exist/ do |project_table|
   project_table.hashes.each do |project|
   Project.create(project)
   end
-end  
+end
