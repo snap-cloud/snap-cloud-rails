@@ -1,7 +1,7 @@
-Feature: Saving Loading Projects
-  In order to be productive
-  As a user of Snap!
-  I would like to save and load my projects.
+Feature: Snap! Cloud Classes
+  In order to make assignments easier
+  As a teacher using Snap!
+  I would like  create and manage my class.
 
 Background:
   Given I am logged in as Alice
@@ -12,7 +12,7 @@ Background:
   |  Bar  | bar bar bar | Alice |    Bob      |
   |  Not  | not not not |  Bob  |    nil      |
 
-  Given I am on the list of projects pagge
+  Given I am on the list of projects page
 
 Scenario: Dashboard view--the list of projects
   Then I should see Foo, Bar
