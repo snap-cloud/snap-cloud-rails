@@ -12,7 +12,7 @@ Background:
   |  Bar  | bar bar bar | Alice |    Bob      |
   |  Not  | not not not |  Bob  |    nil      |
 
-  Given I am on the list of projects pagge
+  Given I am on the list of projects page
 
 Scenario: Dashboard view--the list of projects
   Then I should see Foo, Bar
