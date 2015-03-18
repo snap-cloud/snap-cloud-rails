@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   end
 
   # Shortcuts to the Snap! submodule
-  get '/run' => 'snap/snap.html'
-  get '/snap' => 'snap/snap.html'
-  
+  get '/run', to: redirect('/snap')
+  # get '/snap' => 'snap/snap.html'
+
 end
