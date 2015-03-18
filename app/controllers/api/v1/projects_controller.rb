@@ -1,6 +1,7 @@
 class Api::V1::ProjectsController < ApplicationController
   respond_to :json
 
+  # FIXME -- this method needs auth checking as well.`
   def show
     respond_with Project.find(params[:id])
   end
@@ -25,7 +26,7 @@ class Api::V1::ProjectsController < ApplicationController
     render :nothing => true, status: 200
     ## old code
     #render json: project, status: 201, location: [:api, project]
-    
+
 
   end
 
@@ -52,10 +53,10 @@ class Api::V1::ProjectsController < ApplicationController
 
   def destroy
     project = Project.find(params[:id])
-    if project.owner == self.getCurrentUser.id 
+    if project.owner == self.getCurrentUser.id
       project.destroy
       render :nothing => true, status: 200 #:ok
-    else 
+    else
       render :nothing => true, status: 401 #:unauthorized
     end
   end
@@ -68,7 +69,7 @@ class Api::V1::ProjectsController < ApplicationController
   private
 
     def project_params
-      params.require(:project).permit(:title, :notes, :thumbnail, :contents, 
+      params.require(:project).permit(:title, :notes, :thumbnail, :contents,
         :is_public, :owner, :last_modified, :created_at, :updated_at)
     end
 

@@ -29,7 +29,7 @@ gem 'simple_token_authentication', '~> 1.0' # see semver.org
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -57,6 +57,8 @@ group :development, :test do
 end
 
 group :production do
-  # Postgres for Heroku
+  # Postgres DB
   gem 'pg'
+  # Perf and other Heroku features
+  gem 'rails_12factor'
 end
