@@ -34,5 +34,8 @@ Rails.application.routes.draw do
     end
   end
 
-  get ':run' => 'static#:snap'
+  # Shortcuts to the Snap! submodule
+  get '/run' => 'snap/snap.html'
+  get '/snap' => 'snap/snap.html'
+  
 end
