@@ -15,9 +15,8 @@ class ApplicationController < ActionController::Base
   def render(options = nil, deprecated_status = nil, &block)
     if params && params[:callback]
       options[:callback] = params[:callback]
-      puts 'test'
     end
-    
+
     # call the ActionController::Base render to show the page
     super
   end
