@@ -1,66 +1,38 @@
+# Our constraints around versioning.
+require 'api_constraints'
+
 Rails.application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  devise_for :users, :path => 'api/users',
+                     :controllers => { sessions: 'sessions',
+                                       registrations: 'registrations'},
+                     :path_names => { :sign_in => 'login',
+                                      :sign_out => 'logout',
+                                      :sign_up => 'signup' }
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  # Redirect simple requets for the viewable app
+  # FIXME -- these redirects should be changed later.
+  get '/login', to: redirect('api/users/login')
+  # This doesn't do anything for now...
+  get '/logout', to: redirect('')
+  get '/signup', to: redirect('api/users/signup')
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  # NOTE: We should probably use a subdomain in the future, add:
+  # constraints: { subdomain: 'api' }, path: '/'
+  # Scoping is used so that there isn't a version in the URL
+  namespace :api, defaults: { format: :json }  do
+    scope module: :v1,
+          constraints: ApiConstraints.new(version: 1, default: true) do
+      # Tokens are an easier way to handle API auth.
+      resources :users do
+        # TODO: Restrict options here
+        resources :projects
+      end
+      # TODO: Restrict options here to not duplicate the ones above.
+      resources :projects
+      # Comments eventually?
+    end
+  end
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-<<<<<<< Local Changes
-<<<<<<< Local Changes
-  get 'pages/snap' => 'high_voltage/pages#show', id: 'snap'
-
-=======
   get ':run' => 'static#:snap'
->>>>>>> External Changes
-=======
-  get ':run' => 'static#:snap'
->>>>>>> External Changes
 end
