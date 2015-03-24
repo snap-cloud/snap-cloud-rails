@@ -42,13 +42,14 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
-  # Cucumber
+  # Cucumber, testing and coverage
   gem 'cucumber-rails', :require => false
   gem 'rspec-rails', '~> 2.14.0'
   gem 'simplecov'
   gem "factory_girl_rails"
   gem 'ffaker'
   gem "shoulda-matchers"
+  gem 'coveralls', require: false
 end
 
 # Development Only Gems. Speed up loading in Travis.
