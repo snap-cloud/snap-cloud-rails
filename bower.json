@@ -1,0 +1,11 @@
+{
+  "name": "snap-cloud-dependencies",
+  "version": "0.0.0",
+  "homepage": "https://github.com/snap-cloud/snap-cloud",
+  "authors": [
+    "Michael Ball <cycomachead@gmail.com>"
+  ],
+  "description": "Front end stuff for the snap-cloud app",
+  "license": "MIT",
+  "private": true,
+}
