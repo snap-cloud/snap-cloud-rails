@@ -1,8 +1,15 @@
 language: ruby
 rvm:
-  - 2.2.0
-bundler_args: --without production
+- 2.2.0
+bundler_args: "--without production"
 script: bundle exec rake
 cache: bundler
 addons:
   postgresql: "9.3"
+notifcations:
+  email:
+    on_success: never
+    on_failure: change
+  hipchat:
+    rooms:
+      secure: KbkZp4ory6CIHPfbgViakBCRwhQL6lBaqZIqZU135WoRVtCFEoF5hre93y/+UKf093xefERq2eEI6z6duGFsqDPu1A6MJ1yy6vb9stf1wWozPTkwzz1glo3L0tHFI0XW9WDxQY729QR/7+C9InkDrpZHujghw3UU7YpfqDQ8fK4=
