@@ -7,5 +7,5 @@
   ],
   "description": "Front end stuff for the snap-cloud app",
   "license": "MIT",
-  "private": true,
+  "private": true
 }
