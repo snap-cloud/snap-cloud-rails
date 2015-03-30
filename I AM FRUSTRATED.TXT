@@ -1,0 +1,35 @@
+$.ajax({
+    url: '/api/users/login',
+    contentType: 'application/json',
+    method:'POST',
+    data: JSON.stringify({user: {
+        email: 'michael.ball@berkeley.edu',
+        password: '12345678'
+    }}),
+    success: function(a,b,c) {
+        console.log('Success');
+        console.log(a);
+        console.log(b);
+        console.log(c);
+    },
+    error: function(a,b,c) {
+        console.log('Error');
+        console.log(a);
+        console.log(b);
+        console.log(c);
+    },
+});
+
+
+function cb(data) {
+    console.log('CALLBACK');
+    console.log(data);
+};
+var xhr = new XMLHttpRequest();
+xhr.open('POST', 'https://ucbsnap.herokuapp.com/api/users/login?callback=cb', true);
+xhr.setRequestHeader('Content-Type', 'application/json');
+xhr.setRequestHeader('Accepts', 'application/json');
+xhr.send(JSON.stringify({user: {
+        username: 'michael.ball@berkeley.edu',
+        password: '12345678'
+    }}));
