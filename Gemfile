@@ -22,6 +22,10 @@ gem "devise"
 # allows for user sessions in JSON APIs
 gem 'simple_token_authentication', '~> 1.0' # see semver.org
 
+# allows for hellza sexiness
+gem 'purecss'
+gem 'jquery-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
