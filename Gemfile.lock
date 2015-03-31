@@ -138,6 +138,8 @@ GEM
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
     pg (0.18.1)
+    purecss (0.5.0.2)
+      rails (>= 3.1)
     rack (1.6.0)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -270,6 +272,7 @@ DEPENDENCIES
   factory_girl_rails
   ffaker
   pg
+  purecss
   rails (= 4.2.1)
   rails_12factor
   rspec-rails (~> 2.14.0)
