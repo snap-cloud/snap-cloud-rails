@@ -13,7 +13,7 @@ Rails.application.routes.draw do
                                       :sign_up => 'signup' }
 
   # viewable project mappings
-  resources :projects, :only => [:show, :new, :create]
+  resources :projects # , :only => [:show, :new, :create]
 
 
   # Redirect simple requets for the viewable app
