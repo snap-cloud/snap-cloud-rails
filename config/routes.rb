@@ -12,6 +12,9 @@ Rails.application.routes.draw do
                                       :sign_out => 'logout',
                                       :sign_up => 'signup' }
 
+  # viewable project mappings
+  resources :projects, :only => [:show, :new, :create]
+
 
   # Redirect simple requets for the viewable app
   # FIXME -- these redirects should be changed later.
