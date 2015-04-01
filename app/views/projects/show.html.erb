@@ -1,0 +1,68 @@
+<!--[if lte IE 8]>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+<!--<![endif]-->
+
+<!-- TODO: put in the partial for the header -->
+<div style="text-align: center; margin-left: auto; margin-right: auto; background: black; color: white;">
+	<div class="pure-button" style="float: left; background: rgb(28, 184, 65);" ><%= @project.is_public ? "Public Project" : "Private Project"%></div>
+	<div id="project-title" style="font-size: 200%"> <%= @project.title %> </div>
+	<a class="pure-button pure-button-primary" style="float: right" href="/projects/<%= @project.id %>/edit">Edit</a>
+</div>
+
+<div class="pure-g" style="margin-left: auto; margin-right: auto; background: #ededed">
+    <div class="pure-u-1 pure-u-md-3-4" id="project-description" style="background: #f6f6f6">
+    	<pre class="code"> <%= @project.notes %> <code>
+    </div>
+
+    <div class="pure-u-1 pure-u-md-1-24" style="background: #f6f6f6"> blank space - taylor swift
+    </div>
+
+    <div class="pure-u-1 pure-u-md-5-24" style="background: #f6f6f6">
+    	<a class="pure-button" style="float: right; background: rgb(28, 184, 65); font-size: 150%; width: 100%; height: 100%; display: block;" href="#">Try it!</a>
+    </div>
+
+</div>
+
+<div class="pure-g" style="margin-left: auto; margin-right: auto; background: #ededed">
+
+	<div class="pure-u-1 pure-u-md-3-4" id="comment-list">
+    	<table class="pure-table pure-table-horizontal">
+	    	<thead>
+		        <tr>
+		            <th></th>
+		            <th>Comments</th>
+		        </tr>
+		    </thead>
+
+		    <tbody>
+			    <tr>
+		            <td>Pic</td>
+		            <td>Comment (make this into a loop when we have comments in the database)</td>
+		        </tr>	
+		    </tbody>
+
+    </div>
+
+
+	<div class="pure-u-1 pure-u-md-5-24" id="collaborator-list">
+    	<table class="pure-table pure-table-horizontal">
+	    	<thead>
+		        <tr>
+		            <th></th>
+		            <th>Collaborators</th>
+		        </tr>
+		    </thead>
+
+		    <tbody>
+			    <tr>
+		            <td>Pic</td>
+		            <td>Collaborator Name (make this into a loop when we have collaborators in the database)</td>
+		        </tr>	
+		    </tbody>
+
+    </div>
+
+</div>

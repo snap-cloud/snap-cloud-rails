@@ -1,9 +1,11 @@
 # [snap-cloud][hk-app]
 A CS169 Project to create a new cloud sharing system for [Snap<i>!</i>][sbe].
 
-[![Code Climate](https://codeclimate.com/github/snap-cloud/snap-cloud/badges/gpa.svg)](https://codeclimate.com/github/snap-cloud/snap-cloud)
+* [![Code Climate](https://codeclimate.com/github/snap-cloud/snap-cloud/badges/gpa.svg)](https://codeclimate.com/github/snap-cloud/snap-cloud)
 
-[![Build Status](https://travis-ci.org/snap-cloud/snap-cloud.svg?branch=master)](https://travis-ci.org/snap-cloud/snap-cloud)
+* [![Build Status](https://travis-ci.org/snap-cloud/snap-cloud.svg?branch=master)](https://travis-ci.org/snap-cloud/snap-cloud)
+
+* [![Coverage Status](https://coveralls.io/builds/2178945/badge)](https://coveralls.io/builds/2178945)
 
 Please see the [wiki][wiki] for documentation about each iteration.
 
