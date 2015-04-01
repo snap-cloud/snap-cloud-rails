@@ -20,6 +20,13 @@ class SessionsController < Devise::SessionsController
           :authentication_token => current_user.authentication_token
         }
       }
+      format.html {
+        render :html => {
+          :user => current_user,
+          :status => :ok,
+          :authentication_token => current_user.authentication_token
+        }
+      }
     end
   end
 

@@ -1,7 +1,7 @@
-Feature: Saving Loading Projects
-  In order to be productive
-  As a user of Snap!
-  I would like to save and load my projects.
+Feature: Snap! Cloud Classes
+  In order to make assignments easier
+  As a teacher using Snap!
+  I would like  create and manage my class.
 
 Background:
   Given I am logged in as Alice

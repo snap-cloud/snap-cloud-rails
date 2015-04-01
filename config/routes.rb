@@ -2,12 +2,18 @@
 require 'api_constraints'
 
 Rails.application.routes.draw do
+
+  get '/snap', to: redirect('/snap/')
+
   devise_for :users, :path => 'api/users',
                      :controllers => { sessions: 'sessions',
                                        registrations: 'registrations'},
                      :path_names => { :sign_in => 'login',
                                       :sign_out => 'logout',
                                       :sign_up => 'signup' }
+
+  # viewable project mappings
+  resources :projects # , :only => [:show, :new, :create]
 
 
   # Redirect simple requets for the viewable app
@@ -38,6 +44,6 @@ Rails.application.routes.draw do
   # NOTE: the redirect needs a trailing / to load the JS properly.
   # TODO: Serving this way is probably not the best...
   get '/run', to: redirect('/snap/')
-  get '/snap', to: redirect('/snap/')
+
 
 end

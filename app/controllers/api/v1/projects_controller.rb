@@ -65,6 +65,11 @@ class Api::V1::ProjectsController < ApplicationController
     return current_user
   end
 
+  def project_listing
+    # TODO: actually write this method lol
+    project = Project.find(params[:id])
+  end
+
 
   private
 
