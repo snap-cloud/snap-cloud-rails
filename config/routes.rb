@@ -3,6 +3,9 @@ require 'api_constraints'
 
 Rails.application.routes.draw do
 
+  root 'pages#index'
+  get 'pages/index'
+
   get '/snap', to: redirect('/snap/')
 
   devise_for :users, :path => 'api/users',
