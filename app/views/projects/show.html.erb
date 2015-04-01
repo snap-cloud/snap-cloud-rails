@@ -6,10 +6,10 @@
 <!--<![endif]-->
 
 <!-- TODO: put in the partial for the header -->
-<div style="text-align: center; height: 50px; margin-left: auto; margin-right: auto; background: black; color: white">
+<div style="text-align: center; margin-left: auto; margin-right: auto; background: black; color: white;">
 	<div class="pure-button" style="float: left; background: rgb(28, 184, 65);" ><%= @project.is_public ? "Public Project" : "Private Project"%></div>
-	Placeholder for header partial for <%= @project.title %>
-	<a class="pure-button pure-button-primary" style="float: right" href="/projects/" + <%= @project.id %> + "/edit">Edit</a>
+	<div id="project-title" style="font-size: 200%"> <%= @project.title %> </div>
+	<a class="pure-button pure-button-primary" style="float: right" href="/projects/<%= @project.id %>/edit">Edit</a>
 </div>
 
 <div class="pure-g" style="margin-left: auto; margin-right: auto; background: #ededed">
@@ -21,7 +21,7 @@
     </div>
 
     <div class="pure-u-1 pure-u-md-5-24" style="background: #f6f6f6">
-    	<a class="pure-button pure-button-primary" style="float: right; background: rgb(28, 184, 65); font-size: 150%; width: 100%; height: 100%; display: block;" href="#">Try it!</a>
+    	<a class="pure-button" style="float: right; background: rgb(28, 184, 65); font-size: 150%; width: 100%; height: 100%; display: block;" href="#">Try it!</a>
     </div>
 
 </div>

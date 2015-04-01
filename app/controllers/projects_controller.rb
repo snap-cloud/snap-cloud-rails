@@ -13,7 +13,8 @@ class ProjectsController < ApplicationController
     render :action => "show"
   end
 
-  def update
+  def edit
+    # TODO: implement this -- don't forget to see if the user is an owner before actually letting them edit!
   end
 
   def destroy
