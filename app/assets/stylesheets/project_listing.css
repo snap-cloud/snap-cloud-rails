@@ -9,7 +9,7 @@ div.project-title{
 div.centered-label-darkgray{
 	background: darkgray;
 	width: 70%;
-    height: 50%;
+    height: 40%;
     margin: auto;
     padding: 10px;
     position: relative;
@@ -25,4 +25,16 @@ div.centered-label-darkgray{
 
 .bottom-margin-med{
 	margin-bottom: 5em;
+}
+
+div.center-text{
+	text-align: center;
+	vertical-align: middle;
+}
+
+.center-element{
+	margin: auto;
+	padding: 10px;
+	position: relative;
+	text-align: center;
 }
