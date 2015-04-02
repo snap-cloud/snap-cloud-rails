@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
       # TODO: render 404 and gtfo
     end
     @project = Project.find(params[:id])
+    @owner = User.find_by_id @project.owner
     render :action => "show"
   end
 
