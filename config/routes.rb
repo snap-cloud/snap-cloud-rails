@@ -3,8 +3,6 @@ require 'api_constraints'
 
 Rails.application.routes.draw do
 
-  root 'pages#index'
-  get 'pages/index'
 
   get '/snap', to: redirect('/snap/')
 
