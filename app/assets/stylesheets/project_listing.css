@@ -1,5 +1,3 @@
-div + div { margin-bottom: 10px; }
-
 div.project-title{
 	text-align: center;
 	margin-left: auto;
@@ -12,15 +10,19 @@ div.centered-label-darkgray{
 	background: darkgray;
 	width: 70%;
     height: 50%;
-    margin: 0 auto;
+    margin: auto;
     padding: 10px;
     position: relative;
     border-radius: 5px;
     text-align: center;
-    vertical-align: center;
+    top: -50%;
 }
 
 .fill-parent{
 	width: 100%;
 	height: 100%;
+}
+
+.bottom-margin-med{
+	margin-bottom: 5em;
 }
