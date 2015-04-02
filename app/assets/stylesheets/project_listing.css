@@ -1,1 +1,22 @@
-div + div { margin-bottom: 20px; }
+div + div { margin-bottom: 10px; }
+
+div.project-title{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	background: black;
+	color: white;
+}
+
+div.centered-label-darkgray{
+	float: left;
+	background: darkgray;
+	width: 100%;
+	height: 80%;
+	vertical-align: middle;
+}
+
+div.fill-parent{
+	width: 100%;
+	height: 100%;
+}
