@@ -18,7 +18,11 @@
 		<div> <%= @owner.email %> </div>
 	</div>
 
-	<a class="pure-button pure-button-primary pure-u-1-8" href="/projects/<%= @project.id %>/edit">Edit</a>
+	<div class="pure-u-1-8" style="background: black; display: table-cell; vertical-align: middle;">
+		<div class="center-element">
+			<a class="pure-button pure-button-primary" href="/projects/<%= @project.id %>/edit">Edit</a>
+		</div>
+	</div>
 
 </div>
 
