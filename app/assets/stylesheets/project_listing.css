@@ -9,14 +9,18 @@ div.project-title{
 }
 
 div.centered-label-darkgray{
-	float: left;
 	background: darkgray;
-	width: 100%;
-	height: 80%;
-	vertical-align: middle;
+	width: 70%;
+    height: 50%;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+    border-radius: 5px;
+    text-align: center;
+    vertical-align: center;
 }
 
-div.fill-parent{
+.fill-parent{
 	width: 100%;
 	height: 100%;
 }
