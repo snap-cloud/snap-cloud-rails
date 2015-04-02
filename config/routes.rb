@@ -3,8 +3,7 @@ require 'api_constraints'
 
 Rails.application.routes.draw do
 
-  root 'pages#index'
-  get 'pages/index'
+  get '/', to: 'pages#index'
 
   get '/snap', to: redirect('/snap/')
 
@@ -17,7 +16,6 @@ Rails.application.routes.draw do
 
   # viewable project mappings
   resources :projects # , :only => [:show, :new, :create]
-
 
   # Redirect simple requets for the viewable app
   # FIXME -- these redirects should be changed later.
