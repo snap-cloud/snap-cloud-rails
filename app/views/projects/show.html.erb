@@ -3,16 +3,17 @@
 <![endif]-->
 <!--[if gt IE 8]><!-->
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+    <link rel="stylesheet" href="../../../app/assets/project_listing.css">
 <!--<![endif]-->
 
 <!-- TODO: put in the partial for the header -->
 <div style="text-align: center; margin-left: auto; margin-right: auto; background: black; color: white;">
-	<div class="pure-button" style="float: left; background: rgb(28, 184, 65);" ><%= @project.is_public ? "Public Project" : "Private Project"%></div>
+	<div class="pure-button" style="float: left; background: darkgray;" ><%= @project.is_public ? "Public Project" : "Private Project"%></div>
 	<div id="project-title" style="font-size: 200%"> <%= @project.title %> </div>
 	<a class="pure-button pure-button-primary" style="float: right" href="/projects/<%= @project.id %>/edit">Edit</a>
 </div>
 
-<div class="pure-g" style="margin-left: auto; margin-right: auto; background: #ededed">
+<div class="pure-g" style="margin-left: auto; margin-right: auto; background: white">
     <div class="pure-u-1 pure-u-md-3-4" id="project-description" style="background: #f6f6f6">
     	<table class="pure-table" style="width: 100%; height: 100%;">
     		<thead>
@@ -26,22 +27,22 @@
     	</table>
     </div>
 
-    <div class="pure-u-1 pure-u-md-1-24" style="background: #f6f6f6"></div>
+    <div class="pure-u-1 pure-u-md-1-24" style="background: white"></div>
 
-    <div class="pure-u-1 pure-u-md-5-24" style="background: #f6f6f6">
-    	<a class="pure-button" style="float: right; background: rgb(40, 200, 80); font-size: 150%; width: 100%; height: 100%; display: block;" href="#">Try it!</a>
+    <div class="pure-u-1 pure-u-md-5-24" style="background-image:url(data:image/gif;base64,<%= @project.thumbnail %>">
+    	<a style="font-size: 150%; width: 100%; height: 100%; display: block;" href="#">
+    	<!-- put a binary base64 encoded thumbnail as the play button -->
+    	<!-- <img src="data:image/gif;base64,<%= @project.thumbnail %>" class="pure-img" > -->
+    	Try it!
+    	</a>
     </div>
-
-<!-- </div> -->
-
-<!-- <div class="pure-g" style="margin-left: auto; margin-right: auto; background: #ededed"> -->
 
 	<div class="pure-u-1 pure-u-md-3-4" id="comment-list">
     	<table class="pure-table pure-table-horizontal" style="width: 100%; height: 100%;">
 	    	<thead>
 		        <tr>
-		            <th></th>
 		            <th>Comments</th>
+		            <th></th>
 		        </tr>
 		    </thead>
 
@@ -55,14 +56,14 @@
 
     </div>
 
-	<div class="pure-u-1 pure-u-md-1-24" style="background: #f6f6f6"></div>
+	<div class="pure-u-1 pure-u-md-1-24" style="background: white"></div>
 
 	<div class="pure-u-1 pure-u-md-5-24" id="collaborator-list">
     	<table class="pure-table pure-table-horizontal" style="width: 100%; height: 100%;">
 	    	<thead>
 		        <tr>
-		            <th></th>
 		            <th>Collaborators</th>
+		            <th></th>
 		        </tr>
 		    </thead>
 
