@@ -3,6 +3,8 @@ require 'api_constraints'
 
 Rails.application.routes.draw do
 
+  get '/', to: 'pages#index'
+
   get '/snap', to: redirect('/snap/')
 
   devise_for :users, :path => 'api/users',
@@ -14,7 +16,6 @@ Rails.application.routes.draw do
 
   # viewable project mappings
   resources :projects # , :only => [:show, :new, :create]
-
 
   # Redirect simple requets for the viewable app
   # FIXME -- these redirects should be changed later.
