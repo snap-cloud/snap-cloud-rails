@@ -2,33 +2,17 @@
 
 <div class="pure-g">
 
+	<!-- blank div for spacing --> 
 	<div class="pure-u-1-24">
 	</div>
 
+	<!-- navigation -->
 	<div class="pure-u-1-12">
 		<br><br><br><br>
-		<table class="pure-table">
-	    <thead>
-	        <tr>
-	            <th>Navigation</th>
-	        </tr>
-	    </thead>
-
-	    <tbody>
-	    	<tr> <td><a href="lol_nothing"> Profile </td></a></tr>
-	    	<tr> <td><a href="lol_nothing"> Friends </td></a></td></tr>
-	    	<tr> <td><a href="lol_nothing"> Classes </td></a></tr>
-	    	<tr> <td><a href="lol_nothing"> Assignments </td></a></td></tr>
-	    	<tr> <td><a href="lol_nothing"> More Links </td></a></td></tr>
-	    	<tr> <td><a href="lol_nothing"> More Links </td></a></td></tr>
-	    	<tr> <td><a href="lol_nothing"> More Links </td></a></td></tr>
-	    	<tr> <td><a href="lol_nothing"> More Links </td></a></td></tr>
-	    	<tr> <td><a href="lol_nothing"> More Links </td></a></td></tr>
-	    	<tr> <td><a href="lol_nothing"> More Links </td></a></td></tr>
-	    </tbody>
-	</table>
+		<%= render 'navigation' %>
 	</div>
 
+	<!-- blank div for spacing --> 
 	<div class="pure-u-1-24">
 	</div>
 
@@ -37,6 +21,7 @@
     	Welcome back, <%= @user.email%>! <br><br>
     
 
+    <!-- news feed -->
     <table class="pure-table">
 	    <thead>
 	        <tr>
@@ -65,7 +50,8 @@
 
 	<br><br>
 
-    <%= render 'projects/projectlist', :locals => {:projects => @projects} %>
+	<!-- list of tables -->
+    <%= render 'projects/projectlist', :locals => {:projects => Project.all} %> <!-- should be @projects-->
 
     </div>
 
