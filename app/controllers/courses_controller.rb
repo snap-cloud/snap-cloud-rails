@@ -27,6 +27,5 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-
   end
 end
