@@ -76,3 +76,8 @@ ul.pure-menu-list {
             float: right;
         }
 }
+
+/* IMPORTANT: Needed so pages don't load under the header. */
+body {
+    padding-top: 65px;
+}
