@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   def index
     @user =  current_user
     if @user
-      @projects = Project.where("owner = ?", current_user.id)
+      @projects = Project.where("owner = ?", @user.id)
       render 'dashboard' 
     else
       render 'index'
