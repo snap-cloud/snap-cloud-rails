@@ -2,17 +2,32 @@
 <div class="pure-g">
 
     <div class="pure-u-1">
-        <div> <br><br><br><br>User: <%= @user.email%> </div>
+        <div> <br><br><br><br> 
+        	THIS IS FOR THE USER DASHBOARD. <br>
+        	There's just no controller logic to make it go to the dashboard based on if a user is logged in or not yet.<br><br> 
+        </div>
+    </div>
+
+    <!--this looks horrible, and it is manually spaced. fix this. -->
+    <div class="pure-u-1">
+    	<div> About The User </div>
+        <div> &nbsp;&nbsp;&nbsp;&nbsp; Name: <%= @user.email%> </div>
+        <div> &nbsp;&nbsp;&nbsp;&nbsp; Member Since: <%= @user.created_at%> </div>
+        <div> &nbsp;&nbsp;&nbsp;&nbsp; Last Seen: <%= @user.last_sign_in_at ? @user.last_sign_in_at : "N/A" %> </div>
     </div>
 
     <div class="pure-u-1">
-    	<div> 
+    	<div> <br> Projects by <%= @user.email%><br>
     		<% @projects.each do |project| %> 
- 				<div><br>Title:  <%= project.title %></div>
- 				<div>Notes: <%= project.notes %></div>
- 				<div>Visibility: <%= project.is_public ? "Public": "Private"%></div>
- 				<div>Created at: <%= project.created_at %></div>
- 				<div>Updated at: <%= project.updated_at %><br></div>
+ 				<div>&nbsp;&nbsp;&nbsp;&nbsp;Title:  <%= project.title %></div>
+ 				<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ 					Notes: <%= project.notes %></div>
+ 				<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ 					Visibility: <%= project.is_public ? "Public": "Private"%></div>
+ 				<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ 					Created at: <%= project.created_at %></div>
+ 				<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ 					Updated at: <%= project.updated_at %></div>
 			<% end %>
     	</div>
     <div>
