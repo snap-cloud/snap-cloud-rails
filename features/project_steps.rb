@@ -11,11 +11,11 @@ Then /^(?:|I) should not see "(.*?)"$/ do |input|
 	page.should_not have_content input
 end
 
-Given /^(?:|I) am logged in as "(.*?)"$/ do |user|
+Given /^(?:|I) am logged in as "(.*?)" with password "(.*?)"$/ do |user, password|
 	visit login_path
-  fill_in "username", :with => user
-  fill_in "password", :with => @passwords[user]
-  click_button "Login"
+  fill_in "user_email", :with => user
+  fill_in "user_password", :with => password
+  click_button "Log in"
 end
 
 Given /^(?:|I) am on the project details page for "(.*?)"$/ do |page|
@@ -44,9 +44,7 @@ Given /the following projects exist/ do |project_table|
 end
 
 Given /the following users exist/ do |user_table|
-  @passwords = {}
   user_table.hashes.each do |user|
-    @passwords[user.username] = user.password 
     User.create(user)
   end
 end

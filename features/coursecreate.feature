@@ -13,7 +13,7 @@ Given I enter the course information
 Then I should see that I cannot create a course
 
 Scenario: Creating a course while logged in
-Given I am logged in as testuser
+Given I am logged in as "testuser" with password "password"
 And I enter the course information
 Then I should see that course creation succeeded
 
@@ -23,7 +23,7 @@ When I go to delete that course
 Then I should see that I cannot delete this course
 
 Scenario: Deleting one of my courses
-Given I am logged in as testuser
+Given I am logged in as "testuser" with password "password"
 And I enter the course information
 When I go to delete that course
 Then I should see that course deletion succeeded
