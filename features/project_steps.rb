@@ -11,6 +11,14 @@ Then /^(?:|I) should not see "(.*?)"$/ do |input|
 	page.should_not have_content input
 end
 
+Given (/^a user is signed up as "(.*?)" with password "(.*?)"$/) do |user, password|
+  visit signup_path
+  fill_in "user_email", :with => user
+  fill_in "user_password", :with => password
+  fill_in "user_password_confirmation", :with => password
+  click_button "Sign up"
+end
+
 Given /^(?:|I) am logged in as "(.*?)" with password "(.*?)"$/ do |user, password|
 	visit login_path
   fill_in "user_email", :with => user
