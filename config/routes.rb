@@ -3,6 +3,8 @@ require 'api_constraints'
 
 Rails.application.routes.draw do
 
+  get 'dashboard/display'
+
   get '/', to: 'pages#index'
 
   get '/snap', to: redirect('/snap/')
