@@ -38,6 +38,7 @@ Given /the following projects exist/ do |project_table|
   project_table.hashes.each do |project|
     Project.create(project)
   end
+end
 
 Given /the following users exist/ do |user_table|
   user_table.hashes.each do |user|
