@@ -11,8 +11,6 @@ Rails.application.routes.draw do
   get 'courses/:id/edit',     to: 'courses#edit'
   get 'courses',              to: 'courses#index'
 
-  get 'dashboard/display'
-
   get '/', to: 'pages#index'
 
   get '/snap', to: redirect('/snap/')
