@@ -3,16 +3,6 @@ require 'api_constraints'
 
 Rails.application.routes.draw do
 
-  post 'courses/create',      to: 'courses#create'
-  get 'courses/:id',          to: 'courses#show'
-  post 'courses/:id/update',  to: 'courses#update'
-  post 'courses/:id/delete',  to: 'courses#delete'
-  get 'courses/new',          to: 'courses#new'
-  get 'courses/:id/edit',     to: 'courses#edit'
-  get 'courses',              to: 'courses#index'
-
-  get 'dashboard/display'
-
   get '/', to: 'pages#index'
 
   get '/snap', to: redirect('/snap/')
@@ -26,7 +16,6 @@ Rails.application.routes.draw do
 
   # viewable project mappings
   resources :projects # , :only => [:show, :new, :create]
-  resources :users 
 
   # Redirect simple requets for the viewable app
   # FIXME -- these redirects should be changed later.
