@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   # A user has many projects, and deleting user deletes projects of that user
   # FIXME -- how do we handle projects with multiple owners?
   has_many :projects, dependent: :destroy
+  has_many :enrollments
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
