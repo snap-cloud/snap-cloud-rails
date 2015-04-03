@@ -8,6 +8,8 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
+gem 'haml'
+
 # Embed v8 into Ruby. Sever-side JS processing.
 # gem 'therubyracer', platforms: :ruby
 
@@ -49,6 +51,7 @@ group :development, :test do
   gem 'ffaker'
   gem "shoulda-matchers"
   gem 'coveralls', require: false
+  gem "database_cleaner"
 end
 
 # Development Only Gems. Speed up loading in Travis.

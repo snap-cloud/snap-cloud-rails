@@ -1,0 +1,92 @@
+<div class="pure-g">
+
+	<div class="pure-u-1-24">
+	</div>
+
+	<div class="pure-u-1-12">
+		<br><br><br><br>
+		<table class="pure-table">
+	    <thead>
+	        <tr>
+	            <th>Navigation</th>
+	        </tr>
+	    </thead>
+
+	    <tbody>
+	    	<tr> <td><a href="lol_nothing"> Profile </td></a></tr>
+	    	<tr> <td><a href="lol_nothing"> Friends </td></a></td></tr>
+	    	<tr> <td><a href="lol_nothing"> Classes </td></a></tr>
+	    	<tr> <td><a href="lol_nothing"> Assignments </td></a></td></tr>
+	    	<tr> <td><a href="lol_nothing"> More Links </td></a></td></tr>
+	    	<tr> <td><a href="lol_nothing"> More Links </td></a></td></tr>
+	    	<tr> <td><a href="lol_nothing"> More Links </td></a></td></tr>
+	    	<tr> <td><a href="lol_nothing"> More Links </td></a></td></tr>
+	    	<tr> <td><a href="lol_nothing"> More Links </td></a></td></tr>
+	    	<tr> <td><a href="lol_nothing"> More Links </td></a></td></tr>
+	    </tbody>
+	</table>
+	</div>
+
+	<div class="pure-u-1-24">
+	</div>
+
+    <div class="pure-u-2-3">
+    	<br><br><br><br>
+    	Welcome back, <%= @user.email%>! <br><br>
+    	Member Since: <%= @user.created_at%> <br>
+    	Last Seen: <%= @user.last_sign_in_at ? @user.last_sign_in_at : 'N/A'%> <br><br>
+    
+
+    <table class="pure-table">
+	    <thead>
+	        <tr>
+	            <th>News Feed</th>
+	            <th>Date</th>
+	        </tr>
+	    </thead>
+
+	    <tbody>
+	        <tr>
+	            <td>[snap-all] Snap! will be down for maintenance tomorrow from 5-6 p.m. UTC. </td>
+	            <td>Today, 4:35 p.m.</td>
+	        </tr>
+
+	        <tr>
+	            <td>[you] <a href="lol_nothing">another_user</a> commented "wow, you did such a great job on this!" on  <a href="lol_nothing"> your_cool_project! </a></td>
+	            <td>Yesterday </td>
+	        </tr>
+
+	        <tr>
+	            <td>[cs-169] A new <a href="lol_nothing"> assignment </a> has been assigned!</td></td>
+	            <td>April 1st</td>
+	        </tr>
+	    </tbody>
+	</table>
+
+	<br><br>
+
+	<table class="pure-table"> 
+		<thead> 
+			<tr>
+				<th> Your Projects </th>
+				<th> Visibility </th>
+				<th> Date Created </th>
+				<th> Last Modified </th>
+			</tr>
+		</thead> 
+
+		<tbody> 
+			<tr> <% @projects.each do |project| %> 
+				<td> <a href="../projects/<%=project.id%>"><%= project.title %> </a>
+					<br> &nbsp;&nbsp;&nbsp;&nbsp; <%= project.notes %></td>
+ 				<td> <%= project.is_public ? "Public": "Private"%></td>
+ 				<td> <%= project.created_at %></td>
+ 				<td> <%= project.updated_at %></td>
+ 			</tr>
+			<% end %>
+    	</tbody>
+    </table>
+
+    </div>
+
+</div>
