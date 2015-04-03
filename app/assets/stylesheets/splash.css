@@ -7,16 +7,6 @@
     background: #2d3e50;
 }
 
-.run-snap-logo {
-    width: 50px;
-    height: 30px;
-    vertical-align: middle;
-}
-
-#splash-menu {
-    float: left;
-}
-
 #splash-photo {
     position:absolute;
     display:block;
