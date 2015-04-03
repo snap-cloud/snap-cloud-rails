@@ -51,6 +51,7 @@ group :development, :test do
   gem 'ffaker'
   gem "shoulda-matchers"
   gem 'coveralls', require: false
+  gem "database_cleaner"
 end
 
 # Development Only Gems. Speed up loading in Travis.
