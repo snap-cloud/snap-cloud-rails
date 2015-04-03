@@ -12,20 +12,25 @@ Background:
   | title   | notes        | owner | is_public |
   | ohsnap! | awesomesauce | 1     | true      |
 
-  Given I am on the project details page for Foo
+  Given I am on the project details page for "ohsnap!"
 
 Scenario: View owner of project
-  Then I should see test@test.com
+  Then I should see "test@test.com"
 
 Scenario: Editing the project from details
   And if I click on edit_project
-  Then I will be on Foo's edit page
+  Then I will be on the edit page for "Foo"
 
 Scenario: Seeing public/private level of project
-  Then I should see Public
-  And I should not see Private
+  Then I should see "Public"
+  And I should not see "Private"
+
+Scenario: Seeing comments
+  Then I should see "Comments"
+
+Scenario: Seeing collaborators
+  Then I should see "Collaborators"
 
 Scenario: Running the project
-  Given I am on the project details page for Foo
-  And I click Play
-  Then the project should run
+  Given I am on the project details page for "Foo"
+  Then I should see "Try It!"
