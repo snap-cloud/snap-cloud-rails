@@ -3,6 +3,14 @@ require 'api_constraints'
 
 Rails.application.routes.draw do
 
+  post 'courses/create',      to: 'courses#create'
+  get 'courses/:id',          to: 'courses#show'
+  post 'courses/:id/update',  to: 'courses#update'
+  post 'courses/:id/delete',  to: 'courses#delete'
+  get 'courses/new',          to: 'courses#new'
+  get 'courses/:id/edit',     to: 'courses#edit'
+  get 'courses',              to: 'courses#index'
+
   get 'dashboard/display'
 
   get '/', to: 'pages#index'
