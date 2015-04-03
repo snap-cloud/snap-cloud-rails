@@ -4,14 +4,12 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-
   def show
-    if not User.exists?(params[:id])
-      # TODO: render 404 and gtfo
-    end
     @user = User.find(params[:id])
+
+    # where returns an active record relation with all of a user's projects
+    # .each turns the result into an enumerable
     @projects = Project.where("owner = ?", params[:id])
-    render :action => "show"
   end
 
   def edit
@@ -22,4 +20,5 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     user.destroy
   end
+
 end

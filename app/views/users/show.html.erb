@@ -1,14 +1,20 @@
+
 <div class="pure-g">
 
-	<div class="pure-u-1-8" style="background: black; display: table-cell; vertical-align: middle;">
-	</div>
+    <div class="pure-u-1">
+        <div> <br><br><br><br>User: <%= @user.email%> </div>
+    </div>
 
-	<div class="pure-u-3-4 project-title">
-		<div> <%= @user.email %> </div>
-	</div>
-
-	<div class="pure-u-1-8" style="background: black; display: table-cell; vertical-align: middle;">
-	</div>
+    <div class="pure-u-1">
+    	<div> 
+    		<% @projects.each do |project| %> 
+ 				<div><br>Title:  <%= project.title %></div>
+ 				<div>Notes: <%= project.notes %></div>
+ 				<div>Public: <%= project.is_public ? "Public": "Private"%></div>
+ 				<div>Created at: <%= project.created_at %></div>
+ 				<div>Updated at: <%= project.updated_at %><br></div>
+			<% end %>
+    	</div>
+    <div>
 
 </div>
-
