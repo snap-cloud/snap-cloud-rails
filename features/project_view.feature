@@ -18,8 +18,8 @@ Scenario: View owner of project
   Then I should see "test@test.com"
 
 Scenario: Editing the project from details
-  And if I click on edit_project
-  Then I will be on the edit page for "Foo"
+  Then I follow "edit_project"
+  And I will be on the edit page for "Foo"
 
 Scenario: Seeing public/private level of project
   Then I should see "Public"

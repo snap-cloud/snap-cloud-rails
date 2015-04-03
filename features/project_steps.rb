@@ -8,7 +8,7 @@ Then /^(?:|I) should see "(.+)"$/ do |input|
 end
 
 Then /^(?:|I) should not see "(.+)"$/ do |input|
-	assert !page.body.include? input
+	assert_false page.body.include? input
 end
 
 Given /^(?:|I) am logged in as "(.+)"$/ do |user|
@@ -42,6 +42,19 @@ end
 
 Given /the following users exist/ do |user_table|
   user_table.hashes.each do |user|
-    User.create(project)
+    User.create(user)
   end
+end
+
+Then /^(?:|I) press "(.+)" $/ do |button|
+  click_button(button)
+end
+
+Then(/^I follow "(.*?)"$/) do |link|
+  click_link(link)
+end
+
+Then(/^I will be on the edit page for "(.*?)"$/) do |page|
+  proj = Project.find_by_title page
+  assert page.current_path == '/project/' + page + "/edit"
 end
