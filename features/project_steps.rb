@@ -3,29 +3,29 @@
 #        (https://github.com/cucumber/cucumber-rails/issues/174)
 # Linda: We can totally do better! 
 
-Then /^(?:|I) should see "(.+)"$/ do |input|
+Then /^(?:|I) should see "(.*?)"$/ do |input|
 	assert page.body.include? input
 end
 
-Then /^(?:|I) should not see "(.+)"$/ do |input|
+Then /^(?:|I) should not see "(.*?)"$/ do |input|
 	assert_false page.body.include? input
 end
 
-Given /^(?:|I) am logged in as "(.+)"$/ do |user|
+Given /^(?:|I) am logged in as "(.*?)"$/ do |user|
 	flunk "Unimplemented"
 end
 
-Given /^(?:|I) am on the project details page for "(.+)"$/ do |page|
+Given /^(?:|I) am on the project details page for "(.*?)"$/ do |page|
 	proj = Project.find_by_title page
-  visit "/project/" + proj.id
+  visit "/projects/" + proj.id.to_s
 end
 
-And /^(?:|I) enter in "(.+)" $/ do |entry|
+And /^(?:|I) enter in "(.*?)" $/ do |entry|
 	flunk "Unimplemented"
 end
 
 # check if username/pw is valid, if signup is valid, etc.? 
-And /^(?:|my) "(.+)" (is|are) valid$/ do |field|
+And /^(?:|my) "(.*?)" (is|are) valid$/ do |field|
 	flunk "Unimplemented"
 end
 
@@ -46,7 +46,7 @@ Given /the following users exist/ do |user_table|
   end
 end
 
-Then /^(?:|I) press "(.+)" $/ do |button|
+Then /^(?:|I) press "(.*?)" $/ do |button|
   click_button(button)
 end
 
@@ -56,5 +56,5 @@ end
 
 Then(/^I will be on the edit page for "(.*?)"$/) do |page|
   proj = Project.find_by_title page
-  assert page.current_path == '/project/' + page + "/edit"
+  assert page.current_path == '/projects/' + page + "/edit"
 end
