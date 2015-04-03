@@ -269,6 +269,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   ffaker
+  haml
   jquery-rails
   pg
   rails (= 4.2.1)
