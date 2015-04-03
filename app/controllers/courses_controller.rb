@@ -25,4 +25,8 @@ class CoursesController < ApplicationController
   def edit
     #render a view so the user has a form to submit
   end
+
+  def course_params
+
+  end
 end
