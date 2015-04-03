@@ -15,26 +15,22 @@ Given /^(?:|I) am logged in as "(.+)"$/ do |user|
 	flunk "Unimplemented"
 end
 
-Then /^(?:|I) will be logged in$/ do
-	flunk "Unimplemented"
-end
-
 Given /^(?:|I) am on the project details page for "(.+)"$/ do |page|
 	proj = Project.find_by_title page
   visit "/project/" + proj.id
 end
 
-And /^(?:|I) enter in "(.+)" $/ do
+And /^(?:|I) enter in "(.+)" $/ do |entry|
 	flunk "Unimplemented"
 end
 
 # check if username/pw is valid, if signup is valid, etc.? 
-And /^(?:|my) "(.+)" (is|are) valid$/ do
+And /^(?:|my) "(.+)" (is|are) valid$/ do |field|
 	flunk "Unimplemented"
 end
 
 #for things like <project's> <attribute> should be 
-Then /^(?:|I) should be "(.+)" page$/ do
+Then /^(?:|I) should be "(.+)" page$/ do |page|
 	flunk "Unimplemented"
 end
 
