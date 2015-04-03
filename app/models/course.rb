@@ -8,4 +8,8 @@ class Course < ActiveRecord::Base
     def removeUser(person)
         Enrollment.where(user_id: person.id, course_id: self.id).delete
     end
+
+    def userRole(person)
+    	Enrollment.where(user_id: person.id, course_id: self.id).role
+    end
 end
