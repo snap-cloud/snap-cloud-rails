@@ -1,5 +1,5 @@
 <!-- This is going to be a table which renders for each user
-	Since each user has alist of project (@projects)--> 
+	takes in :projects as an argument.--> 
 
 <table class="pure-table"> 
 	<thead> 
@@ -12,7 +12,7 @@
 	</thead> 
 
 	<tbody> 
-		<tr> <% @projects.each do |project| %> 
+		<tr> <% locals[:projects].each do |project| %> 
 			<td> <a href="../projects/<%=project.id%>"><%= project.title %> </a>
 				<br> &nbsp;&nbsp;&nbsp;&nbsp; <%= project.notes %></td>
 				<td> <%= project.is_public ? "Public": "Private"%></td>
