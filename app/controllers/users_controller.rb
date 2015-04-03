@@ -1,4 +1,4 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
 
   def new
     @user = User.new
@@ -10,7 +10,7 @@ class UserController < ApplicationController
       # TODO: render 404 and gtfo
     end
     @user = User.find(params[:id])
-    @projects = Project.where(:owner = params[:id])
+    @projects = Project.where("owner = ?", params[:id])
     render :action => "show"
   end
 
