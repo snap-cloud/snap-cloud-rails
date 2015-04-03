@@ -1,2 +1,7 @@
-<h1>Courses#show</h1>
-<p>Find me in app/views/courses/sshow.html.erb</p>
+%br
+%br
+%br
+-if flash[:message]
+    %h1= flash[:message] 
+%br
+%p= @course.title
