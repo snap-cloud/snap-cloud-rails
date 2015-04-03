@@ -1,6 +1,9 @@
 class PagesController < ApplicationController
+
   def index
-  	if user_sign_in?
+  	if current_user
+  		@user =  current_user
+  		@projects = Project.where("owner = ?", current_user.id)
   		render 'dashboard' 
   	else
   		render 'index'
