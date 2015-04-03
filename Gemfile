@@ -23,7 +23,6 @@ gem "devise"
 gem 'simple_token_authentication', '~> 1.0' # see semver.org
 
 # allows for hellza sexiness
-gem 'purecss'
 gem 'jquery-rails'
 
 # Use ActiveModel has_secure_password
