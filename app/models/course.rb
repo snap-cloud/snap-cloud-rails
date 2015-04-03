@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-    has_many :enrollments
+    has_many :enrollments, :dependent => :delete_all
 
     def addUser(person, role)
         Enrollment.create(user_id: person.id, course_id: self.id, role: role)
@@ -11,5 +11,9 @@ class Course < ActiveRecord::Base
 
     def userRole(person)
     	Enrollment.where(user_id: person.id, course_id: self.id).role
+    end
+
+    def students
+        self.enrollments.select(&:student?).map(&:user)
     end
 end
