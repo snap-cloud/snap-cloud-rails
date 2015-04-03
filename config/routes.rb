@@ -13,8 +13,6 @@ Rails.application.routes.draw do
 
   get 'users/:id/profile', to: 'users#profile'
 
-  get 'dashboard/display'
-
   get '/', to: 'pages#index'
 
   get '/snap', to: redirect('/snap/')
