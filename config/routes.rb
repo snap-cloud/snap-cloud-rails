@@ -3,7 +3,6 @@ require 'api_constraints'
 
 Rails.application.routes.draw do
 
-<<<<<<< HEAD
   post 'courses/create',      to: 'courses#create'
   get 'courses/:id',          to: 'courses#show'
   post 'courses/:id/update',  to: 'courses#update'
@@ -14,8 +13,6 @@ Rails.application.routes.draw do
 
   get 'dashboard/display'
 
-=======
->>>>>>> 6386cd6964e123cd2e33a3b72b044b00d3f949ee
   get '/', to: 'pages#index'
 
   get '/snap', to: redirect('/snap/')
