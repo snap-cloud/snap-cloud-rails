@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'courses/:id/edit',     to: 'courses#edit'
   get 'courses',              to: 'courses#index'
 
+  get 'users/:id/profile', to: 'users#profile'
+
   get 'dashboard/display'
 
   get '/', to: 'pages#index'

@@ -4,6 +4,15 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def profile
+    if params[:id]
+      @user = User.find(params[:id])
+      @about_me = @user.about_me || "Enter information about you and your interests here."
+    else
+      redirect_to "/"
+    end
+  end
+
   def show
     @user = User.find(params[:id])
 
