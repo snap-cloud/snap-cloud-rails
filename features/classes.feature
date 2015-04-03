@@ -6,11 +6,13 @@ Feature: Snap! Cloud Classes
 Background:
   Given I am logged in as Alice
 
+  And the following users exist:
+  | email          | password     |
+  | test@test.com  | yoloswaggins |
+
   And the following projects exist:
-  | title | description | owner | shared_with |  
-  |  Foo  | foo foo foo | Alice |    nil      |
-  |  Bar  | bar bar bar | Alice |    Bob      |
-  |  Not  | not not not |  Bob  |    nil      |
+  | title    | notes                       | owner | is_public |
+  | ohsnap!  | This is an amazing project. | 1     | true      |
 
   Given I am on the list of projects page
 
