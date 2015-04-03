@@ -10,7 +10,7 @@
     		<% @projects.each do |project| %> 
  				<div><br>Title:  <%= project.title %></div>
  				<div>Notes: <%= project.notes %></div>
- 				<div>Public: <%= project.is_public ? "Public": "Private"%></div>
+ 				<div>Visibility: <%= project.is_public ? "Public": "Private"%></div>
  				<div>Created at: <%= project.created_at %></div>
  				<div>Updated at: <%= project.updated_at %><br></div>
 			<% end %>
