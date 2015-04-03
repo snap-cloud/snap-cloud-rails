@@ -8,16 +8,31 @@
         </div>
     </div>
 
-    <!--this looks horrible, and it is manually spaced. fix this. -->
+    <div class="pure-u-1">
+    	Welcome back, <%= @user.email%>! <br><br>
+    </div>
+
+    <!--
     <div class="pure-u-1">
     	<div> About The User </div>
         <div> &nbsp;&nbsp;&nbsp;&nbsp; Name: <%= @user.email%> </div>
         <div> &nbsp;&nbsp;&nbsp;&nbsp; Member Since: <%= @user.created_at%> </div>
-        <div> &nbsp;&nbsp;&nbsp;&nbsp; Last Seen: <%= @user.last_sign_in_at ? @user.last_sign_in_at : "N/A" %> </div>
+        <div> &nbsp;&nbsp;&nbsp;&nbsp; Last Seen: <%= @user.last_sign_in_at ? @user.last_sign_in_at : "N/A" %> <br><br> </div>
+    </div>
+    -->
+
+    <div class="pure-u-1">
+    	Recent News: <br>
+    	&nbsp;&nbsp;&nbsp;&nbsp;[snap-all] Snap! will be down for maintenance tomorrow. <br>
+
+    	&nbsp;&nbsp;&nbsp;&nbsp;[you] <a href="lol_nothing">another_user</a> commented on  <a href="lol_nothing"> your_cool_project! </a><br>
+
+    	&nbsp;&nbsp;&nbsp;&nbsp;[cs-169] A new <a href="lol_nothing"> assignment </a> has been assigned!
+
     </div>
 
     <div class="pure-u-1">
-    	<div> <br> Projects by <%= @user.email%><br>
+    	<div> <br> Your Projects<br>
     		<% @projects.each do |project| %> 
  				<div>&nbsp;&nbsp;&nbsp;&nbsp;Title:  <%= project.title %></div>
  				<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
