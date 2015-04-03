@@ -1,26 +1,10 @@
-<!--[if lte IE 8]>
-  
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
-  
-<![endif]-->
-<!--[if gt IE 8]><!-->
-  
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
-  
-<!--<![endif]-->
-
 <div class="header">
     <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-        <ul class="pure-menu-list">
-            <li class="pure-menu-item"><%= link_to(image_tag("/images/snap-logo.png", :alt => "Snap!"), snap, :class => "pure-menu-link") %></li>
-            <li class="pure-menu-item"><%= link_to "Projects", "#", :class => "pure-menu-link" %></li>
-            <li class="pure-menu-item"><%= link_to "Forums", "#", :class => "pure-menu-link" %></li>
-            <li class="pure-menu-item"><%= link_to "About", "#" :class => "pure-menu-link" %></li>
-        </ul>
+        <a class="pure-menu-heading" href="">Your Site</a>
 
         <ul class="pure-menu-list">
-            <li class="pure-menu-item"><%= link_to "Sign Up", signup, :class => "pure-menu-link" %></li>
-            <li class="pure-menu-item"><%= link_to "Sign In", login, :class => "pure-menu-link" %></li>
+            <li class="pure-menu-item"><%= link_to "Sign Up", "/signup", :class => "pure-menu-link" %></li>
+            <li class="pure-menu-item"><%= link_to "Sign In", "/login", :class => "pure-menu-link" %></li>
         </ul>
     </div>
 </div>
@@ -31,9 +15,9 @@
         <p class="splash-subhead">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
         </p>
-        <p>
-          <%= link_to("Run Snap! Now", snap) %>
-        </p>
+        <h2>
+          <a href="/snap/" id="run-snap">Run <%= image_tag "snap-logo.png", alt: "Snap!", class: "run-snap-logo" %> Now</a>
+        </h2>
     </div>
 </div>
 
@@ -146,3 +130,22 @@
     </div>
 
 </div>
+
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+<!--[if lte IE 8]>
+  
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
+  
+<![endif]-->
+<!--[if gt IE 8]><!-->
+  
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+  
+<!--<![endif]-->
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+<!--[if lte IE 8]>
+    <link rel="stylesheet" href="css/layouts/marketing-old-ie.css">
+    <![endif]-->
+<!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="/assets/marketing.css">
+<!--<![endif]-->
