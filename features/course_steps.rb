@@ -1,8 +1,11 @@
+Given(/^I visit the new course page$/) do
+  visit course_new_path
+end
+
 Given /I enter the course information/ do
-	visit course_new_path
-	fill_in('course[title]', :with => 'Oh SNAP!')
-	fill_in('course[description]', :with => 'My test snap course')
-	fill_in('course[website]', :with => 'www.mytestsnapcourse.edu')
+	fill_in('course_title', :with => 'Oh SNAP!')
+	fill_in('course_description', :with => 'My test snap course')
+	fill_in('course_website', :with => 'www.mytestsnapcourse.edu')
 	click_button('Create')
 end
 
