@@ -14,6 +14,9 @@ Background:
 
   Given I am on the project details page for "ohsnap!"
 
+Scenario: View title of project
+  Then I should see "ohsnap!"
+
 Scenario: View owner of project
   Then I should see "test@test.com"
 
