@@ -14,11 +14,7 @@ class ProjectsController < ApplicationController
     render :action => "show"
   end
 
-  def index
-  end
-
   def edit
-    render action: "edit"
     # TODO: implement this -- don't forget to see if the user is an owner before actually letting them edit!
   end
 
