@@ -1,9 +1,11 @@
-%br
-%br
-%h1 Create a course
-
--@course = Course.new()
+-@course = Course.new(title: "CS169 - Software Engineering")
 -@course.id = 10
+
+%br
+%br
+%h1= "Editing #{@course.title}"
+
+
 
 %h1=  flash[:message]
 -@course.try(:errors).try(:each) do |attribute, error|
@@ -28,7 +30,7 @@
             =date_select :course, :enddate, default: @course.try(:enddate)
 
         %p Drops:
-        =@course.try(:each) do |student|
+        =@course.students.try(:each) do |student|
             =check_box "drops[#{student.email}]", 1
             =student.name
             %br
