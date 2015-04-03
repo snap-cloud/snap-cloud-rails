@@ -4,11 +4,11 @@
 # Linda: We can totally do better! 
 
 Then /^(?:|I) should see "(.*?)"$/ do |input|
-	assert page.body.include? input
+	page.should have_content input
 end
 
 Then /^(?:|I) should not see "(.*?)"$/ do |input|
-	assert_false page.body.include? input
+	page.should_not have_content input
 end
 
 Given /^(?:|I) am logged in as "(.*?)"$/ do |user|
@@ -30,7 +30,7 @@ And /^(?:|my) "(.*?)" (is|are) valid$/ do |field|
 end
 
 #for things like <project's> <attribute> should be 
-Then /^(?:|I) should be "(.+)" page$/ do |page|
+Then /^(?:|I) should be "(.+)" page$/ do |target|
 	flunk "Unimplemented"
 end
 
@@ -54,7 +54,7 @@ Then(/^I follow "(.*?)"$/) do |link|
   click_link(link)
 end
 
-Then(/^I will be on the edit page for "(.*?)"$/) do |page|
-  proj = Project.find_by_title page
-  assert page.current_path == '/projects/' + page + "/edit"
+Then(/^I will be on the edit page for "(.*?)"$/) do |target|
+  proj = Project.find_by_title target
+  page.current_path.should eq "/projects/" + proj.id.to_s + "/edit"
 end
