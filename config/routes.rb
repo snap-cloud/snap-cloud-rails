@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   # viewable project mappings
   resources :projects # , :only => [:show, :new, :create]
+  resources :users
 
   # Redirect simple requets for the viewable app
   # FIXME -- these redirects should be changed later.
