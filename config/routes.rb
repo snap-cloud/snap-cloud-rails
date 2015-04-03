@@ -13,8 +13,6 @@ Rails.application.routes.draw do
 
   get 'users/:id/profile', to: 'users#profile'
 
-  get 'dashboard/display'
-
   get '/', to: 'pages#index'
 
   get '/snap', to: redirect('/snap/')
@@ -34,7 +32,7 @@ Rails.application.routes.draw do
   # FIXME -- these redirects should be changed later.
   get '/login', to: redirect('api/users/login')
   # This doesn't do anything for now...
-  get '/logout', to: redirect('')
+  get '/logout', to: redirect('api/users/logout')
   get '/signup', to: redirect('api/users/signup')
 
   # NOTE: We should probably use a subdomain in the future, add:
