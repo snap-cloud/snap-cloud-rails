@@ -1,0 +1,24 @@
+<!-- This is going to be a table which renders for each user
+	Since each user has alist of project (@projects)--> 
+
+<table class="pure-table"> 
+	<thead> 
+		<tr>
+			<th> Your Projects </th>
+			<th> Visibility </th>
+			<th> Date Created </th>
+			<th> Last Modified </th>
+		</tr>
+	</thead> 
+
+	<tbody> 
+		<tr> <% @projects.each do |project| %> 
+			<td> <a href="../projects/<%=project.id%>"><%= project.title %> </a>
+				<br> &nbsp;&nbsp;&nbsp;&nbsp; <%= project.notes %></td>
+				<td> <%= project.is_public ? "Public": "Private"%></td>
+				<td> <%= project.created_at %></td>
+				<td> <%= project.updated_at %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
