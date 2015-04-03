@@ -4,38 +4,36 @@ Feature: Viewing Project Details Page
   I would like to be able to see details of a project.
 
 Background:
-  Given the following projects exist:
-  | title | description | owner | shared_with |  
-  |  Foo  | foo foo foo | Alice |    nil      |
-  |  Bar  | bar bar bar | Alice |    Bob      |
-  |  Not  | not not not |  Bob  |    nil      |
+  Given the following users exist:
+  | email         | password     |
+  | test@test.com | yoloswaggins |
 
-  Given I am on the project details page for Foo
+  And the following projects exist:
+  | title   | notes        | owner | is_public |
+  | ohsnap! | awesomesauce | 1     | true      |
+
+  Given I am on the project details page for "ohsnap!"
+
+Scenario: View title of project
+  Then I should see "ohsnap!"
 
 Scenario: View owner of project
-  Then I should see Alice
+  Then I should see "test@test.com"
 
 Scenario: Editing the project from details
-  And if I click on edit_project
-  Then I will be on Foo's edit page
+  Then I follow "edit_project"
+  And I will be on the edit page for "ohsnap!"
 
-Scenario: Seeing shared users (collaborators)
-  Given I am on the project details page for Bar
-  Then I should see Alice,Bob as collaborators
+Scenario: Seeing public/private level of project
+  Then I should see "Public"
+  And I should not see "Private"
 
-Scenario: Unsharing a project
-  Given I am on the project details page for Bar
-  Given I am logged in as Alice
-  And I unshare Foo with Bob
-  Then I should not see Bob as collaborators
+Scenario: Seeing comments
+  Then I should see "Comments"
 
-Scenario: Sharing a project
-  Given I am on the project details page for Foo
-  Given I am logged in as Alice
-  And I share Foo with Bob
-  Then I should see Bob as collaborators
+Scenario: Seeing collaborators
+  Then I should see "Collaborators"
 
 Scenario: Running the project
-  Given I am on the project details page for Foo
-  And I click Play
-  Then the project should run
+  Given I am on the project details page for "ohsnap!"
+  Then I should see "Try It!"

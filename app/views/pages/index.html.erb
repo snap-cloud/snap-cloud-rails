@@ -1,27 +1,47 @@
-<div class="header">
-    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-        <a class="pure-menu-heading" href="">Your Site</a>
-
-        <ul class="pure-menu-list">
-            <li class="pure-menu-item"><%= link_to "Sign Up", "/signup", :class => "pure-menu-link" %></li>
-            <li class="pure-menu-item"><%= link_to "Sign In", "/login", :class => "pure-menu-link" %></li>
-        </ul>
-    </div>
-</div>
+<% content_for :head do %>
+  <%= stylesheet_link_tag "marketing", "pages", "splash" %>
+<% end %>
 
 <div class="splash-container">
-    <div class="splash">
-        <h1 class="splash-head">Big Bold Text</h1>
-        <p class="splash-subhead">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-        </p>
-        <h2>
-          <a href="/snap/" id="run-snap">Run <%= image_tag "snap-logo.png", alt: "Snap!", class: "run-snap-logo" %> Now</a>
-        </h2>
+  <div class="splash">
+    <div class="pure-g landing-container">
+      <div class="pure-u-1-2">
+	<%= image_tag "half-snapshot.png", id: "splash-photo" %>
+      </div>
+      <div class="pure-u-1-2">
+	<h2>
+	  Welcome to Snap!
+	</h2>
+	<h3 id="welcome-text">
+	  Snap! is a visual, drag-and-drop programming language presented by the University of California, Berkeley. Learn computer science concepts in a comfortable graphical environment (pictured left). Follow the "Get Started" link above to learn more or click the button below to launch the app.
+	</h3>
+	<h2>
+	  <a href="/snap/" id="run-snap">Run <%= image_tag "snap-logo.png", alt: "Snap!", class: "run-snap-logo" %> Now</a>
+	</h2>
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="content-wrapper">
+
+    <div class="ribbon l-box-lrg pure-g">
+        <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
+	    <%= image_tag "alonzo.svg", alt: "Alonzo isn't available at the moment...", class: "pure-img-responsive" %>
+        </div>
+        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
+
+            <h2 class="content-head content-head-ribbon">Laboris nisi ut aliquip.</h2>
+
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor.
+            </p>
+        </div>
+    </div>
+
     <div class="content">
         <h2 class="content-head is-center">Excepteur sint occaecat cupidatat.</h2>
 
@@ -66,86 +86,8 @@
         </div>
     </div>
 
-    <div class="ribbon l-box-lrg pure-g">
-        <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
-            <img class="pure-img-responsive" alt="File Icons" width="300" src="img/common/file-icons.png">
-        </div>
-        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
-
-            <h2 class="content-head content-head-ribbon">Laboris nisi ut aliquip.</h2>
-
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor.
-            </p>
-        </div>
-    </div>
-
-    <div class="content">
-        <h2 class="content-head is-center">Dolore magna aliqua. Uis aute irure.</h2>
-
-        <div class="pure-g">
-            <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
-                <form class="pure-form pure-form-stacked">
-                    <fieldset>
-
-                        <label for="name">Your Name</label>
-                        <input id="name" type="text" placeholder="Your Name">
-
-
-                        <label for="email">Your Email</label>
-                        <input id="email" type="email" placeholder="Your Email">
-
-                        <label for="password">Your Password</label>
-                        <input id="password" type="password" placeholder="Your Password">
-
-                        <button type="submit" class="pure-button">Sign Up</button>
-                    </fieldset>
-                </form>
-            </div>
-
-            <div class="l-box-lrg pure-u-1 pure-u-md-3-5">
-                <h4>Contact Us</h4>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat.
-                </p>
-
-                <h4>More Information</h4>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-            </div>
-        </div>
-
-    </div>
-
     <div class="footer l-box is-center">
-        View the source of this layout to learn more. Made with love by the YUI Team.
+      University of California, Berkeley
     </div>
 
 </div>
-
-<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-<!--[if lte IE 8]>
-  
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
-  
-<![endif]-->
-<!--[if gt IE 8]><!-->
-  
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
-  
-<!--<![endif]-->
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-<!--[if lte IE 8]>
-    <link rel="stylesheet" href="css/layouts/marketing-old-ie.css">
-    <![endif]-->
-<!--[if gt IE 8]><!-->
-<link rel="stylesheet" href="/assets/marketing.css">
-<!--<![endif]-->

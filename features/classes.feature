@@ -11,10 +11,11 @@ Background:
   | test@test.com  | yoloswaggins |
 
   And the following projects exist:
-  | title    | notes                       | owner | is_public |
-  | ohsnap!  | This is an amazing project. | 1     | true      |
+  | title | notes       | owner | is_public |
+  | Foo   | foo foo foo | 1     | true      |
+  | Bar   | new new new | 2     | false     |
 
-  Given I am on the list of projects page
+  Given I am on the project listing page
 
 Scenario: Dashboard view--the list of projects
   Then I should see Foo, Bar

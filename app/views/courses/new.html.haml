@@ -1,0 +1,39 @@
+%br
+%br
+%h1 Create a course
+
+=form_tag course_create_path, method: :post do
+    -if @course  #incase the user already submitted, course.new was used, but the course is invalid
+        %label{for: "course[title]"} Title:
+        =text_field_tag 'course[title]', @course.title
+        %br
+        %label{for: "course[description]"} Description:
+        =text_field_tag 'course[description]', @course.description
+        %br
+        %label{for: "course[website]"} Website:
+        =text_field_tag 'course[website]', @course.website
+        %br
+        %label{for: "course[startdate]"} Starts:
+        =date_select :course, :startdate, default: @course.startdate
+        %br
+        %label{for: "course[enddate]"} Ends:
+        =date_select :course, :enddate, default: @course.enddate
+        %br
+        =submit_tag "Create"
+    -else
+        %label{for: "course[title]"} Title:
+        =text_field_tag 'course[title]'
+        %br
+        %label{for: "course[description]"} Description:
+        =text_field_tag 'course[description]'
+        %br
+        %label{for: "course[website]"} Website:
+        =text_field_tag 'course[website]'
+        %br
+        %label{for: "course[startdate]"} Starts:
+        =date_select :course, :startdate
+        %br
+        %label{for: "course[enddate]"} Ends:
+        =date_select :course, :enddate
+        %br
+        =submit_tag "Create"
