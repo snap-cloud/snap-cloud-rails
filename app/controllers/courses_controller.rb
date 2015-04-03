@@ -2,18 +2,19 @@ class CoursesController < ApplicationController
   def create
     user = getCurrentUser
     if !getCurrentUser
-      flash[:error] = "Log in to create a course"
-      redirect_to course_index
+      flash[:message] = "Log in to create a course"
+      redirect_to course_index_path
     end
     @course = Course.new(course_params)
     if @course.valid?
       @course.save
       flash[:message] = "You have created this course"
       @course.addUser(user, :teacher)
-      redirect_to course(@course.id)
+      redirect_to course_path(@course.id)
     else
+      flash[:message] = "Fields invalid"
       render 'new'
-      flash[:error] = "Fields invalid"
+      return
     end
     #form on the new page gets submitted here
   end
@@ -32,9 +33,12 @@ class CoursesController < ApplicationController
     if @course.userRole(getCurrentUser).teacher?
       @course.destroy
       flash[:message] = "Course has been deleted"
+      redirect_to course_index_path
     else
-      flash[:error] = "You do not have permission to delete this course"
+      flash[:message] = "You do not have permission to delete this course"
+      redirect_to course_path(@course)
     end
+
   end
 
   def new
