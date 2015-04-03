@@ -3,15 +3,15 @@
 #        (https://github.com/cucumber/cucumber-rails/issues/174)
 # Linda: We can totally do better! 
 
-Then /^(?:|I) should see (.+)$/ do
-	flunk "Unimplemented"
+Then /^(?:|I) should see (.+)$/ do |input|
+	assert page.body.include? input
 end
 
-Then /^(?:|I) should not see (.+)$/ do
-	flunk "Unimplemented"
+Then /^(?:|I) should not see (.+)$/ do |input|
+	assert !page.body.include? input
 end
 
-Given /^(?:|I) am logged in$/ do
+Given /^(?:|I) am logged in as (.+)$/ do |user|
 	flunk "Unimplemented"
 end
 
@@ -39,6 +39,6 @@ end
 
 Given /the following projects exist/ do |project_table|
   project_table.hashes.each do |project|
-  Project.create(project)
+    Project.create(project)
   end
 end
