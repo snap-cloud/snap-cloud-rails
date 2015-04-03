@@ -19,7 +19,7 @@ Scenario: View owner of project
 
 Scenario: Editing the project from details
   Then I follow "edit_project"
-  And I will be on the edit page for "Foo"
+  And I will be on the edit page for "ohsnap!"
 
 Scenario: Seeing public/private level of project
   Then I should see "Public"
@@ -32,5 +32,5 @@ Scenario: Seeing collaborators
   Then I should see "Collaborators"
 
 Scenario: Running the project
-  Given I am on the project details page for "Foo"
+  Given I am on the project details page for "ohsnap!"
   Then I should see "Try It!"
