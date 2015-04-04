@@ -6,18 +6,16 @@ Rails.application.routes.draw do
   post 'courses/create',      to: 'courses#create', as: 'course_create'
   get 'courses/new',          to: 'courses#new', as: 'course_new'
   post 'courses/:id/update',  to: 'courses#update', as: 'course_update'
-  post 'courses/:id/delete',  to: 'courses#delete' , as: 'course_delete'
+  post 'courses/:id/delete',  to: 'courses#delete', as: 'course_delete'
   get 'courses/:id/edit',     to: 'courses#edit', as: 'course_edit'
   get 'courses/:id',          to: 'courses#show', as: 'course_show'
   get 'courses',              to: 'courses#index', as: 'course_index'
 
   get 'users/:id', to: 'users#profile', as: 'user_profile'
 
-  get '/', to: 'pages#index', as: 'home'
+  get '', to: 'pages#index', as: 'home'
   get 'about', to: 'pages#about', as: 'about'
   get 'help', to: 'pages#help', as: 'help'
-
-  get '/snap', to: redirect('/snap/')
 
   devise_for :users, :path => 'api/users',
                      :controllers => { sessions: 'sessions',
@@ -28,14 +26,14 @@ Rails.application.routes.draw do
 
   # viewable project mappings
   resources :projects # , :only => [:show, :new, :create]
-  resources :users 
+  resources :users
 
   # Redirect simple requets for the viewable app
-  # FIXME -- these redirects should be changed later.
-  get '/login', to: redirect('api/users/login')
-  # This doesn't do anything for now...
-  get '/logout', to: redirect('api/users/logout')
-  get '/signup', to: redirect('api/users/signup')
+  devise_scope :user do
+    get 'login', to: 'sessions#create'
+    get 'logout', to: 'sessions#destroy'
+    get 'signup', to: 'registrations#new'
+  end
 
   # NOTE: We should probably use a subdomain in the future, add:
   # constraints: { subdomain: 'api' }, path: '/'
@@ -57,7 +55,6 @@ Rails.application.routes.draw do
   # Shortcuts to the Snap! submodule
   # NOTE: the redirect needs a trailing / to load the JS properly.
   # TODO: Serving this way is probably not the best...
-  get '/run', to: redirect('/snap/')
-
+  get 'run', to: redirect('snap/')
 
 end
