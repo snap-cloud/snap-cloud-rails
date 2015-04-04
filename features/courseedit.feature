@@ -77,3 +77,13 @@ And I submit the course edit
 Then I should see "alice@cal.edu" enrolled
 Then I should see "bob@cal.edu" enrolled
 Then I should see "cardinal@stanfurd.edu" could not be found
+
+Scenario: Teacher tries to add 2 incorrect emails and a correct one
+Given I am logged in as "teacher@cal.edu" with password "password"
+When I try to visit the edit page for "testcourse"
+And I try to add "charlie@stanfurd.edu" and "diane@stanfurd.edu" at the same time
+And I try to add "charlie@cal.edu"
+And I submit the course edit
+Then I should see "charlie@cal.edu"
+Then I should see "charlie@stanfurd.edu" could not be found
+Then I should see "diane@stanfurd.edu" could not be found
