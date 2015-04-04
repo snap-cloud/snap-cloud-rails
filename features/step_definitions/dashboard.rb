@@ -3,19 +3,7 @@
 #        (https://github.com/cucumber/cucumber-rails/issues/174)
 # Linda: We can totally do better! 
 
-Given /^the following projects exist$/ do |project_table|
-  project_table.hashes.each do |project|
-    Project.create(project)
-  end
-end
-
-Given /^the following users exist$/ do |user_table|
-  user_table.hashes.each do |user|
-    User.create(user)
-  end
-end
-
-Given /^the following announcements exist in the snap site$/ do |announcement_table|
+And /^the following announcements exist$/ do |announcement_table|
   announcement_table.hashes.each do |announcement|
     Announcement.create(announcement)
   end
@@ -27,7 +15,7 @@ Given /^(?:|I) am not logged in$/ do |user|
 
 Given /^(?:|I) am logged in as "(.*?)" $/ do |user|
   password = user.password
-	visit login_path
+  visit login_path
   fill_in "user_email", :with => user
   fill_in "user_password", :with => password
   click_button "Log in"
@@ -51,14 +39,6 @@ end
 And /^(?:|I) should see a projects listing with my "(.*?)"$/ do |projects|
 end
 
-Then /^(?:|I) press "(.*?)" $/ do |button|
-  click_button(button)
-end
-
-Then(/^I follow "(.*?)"$/) do |link|
-  click_link(link)
-end
-
 Then /^(?:|I) will be on the snap page$/ do |target|
   page.current_path.should eq "/snap/"
 end
@@ -80,6 +60,3 @@ Then /^(?:|I) should be logged out$/ do |target|
   page.current_path.should eq "/"
   page.should have_content 'Sign In'
 end
-
-
-
