@@ -15,6 +15,7 @@ describe Api::V1::UsersController do
       allow(controller).to receive(:current_user).and_return(fakeuser)
       
 
+
       @user = FactoryGirl.create :user
       get :show, id: @user.id, format: :json
 
