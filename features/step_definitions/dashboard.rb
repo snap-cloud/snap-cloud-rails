@@ -3,7 +3,7 @@
 #        (https://github.com/cucumber/cucumber-rails/issues/174)
 # Linda: We can totally do better! 
 
-And /^the following announcements exist$/ do |announcement_table|
+And /^the following announcements exist:$/ do |announcement_table|
   announcement_table.hashes.each do |announcement|
     Announcement.create(announcement)
   end
@@ -13,7 +13,7 @@ Given /^(?:|I) am not logged in$/ do |user|
   #nothing needs to be done.. 
   end
 
-Given /^(?:|I) am logged in as "(.*?)" $/ do |user|
+Given /^(?:|I) am logged in as "(.*?)"$/ do |user|
   password = user.password
   visit login_path
   fill_in "user_email", :with => user
