@@ -1,5 +1,8 @@
 class CoursesController < ApplicationController
   def create
+    if !userLoggedIn?("Log in to create a course")
+      return
+    end
     user = getCurrentUser
     @course = Course.new(course_params)
     if @course.valid?
@@ -17,25 +20,43 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.find(params[:id])
+    @course = courseExists?("The course you're trying to view does not exist")
+    if !@course
+      return
+    end
     #Find the course with the give id
   end
 
   def update
+    @course = courseExists?("The course you're trying to update does not exist")
+    if !@course
+      return
+    end
+    drops = params[drops]
+    if drops
+      drops.each_key do |email|
+        dropUser = User.find_by(email)
+        @course.removeUser(user)
+      end
+    end
+    adds = params[adds]
+    if adds
+      adds.each do |key, email|
+        addUser = User.find_by(email)
+        @course.addUser(addUser, :student)
+      end
+    end
     #form on the edit page submitted here
   end
 
   def delete
-    if getCurrentUser.nil?
-      flash[:message] = "Log in to delete this course"
-      redirect_to course_index_path
+    if !userLoggedIn?("Log in to delete this course")
       return
     end
-    if !Course.exists?(params[:id])
-      flash[:message]  = "The course you're trying to delete does not exist"
-      redirect_to course_index_path
+    @course = courseExists?("The course you're trying to delete does not exist")
+    if !@course
+      return
     end
-    @course = Course.find(params[:id])
     if @course.userRole(getCurrentUser).try(:teacher?)
       @course.destroy
       flash[:message] = "Course has been deleted"
@@ -50,10 +71,7 @@ class CoursesController < ApplicationController
   end
 
   def new
-    user = getCurrentUser
-    if user.nil?
-      flash[:message] = "Log in to create a course"
-      redirect_to course_index_path
+    if !userLoggedIn?("Log in to create a course")
       return
     end
     #render a view so the user has a form to submit
@@ -64,7 +82,15 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    #render a view so the user has a form to submit
+    @course = courseExists?("The course you're trying to edit does not exist")
+    if !@course
+      return
+    end
+    if !@course.userRole(getCurrentUser).try(:teacher?)
+      flash[:message] = "You do not have permission to edit this course"
+    end
+    @course = Course.find(params[:id])
+    @students = @course.students
   end
 
   def course_params
@@ -73,6 +99,25 @@ class CoursesController < ApplicationController
 
   def getCurrentUser
     current_user
+  end
+
+  def userLoggedIn?(message)
+    if getCurrentUser.nil?
+        flash[:message] = message
+        redirect_to course_index_path
+        return false
+    end
+    true
+  end
+
+  def courseExists?(message)
+    if !Course.exists?(params[:id])
+      flash[:message] = message
+      redirect_to course_index_path
+      nil
+    else
+      Course.find(params[:id])
+    end
   end
 
 end
