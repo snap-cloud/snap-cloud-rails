@@ -14,7 +14,7 @@ Background:
   | proj1  | description1 |   1   |   false   |
   | proj2  | description2 |   1   |   true    |
 
-  And the following announcements exist in the snap site: 
+  And the following announcements exist: 
   | source   |   text   | time |
   |  snap    |  hello   | 1:00 |
   | cs-169   |  hw5 up  | 2:00 |
