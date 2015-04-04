@@ -26,6 +26,15 @@ class CoursesController < ApplicationController
   end
 
   def delete
+    if getCurrentUser.nil?
+      flash[:message] = "Log in to delete a course"
+      redirect_to course_index_path
+      return
+    end
+    if !Course.exists?(params[:id])
+      flash[:message]  = "The course you're trying to delete does not exist"
+      redirect_to course_index_path
+    end
     @course = Course.find(params[:id])
     if @course.userRole(getCurrentUser).teacher?
       @course.destroy
