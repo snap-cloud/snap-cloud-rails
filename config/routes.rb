@@ -11,9 +11,11 @@ Rails.application.routes.draw do
   get 'courses/:id',          to: 'courses#show', as: 'course_show'
   get 'courses',              to: 'courses#index', as: 'course_index'
 
-  get 'users/:id', to: 'users#profile'
+  get 'users/:id', to: 'users#profile', as: 'user_profile'
 
-  get '/', to: 'pages#index'
+  get '/', to: 'pages#index', as: 'home'
+  get 'about', to: 'pages#about', as: 'about'
+  get 'help', to: 'pages#help', as: 'help'
 
   get '/snap', to: redirect('/snap/')
 

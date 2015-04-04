@@ -8,6 +8,11 @@ class UsersController < ApplicationController
     if params[:id]
       @user = User.find(params[:id])
       @about_me = @user.about_me || "Enter information about you and your interests here."
+      @projects = @user.projects
+      @owner = @user == current_user
+      if not @owner
+        @projects = @projects.where(:is_public => true)
+      end
     else
       redirect_to "/"
     end
@@ -19,7 +24,7 @@ class UsersController < ApplicationController
       @user.update(user_params)
       @user.save
     end
-    redirect_to "/users/" + params[:id].to_s
+    redirect_to user_profile_path(params[:id])
   end
 
   def show
@@ -40,7 +45,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:avatar, :id)
+    params.require(:user).permit(:avatar, :id, :about_me)
   end
 
 end
