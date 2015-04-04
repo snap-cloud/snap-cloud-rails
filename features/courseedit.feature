@@ -9,20 +9,31 @@ Background:
 
 	Given the following courses exist:
 	| id | title |
-	| 1234567 | test course |
+	| 1234567 | testcourse |
 
 	Given the following users exist:
-	| id | username | email |
-	| 1 | alice | alice@cal.edu |
-	| 2 | bob | bob@cal.edu |
-	| 3 | charlie | charlie@cal.edu |
-	| 4 | diane | doug@cal.edu |
-	| 5 | emily | emily@cal.edu|
+	| id | username | email | password | password_confirmation |
+	| 100 | alice | alice@cal.edu | password | password |
+	| 200 | bob | bob@cal.edu | password | password |
+	| 300 | charlie | charlie@cal.edu | password | password |
+	| 400 | diane | doug@cal.edu | password | password |
+	| 500 | emily | emily@cal.edu| password | password |
 
-	Given the following enrollments exist:
-	| user_id | course_id | role |
-	| 1 | 1234567 | 1 |
+	Given user "teacher@cal.edu" is enrolled as a teacher in "testcourse"
+	Given user "alice" is enrolled as a student in "testcourse"
+	Given user "bob" is enrolled as a student in "testcourse"
 
 Scenario: Not logged in user tries to edit
-When I try to visit the edit page for "test course"
+When I try to visit the edit page for "testcourse"
 Then I should see that I need to be logged in to edit
+
+Scenario: User that not a teacher tries to edit
+Given I am logged in as "test@example.com" with password "password"
+When I try to visit the edit page for "testcourse"
+Then I should see that I do not have permission to edit
+
+Scenario: Teacher tries to edit
+Given I am logged in as "teacher@cal.edu" with password "password"
+When I try to visit the edit page for "testcourse"
+Then I should see "alice" enrolled
+Then I should see "bob" enrolled
