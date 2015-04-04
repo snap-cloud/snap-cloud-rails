@@ -39,7 +39,7 @@ When(/^I go to delete that course$/) do
 end
 
 Then /I should see that I cannot delete this course/ do
-	text = "You do not have permission to delete this course"
+	text = "You do not have permission to edit or delete this course"
 	if page.respond_to? :should
     	page.should have_content(text)
   	else
@@ -57,7 +57,7 @@ Then(/^I should see that course deletion succeeded$/) do
 end
 
 Then(/^I should see that I need to log in to delete this course$/) do
-  	text = "Log in to delete this course"
+  	text = "You must log in to edit or delete courses"
 	if page.respond_to? :should
     	page.should have_content(text)
   	else
@@ -77,7 +77,7 @@ When(/^I try to visit the edit page for "(.*?)"$/) do |courseTitle|
 end
 
 Then(/^I should see that I need to be logged in to edit$/) do
-    text = "You must be logged in to edit a course"
+    text = "You must log in to edit or delete courses"
 	if page.respond_to? :should
     	page.should have_content(text)
   	else
@@ -97,14 +97,14 @@ Given(/^user "(.*?)" is enrolled as a teacher in "(.*?)"$/) do |teacheremail, c|
    course.addUser(teacher, :teacher)
 end
 
-Given(/^user "(.*?)" is enrolled as a student in "(.*?)"$/) do |studentUsername, c|
-   student = User.find_by_username(studentUsername)
+Given(/^user "(.*?)" is enrolled as a student in "(.*?)"$/) do |semail, c|
+   student = User.find_by_email(semail)
    course = Course.find_by_title(c)
    course.addUser(student, :student)
 end
 
 Then(/^I should see that I do not have permission to edit$/) do
-  	test = "You do not have permission to edit this course"
+  	test = "You do not have permission to edit or delete this course"
 	if page.respond_to? :should
     	page.should have_content(text)
   	else
@@ -112,9 +112,36 @@ Then(/^I should see that I do not have permission to edit$/) do
   	end
 end
 
-Then(/^I should see "(.*?)" enrolled$/) do |username|
-	byebug
-	student = User.find_by_username(username)
-	subbedEmail = student.email.gsub("@", "_")
-  	page.should have_css('drops_' + subbedEmail)
+Then(/^I should see "(.*?)" enrolled$/) do |email|
+	page.should have_content(email)
+end
+
+Then(/^I should not see "(.*?)" enrolled$/) do |email|
+	page.should have_no_content(email)
+end
+
+When(/^I check drop "(.*?)"$/) do |email|
+	field = 'drops_' + email.sub("@", "_")
+  	check(field)
+end
+
+When(/^I submit the course edit$/) do
+  click_button "save"
+end
+
+When(/^I try to add "(.*?)"$/) do |email|
+  	fill_in 'add_field', :with => email
+end
+
+When(/^I try to add "(.*?)" and "(.*?)" at the same time$/) do |user1, user2|
+ 	fill_in 'adds[1]', :with => user1
+ 	fill_in 'adds[2]', :with => user2
+end
+
+Then(/^I should see "(.*?)" could not be found$/) do |email|
+  page.should have_content("Email could not be found: " + email)
+end
+
+Then(/^I should not have any email errors$/) do
+  page.should have_no_content("Email could not be found: ")
 end
