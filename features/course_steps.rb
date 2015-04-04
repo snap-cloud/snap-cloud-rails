@@ -88,6 +88,33 @@ end
 Given(/^the following enrollments exist:$/) do |enrollmentTable|
   enrollmentTable.hashes.each do |enrollment|
     Enrollment.create(enrollment)
-    byebug
   end
+end
+
+Given(/^user "(.*?)" is enrolled as a teacher in "(.*?)"$/) do |teacheremail, c|
+   teacher = User.find_by_email(teacheremail)
+   course = Course.find_by_title(c)
+   course.addUser(teacher, :teacher)
+end
+
+Given(/^user "(.*?)" is enrolled as a student in "(.*?)"$/) do |studentUsername, c|
+   student = User.find_by_username(studentUsername)
+   course = Course.find_by_title(c)
+   course.addUser(student, :student)
+end
+
+Then(/^I should see that I do not have permission to edit$/) do
+  	test = "You do not have permission to edit this course"
+	if page.respond_to? :should
+    	page.should have_content(text)
+  	else
+    	assert page.has_content?(text)
+  	end
+end
+
+Then(/^I should see "(.*?)" enrolled$/) do |username|
+	byebug
+	student = User.find_by_username(username)
+	subbedEmail = student.email.gsub("@", "_")
+  	page.should have_css('drops_' + subbedEmail)
 end
