@@ -2,11 +2,9 @@
 -if flash[:message]
     %h1= flash[:message] 
     %br
-%h2= @course.title
-%br 
+%h2= @course.title 
 %p= @course.description
-
 %p= @course.website
 %br
-%p= @course.title
-= button_to 'Delete this course', course_delete_path(@course)
+=button_to 'Delete', course_delete_path(@course)
+=button_to 'Edit', course_edit_path(@course), method: :get
