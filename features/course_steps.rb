@@ -35,7 +35,7 @@ end
 
 When(/^I go to delete that course$/) do
 	visit course_show_path(@cour)
-	click_button('Delete this course')
+	click_button('Delete')
 end
 
 Then /I should see that I cannot delete this course/ do
