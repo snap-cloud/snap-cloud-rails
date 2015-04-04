@@ -8,13 +8,13 @@ Rails.application.routes.draw do
 
   devise_for :users, :path => 'api/users',
              :controllers => { sessions: 'sessions',
-                               registrations: 'registrations'},
+                               registrations: 'registrations' },
              :path_names => { :sign_in => 'login',
                               :sign_out => 'logout',
                               :sign_up => 'signup' }
 
   # viewable project mappings
-  resources :projects # , :only => [:show, :new, :create]
+  resources :projects #, :only => [:show] # , :new, :create
   resources :users
 
   post 'courses/create',      to: 'courses#create', as: 'course_create'
