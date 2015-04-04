@@ -27,7 +27,7 @@ class CoursesController < ApplicationController
 
   def delete
     if getCurrentUser.nil?
-      flash[:message] = "Log in to delete a course"
+      flash[:message] = "Log in to delete this course"
       redirect_to course_index_path
       return
     end
@@ -36,14 +36,14 @@ class CoursesController < ApplicationController
       redirect_to course_index_path
     end
     @course = Course.find(params[:id])
-    if @course.userRole(getCurrentUser).teacher?
+    if @course.userRole(getCurrentUser).try(:teacher?)
       @course.destroy
       flash[:message] = "Course has been deleted"
       redirect_to course_index_path
       return
     else
       flash[:message] = "You do not have permission to delete this course"
-      redirect_to course_path(@course)
+      redirect_to course_show_path(@course)
       return
     end
 
