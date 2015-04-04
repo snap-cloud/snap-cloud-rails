@@ -2,6 +2,14 @@ Given(/^I visit the new course page$/) do
   visit course_new_path
 end
 
+Given (/^a user is signed up as "(.*?)" with password "(.*?)"$/) do |user, password|
+  visit signup_path
+  fill_in "user_email", :with => user
+  fill_in "user_password", :with => password
+  fill_in "user_password_confirmation", :with => password
+  click_button "Sign up"
+end
+
 Given /I enter the course information/ do
 	fill_in('course_title', :with => 'Oh SNAP!')
 	fill_in('course_description', :with => 'My test snap course')
