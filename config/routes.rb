@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'courses/:id',          to: 'courses#show', as: 'course_show'
   get 'courses',              to: 'courses#index', as: 'course_index'
 
-  get 'users/:id/profile', to: 'users#profile'
+  get 'users/:id', to: 'users#profile'
 
   get '/', to: 'pages#index'
 
