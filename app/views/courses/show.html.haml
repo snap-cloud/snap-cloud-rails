@@ -1,8 +1,12 @@
 %br
-%br
-%br
 -if flash[:message]
     %h1= flash[:message] 
+    %br
+%h2= @course.title
+%br 
+%p= @course.description
+
+%p= @course.website
 %br
 %p= @course.title
 = button_to 'Delete this course', course_delete_path(@course)
