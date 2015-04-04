@@ -26,11 +26,11 @@ Rails.application.routes.draw do
   get 'courses',              to: 'courses#index', as: 'course_index'
 
   # Redirect simple requets for the viewable app
-  # devise_scope :user do
-  #   get 'login', to: 'sessions#new'
-  #   get 'logout', to: 'sessions#destroy'
-  #   get 'signup', to: 'registrations#new'
-  # end
+  devise_scope :user do
+    get 'login', to: 'sessions#new', as: :login
+    get 'logout', to: 'sessions#destroy', as: :logout
+    get 'signup', to: 'registrations#new', as: :signup
+  end
 
   # NOTE: We should probably use a subdomain in the future, add:
   # constraints: { subdomain: 'api' }, path: '/'
