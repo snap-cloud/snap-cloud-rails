@@ -51,24 +51,26 @@ class CoursesController < ApplicationController
     if adds
       adds.each do |key, email|
         addUser = User.find_by(email: email)
-        if addUser.nil?
-          incorrectEmails += email + " "
-        else
+        #byebug
+        if !addUser.nil?
           @course.addUser(addUser, :student)
+        elsif !email.nil? && !email.empty?
+          incorrectEmails += "Email could not be found: " + email + "\n"
         end
       end
     end
     addField = params[:add_field]
     if addField
       addUser = User.find_by(email: addField)
-      if addUser.nil?
-        incorrectEmails += addField + " "
-      else
+      #byebug
+      if !addUser.nil?
         @course.addUser(addUser, :student)
+      elsif !addField.nil? && !addField.empty?
+        incorrectEmails += "Email could not be found: " + addField + "\n"
       end
     end
-    if incorrectEmails.empty?
-      flash[:message] = "These emails could not be found: " + incorrectEmails
+    if !incorrectEmails.empty?
+      flash[:message] = incorrectEmails
     end
     redirect_to course_edit_path(@course)
     #form on the edit page submitted here
