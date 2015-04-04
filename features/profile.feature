@@ -5,26 +5,43 @@ Feature: User Profile Page
 
 Background:
   Given the following users exist:
-  | username | email | password | password_confirmation |
-  | testuser | test@example.com | hello | hello |
+  | email            | password      | username      |
+  | test@example.com | hellodolly    | testuser      |
+  | test@sample.com  | dollyhello    | bill          |
+
+  And the following projects exist:
+  | title   | notes        | owner | is_public |
+  | ohsnap! | awesomesauce | 1     | true      |
+  | snapoh! | sauceawesome | 1     | false     |
+  | snapp!  | nosauce      | 2     | true      |
 
 Scenario: View profile of other user or not logged in
-  Given I am on the profile page for testuser
+  Given I am on the profile page for "testuser"
   Then I should see "testuser"
-  And I should see "My Projects"
+  And I should see "About"
   And I should see "About Me"
-  And I should not see "edit"
+  And I should see "My Projects"
+  And I should not see the submit button "Update"
+  And I should see "ohsnap!"
+  And I should see "awesomesauce"
+  And I should not see "snapoh!"
+  And I should not see "sauceawesome"
+  And I should not see "snapp!"
+  And I should not see "nosauce"
+  And I should not see a file input
 
 Scenario: View own profile when logged in
-  Given I am logged in as testuser
-  And I am on the profile page for testuser
+  Given I am logged in as "test@example.com" with password "hellodolly"
+  And I am on the profile page for "testuser"
   Then I should see "testuser"
   And I should see "My Projects"
   And I should see "About Me"
-  And I should see "edit"
-
-Scenario: Edit profile information
-  Given I am logged in as testuser
-  And I am on the profile page for testuser
-  And I click "edit"
-  Then I should see "Submit"
+  And I should see the submit button "Update"
+  And I should see "Change profile pic"
+  And I should see "ohsnap!"
+  And I should see "awesomesauce"
+  And I should see "snapoh!"
+  And I should see "sauceawesome"
+  And I should not see "snapp!"
+  And I should not see "nosauce"
+  And I should see a file input
