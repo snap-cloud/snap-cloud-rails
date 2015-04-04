@@ -10,6 +10,9 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'haml'
 
+gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'aws-sdk', '< 2.0'
+
 # Embed v8 into Ruby. Sever-side JS processing.
 # gem 'therubyracer', platforms: :ruby
 
@@ -43,6 +46,9 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug'
+
   # Cucumber, testing and coverage
   gem 'cucumber-rails', :require => false
   gem 'rspec-rails', '~> 2.14.0'
@@ -56,8 +62,7 @@ end
 
 # Development Only Gems. Speed up loading in Travis.
 group :development do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'

@@ -1,2 +1,60 @@
-<h1>Courses#edit</h1>
-<p>Find me in app/views/courses/edit.html.erb</p>
+:javascript
+    var counter = 1;
+    function addNewUserField(){
+        var newfield = document.createElement("input");
+        var currfield = document.getElementById("add_field");
+        newfield.value = currfield.value;
+        newfield.setAttribute("id", "adds[" + counter + "]");
+        currfield.value = ""
+        var fieldparent = currfield.parentNode;
+
+        fieldparent.insertBefore(newfield, currfield);
+        fieldparent.insertBefore(document.createElement("br"), currfield)
+        
+        counter++;
+        return false;
+    }
+
+%br
+%br
+%h1= "Editing #{@course.title}"
+
+
+%h1=  flash[:message]
+-@course.try(:errors).try(:each) do |attribute, error|
+    %h3= attribute.to_s + " " + error.to_s
+    %br
+=form_tag course_update_path(@course), method: :post, class:"pure-form pure-form-aligned" do
+    %fieldset
+        .pure-control-group
+            %label{for: "course_title"} Title:
+            =text_field_tag 'course[title]', @course.try(:title)
+        .pure-control-group
+            %label{for: "course_description"} Description:
+            =text_field_tag 'course[description]', @course.try(:description)
+        .pure-control-group
+            %label{for: "course_website"} Website:
+            =text_field_tag 'course[website]', @course.try(:website)
+        .pure-control-group
+            %label{for: "course_startdate"} Starts:
+            =date_select :course, :startdate, default: @course.try(:startdate)
+        .pure-control-group
+            %label{for: "course_enddate"} Ends:
+            =date_select :course, :enddate, default: @course.try(:enddate)
+        .pure-control-group
+            -if @students
+                %p Drops:
+                -@students.try(:each) do |student|
+                    =check_box_tag "drops[#{student.email}]"
+                    =student.email
+ 
+        #newUserFields
+            %p Adds:
+            =text_field_tag 'add_field', ''
+            %button{value: "Add", onclick: 'addNewUserField(); return false;'}
+        %br
+        %br
+        =submit_tag "save"
+
+
+
