@@ -1,40 +1,30 @@
 require 'spec_helper'
 
 describe CoursesController do
+  before(:each) do 
+    @course = Course.create(title: "course", description: "desc")
+  end
 
-  describe "GET 'create'" do
+  describe "GET 'new'" do
     it "returns http success" do
-      get 'create'
+      get 'courses/new'
       response.should be_success
     end
   end
 
   describe "GET 'show'" do
     it "returns http success" do
-      get 'show'
+      get "courses/#{@course.id}/"
       response.should be_success
     end
   end
 
-  describe "GET 'update'" do
+  describe "GET 'edit'" do
     it "returns http success" do
-      get 'update'
+      get "/courses/#{@course.id}/edit"
       response.should be_success
     end
   end
 
-  describe "GET 'delete'" do
-    it "returns http success" do
-      get 'delete'
-      response.should be_success
-    end
-  end
-
-  describe "GET 'new'" do
-    it "returns http success" do
-      get 'new'
-      response.should be_success
-    end
-  end
 
 end
