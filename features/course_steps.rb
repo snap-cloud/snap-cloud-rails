@@ -97,8 +97,8 @@ Given(/^user "(.*?)" is enrolled as a teacher in "(.*?)"$/) do |teacheremail, c|
    course.addUser(teacher, :teacher)
 end
 
-Given(/^user "(.*?)" is enrolled as a student in "(.*?)"$/) do |studentUsername, c|
-   student = User.find_by_username(studentUsername)
+Given(/^user "(.*?)" is enrolled as a student in "(.*?)"$/) do |semail, c|
+   student = User.find_by_email(semail)
    course = Course.find_by_title(c)
    course.addUser(student, :student)
 end
@@ -112,19 +112,16 @@ Then(/^I should see that I do not have permission to edit$/) do
   	end
 end
 
-Then(/^I should see "(.*?)" enrolled$/) do |username|
-	student = User.find_by_username(username)
-	page.should have_content(student.email)
+Then(/^I should see "(.*?)" enrolled$/) do |email|
+	page.should have_content(email)
 end
 
-Then(/^I should not see "(.*?)" enrolled$/) do |username|
-	student = User.find_by_username(username)
-	page.should have_no_content(student.email)
+Then(/^I should not see "(.*?)" enrolled$/) do |email|
+	page.should have_no_content(email)
 end
 
-When(/^I check drop "(.*?)"$/) do |username|
-  	student = User.find_by_username(username)
-	field = 'drops_' + student.email.sub("@", "_")
+When(/^I check drop "(.*?)"$/) do |email|
+	field = 'drops_' + email.sub("@", "_")
   	check(field)
 end
 
@@ -132,14 +129,19 @@ When(/^I submit the course edit$/) do
   click_button "save"
 end
 
-When(/^I try to add "(.*?)"$/) do |username|
-	student = User.find_by_username(username)
-  	fill_in 'add_field', :with => student.email
+When(/^I try to add "(.*?)"$/) do |email|
+  	fill_in 'add_field', :with => email
 end
 
 When(/^I try to add "(.*?)" and "(.*?)" at the same time$/) do |user1, user2|
-  	student1 = User.find_by_username(user1)
- 	student2 = User.find_by_username(user2)
- 	fill_in 'adds[1]', :with => student1.email
- 	fill_in 'adds[2]', :with =>student2.email 
+ 	fill_in 'adds[1]', :with => user1
+ 	fill_in 'adds[2]', :with => user2
+end
+
+Then(/^I should see "(.*?)" could not be found$/) do |email|
+  page.should have_content("Email could not be found: " + email)
+end
+
+Then(/^I should not have any email errors$/) do
+  page.should have_no_content("Email could not be found: ")
 end
