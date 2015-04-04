@@ -12,7 +12,6 @@ class CoursesController < ApplicationController
       redirect_to course_show_path(@course.id)
       return
     else
-      flash[:message] = "Fields invalid"
       render 'new'
       return
     end
@@ -21,35 +20,64 @@ class CoursesController < ApplicationController
 
   def show
     @course = courseExists?("The course you're trying to view does not exist")
-    if !@course
-      return
-    end
     #Find the course with the give id
   end
 
   def update
+=begin
     @course = courseExists?("The course you're trying to update does not exist")
     if !@course
       return
     end
-    drops = params[drops]
+    if !userLoggedIn?("You must be logged in to edit a course")
+      return
+    end
+    if !@course.userRole(getCurrentUser).try(:teacher?)
+      flash[:message] = "You do not have permission to edit this course"
+    end
+=end
+    if !editable?
+      return
+    end
+    drops = params[:drops]
     if drops
       drops.each_key do |email|
-        dropUser = User.find_by(email)
-        @course.removeUser(user)
+        drop = User.find_by(email: email)
+        @course.removeUser(drop)
       end
     end
-    adds = params[adds]
+    incorrectEmails = ""
+    adds = params[:adds]
     if adds
       adds.each do |key, email|
-        addUser = User.find_by(email)
-        @course.addUser(addUser, :student)
+        addUser = User.find_by(email: email)
+        #byebug
+        if !addUser.nil?
+          @course.addUser(addUser, :student)
+        elsif !email.nil? && !email.empty?
+          incorrectEmails += "Email could not be found: " + email + "\n"
+        end
       end
     end
+    addField = params[:add_field]
+    if addField
+      addUser = User.find_by(email: addField)
+      #byebug
+      if !addUser.nil?
+        @course.addUser(addUser, :student)
+      elsif !addField.nil? && !addField.empty?
+        incorrectEmails += "Email could not be found: " + addField + "\n"
+      end
+    end
+    if !incorrectEmails.empty?
+      flash[:message] = incorrectEmails
+    end
+    redirect_to course_edit_path(@course)
     #form on the edit page submitted here
   end
 
   def delete
+=begin
     if !userLoggedIn?("Log in to delete this course")
       return
     end
@@ -60,12 +88,18 @@ class CoursesController < ApplicationController
     if @course.userRole(getCurrentUser).try(:teacher?)
       @course.destroy
       flash[:message] = "Course has been deleted"
-      redirect_to course_index_path
-      return
+      redirect_to course_index_path and return
     else
       flash[:message] = "You do not have permission to delete this course"
-      redirect_to course_show_path(@course)
+      redirect_to course_show_path(@course) and return
+    end
+=end
+    if !editable?
       return
+    else
+      @course.destroy
+      flash[:message] = "Course has been deleted"
+      redirect_to course_index_path and return
     end
 
   end
@@ -83,6 +117,7 @@ class CoursesController < ApplicationController
   end
 
   def edit
+=begin
     if !userLoggedIn?("You must be logged in to edit a course")
       return
     end
@@ -93,6 +128,10 @@ class CoursesController < ApplicationController
     if !@course.userRole(getCurrentUser).try(:teacher?)
       flash[:message] = "You do not have permission to edit this course"
     end
+=end
+  if !editable?
+    return
+  end
     @students = @course.students
   end
 
@@ -121,6 +160,23 @@ class CoursesController < ApplicationController
     else
       Course.find(params[:id])
     end
+  end
+
+  def editable?
+    @course = courseExists?("This course does not exist")
+    if !@course
+      return false
+    end
+
+    if not userLoggedIn?("You must log in to edit or delete courses")
+      return false
+    end
+    
+    if !@course.userRole(getCurrentUser).try(:teacher?)
+      flash[:message] = "You do not have permission to edit or delete this course"
+      redirect_to course_show_path(@course) and return false
+    end
+    return true
   end
 
 end
