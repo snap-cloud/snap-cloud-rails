@@ -1,7 +1,9 @@
 %br
-%br
-%br
 -if flash[:message]
     %h1= flash[:message] 
-%br
-%p= @course.title
+    %br
+%h2= @course.title
+%br 
+%p= @course.description
+
+%p= @course.website
