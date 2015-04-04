@@ -14,6 +14,11 @@ class Course < ActiveRecord::Base
     end
 
     def students
-        self.enrollments.select(&:student?).map(&:user)
+        all = self.enrollments.select(&:student?).map(&:user)
+        if all.any?
+            return all
+        else
+            return nil
+        end
     end
 end

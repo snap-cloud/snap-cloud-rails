@@ -61,10 +61,13 @@ class CoursesController < ApplicationController
 
   def index
     #find all courses
+    @courses = Course.all
   end
 
   def edit
     #render a view so the user has a form to submit
+    @course = Course.find(params[:id])
+    @students = @course.students
   end
 
   def course_params

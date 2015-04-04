@@ -1,6 +1,3 @@
--@course = Course.new(title: "CS169 - Software Engineering")
--@course.id = 10
-
 :javascript
     var counter = 1;
     function addNewUserField(){
@@ -45,11 +42,11 @@
             %label{for: "course_enddate"} Ends:
             =date_select :course, :enddate, default: @course.try(:enddate)
         .pure-control-group
-            -if @course.students.any?
+            -if @students
                 %p Drops:
-                -@course.students.try(:each) do |student|
+                -@students.try(:each) do |student|
                     =check_box "drops[#{student.email}]", 1
-                    =student.name
+                    =student.email
                     %br
 
         #newUserFields
