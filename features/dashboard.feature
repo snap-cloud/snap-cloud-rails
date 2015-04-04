@@ -23,43 +23,43 @@ Background:
 Scenario: Dashboard not visible without logging in 
   Given I am not logged in
   And I visit dashboard page
-  Then I should see the splash page instead
+  Then I should see the splash page 
 
 Scenario: Dashboard is visible upon logging in
   Given I am logged in as testuser
-  And I visit dashboard page
-  Then I should see the dashboard page instead 
-  And see my announcements 
-  And see my projects 
+  And I visit the home page
+  Then I should see the dashboard page 
+  And I should see a news feed with my announcements
+  And I should see a projects listing with my projects
 
 Scenario: Users can create a project from the dashboard
   Given I am logged in as testuser
-  And I visit dashboard page
-  And I follow 'Create'
-  Then I should be on the snap page
+  And I visit the home page
+  And I follow Create
+  Then I will be on the snap page
 
 Scenario: Users can get help from the dashboard
   Given I am logged in as testuser
-  And I visit dashboard page
-  And I follow 'Get Started'
-  Then I should be on the help page
+  And I visit the home page
+  And I follow Get Started
+  Then I will be on the help page
 
 Scenario: Users can learn more about snap from the dashboard
   Given I am logged in as testuser
-  And I visit dashboard page
-  And I follow 'About'
-  Then I should be on the about snap page
+  And I visit the home page
+  And I follow About
+  Then I will be on the about snap page
 
 Scenario: Users can see their profile from the dashboard
   Given I am logged in as testuser
-  And I visit dashboard page
-  And I follow 'Profile'
-  Then I should be on my profile page
+  And I visit the home page
+  And I follow Profile
+  Then I will be on my profile page
 
 Scenario: Users can logout from the dashboard
   Given I am logged in as testuser
-  And I visit dashboard page
-  And I follow 'Logout'
+  And I visit the home page
+  And I follow Logout
   Then I should be logged out
 
 
