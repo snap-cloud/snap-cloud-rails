@@ -1,0 +1,17 @@
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>News Feed</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    	<% locals[:announcements].each do |announcement| %> 
+        <tr> 
+			<td>[<%= announcement.source%>] <%= announcement.text%> </td>
+        	<td><%=announcement.time%></td>
+    	</tr>
+    	<% end %>
+    </tbody>
+</table>
