@@ -39,7 +39,7 @@ When(/^I go to delete that course$/) do
 end
 
 Then /I should see that I cannot delete this course/ do
-	text = "You do not have permission to delete this course"
+	text = "You do not have permission to edit or delete this course"
 	if page.respond_to? :should
     	page.should have_content(text)
   	else
@@ -57,7 +57,7 @@ Then(/^I should see that course deletion succeeded$/) do
 end
 
 Then(/^I should see that I need to log in to delete this course$/) do
-  	text = "Log in to delete this course"
+  	text = "You must log in to edit or delete courses"
 	if page.respond_to? :should
     	page.should have_content(text)
   	else
@@ -77,7 +77,7 @@ When(/^I try to visit the edit page for "(.*?)"$/) do |courseTitle|
 end
 
 Then(/^I should see that I need to be logged in to edit$/) do
-    text = "You must be logged in to edit a course"
+    text = "You must log in to edit or delete courses"
 	if page.respond_to? :should
     	page.should have_content(text)
   	else
@@ -104,7 +104,7 @@ Given(/^user "(.*?)" is enrolled as a student in "(.*?)"$/) do |studentUsername,
 end
 
 Then(/^I should see that I do not have permission to edit$/) do
-  	test = "You do not have permission to edit this course"
+  	test = "You do not have permission to edit or delete this course"
 	if page.respond_to? :should
     	page.should have_content(text)
   	else
@@ -113,8 +113,26 @@ Then(/^I should see that I do not have permission to edit$/) do
 end
 
 Then(/^I should see "(.*?)" enrolled$/) do |username|
-	byebug
 	student = User.find_by_username(username)
-	subbedEmail = student.email.gsub("@", "_")
-  	page.should have_css('drops_' + subbedEmail)
+	page.should have_content(student.email)
+end
+
+Then(/^I should not see "(.*?)" enrolled$/) do |username|
+	student = User.find_by_username(username)
+	page.should have_no_content(student.email)
+end
+
+When(/^I check drop "(.*?)"$/) do |username|
+  	student = User.find_by_username(username)
+	field = 'drops_' + student.email.sub("@", "_")
+  	check(field)
+end
+
+When(/^I submit the course edit$/) do
+  click_button "save"
+end
+
+When(/^I try to add "(.*?)"$/) do |username|
+	student = User.find_by_username(username)
+  	fill_in 'add_field', :with => student.email
 end

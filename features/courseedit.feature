@@ -37,3 +37,21 @@ Given I am logged in as "teacher@cal.edu" with password "password"
 When I try to visit the edit page for "testcourse"
 Then I should see "alice" enrolled
 Then I should see "bob" enrolled
+Then I should not see "charlie" enrolled
+
+Scenario: Teacher tries to drop a student
+Given I am logged in as "teacher@cal.edu" with password "password"
+When I try to visit the edit page for "testcourse"
+And I check drop "alice"
+And I submit the course edit
+Then I should not see "alice" enrolled
+Then I should see "bob" enrolled
+
+Scenario: Teacher tries to add a student
+Given I am logged in as "teacher@cal.edu" with password "password"
+When I try to visit the edit page for "testcourse"
+And I try to add "charlie"
+And I submit the course edit
+Then I should see "alice" enrolled
+Then I should see "bob" enrolled
+Then I should see "charlie" enrolled

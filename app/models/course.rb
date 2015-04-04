@@ -6,7 +6,7 @@ class Course < ActiveRecord::Base
     end
 
     def removeUser(person)
-        Enrollment.where(user_id: person.id, course_id: self.id).delete
+        Enrollment.find_by(user_id: person.id, course_id: self.id).delete
     end
 
     def userRole(person)
