@@ -45,10 +45,9 @@
             -if @students
                 %p Drops:
                 -@students.try(:each) do |student|
-                    =check_box "drops[#{student.email}]", 1
+                    =check_box_tag "drops[#{student.email}]"
                     =student.email
-                    %br
-
+ 
         #newUserFields
             %p Adds:
             =text_field_tag 'add_field', ''
