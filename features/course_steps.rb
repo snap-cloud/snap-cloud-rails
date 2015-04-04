@@ -64,3 +64,30 @@ Then(/^I should see that I need to log in to delete this course$/) do
     	assert page.has_content?(text)
   	end
 end
+
+Given(/^the following courses exist:$/) do |courseTable|
+  courseTable.hashes.each do |course|
+    Course.create(course)
+  end
+end
+
+When(/^I try to visit the edit page for "(.*?)"$/) do |courseTitle|
+  @cour = Course.find_by_title(courseTitle)
+  visit course_edit_path(@cour)
+end
+
+Then(/^I should see that I need to be logged in to edit$/) do
+    text = "You must be logged in to edit a course"
+	if page.respond_to? :should
+    	page.should have_content(text)
+  	else
+    	assert page.has_content?(text)
+  	end
+end
+
+Given(/^the following enrollments exist:$/) do |enrollmentTable|
+  enrollmentTable.hashes.each do |enrollment|
+    Enrollment.create(enrollment)
+    byebug
+  end
+end
