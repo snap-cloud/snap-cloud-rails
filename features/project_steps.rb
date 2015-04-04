@@ -11,13 +11,32 @@ Then /^(?:|I) should not see "(.*?)"$/ do |input|
 	page.should_not have_content input
 end
 
-Given /^(?:|I) am logged in as "(.*?)"$/ do |user|
-	flunk "Unimplemented"
+Then /^(?:|I) should see the link "(.*?)" to "(.*?)"$/ do |link, url|
+	page.should have_link(link, :href => href)
+end
+
+Given (/^a user is signed up as "(.*?)" with password "(.*?)"$/) do |user, password|
+  visit signup_path
+  fill_in "user_email", :with => user
+  fill_in "user_password", :with => password
+  fill_in "user_password_confirmation", :with => password
+  click_button "Sign up"
+end
+
+Given /^(?:|I) am logged in as "(.*?)" with password "(.*?)"$/ do |user, password|
+	visit login_path
+  fill_in "user_email", :with => user
+  fill_in "user_password", :with => password
+  click_button "Log in"
 end
 
 Given /^(?:|I) am on the project details page for "(.*?)"$/ do |page|
 	proj = Project.find_by_title page
   visit "/projects/" + proj.id.to_s
+end
+
+Given /^(?:|I) am on the splash page$/ do |page|
+  visit "/"
 end
 
 And /^(?:|I) enter in "(.*?)" $/ do |entry|
