@@ -3,19 +3,19 @@
 #        (https://github.com/cucumber/cucumber-rails/issues/174)
 # Linda: We can totally do better! 
 
-Given /the following projects exist/ do |project_table|
+Given /^the following projects exist$/ do |project_table|
   project_table.hashes.each do |project|
     Project.create(project)
   end
 end
 
-Given /the following users exist/ do |user_table|
+Given /^the following users exist$/ do |user_table|
   user_table.hashes.each do |user|
     User.create(user)
   end
 end
 
-Given /the following announcements exist/ do |announcement_table|
+Given /^the following announcements exist in the snap site$/ do |announcement_table|
   announcement_table.hashes.each do |announcement|
     Announcement.create(announcement)
   end
@@ -38,7 +38,7 @@ And /^(?:|I) visit the home page$/ do |page_to_visit|
 end
 
 Then /^(?:|I) should see the splash page$/ do |page|
-  page.should have_content 'WELCOME TO SNAP!'
+  page.should have_content 'Welcome to Snap!'
 end 
 
 Then /^(?:|I) should see the dashboard page$/ do |page|
@@ -71,14 +71,14 @@ Then /^(?:|I) will be on the about snap page$/ do |target|
   page.current_path.should eq "/about"
 end
 
-Then /^(?:|I) will be on my profile page$/ do |target|
-  proj = Project.find_by_title target
-  page.current_path.should eq "/users/" + proj.id.to_s + "/edit"
+Then /^(?:|I) will be on the profile page for "(.*?)"$/ do |target|
+  usr = User.find_by_username target
+  page.current_path.should eq "/users/" + usr.id.to_s
 end
 
 Then /^(?:|I) should be logged out$/ do |target|
-  proj = Project.find_by_title target
-  page.current_path.should eq "/projects/" + proj.id.to_s + "/edit"
+  page.current_path.should eq "/"
+  page.should have_content 'Sign In'
 end
 
 

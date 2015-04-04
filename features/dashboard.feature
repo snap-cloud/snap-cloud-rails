@@ -14,7 +14,7 @@ Background:
   | proj1  | description1 |   1   |   false   |
   | proj2  | description2 |   1   |   true    |
 
-  And the following announcements exist: 
+  And the following announcements exist in the snap site: 
   | source   |   text   | time |
   |  snap    |  hello   | 1:00 |
   | cs-169   |  hw5 up  | 2:00 |
@@ -22,7 +22,7 @@ Background:
 
 Scenario: Dashboard not visible without logging in 
   Given I am not logged in
-  And I visit dashboard page
+  And I visit the home page
   Then I should see the splash page 
 
 Scenario: Dashboard is visible upon logging in
@@ -54,7 +54,7 @@ Scenario: Users can see their profile from the dashboard
   Given I am logged in as testuser
   And I visit the home page
   And I follow Profile
-  Then I will be on my profile page
+  Then I will be on the profile page for testuser
 
 Scenario: Users can logout from the dashboard
   Given I am logged in as testuser
