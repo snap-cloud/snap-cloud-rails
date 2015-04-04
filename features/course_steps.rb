@@ -7,6 +7,7 @@ Given /I enter the course information/ do
 	fill_in('course_description', :with => 'My test snap course')
 	fill_in('course_website', :with => 'www.mytestsnapcourse.edu')
 	click_button('Create')
+	@cour = Course.find_by_title('Oh SNAP!')
 end
 
 Then(/^I should see that course creation succeeded$/) do
@@ -33,7 +34,7 @@ Given /there is a course I did not create/ do
 end
 
 When(/^I go to delete that course$/) do
-	visit(course_delete_path(@cour.id))
+	post course_delete_path(@cour.id)
 end
 
 Then /I should see that I cannot delete this course/ do
@@ -47,6 +48,15 @@ end
 
 Then(/^I should see that course deletion succeeded$/) do
 	text = "Course has been deleted"
+	if page.respond_to? :should
+    	page.should have_content(text)
+  	else
+    	assert page.has_content?(text)
+  	end
+end
+
+Then(/^I should see that I need to log in$/) do
+  	text = "Log in"
 	if page.respond_to? :should
     	page.should have_content(text)
   	else
