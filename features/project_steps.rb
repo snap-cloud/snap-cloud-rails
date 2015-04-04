@@ -11,8 +11,28 @@ Then /^(?:|I) should not see "(.*?)"$/ do |input|
 	page.should_not have_content input
 end
 
+Then /^(?:|I) should see the image "(.*?)"$/ do |img|
+  page.should have_xpath("//img[contains(concat('', @src, ''), '#{img}')]")
+end
+
 Then /^(?:|I) should see the link "(.*?)" to "(.*?)"$/ do |link, url|
-	page.should have_link(link, :href => href)
+	page.should have_link(link, :href => url)
+end
+
+Then /^(?:|I) should see the submit button "(.*?)"$/ do |input|
+  page.should have_selector("input[type=submit][value='#{input}']")
+end
+
+Then /^(?:|I) should not see the submit button "(.*?)"$/ do |input|
+  page.should_not have_selector("input[type=submit][value='#{input}']")
+end
+
+Then /^(?:|I) should see a file input$/ do
+  page.should have_selector("input[type=file]")
+end
+
+Then /^(?:|I) should not see a file input$/ do
+  page.should_not have_selector("input[type=file]")
 end
 
 Given (/^a user is signed up as "(.*?)" with password "(.*?)"$/) do |user, password|
@@ -24,18 +44,23 @@ Given (/^a user is signed up as "(.*?)" with password "(.*?)"$/) do |user, passw
 end
 
 Given /^(?:|I) am logged in as "(.*?)" with password "(.*?)"$/ do |user, password|
-	visit login_path
+  visit login_path
   fill_in "user_email", :with => user
   fill_in "user_password", :with => password
   click_button "Log in"
 end
 
 Given /^(?:|I) am on the project details page for "(.*?)"$/ do |page|
-	proj = Project.find_by_title page
+  proj = Project.find_by_title page
   visit "/projects/" + proj.id.to_s
 end
 
-Given /^(?:|I) am on the splash page$/ do |page|
+Given /^(?:|I) am on the profile page for "(.*?)"$/ do |username|
+  user = User.find_by_username username
+  visit "/users/" + user.id.to_s
+end
+
+Given /^(?:|I) am on the splash page$/ do
   visit "/"
 end
 
