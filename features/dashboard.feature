@@ -5,39 +5,61 @@ Feature: User Dashboard Page
 
 Background:
   Given the following users exist:
-  | username |      email       | password | password_confirmation |
-  | testuser | test@example.com |  hello   |       hello           |
+  | username | id |       email       | password | password_confirmation |
+  | testuser | 1  | test@example.com  |  hello   |       hello           |
 
   And the following projects exist:
-  | title   | notes        | owner | is_public |
-  | ohsnap! | awesomesauce | 1     | true      |
+  | title  |   notes      | owner | is_public |
+  | proj0  | description0 |   1   |   true    |
+  | proj1  | description1 |   1   |   false   |
+  | proj2  | description2 |   1   |   true    |
 
-  Given I am on the splash page
+  And the following announcements exist: 
+  | source   |   text   | time |
+  |  snap    |  hello   | 1:00 |
+  | cs-169   |  hw5 up  | 2:00 |
+  | otheruser| good job!| 3:00 |
 
-Scenario: View the Dashboard upon logging in
-  Then I should see the link "Sign In" to "/login"
-  Then I should see the link "Sign Up" to "/signup"
-  Then I should see "snap-logo.png"
-  Then I should see the link "Create" to "/snap/"
-  And I should see the link "Get Started" to "/help"
-  And I should see the link "About" to "/about"
+Scenario: Dashboard not visible without logging in 
+  Given I am not logged in
+  And I visit dashboard page
+  Then I should see the splash page instead
 
-Scenario: Dashboard lets the user run Snap! 
-  And I should see "Run"
-  And I should see "Now"
-  And I should see "WELCOME TO SNAP!"
-  And I should see "half-snapshot.png"
+Scenario: Dashboard is visible upon logging in
+  Given I am logged in as testuser
+  And I visit dashboard page
+  Then I should see the dashboard page instead 
+  And see my announcements 
+  And see my projects 
 
-Scenario: Dashboard informs user of announcements
-  And I should see "Featured Projects"
-  And I should see "ohsnap!"
-  And I should see "awesomesauce"
-  And I should see "bob"
+Scenario: Users can create a project from the dashboard
+  Given I am logged in as testuser
+  And I visit dashboard page
+  And I follow 'Create'
+  Then I should be on the snap page
 
-Scenario: Dashboard shows all of user's projects 
-  Given I am logged in as "test@test.com" with password "yoloswaggins"
-  Then I should see "Profile"
-  And I should see "Logout"
-  And I should not see "Sign Up"
-  And I should not see "Sign In"
+Scenario: Users can get help from the dashboard
+  Given I am logged in as testuser
+  And I visit dashboard page
+  And I follow 'Get Started'
+  Then I should be on the help page
+
+Scenario: Users can learn more about snap from the dashboard
+  Given I am logged in as testuser
+  And I visit dashboard page
+  And I follow 'About'
+  Then I should be on the about snap page
+
+Scenario: Users can see their profile from the dashboard
+  Given I am logged in as testuser
+  And I visit dashboard page
+  And I follow 'Profile'
+  Then I should be on my profile page
+
+Scenario: Users can logout from the dashboard
+  Given I am logged in as testuser
+  And I visit dashboard page
+  And I follow 'Logout'
+  Then I should be logged out
+
 
