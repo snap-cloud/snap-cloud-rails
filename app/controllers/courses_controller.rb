@@ -83,6 +83,9 @@ class CoursesController < ApplicationController
   end
 
   def edit
+    if !userLoggedIn?("You must be logged in to edit a course")
+      return
+    end
     @course = courseExists?("The course you're trying to edit does not exist")
     if !@course
       return
