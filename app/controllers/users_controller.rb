@@ -13,6 +13,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    if params[:id]
+      @user = User.find(params[:id])
+      @user.update(user_params)
+      @user.save
+    end
+    redirect_to "/users/" + params[:id].to_s
+  end
+
   def show
     @user = User.find(params[:id])
 
@@ -28,6 +37,10 @@ class UsersController < ApplicationController
   def destroy
     user = User.find(params[:id])
     user.destroy
+  end
+
+  def user_params
+    params.require(:user).permit(:avatar, :id)
   end
 
 end
