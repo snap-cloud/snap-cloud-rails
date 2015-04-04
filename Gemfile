@@ -80,4 +80,5 @@ group :production do
   gem 'pg'
   # Perf and other Heroku features
   gem 'rails_12factor'
+  gem 'rack-cache'
 end
