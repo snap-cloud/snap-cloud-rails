@@ -54,7 +54,6 @@ ActiveRecord::Schema.define(version: 20150404003354) do
     t.datetime "last_modified"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -75,6 +74,10 @@ ActiveRecord::Schema.define(version: 20150404003354) do
     t.date     "birthdate"
     t.string   "username"
     t.boolean  "parent_permission",      default: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token"
