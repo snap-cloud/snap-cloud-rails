@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Snap!</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= stylesheet_link_tag "http://yui.yahooapis.com/pure/0.6.0/pure-min.css" %>
+  <title>Snap! Build Your Own Blocks</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= yield :head %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -21,10 +20,10 @@
     <ul class="pure-menu-list">
       <% if current_user %>
       <li class="pure-menu-item"><%= link_to "Profile", user_profile_path(current_user.id), :class => "pure-menu-link" %></li>
-      <li class="pure-menu-item"><%= link_to "Logout", destroy_user_session_path, :class => "pure-menu-link" %></li>
+      <li class="pure-menu-item"><%= link_to "Logout", logout_path, :class => "pure-menu-link" %></li>
       <% else %>
-      <li class="pure-menu-item"><%= link_to "Sign Up", new_user_registration_path, :class => "pure-menu-link" %></li>
-      <li class="pure-menu-item"><%= link_to "Sign In", new_user_session_path, :class => "pure-menu-link" %></li>
+      <li class="pure-menu-item"><%= link_to "Sign Up", signup_path, :class => "pure-menu-link" %></li>
+      <li class="pure-menu-item"><%= link_to "Sign In", login_path, :class => "pure-menu-link" %></li>
       <% end %>
     </ul>
   </div>

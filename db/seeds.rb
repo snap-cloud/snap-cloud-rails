@@ -7,12 +7,12 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.create(email: 'cycomachead@gmail.com', password: '12345678') #id: 1
-User.create(email: 'ball@berkeley.edu', password: '12345678')  #id: 2
-User.create(email: 'test@test.com', password: 'yoloswaggins')  #id: 3
+User.create(email: 'ball@berkeley.edu', password: '12345678') #id: 2
+User.create(email: 'test@test.com', password: 'yoloswaggins') #id: 3
 User.create(email: 'alecguertin@berkeley.edu', password: 'hellodolly') #id: 4
-User.create(email: 'ball@berkeley.edu', password: '12345678')  #id: 2
+User.create(email: 'michael.ballball@berkeley.edu', password: '12345678') #id: 8
 
-Announcement.create(source: 'snap', source_id:'1', text: 'Snap! will be down for maintenance tomorrow from 5-6 p.m. UTC.', time: ' 4:35 p.m.')
+Announcement.create(source: 'snap', source_id:'1', text: 'Snap! will be down for maintenance tomorrow from 5-6 p.m. UTC.', time: '4:35 p.m.')
 Announcement.create(source: 'cs169', source_id:'1', text: 'Homework 5 (due April 6th) has been released.', time: '12:00 p.m.')
 Announcement.create(source: 'you', source_id:'1', text: 'linda has commented, "wow, great job!" on super_cool_project!', time: '6:00 a.m.')
 
