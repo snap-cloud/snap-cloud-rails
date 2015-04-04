@@ -50,11 +50,12 @@
  
         #newUserFields
             %p Adds:
+            =text_field_tag 'adds[1]', ''
+            %br
+            =text_field_tag 'adds[2]', ''
+            %br
             =text_field_tag 'add_field', ''
             %button{value: "Add", onclick: 'addNewUserField(); return false;'}
         %br
         %br
         =submit_tag "save"
-
-
-
