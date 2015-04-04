@@ -7,8 +7,17 @@ class PagesController < ApplicationController
       @announcements = Announcement.all
       render 'dashboard' 
     else
+      @projects = Project.where(:is_public => true).take(1)
       render 'index'
     end
+  end
+
+  def about
+    render 'about'
+  end
+
+  def help
+    render 'help'
   end
   
 end
