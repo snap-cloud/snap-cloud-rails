@@ -28,8 +28,10 @@ gem "devise"
 gem 'simple_token_authentication', '~> 1.0' # see semver.org
 
 # allows for hellza sexiness
+# FIXME -- remove
 gem 'jquery-rails'
 
+gem 'rack-cache'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
