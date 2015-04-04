@@ -1,5 +1,5 @@
 class SessionsController < Devise::SessionsController
-  # respond_to :json
+  respond_to :json
   # github.com/plataformatec/devise/blob/master/app/controllers/devise/sessions_controller.rb
 
   # POST /api/users/login
@@ -21,11 +21,12 @@ class SessionsController < Devise::SessionsController
         }
       }
       format.html {
-        render :html => {
-          :user => current_user,
-          :status => :ok,
-          :authentication_token => current_user.authentication_token
-        }
+        redirect_to '/', flash[:notice] => 'You have been logged in.'
+        # render :html => {
+        #   :user => current_user,
+        #   :status => :ok,
+        #   :authentication_token => current_user.authentication_token
+        # }
       }
     end
   end
