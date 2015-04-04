@@ -5,8 +5,13 @@
     function addNewUserField(){
         var newfield = document.createElement("input");
         var currfield = document.getElementById("add_field");
-        var fieldparent = document.getElementById("newUserFields");
-        fieldparent.removeChild(currField);
+        newfield.value = currfield.value;
+        currfield.value = ""
+        var fieldparent = currfield.parentNode;
+
+        fieldparent.insertBefore(newfield, currfield);
+        fieldparent.insertBefore(document.createElement("br"), currfield)
+        
         return false;
     }
 
@@ -20,7 +25,7 @@
 -@course.try(:errors).try(:each) do |attribute, error|
     %h3= attribute.to_s + " " + error.to_s
     %br
-=form_tag course_edit_path(@course), method: :post, class:"pure-form pure-form-aligned" do
+=form_tag course_update_path(@course), method: :post, class:"pure-form pure-form-aligned" do
     %fieldset
         .pure-control-group
             %label{for: "course_title"} Title:
@@ -48,7 +53,7 @@
         #newUserFields
             %p Adds:
             =text_field_tag 'add_field', ''
-            %button{value: Add, onclick: 'addNewUserField(); return false;'}
+            %button{value: "Add", onclick: 'addNewUserField(); return false;'}
         %br
         %br
         =submit_tag "save"
