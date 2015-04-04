@@ -34,7 +34,8 @@ Given /there is a course I did not create/ do
 end
 
 When(/^I go to delete that course$/) do
-	post course_delete_path(@cour.id)
+	visit course_show_path(@cour)
+	click_button('Delete this course')
 end
 
 Then /I should see that I cannot delete this course/ do
@@ -55,8 +56,8 @@ Then(/^I should see that course deletion succeeded$/) do
   	end
 end
 
-Then(/^I should see that I need to log in$/) do
-  	text = "Log in"
+Then(/^I should see that I need to log in to delete this course$/) do
+  	text = "Log in to delete this course"
 	if page.respond_to? :should
     	page.should have_content(text)
   	else
