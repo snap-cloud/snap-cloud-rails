@@ -5,3 +5,4 @@
     %h1= flash[:message] 
 %br
 %p= @course.title
+= button_to 'Delete this course', course_delete_path(@course)
