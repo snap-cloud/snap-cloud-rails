@@ -55,3 +55,13 @@ And I submit the course edit
 Then I should see "alice" enrolled
 Then I should see "bob" enrolled
 Then I should see "charlie" enrolled
+
+Scenario: Teacher tries to add 2 students
+Given I am logged in as "teacher@cal.edu" with password "password"
+When I try to visit the edit page for "testcourse"
+And I try to add "charlie" and "diane" at the same time
+And I submit the course edit
+Then I should see "alice" enrolled
+Then I should see "bob" enrolled
+Then I should see "charlie" enrolled
+Then I should see "diane" enrolled

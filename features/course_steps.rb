@@ -136,3 +136,10 @@ When(/^I try to add "(.*?)"$/) do |username|
 	student = User.find_by_username(username)
   	fill_in 'add_field', :with => student.email
 end
+
+When(/^I try to add "(.*?)" and "(.*?)" at the same time$/) do |user1, user2|
+  	student1 = User.find_by_username(user1)
+ 	student2 = User.find_by_username(user2)
+ 	fill_in 'adds[1]', :with => student1.email
+ 	fill_in 'adds[2]', :with =>student2.email 
+end
