@@ -16,12 +16,12 @@ Background:
 	| 100 | alice | alice@cal.edu | password | password |
 	| 200 | bob | bob@cal.edu | password | password |
 	| 300 | charlie | charlie@cal.edu | password | password |
-	| 400 | diane | doug@cal.edu | password | password |
-	| 500 | emily | emily@cal.edu| password | password |
+	| 400 | diane | diane@cal.edu | password | password |
+	| 500 | emily | emily@cal.edu | password | password |
 
 	Given user "teacher@cal.edu" is enrolled as a teacher in "testcourse"
-	Given user "alice" is enrolled as a student in "testcourse"
-	Given user "bob" is enrolled as a student in "testcourse"
+	Given user "alice@cal.edu" is enrolled as a student in "testcourse"
+	Given user "bob@cal.edu" is enrolled as a student in "testcourse"
 
 Scenario: Not logged in user tries to edit
 When I try to visit the edit page for "testcourse"
@@ -35,5 +35,45 @@ Then I should see that I do not have permission to edit
 Scenario: Teacher tries to edit
 Given I am logged in as "teacher@cal.edu" with password "password"
 When I try to visit the edit page for "testcourse"
-Then I should see "alice" enrolled
-Then I should see "bob" enrolled
+Then I should see "alice@cal.edu" enrolled
+Then I should see "bob@cal.edu" enrolled
+Then I should not see "charlie@cal.edu" enrolled
+
+Scenario: Teacher tries to drop a student
+Given I am logged in as "teacher@cal.edu" with password "password"
+When I try to visit the edit page for "testcourse"
+And I check drop "alice@cal.edu"
+And I submit the course edit
+Then I should not see "alice@cal.edu" enrolled
+Then I should see "bob@cal.edu" enrolled
+Then I should not have any email errors
+
+Scenario: Teacher tries to add a student
+Given I am logged in as "teacher@cal.edu" with password "password"
+When I try to visit the edit page for "testcourse"
+And I try to add "charlie@cal.edu"
+And I submit the course edit
+Then I should see "alice@cal.edu" enrolled
+Then I should see "bob@cal.edu" enrolled
+Then I should see "charlie@cal.edu" enrolled
+Then I should not have any email errors
+
+Scenario: Teacher tries to add 2 students
+Given I am logged in as "teacher@cal.edu" with password "password"
+When I try to visit the edit page for "testcourse"
+And I try to add "charlie@cal.edu" and "diane@cal.edu" at the same time
+And I submit the course edit
+Then I should see "alice@cal.edu" enrolled
+Then I should see "bob@cal.edu" enrolled
+Then I should see "charlie@cal.edu" enrolled
+Then I should see "diane@cal.edu" enrolled
+Then I should not have any email errors
+
+Scenario: Teacher tries to add email that does not belong to a student to the course
+Given I am logged in as "teacher@cal.edu" with password "password"
+When I try to visit the edit page for "testcourse"
+And I try to add "cardinal@stanfurd.edu"
+And I submit the course edit
+Then I should see "alice@cal.edu" enrolled
+Then I should see "bob@cal.edu" enrolled
+Then I should see "cardinal@stanfurd.edu" could not be found

@@ -1,5 +1,5 @@
 class SessionsController < Devise::SessionsController
-  respond_to :json
+  # respond_to :json
   # github.com/plataformatec/devise/blob/master/app/controllers/devise/sessions_controller.rb
 
   # POST /api/users/login
@@ -42,6 +42,16 @@ class SessionsController < Devise::SessionsController
         else
           render :json => {}.to_json, :status => :unprocessable_entity
         end
+      }
+      format.html {
+        if current_user
+          current_user.update authentication_token: nil
+          signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
+          notice = 'You have been logged out.'
+        else
+          notice = 'You need to log in to be able to log out.'
+        end
+        redirect_to '/', flash[:notice] => notice
       }
     end
   end
