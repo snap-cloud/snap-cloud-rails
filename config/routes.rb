@@ -2,6 +2,20 @@
 require 'api_constraints'
 
 Rails.application.routes.draw do
+  get '', to: 'pages#index', as: 'home'
+  get 'about', to: 'pages#about', as: 'about'
+  get 'help', to: 'pages#help', as: 'help'
+
+  devise_for :users, :path => 'api/users',
+             :controllers => { sessions: 'sessions',
+                               registrations: 'registrations'},
+             :path_names => { :sign_in => 'login',
+                              :sign_out => 'logout',
+                              :sign_up => 'signup' }
+
+  # viewable project mappings
+  resources :projects # , :only => [:show, :new, :create]
+  resources :users
 
   post 'courses/create',      to: 'courses#create', as: 'course_create'
   get 'courses/new',          to: 'courses#new', as: 'course_new'
@@ -11,29 +25,12 @@ Rails.application.routes.draw do
   get 'courses/:id',          to: 'courses#show', as: 'course_show'
   get 'courses',              to: 'courses#index', as: 'course_index'
 
-  get 'users/:id', to: 'users#profile', as: 'user_profile'
-
-  get '', to: 'pages#index', as: 'home'
-  get 'about', to: 'pages#about', as: 'about'
-  get 'help', to: 'pages#help', as: 'help'
-
-  devise_for :users, :path => 'api/users',
-                     :controllers => { sessions: 'sessions',
-                                       registrations: 'registrations'},
-                     :path_names => { :sign_in => 'login',
-                                      :sign_out => 'logout',
-                                      :sign_up => 'signup' }
-
-  # viewable project mappings
-  resources :projects # , :only => [:show, :new, :create]
-  resources :users
-
   # Redirect simple requets for the viewable app
-  devise_scope :user do
-    get 'login', to: 'sessions#create'
-    get 'logout', to: 'sessions#destroy'
-    get 'signup', to: 'registrations#new'
-  end
+  # devise_scope :user do
+  #   get 'login', to: 'sessions#new'
+  #   get 'logout', to: 'sessions#destroy'
+  #   get 'signup', to: 'registrations#new'
+  # end
 
   # NOTE: We should probably use a subdomain in the future, add:
   # constraints: { subdomain: 'api' }, path: '/'
@@ -52,6 +49,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'users/:id', to: 'users#profile', as: 'user_profile'
+  
   # Shortcuts to the Snap! submodule
   # NOTE: the redirect needs a trailing / to load the JS properly.
   # TODO: Serving this way is probably not the best...
