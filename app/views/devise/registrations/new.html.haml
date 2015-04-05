@@ -9,6 +9,8 @@
             Welcome, to
             %span.snap
               snap
+          = f.label :username
+          = f.email_field :username, autofocus: true, class: 'pure-u-1-2'
           = f.label :email
           = f.email_field :email, autofocus: true, class: 'pure-u-1-2'
           = f.label :password
@@ -19,6 +21,19 @@
           = f.password_field :password, autocomplete: "off", class: 'pure-u-1-2'
           = f.label :password_confirmation
           = f.password_field :password_confirmation, autocomplete: "off", class: 'pure-u-1-2'
+          %br/
+          %label
+            When were you born?
+          = date_select :user, :birthdate
+          %em
+            If you are less than 13 years old, you must have you parent's permission, and use your parent's email address.
+            
+          %label
+            Do you agree to our Terms of Service?
+          = label_tag(:tos_agree, "Agree")
+          = check_box_tag(:tos_agree)
+
+          
           .actions
             %br/
             = f.submit "Sign up", :class => 'pure-button pure-input-1-2 pure-button-primary'
