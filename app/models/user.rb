@@ -1,13 +1,16 @@
 class User < ActiveRecord::Base
   # use simple_token_authentication on users
   acts_as_token_authenticatable
-
+  
+  # Allow login via username or email.
+  attr_accessor :login
+  
   validates_length_of :about_me, :maximum => 500, :allow_blank => true
 
   # A user has many projects, and deleting user deletes projects of that user
-  # FIXME -- how do we handle projects with multiple owners?
   has_many :enrollments
 
+  # FIXME -- how do we handle projects with multiple owners?
   def projects
     Project.where(:owner => self.id).all
   end
@@ -30,10 +33,10 @@ class User < ActiveRecord::Base
     :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
   },
   :styles => {
-    :thumb    => ['100x100#',  :jpg, :quality => 70],
-    :preview  => ['480x480#',  :jpg, :quality => 70],
-    :large    => ['600>',      :jpg, :quality => 70],
-    :retina   => ['1200>',     :jpg, :quality => 30]
+    :thumb    => ['100x100#',  :jpg, :quality => 60],
+    :preview  => ['480x480#',  :jpg, :quality => 60],
+    :large    => ['600>',      :jpg, :quality => 60],
+    :retina   => ['1200>',     :jpg, :quality => 60]
   },
   :convert_options => {
     :thumb    => '-set colorspace sRGB -strip',
@@ -43,4 +46,21 @@ class User < ActiveRecord::Base
   }
 
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+  
+  # Allow login via username or email
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions.to_hash).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    else
+      where(conditions.to_hash).first
+    end
+  end
+  
+  validates :username,
+    :presence => true,
+    :uniqueness => {
+      :case_sensitive => false
+    }
+    
 end
