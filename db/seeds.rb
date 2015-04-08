@@ -1,17 +1,23 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(email: 'cycomachead@gmail.com', password: '12345678') #id: 1
-User.create(email: 'ball@berkeley.edu', password: '12345678')  #id: 2
-User.create(email: 'test@test.com', password: 'yoloswaggins')  #id: 3
-User.create(email: 'alecguertin@berkeley.edu', password: 'hellodolly') #id: 4
+User.create(username: 'cycomachead', 
+            email: 'cycomachead@gmail.com',
+            password: '12345678') #id: 1
+User.create(username: 'ball', 
+            email: 'ball@berkeley.edu',
+            password: '12345678') #id: 2
+User.create(username: 'testuser', 
+            email: 'test@test.com',
+            password: 'yoloswaggins') #id: 3
+User.create(username: 'alecguertin', 
+            email: 'alecguertin@berkeley.edu',
+            password: 'hellodolly') #id: 4
+User.create(username: 'michael.ball', 
+            email: 'michael.ballball@berkeley.edu',
+            password: '12345678') #id: 8
 
-Announcement.create(source: 'snap', source_id:'1', text: 'Snap! will be down for maintenance tomorrow from 5-6 p.m. UTC.', time: ' 4:35 p.m.')
+Announcement.create(source: 'snap', source_id:'1', text: 'Snap! will be down for maintenance tomorrow from 5-6 p.m. UTC.', time: '4:35 p.m.')
 Announcement.create(source: 'cs169', source_id:'1', text: 'Homework 5 (due April 6th) has been released.', time: '12:00 p.m.')
 Announcement.create(source: 'you', source_id:'1', text: 'linda has commented, "wow, great job!" on super_cool_project!', time: '6:00 a.m.')
 
