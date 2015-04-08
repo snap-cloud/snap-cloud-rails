@@ -1,7 +1,8 @@
-Feature: User Profile Page
-  In order to share my work
+Feature: User Profile Preview
   As a user of Snap!
-  I would like to create a profile
+  In order to check my profile
+  I should be able to view the profile and profile edit page separately
+
 
 Background:
   Given the following users exist:
@@ -15,27 +16,18 @@ Background:
   | snapoh! | sauceawesome | 1     | false     |
   | snapp!  | nosauce      | 2     | true      |
 
-Scenario: View profile of other user or not logged in
-  Given I am on the profile page for "testuser"
-  Then I should see "testuser"
-  And I should see "About"
-  And I should see "About Me"
-  And I should see "My Projects"
-  And I should not see the submit button "Update"
-  And I should see "ohsnap!"
-  And I should see "awesomesauce"
-  And I should not see "snapoh!"
-  And I should not see "sauceawesome"
-  And I should not see "snapp!"
-  And I should not see "nosauce"
-  And I should not see a file input
-
 Scenario: View own profile when logged in
   Given I am logged in as "test@example.com" with password "hellodolly"
   And I am on the profile page for "testuser"
   Then I should see "testuser"
   And I should see "My Projects"
   And I should see "About Me"
+  And I should not see "Change profile pic"
+  And I should not see the submit button "Update"
+  And I should see "Edit"
+  Then I click "Edit"
+  Then I should see the submit button "Update"
+  And I should see "Change profile pic"
   And I should see "ohsnap!"
   And I should see "awesomesauce"
   And I should see "snapoh!"
