@@ -8,18 +8,6 @@ Background:
   | username | id |       email       | password | password_confirmation |
   | testuser | 1  | test@example.com  |  hello   |       hello           |
 
-  And the following projects exist:
-  | title  |   notes      | owner | is_public |
-  | proj0  | description0 |   1   |   true    |
-  | proj1  | description1 |   1   |   false   |
-  | proj2  | description2 |   1   |   true    |
-
-  And the following announcements exist: 
-  | source   |   text   | time |
-  |  snap    |  hello   | 1:00 |
-  | cs-169   |  hw5 up  | 2:00 |
-  | otheruser| good job!| 3:00 |
-
 Scenario: Dashboard not visible without logging in 
   Given I am not logged in
   And I visit the home page
@@ -29,8 +17,9 @@ Scenario: Dashboard is visible upon logging in
   Given I am logged in as testuser
   And I visit the home page
   Then I should see the dashboard page 
-  And I should see a news feed with my announcements
-  And I should see a projects listing with my projects
+  And I should see a news feed
+  And I should see a projects listing
+  And I should see a class listing 
 
 Scenario: Users can create a project from the dashboard
   Given I am logged in as testuser
