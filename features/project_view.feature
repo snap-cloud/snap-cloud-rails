@@ -5,12 +5,12 @@ Feature: Viewing Project Details Page
 
 Background:
   Given the following users exist:
-  | email         | password     |
-  | test@test.com | yoloswaggins |
+  | id | email         | password     |
+  | 1  | test@test.com | yoloswaggins |
 
   And the following projects exist:
-  | title   | notes        | owner | is_public |
-  | ohsnap! | awesomesauce | 1     | true      |
+  | id | title   | notes        | owner | is_public |
+  | 1  | ohsnap! | awesomesauce | 1     | true      |
 
   Given I am on the project details page for "ohsnap!"
 
@@ -37,3 +37,9 @@ Scenario: Seeing collaborators
 Scenario: Running the project
   Given I am on the project details page for "ohsnap!"
   Then I should see "Try It!"
+
+Scenario: Report a Project
+ Then I should see "Report"
+
+Scenario: Seeing project thumbnail
+  Then I should see the thumbnail for "ohsnap!"
