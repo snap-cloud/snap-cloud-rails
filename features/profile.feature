@@ -43,3 +43,7 @@ Scenario: View own profile when logged in
   And I should not see "snapp!"
   And I should not see "nosauce"
   And I should see a file input
+
+Scenario: Report a user profile
+  Given I am on the profile page for "testuser"
+  Then I should see "Report"
