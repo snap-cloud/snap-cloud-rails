@@ -7,6 +7,7 @@ Background:
   Given the following users exist:
   | id | email         | password     |
   | 1  | test@test.com | yoloswaggins |
+  | 2  | yolo@yolo.com | idfkmanhehe  |
 
   And the following projects exist:
   | id | title   | notes        | owner | is_public |
@@ -39,7 +40,7 @@ Scenario: Running the project
   Then I should see "Try It!"
 
 Scenario: Report a Project
- Then I should see "Flag as Inappropriate"
+ Then I press "report_project"
 
 Scenario: Seeing project thumbnail
   Then I should see an image
