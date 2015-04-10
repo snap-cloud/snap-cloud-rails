@@ -1,4 +1,4 @@
-<% content_for :head do %>
+<<% content_for :head do %>
   <% stylesheet_link_tag "project_listing" %>
 <% end %>
 
@@ -16,6 +16,7 @@
 	<div class="pure-u-1-8" style="background: black; display: table-cell; vertical-align: middle;">
 		<div class="center-element">
 			<a id="edit_project" class="pure-button pure-button-primary" href="/projects/<%= @project.id %>/edit">Edit</a>
+			<a id="report_project" class="button-error pure-button" href="#">Mark as Inappropriate</a>
 		</div>
 	</div>
 
