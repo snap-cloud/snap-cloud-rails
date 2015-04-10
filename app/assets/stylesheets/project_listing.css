@@ -42,3 +42,13 @@ div.center-text{
 .button-error {
     background: rgb(202, 60, 60); /* this is a maroon */
 }
+
+div.image-with-border {
+	border-radius: 25px;
+	border: 2px solid #8AC007;
+	padding: 20px;
+}
+
+div.overlay-top {
+	z-index: 10;
+}
