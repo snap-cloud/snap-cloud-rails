@@ -39,7 +39,7 @@ Scenario: Running the project
   Then I should see "Try It!"
 
 Scenario: Report a Project
- Then I should see "Mark as Inappropriate"
+ Then I should see "Flag as Inappropriate"
 
 Scenario: Seeing project thumbnail
   Then I should see an image
