@@ -7,7 +7,8 @@ class ProjectsController < ApplicationController
 
   def show
     if not Project.exists?(params[:id])
-      # TODO: render 404 and gtfo
+      render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+      return
     end
     @project = Project.find(params[:id])
     @owner = User.find_by_id @project.owner
