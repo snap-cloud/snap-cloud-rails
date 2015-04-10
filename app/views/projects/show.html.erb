@@ -8,7 +8,11 @@
 <div class="pure-g">
 
 	<div class="pure-u-1-8" style="background: black; display: table-cell; vertical-align: middle;">
-		<div class="centered-label-darkgray" ><%= @project.is_public ? "Public Project" : "Private Project"%></div>
+		<div class="centered-label-darkgray" ><%= @project.is_public ? "Public Project" : "Private Project"%>
+			<!-- <% if @project.is_public %>
+				<div class="icono-eye"></div>
+			<% end %> -->
+		</div>
 	</div>
 	
 
@@ -49,13 +53,13 @@
 
     <div class="pure-u-1 pure-u-md-1-24 bottom-margin-med" style="background: white"></div>
 
-    <div class="pure-u-1 pure-u-md-5-24 bottom-margin-med" style="background-image:url(data:image/gif;base64,<%= @project.thumbnail %>">
+    <div class="pure-u-1 pure-u-md-5-24 bottom-margin-med">
     	<a style="font-size: 150%; width: 100%; height: 100%; display: block;" href="#">
-    		<div style="background-image: <%= @project.thumbnail %>">
-	    	<!-- put a binary base64 encoded thumbagil as the play button -->
-	    	<!-- <img src="<%= @project.thumbnail %>" class="pure-img" > -->
-    		Try It!
+    		<div class="image-with-border fill-parent">
+	    	<!-- put a binary base64 encoded thumbnail as the play button -->
+	    		<img src="<%= @project.thumbnail %>" class="pure-img" >
     		</div>
+    		<div class="overlay-top icono-play"></div>
     	</a>
     </div>
 

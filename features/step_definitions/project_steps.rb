@@ -12,7 +12,8 @@ Then /^(?:|I) should not see "(.*?)"$/ do |input|
 end
 
 Then /^(?:|I) should see an image$/ do |img|
-  page.should have_xpath("//img") # FIXME: probably broken
+  # page.should have_xpath("//img") # FIXME: probably broken
+  page.should have_css('img', text: 'base64')
 end
 
 Then /^(?:|I) should see the link "(.*?)" to "(.*?)"$/ do |link, url|
