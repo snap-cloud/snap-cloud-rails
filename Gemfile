@@ -10,7 +10,7 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'haml'
 
-gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'paperclip', :git => "https://github.com/thoughtbot/paperclip.git"
 gem 'aws-sdk', '< 2.0'
 
 # Embed v8 into Ruby. Sever-side JS processing.
@@ -80,5 +80,4 @@ group :production do
   gem 'pg'
   # Perf and other Heroku features
   gem 'rails_12factor'
-  gem 'rack-cache'
 end
