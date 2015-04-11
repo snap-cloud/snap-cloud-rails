@@ -1,8 +1,10 @@
 language: ruby
 rvm:
-- 2.2.0
-bundler_args: "--without production"
-script: bundle exec rake
+- 2.2.1
+# bundler_args: "--without production"
+script:
+    - bundle exec rake
+    - cucumber
 cache: bundler
 addons:
   postgresql: "9.3"
