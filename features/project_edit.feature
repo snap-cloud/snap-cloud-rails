@@ -28,3 +28,15 @@ Scenario: Edit description of project
     And I press "Save Changes"
     Then I should see "snapperclapper"
     And I should not see "awesomesauce"
+
+Scenario: Make project private
+	When I uncheck "project_is_public"
+	And I press "Save Changes"
+	Then I should see "Private"
+	And I should not see "Public"
+
+Scenario: Make project public
+	When I check "project_is_public"
+	And I press "Save Changes"
+	Then I should see "Public"
+	And I should not see "Private"

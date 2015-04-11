@@ -108,3 +108,12 @@ end
 When(/^I press "(.*?)"$/) do |target|
   click_on target
 end
+
+When(/^I check "(.*?)"$/) do |target|
+  check target
+end
+
+# this could probably be combined with the above
+When(/^I uncheck "(.*?)"$/) do |target|
+  uncheck target
+end
