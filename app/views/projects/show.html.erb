@@ -23,10 +23,14 @@
 
 	<div class="pure-u-1-8" style="background: black; display: table-cell; vertical-align: middle;">
 		<div class="center-element">
+		
+			<% if current_user == @owner %>
 			<a id="edit_project" class="pure-button pure-button-primary" href="/projects/<%= @project.id %>/edit">
 				<div class="icono-gear">
 				</div>
 			</a>
+			<% end %>
+
 			<a id="report_project" class="pure-button" style="background: rgb(202, 60, 60);" href="/projects/<%= @project.id %>/edit">
 				<div class="icono-flag">
 				</div>

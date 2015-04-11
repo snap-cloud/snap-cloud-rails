@@ -15,10 +15,15 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    # TODO: idkf if any of this actually makes sense -- don't forget to see if the user is an owner before actually letting them edit!
+    # TODO: don't forget to see if the user is an owner before actually letting them edit!
     @project = find_project()
     if @project != nil
       @owner = User.find_by_id @project.owner
+
+      if not (current_user && @owner == current_user)
+        render file: "#{Rails.root}/public/401.html", layout: false, status: 401
+      end
+
       render :action => "edit"
     else
       render file: "#{Rails.root}/public/404.html", layout: false, status: 404
