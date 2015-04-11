@@ -22,6 +22,7 @@ class ProjectsController < ApplicationController
 
       if not (current_user && @owner == current_user)
         render file: "#{Rails.root}/public/401.html", layout: false, status: 401
+        return
       end
 
       render :action => "edit"

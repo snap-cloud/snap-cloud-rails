@@ -44,4 +44,4 @@ Scenario: Make project public
 Scenario: Only owner can edit
 	Given I am logged in as "bob@cal.edu" with password "password"
 	And I am on the project edit page for "ohsnap!"
-	Then I should see "401"
+	Then I should see "You don't have permission to access this page"
