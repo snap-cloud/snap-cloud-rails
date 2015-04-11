@@ -40,3 +40,8 @@ Scenario: Make project public
 	And I press "Save Changes"
 	Then I should see "Public"
 	And I should not see "Private"
+
+Scenario: Only owner can edit
+	Given I am logged in as "bob@cal.edu" with password "password"
+	And I am on the project edit page for "ohsnap!"
+	Then I should see "401"

@@ -37,10 +37,17 @@ Then /^(?:|I) should not see a file input$/ do
 end
 
 Given /^(?:|I) am logged in as "(.*?)" with password "(.*?)"$/ do |user, password|
+  if page.body.include? "Logout"
+    visit logout_path
+  end
   visit login_path
   fill_in "user_login", :with => user
   fill_in "user_password", :with => password
   click_button "Log in"
+end
+
+Then /^I log out $/ do
+  visit logout_path
 end
 
 Given /^(?:|I) am on the project details page for "(.*?)"$/ do |page|
