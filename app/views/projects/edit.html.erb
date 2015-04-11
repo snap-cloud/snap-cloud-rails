@@ -8,8 +8,7 @@
         <%= f.text_area :notes, :class => "pure-input-2-3" %> <br>
 
         <%= f.label "Check for public project, uncheck for private project:" %>
-        <%= f.check_box :is_public, {}, true, false %> Public? <br><br>
-        <!-- <%= f.select :is_public, ['Public', 'Private'] %>-->
+        <%= f.check_box :is_public, {}, "1", "0" %> Public? <br><br>
 
         <%= f.submit "Save Changes", :class => "pure-button pure-button-primary" %>
     <% end %>
