@@ -30,12 +30,13 @@ class ProjectsController < ApplicationController
     if @project != nil
       @owner = User.find_by_id @project.owner
     end
-    
+
     if @project.update_attributes(project_params)
+      print project_params
       flash[:success] = "Project updated!"
       redirect_to @project
     else
-      render :action => "show"
+      render :action => "edit"
     end
   end
 

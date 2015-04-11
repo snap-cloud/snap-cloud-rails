@@ -105,15 +105,15 @@ When(/^I fill in "(.*?)" with "(.*?)"$/) do |field, value|
   fill_in field, :with => value
 end
 
-When(/^I press "(.*?)"$/) do |target|
-  click_on target
+When(/^I press "(.*?)"$/) do |button|
+  click_on button
 end
 
-When(/^I check "(.*?)"$/) do |target|
-  check target
+When(/^I check "(.*?)"$/) do |check_box|
+  check check_box
 end
 
 # this could probably be combined with the above
-When(/^I uncheck "(.*?)"$/) do |target|
-  uncheck target
+When(/^I uncheck "(.*?)"$/) do |check_box|
+  uncheck check_box
 end
