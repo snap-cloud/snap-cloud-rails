@@ -1,0 +1,18 @@
+<form class="pure-form" action="projects/<%= params[:id] %>" method="post">
+    <fieldset>
+        <legend>Edit things about your project!</legend>
+
+        <h4> Project Title </h4>
+        <input type="project_title" value="<%= @project.title %>"> <br><br>
+        <h4> Project Description </h4>
+        <input type="project_description" value="value="<%= @project.notes %>"">
+
+        <label for="is_public">Project Visbility</label>
+        <select id="is_public">
+            <option>Public</option>
+            <option>Private</option>
+        </select>
+
+        <button type="submit" class="pure-button pure-button-primary">Save Changes</button>
+    </fieldset>
+</form>
