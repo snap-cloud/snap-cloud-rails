@@ -38,7 +38,7 @@ end
 
 Given /^(?:|I) am logged in as "(.*?)" with password "(.*?)"$/ do |user, password|
   visit login_path
-  fill_in "user_email", :with => user
+  fill_in "user_login", :with => user
   fill_in "user_password", :with => password
   click_button "Log in"
 end
@@ -99,4 +99,12 @@ end
 Then(/^I will be on the edit page for "(.*?)"$/) do |target|
   proj = Project.find_by_title target
   page.current_path.should eq "/projects/" + proj.id.to_s + "/edit"
+end
+
+When(/^I fill in "(.*?)" with "(.*?)"$/) do |field, value|
+  fill_in field, :with => value
+end
+
+When(/^I press "(.*?)"$/) do |target|
+  click_on target
 end
