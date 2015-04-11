@@ -6,22 +6,57 @@ class ProjectsController < ApplicationController
 
 
   def show
-    if not Project.exists?(params[:id])
-      render file: "#{Rails.root}/public/404.html", layout: false, status: 404
-      return
+    @project = find_project()
+    if @project != nil
+      @project = Project.find(params[:id])
+      @owner = User.find_by_id @project.owner
+      render :action => "show"
     end
-    @project = Project.find(params[:id])
-    @owner = User.find_by_id @project.owner
-    render :action => "show"
   end
 
   def edit
-    # TODO: implement this -- don't forget to see if the user is an owner before actually letting them edit!
+    # TODO: idkf if any of this actually makes sense -- don't forget to see if the user is an owner before actually letting them edit!
+    @project = find_project()
+    if @project != nil
+      @owner = User.find_by_id @project.owner
+      render :action => "edit"
+    else
+      render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+    end
+  end
+
+  def update
+    @project = find_project()
+    if @project != nil
+      @owner = User.find_by_id @project.owner
+    end
+    
+    if @project.update_attributes(project_params)
+      flash[:success] = "Project updated!"
+      redirect_to @project
+    else
+      render :action => "show"
+    end
   end
 
   def destroy
     proj = Project.find(params[:id])
     proj.destroy
   end
+
+  private
+
+    def find_project
+      if not Project.exists?(params[:id])
+        render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+        return
+      end
+      return Project.find(params[:id])
+    end
+
+    def project_params
+      params.require(:project).permit(:title, :notes, :is_public)
+    end
+
 
 end

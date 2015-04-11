@@ -1,18 +1,16 @@
-<form class="pure-form" action="projects/<%= params[:id] %>" method="post">
-    <fieldset>
-        <legend>Edit things about your project!</legend>
+<div style="width: 95%; height: 100%; margin: auto; position: relative; margin-top: 2em;">
+    <%= form_for(@project, :html => {:class => "pure-form pure-form-stacked"}) do |f| %>
 
-        <h4> Project Title </h4>
-        <input type="project_title" value="<%= @project.title %>"> <br><br>
-        <h4> Project Description </h4>
-        <input type="project_description" value="value="<%= @project.notes %>"">
+        <%= f.label "Project Title" %>
+        <%= f.text_field :title, :required => true, :class => "pure-input-2-3" %> <br>
 
-        <label for="is_public">Project Visbility</label>
-        <select id="is_public">
-            <option>Public</option>
-            <option>Private</option>
-        </select>
+        <%= f.label "Project Description" %>
+        <%= f.text_area :notes, :class => "pure-input-2-3" %> <br>
 
-        <button type="submit" class="pure-button pure-button-primary">Save Changes</button>
-    </fieldset>
-</form>
+        <%= f.label "Check for public project, uncheck for private project:" %>
+        <%= f.check_box :is_public, {}, true, false %> Public? <br><br>
+        <!-- <%= f.select :is_public, ['Public', 'Private'] %>-->
+
+        <%= f.submit "Save Changes", :class => "pure-button pure-button-primary" %>
+    <% end %>
+</div>
