@@ -32,7 +32,6 @@ class ProjectsController < ApplicationController
     end
 
     if @project.update_attributes(project_params)
-      print project_params
       flash[:success] = "Project updated!"
       redirect_to @project
     else
