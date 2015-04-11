@@ -26,6 +26,6 @@ Scenario: Edit title of project
 Scenario: Edit description of project
 	Given I am logged in as "alice@cal.edu" with password "password"
         When I enter "snapperclapper" as the "project_description"
-        And I press "Submit"
+        And I press "Save Changes"
         Then I should see "snapperclapper"
         And I should not see "awesomesauce"
