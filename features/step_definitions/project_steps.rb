@@ -21,10 +21,6 @@ Then /^I should (not )?see an element "(.*?)"$/ do |negate, selector|
   page.send(expectation, have_css(selector))
 end
 
-Then /^I should (not)? see the element "(.*?)"$/ do |negate, selector|
-  page.find("#some-id")[:class].include?("some-class")
-end
-
 
 Then /^(?:|I) should see the link "(.*?)" to "(.*?)"$/ do |link, url|
 	page.should have_link(link, :href => url)
