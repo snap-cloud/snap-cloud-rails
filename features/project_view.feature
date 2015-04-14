@@ -13,6 +13,7 @@ Background:
   | id | title   | notes        | owner | is_public |
   | 1  | ohsnap! | awesomesauce | 1     | true      |
 
+  Given I am logged in as "test@test.com" with password "yoloswaggins"
   Given I am on the project details page for "ohsnap!"
 
 Scenario: View title of project
@@ -22,7 +23,6 @@ Scenario: View owner of project
   Then I should see "test@test.com"
 
 Scenario: Editing the project from details as owner
-  Given I am logged in as "test@test.com" with password "yoloswaggins"
   Then I press "edit_project"
   And I will be on the edit page for "ohsnap!"
 
