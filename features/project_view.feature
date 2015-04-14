@@ -5,9 +5,9 @@ Feature: Viewing Project Details Page
 
 Background:
   Given the following users exist:
-  | id | email         | password     |
-  | 1  | test@test.com | yoloswaggins |
-  | 2  | yolo@yolo.com | idfkmanhehe  |
+  | id | username | email         | password     |
+  | 1  | test_man | test@test.com | yoloswaggins |
+  | 2  | yolo_man | yolo@yolo.com | idfkmanhehe  |
 
   And the following projects exist:
   | id | title   | notes        | owner | is_public |
@@ -21,8 +21,9 @@ Scenario: View title of project
 Scenario: View owner of project
   Then I should see "test@test.com"
 
-Scenario: Editing the project from details
-  Then I follow "edit_project"
+Scenario: Editing the project from details as owner
+  Given I am logged in as "test@test.com" with password "yoloswaggins"
+  Then I press "edit_project"
   And I will be on the edit page for "ohsnap!"
 
 Scenario: Seeing public/private level of project
@@ -35,12 +36,12 @@ Scenario: Seeing comments
 Scenario: Seeing collaborators
   Then I should see "Collaborators"
 
-Scenario: Running the project
-  Given I am on the project details page for "ohsnap!"
-  Then I should see "Try It!"
-
 Scenario: Report a Project
  Then I press "report_project"
 
 Scenario: Seeing project thumbnail
   Then I should see an image
+
+Scenario: Editing the project from details as not owner
+  Given I am logged in as "yolo@yolo.com" with password "idfkmanhehe"
+  Then I should not see "edit_project"

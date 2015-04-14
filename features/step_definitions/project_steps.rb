@@ -11,10 +11,20 @@ Then /^(?:|I) should not see "(.*?)"$/ do |input|
 	page.should_not have_content input
 end
 
-Then /^(?:|I) should see an image$/ do |img|
-  # page.should have_xpath("//img") # FIXME: probably broken
-  page.should have_css('img', text: 'base64')
+Then /^(?:|I) should see an image$/ do
+  page.should have_xpath("//img")
+  # page.should have_css('img', text: 'base64') # FIXME: probably broken
 end
+
+Then /^I should (not )?see an element "(.*?)"$/ do |negate, selector|
+  expectation = negate ? :should_not : :should
+  page.send(expectation, have_css(selector))
+end
+
+Then /^I should (not)? see the element "(.*?)"$/ do |negate, selector|
+  page.find("#some-id")[:class].include?("some-class")
+end
+
 
 Then /^(?:|I) should see the link "(.*?)" to "(.*?)"$/ do |link, url|
 	page.should have_link(link, :href => url)
