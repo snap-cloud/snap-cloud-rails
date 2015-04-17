@@ -8,6 +8,8 @@ class Course < ActiveRecord::Base
     has_many :student_enrollments, -> {Enrollment.student}, class_name: 'Enrollment'
     has_many :students, through: :student_enrollments, class_name: 'User', source: 'user'
 
+    has_many :assignments
+
     
 
     def addUser(person, role)
