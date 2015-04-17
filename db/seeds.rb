@@ -17,6 +17,31 @@ User.create(username: 'michael.ball',
             email: 'michael.ballball@berkeley.edu',
             password: '12345678') #id: 8
 
+my_course = Course.create(title: "CS169", description: "A course about software engineering.  Students design an app " \
+    + "over the course of the semester for a non-profit organization.  The follows the SaaS " \
+    + "architecture, taking place over the web rather than being something the user installs.",
+    startdate: 10.days.ago,
+    enddate: 10.days.from_now)
+
+my_course.assignments << Assignment.create(title: "Intro assignment", 
+    description: "Submit a paper telling us about yourself, your interestes and skills",
+    start_date: my_course.startdate,
+    end_date: my_course.enddate)
+my_course.assignments << Assignment.create(title: "Outro assignment", 
+    description: "Submit a paper telling us what you liked about the course and what you disliked",
+    start_date: my_course.startdate,
+    end_date: my_course.enddate)
+
+my_course = Course.create(title: "CS161", description: "A course about security taught by Alec and his sidekick Arjun.  " \
+    + "Most students will fail this course and learn nothing because nobody attends lecture.  " \
+    + "Luckily the class has webcasts which students use to catch up at the last minute.",
+    startdate: 10.days.ago,
+    enddate: 10.days.from_now)
+
+
+
+
+
 Announcement.create(source: 'snap', source_id:'1', text: 'Snap! will be down for maintenance tomorrow from 5-6 p.m. UTC.', time: '4:35 p.m.')
 Announcement.create(source: 'cs169', source_id:'1', text: 'Homework 5 (due April 6th) has been released.', time: '12:00 p.m.')
 Announcement.create(source: 'you', source_id:'1', text: 'linda has commented, "wow, great job!" on super_cool_project!', time: '6:00 a.m.')

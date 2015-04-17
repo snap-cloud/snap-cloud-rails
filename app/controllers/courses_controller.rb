@@ -20,6 +20,7 @@ class CoursesController < ApplicationController
 
   def show
     @course = courseExists?("The course you're trying to view does not exist")
+    @assignments = @course.assignments
     #Find the course with the give id
   end
 
