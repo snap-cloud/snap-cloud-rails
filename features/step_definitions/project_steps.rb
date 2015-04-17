@@ -52,6 +52,10 @@ Given /^(?:|I) am logged in as "(.*?)" with password "(.*?)"$/ do |user, passwor
   click_button "Log in"
 end
 
+Then /^I enter "(.*?)" for "(.*?)"$/ do |value, field|
+  fill_in field, :with => value
+end
+
 Then /^I log out $/ do
   visit logout_path
 end
@@ -68,7 +72,7 @@ end
 
 Given /^(?:|I) am on the profile page for "(.*?)"$/ do |username|
   user = User.find_by_username username
-  visit "/users/" + user.id.to_s
+  visit "/users/" + user.id.to_s + "/profile"
 end
 
 Given /^(?:|I) am on the splash page$/ do
@@ -112,6 +116,18 @@ end
 Then(/^I will be on the edit page for "(.*?)"$/) do |target|
   proj = Project.find_by_title target
   page.current_path.should eq "/projects/" + proj.id.to_s + "/edit"
+end
+
+Then(/^I will be on the edit page for user (.*?)$/) do |id|
+  page.current_path.should eq "/users/" + id.to_s + "/edit"
+end
+
+Then(/^I will be on the home page$/) do
+  page.current_path.should eq "/"
+end
+
+Given(/^I am on the login page$/) do
+  visit login_path
 end
 
 When(/^I fill in "(.*?)" with "(.*?)"$/) do |field, value|

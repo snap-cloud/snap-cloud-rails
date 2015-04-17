@@ -15,7 +15,7 @@ Then I should see that I need to log in
 Scenario: Deleting a course I cannot while not logged in
 Given there is a course I did not create
 When I go to delete that course
-Then I should see that I need to log in to delete this course
+Then I should see that I need to log in
 
 Scenario: Deleting a course I cannot
 Given I am logged in as "test@example.com" with password "hellohello"
