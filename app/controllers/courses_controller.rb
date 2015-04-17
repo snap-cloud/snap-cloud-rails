@@ -128,6 +128,8 @@ class CoursesController < ApplicationController
   def userLoggedIn
     if getCurrentUser.nil?
         redirect_to login_path and return
+    else
+      @user = getCurrentUser
     end
   end
 
