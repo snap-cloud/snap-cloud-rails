@@ -24,6 +24,7 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @assignments = @course.assignments
+    @user = getCurrentUser
     # @course = Course.find(params[:id])
     #Find the course with the give id
   end
@@ -127,6 +128,8 @@ class CoursesController < ApplicationController
   def userLoggedIn
     if getCurrentUser.nil?
         redirect_to login_path and return
+    else
+      @user = getCurrentUser
     end
   end
 
