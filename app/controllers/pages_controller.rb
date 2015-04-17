@@ -5,6 +5,8 @@ class PagesController < ApplicationController
     if @user
       @projects = Project.where("owner = ?", @user.id)
       @announcements = Announcement.all
+      @courses = @user.courses
+      @assignments = @user.assignments
       render 'dashboard' 
     else
       @projects = Project.where(:is_public => true).take(1)

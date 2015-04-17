@@ -29,11 +29,15 @@ my_course = Course.create(title: "CS169", description: "A course about software 
 my_course.assignments << Assignment.create(title: "Intro assignment", 
     description: "Submit a paper telling us about yourself, your interestes and skills",
     start_date: my_course.startdate,
-    end_date: my_course.enddate)
+    due_date: my_course.enddate)
 my_course.assignments << Assignment.create(title: "Outro assignment", 
     description: "Submit a paper telling us what you liked about the course and what you disliked",
     start_date: my_course.startdate,
-    end_date: my_course.enddate)
+    due_date: my_course.enddate)
+my_course.assignments << Assignment.create(title: "You will never finish", 
+    description: "This is a seed assignment designed to be late.  Sorry bruh.",
+    start_date: my_course.startdate,
+    due_date: 1.day.ago)
 
 my_course.addUser(steven, :teacher)
 
