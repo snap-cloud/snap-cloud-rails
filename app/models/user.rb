@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   # A user has many projects, and deleting user deletes projects of that user
   has_many :enrollments
+  has_many :courses,  :through => :enrollments
 
   # FIXME -- how do we handle projects with multiple owners?
   def projects

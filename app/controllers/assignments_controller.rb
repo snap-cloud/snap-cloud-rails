@@ -5,6 +5,7 @@ class AssignmentsController < ApplicationController
 	before_filter :authCourseEdit, :except => [:show]
 
 	def show
+		@assignment = Assignment.find_by(params[:id])
 	end
 
 	def new
@@ -73,5 +74,4 @@ class AssignmentsController < ApplicationController
     	@assignment = Assignment.find(params[:course_id])
     end
   end
-
 end

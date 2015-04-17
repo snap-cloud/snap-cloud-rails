@@ -1,0 +1,12 @@
+%br
+-if flash[:message]
+    %h1= flash[:message] 
+    %br
+%h2= @assignment.title 
+%p= @assignment.description
+%p= "Start: #{@assignment.start_date.to_s}"
+%p= "End:   #{@assignment.end_date.to_s}"
+-if Date.today < @assignment.end_date
+    =button_to 'Submit Project to Assignment', submission_new_path(@assignment), method: :get
+%br
+%br
