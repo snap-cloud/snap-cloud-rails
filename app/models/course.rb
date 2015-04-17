@@ -22,4 +22,6 @@ class Course < ActiveRecord::Base
     	Enrollment.find_by(user_id: person.id, course_id: self.id)
     end
 
+
+
 end
