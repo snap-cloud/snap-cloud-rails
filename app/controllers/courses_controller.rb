@@ -109,12 +109,10 @@ class CoursesController < ApplicationController
 
   def index
     #find all courses
-    byebug
     @courses = Course.all
   end
 
   def edit
-    byebug
     @students = @course.students
   end
 
