@@ -1,7 +1,14 @@
 Feature: Project Submission
-    As a user
-    So that it's easier to complete assignments
-    I should be able to submit assignments to a class
+    As a student
+    So that I can complete assignments
+    I should be able to submit projects for an assignment
+
+    As a teacher
+    So that I can grade students
+    I should be able to see projects they've submitted
+
+
+
 
     Scenario: Student submits project to an assignment from a course they are a part of
         Givens some assignments, projects I own, and a course i'm part of
