@@ -19,15 +19,16 @@
     	<font size="10"> <%= @user.email%>'s Dashboard </font> &nbsp;&nbsp;&nbsp;&nbsp;
     	<a class="pure-button" href="/snap/">Run <%= image_tag "snap-logo.png", alt: "Snap!", class: "run-snap-logo" %></a>
     	<br><br>
-    
 
-    <!-- news feed -->
+    <!-- a user's news feed -->
     <%= render 'newsfeed', :locals => {:announcements => @announcements} %> 
-	</table>
-
 	<br><br>
 
-	<!-- list of tables -->
+	<!-- a user's list of courses--> 
+	<%= render 'users/enrolled_classes', :locals => {:courses => @courses} %> 
+	<br><br>
+
+	<!-- user's list of projects -->
     <%= render 'projects/projectlist', :locals => {:projects => @projects} %> 
 
     </div>
