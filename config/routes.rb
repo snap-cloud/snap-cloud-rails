@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
 
   get 'assignments/:course_id/new', to: 'assignments#new', as: 'assignment_new'
-  post 'assignments/create',      to: 'assignments#create', as: 'assignment_create' 
+  post 'assignments/:course_id/create',      to: 'assignments#create', as: 'assignment_create' 
   post 'assignments/:id/update',  to: 'assignments#update', as: 'assignment_update'
   post 'assignments/:id/delete',  to: 'assignments#delete', as: 'assignment_delete'
   get 'assignments/:id/edit',     to: 'assignments#edit', as: 'assignment_edit'
