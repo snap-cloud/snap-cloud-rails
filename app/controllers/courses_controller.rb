@@ -22,7 +22,7 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = courseExists?("The course you're trying to view does not exist")
+    @course = Course.find(params[:id])
     @assignments = @course.assignments
     # @course = Course.find(params[:id])
     #Find the course with the give id

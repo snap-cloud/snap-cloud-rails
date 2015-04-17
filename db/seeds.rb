@@ -16,6 +16,9 @@ User.create(username: 'alecguertin',
 User.create(username: 'michael.ball', 
             email: 'michael.ballball@berkeley.edu',
             password: '12345678') #id: 8
+steven = User.create(username: 'steverino',
+            email: 'stevenc1030@berkeley.edu',
+            password: 'password123')
 
 my_course = Course.create(title: "CS169", description: "A course about software engineering.  Students design an app " \
     + "over the course of the semester for a non-profit organization.  The follows the SaaS " \
@@ -31,6 +34,8 @@ my_course.assignments << Assignment.create(title: "Outro assignment",
     description: "Submit a paper telling us what you liked about the course and what you disliked",
     start_date: my_course.startdate,
     end_date: my_course.enddate)
+
+my_course.addUser(steven, :teacher)
 
 my_course = Course.create(title: "CS161", description: "A course about security taught by Alec and his sidekick Arjun.  " \
     + "Most students will fail this course and learn nothing because nobody attends lecture.  " \
