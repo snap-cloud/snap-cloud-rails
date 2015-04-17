@@ -3,7 +3,7 @@ require 'byebug'
 class CoursesController < ApplicationController
     before_filter :userLoggedIn, :except => [:index, :show]
     before_filter :courseExists, :except => [:new, :create, :index]
-    before_filter :authorizedEdit, :only => [:update, :delete, :edit]
+    before_filter :authCourseEdit, :only => [:update, :delete, :edit]
 
   def create
     user = getCurrentUser
@@ -126,7 +126,7 @@ class CoursesController < ApplicationController
 
   def userLoggedIn
     if getCurrentUser.nil?
-        render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
+        redirect_to login_path and return
     end
   end
 
@@ -135,11 +135,10 @@ class CoursesController < ApplicationController
       render file: "#{Rails.root}/public/404.html", layout: false, status: 404 and return
     else
       @course = Course.find(params[:id])
-      @students = @course.students
     end
   end
 
-  def authorizedEdit
+  def authCourseEdit
     if !@course.userRole(getCurrentUser).try(:teacher?)
       render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
     end

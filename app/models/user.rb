@@ -9,11 +9,24 @@ class User < ActiveRecord::Base
 
   # A user has many projects, and deleting user deletes projects of that user
   has_many :enrollments
+  has_many :courses,  :through => :enrollments
 
   # FIXME -- how do we handle projects with multiple owners?
   def projects
     Project.where(:owner => self.id).all
   end
+
+  def assignments
+    self.courses.map(&:assignments).flatten
+    ### old way
+    #assignments = [] 
+    #self.courses.each do |course| 
+    #  assignments << Assignment.where(:course_id => course.id).all
+    #end 
+    #assignments
+  end
+
+  
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

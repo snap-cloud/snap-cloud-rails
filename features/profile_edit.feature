@@ -24,14 +24,8 @@ Scenario: View own profile when logged in
   And I should see "About Me"
   And I should not see "Change profile pic"
   And I should not see the submit button "Update"
-  And I should see "Edit"
-  Then I click "Edit"
-  Then I should see the submit button "Update"
+  And I press "edit-profile"
+  Then I will be on the edit page for user 1
+  And I should see the submit button "Update"
   And I should see "Change profile pic"
-  And I should see "ohsnap!"
-  And I should see "awesomesauce"
-  And I should see "snapoh!"
-  And I should see "sauceawesome"
-  And I should not see "snapp!"
-  And I should not see "nosauce"
   And I should see a file input

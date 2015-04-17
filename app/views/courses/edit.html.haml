@@ -1,20 +1,3 @@
-:javascript
-    var counter = 3;
-    function addNewUserField(){
-        var newfield = document.createElement("input");
-        var currfield = document.getElementById("add_field");
-        newfield.value = currfield.value;
-        newfield.setAttribute("id", "adds[" + counter + "]");
-        currfield.value = ""
-        var fieldparent = currfield.parentNode;
-
-        fieldparent.insertBefore(newfield, currfield);
-        fieldparent.insertBefore(document.createElement("br"), currfield)
-        
-        counter++;
-        return false;
-    }
-
 %br
 %br
 %h1= "Editing #{@course.title}"

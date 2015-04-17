@@ -1,0 +1,27 @@
+%br
+%br
+%h1= "Editing #{@assignment.title} for #{@course.title}"
+
+
+
+%h1=  flash[:message]
+-@assignment.errors.try(:each) do |attribute, error|
+    %h3= attribute.to_s + " " + error.to_s
+    %br
+=form_tag assignment_update_path(@assignment), method: :post, class:"pure-form pure-form-aligned" do
+    %fieldset
+        .pure-control-group
+            %label{for: "assignment_title"} Title:
+            =text_field_tag 'assignment[title]', @assignment.try(:title)
+        .pure-control-group
+            %label{for: "course_description"} Description:
+            =text_field_tag 'course[description]', @assignment.try(:description)
+        .pure-control-group
+            %label{for: "course_startdate"} Starts:
+            =date_select :assignment, :startdate, default: @assignment.try(:startdate)
+        .pure-control-group
+            %label{for: "course_enddate"} Due:
+            =datetime_select :course, :due_date, default: @assignment.try(:end_date)
+        %br
+        %br
+        =submit_tag "save"
