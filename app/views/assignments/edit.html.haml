@@ -18,10 +18,10 @@
             =text_field_tag 'course[description]', @assignment.try(:description)
         .pure-control-group
             %label{for: "course_startdate"} Starts:
-            =date_select :assignment, :startdate, default: @assignment.try(:startdate)
+            =date_select :assignment, :start_date, default: @assignment.try(:start_date)
         .pure-control-group
             %label{for: "course_enddate"} Due:
-            =datetime_select :course, :due_date, default: @assignment.try(:end_date)
+            =datetime_select :assignment, :due_date, default: @assignment.try(:end_date)
         %br
         %br
         =submit_tag "save"
