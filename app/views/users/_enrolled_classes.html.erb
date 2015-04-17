@@ -1,0 +1,26 @@
+<!-- This is going to be a table which renders for each user
+    takes in :courses as an argument--> 
+
+<!-- EDIT THIS --> 
+
+<table class="pure-table"> 
+    <thead> 
+        <tr>
+            <th> Your Courses </th>
+            <th> Website </th>
+            <th> Last Updated </th>
+            <th> End Date </th>
+        </tr>
+    </thead> 
+
+    <tbody> 
+        <tr> <% locals[:courses].each do |course| %> 
+            <td> <a href="../courses/<%=course.id%>"><%= course.title%></a>
+                <br> &nbsp;&nbsp;&nbsp;&nbsp; <%= course.description %></td></td>
+            <td> <%= course.website%></td>
+            <td> <%= course.updated_at %></td>
+            <td> <%= course.enddate %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
