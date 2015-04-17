@@ -3,42 +3,25 @@
 %h1= "Editing #{@assignment.title} for #{@course.title}"
 
 
+
 %h1=  flash[:message]
--@course.try(:errors).try(:each) do |attribute, error|
+-@assignment.errors.try(:each) do |attribute, error|
     %h3= attribute.to_s + " " + error.to_s
     %br
-=form_tag course_update_path(@course), method: :post, class:"pure-form pure-form-aligned" do
+=form_tag assignment_update_path(@assignment), method: :post, class:"pure-form pure-form-aligned" do
     %fieldset
         .pure-control-group
-            %label{for: "course_title"} Title:
-            =text_field_tag 'course[title]', @course.try(:title)
+            %label{for: "assignment_title"} Title:
+            =text_field_tag 'assignment[title]', @assignment.try(:title)
         .pure-control-group
             %label{for: "course_description"} Description:
-            =text_field_tag 'course[description]', @course.try(:description)
-        .pure-control-group
-            %label{for: "course_website"} Website:
-            =text_field_tag 'course[website]', @course.try(:website)
+            =text_field_tag 'course[description]', @assignment.try(:description)
         .pure-control-group
             %label{for: "course_startdate"} Starts:
-            =date_select :course, :startdate, default: @course.try(:startdate)
+            =date_select :assignment, :startdate, default: @assignment.try(:startdate)
         .pure-control-group
-            %label{for: "course_enddate"} Ends:
-            =date_select :course, :enddate, default: @course.try(:enddate)
-        .pure-control-group
-            -if @students
-                %p Drops:
-                -@students.try(:each) do |student|
-                    =check_box_tag "drops[#{student.email}]"
-                    =student.email
- 
-        #newUserFields
-            %p Adds:
-            =text_field_tag 'adds[1]', ''
-            %br
-            =text_field_tag 'adds[2]', ''
-            %br
-            =text_field_tag 'add_field', ''
-            %button{value: "Add", onclick: 'addNewUserField(); return false;'}
+            %label{for: "course_enddate"} Due:
+            =datetime_select :course, :due_date, default: @assignment.try(:end_date)
         %br
         %br
         =submit_tag "save"
