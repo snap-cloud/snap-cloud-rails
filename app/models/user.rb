@@ -58,9 +58,9 @@ class User < ActiveRecord::Base
   end
   
   validates :username,
-    :presence => true,
-    :uniqueness => {
-      :case_sensitive => false
-    }
+            :presence => true,
+            :uniqueness => {
+              :case_sensitive => false
+            }
     
 end
