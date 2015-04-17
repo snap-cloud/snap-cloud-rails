@@ -15,9 +15,9 @@ class AssignmentsController < ApplicationController
 	def create
 		@assignment = Assignment.new(assignment_params)
 		if @assignment.valid?
-			@course.save
+			@course.assignments << @assignment
       flash[:message] = "You have created this assignment"
-      redirect_to assignment_show_path(@assignment)
+      redirect_to assignment_show_path(@assignment) and return
     else
     	render 'new'
     	return
@@ -25,12 +25,23 @@ class AssignmentsController < ApplicationController
 	end
 
 	def edit
+		#render the edit page. :assignmentExists should populate @assignment
 	end
 
 	def update
+		@update = Assignment.new(assignment_params)
+		if @update.valid?
+			Assignment.update(@assignment.id, assignment_params)
+      flash[:message] = "You have edited this assignment"
+      redirect_to assignment_show_path(@assignment) and return
+    else
+    	render 'edit'
+    	return
+		end
 	end
 
 	def delete
+		@assignment.destroy
 	end
 
 	def getCurrentUser
@@ -71,7 +82,7 @@ class AssignmentsController < ApplicationController
   	if !Assignment.exists?(params[:id])
     	render file: "#{Rails.root}/public/404.html", layout: false, status: 404 and return
     else
-    	@assignment = Assignment.find(params[:course_id])
+    	@assignment = Assignment.find(params[:id])
     end
   end
 end
