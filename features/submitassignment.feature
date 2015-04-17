@@ -58,7 +58,7 @@ Feature: Project Submission
         When I try to visit the submission page for an assignment
         Then I should be redirected to 401
 
-    Scenario
+    Scenario: Submitting late assignments
         Given everything this needs
         When I am on the show assignment page
         And the assignment has ended
