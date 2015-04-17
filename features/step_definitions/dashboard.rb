@@ -11,14 +11,6 @@ end
 
 Given /^(?:|I) am not logged in$/ do |user|
   #nothing needs to be done.. 
-  end
-
-Given /^(?:|I) am logged in as "(.*?)"$/ do |user|
-  password = user.password
-  visit login_path
-  fill_in "user_email", :with => user
-  fill_in "user_password", :with => password
-  click_button "Log in"
 end
 
 And /^(?:|I) visit the home page$/ do |page_to_visit|

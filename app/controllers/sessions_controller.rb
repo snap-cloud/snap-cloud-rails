@@ -32,6 +32,11 @@ class SessionsController < Devise::SessionsController
     end
   end
 
+  def new
+    super
+    flash[:notice] = "Invalid username/email or password"
+  end
+
   # DELETE /resource/sign_out
   def destroy
 
