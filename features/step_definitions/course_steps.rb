@@ -4,6 +4,15 @@ Given(/^I visit the new course page$/) do
   visit course_new_path
 end
 
+Then(/^I should see that I need to log in$/) do
+  text = "Log in"
+  if page.respond_to? :should
+      page.should have_content(text)
+    else
+      assert page.has_content?(text)
+    end
+end
+
 Given (/^a user is signed up as "(.*?)" with username "(.*?)" and password "(.*?)"$/) do |user, username, password|
   visit signup_path
   fill_in "user_email", :with => user
