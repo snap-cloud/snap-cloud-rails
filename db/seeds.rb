@@ -1,22 +1,22 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
-michael = User.create(username: 'cycomachead', 
+michael = User.create!(username: 'cycomachead', 
             email: 'cycomachead@gmail.com',
             password: '12345678') #id: 1
-jason = User.create(username: 'jason', 
+jason = User.create!(username: 'jason', 
             email: 'jason@jason.com',
-            password: 'jason') #id: 2
-linda = User.create(username: 'linda', 
+            password: 'jasonjason') #id: 2
+linda = User.create!(username: 'linda', 
             email: 'linda@linda.com',
-            password: 'linda') #id: 3
-alec = User.create(username: 'alecguertin', 
+            password: 'lindalinda') #id: 3
+alec = User.create!(username: 'alecguertin', 
             email: 'alecguertin@berkeley.edu',
             password: 'hellodolly') #id: 4
-arjun = User.create(username: 'arjun', 
+arjun = User.create!(username: 'arjun', 
             email: 'arjun@arjun.com',
-            password: 'arjun') #id: 8
-steven = User.create(username: 'steverino',
+            password: 'arjunarjun') #id: 8
+steven = User.create!(username: 'steverino',
             email: 'stevenc1030@berkeley.edu',
             password: 'password123')
 
@@ -68,10 +68,6 @@ my_course.addUser(linda, :student)
 # my_course.addUser(michael, :student)
 # my_course.addUser(jason, :student)
 # my_course.addUser(arjun, :teacher)
-
-
-
-
 
 Announcement.create(source: 'snap', source_id:'1', text: 'Snap! will be down for maintenance tomorrow from 5-6 p.m. UTC.', time: '4:35 p.m.')
 Announcement.create(source: 'cs169', source_id:'1', text: 'Homework 5 (due April 6th) has been released.', time: '12:00 p.m.')
