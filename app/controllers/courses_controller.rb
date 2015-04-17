@@ -1,8 +1,11 @@
+require 'byebug'
+
 class CoursesController < ApplicationController
+  before_filter :userLoggedIn, :except => [:index, :show]
+  before_filter :courseExists, :except => [:new, :create, :index]
+  before_filter :authorizedEdit, :only => [:update, :delete, :edit]
+
   def create
-    if !userLoggedIn?("Log in to create a course")
-      return
-    end
     user = getCurrentUser
     @course = Course.new(course_params)
     if @course.valid?
@@ -19,7 +22,7 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = courseExists?("The course you're trying to view does not exist")
+    #@course = Course.find(params[:id])
     #Find the course with the give id
   end
 
@@ -36,9 +39,7 @@ class CoursesController < ApplicationController
       flash[:message] = "You do not have permission to edit this course"
     end
 =end
-    if !editable?
-      return
-    end
+    @course = Course.find(params[:id])
     drops = params[:drops]
     if drops
       drops.each_key do |email|
@@ -94,9 +95,7 @@ class CoursesController < ApplicationController
       redirect_to course_show_path(@course) and return
     end
 =end
-    if !editable?
-      return
-    else
+      @course = Course.find(params[:id])
       @course.destroy
       flash[:message] = "Course has been deleted"
       redirect_to course_index_path and return
@@ -105,9 +104,6 @@ class CoursesController < ApplicationController
   end
 
   def new
-    if !userLoggedIn?("Log in to create a course")
-      return
-    end
     #render a view so the user has a form to submit
   end
 
@@ -117,21 +113,7 @@ class CoursesController < ApplicationController
   end
 
   def edit
-=begin
-    if !userLoggedIn?("You must be logged in to edit a course")
-      return
-    end
-    @course = courseExists?("The course you're trying to edit does not exist")
-    if !@course
-      return
-    end
-    if !@course.userRole(getCurrentUser).try(:teacher?)
-      flash[:message] = "You do not have permission to edit this course"
-    end
-=end
-  if !editable?
-    return
-  end
+    byebug
     @students = @course.students
   end
 
@@ -143,40 +125,24 @@ class CoursesController < ApplicationController
     current_user
   end
 
-  def userLoggedIn?(message)
+  def userLoggedIn
     if getCurrentUser.nil?
-        flash[:message] = message
-        redirect_to course_index_path
-        return false
+        render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
     end
-    true
   end
 
-  def courseExists?(message)
+  def courseExists
     if !Course.exists?(params[:id])
-      flash[:message] = message
-      redirect_to course_index_path
-      nil
+      render file: "#{Rails.root}/public/404.html", layout: false, status: 404 and return
     else
-      Course.find(params[:id])
+      @course = Course.find(params[:id])
+      @students = @course.students
     end
   end
 
-  def editable?
-    @course = courseExists?("This course does not exist")
-    if !@course
-      return false
-    end
-
-    if not userLoggedIn?("You must log in to edit or delete courses")
-      return false
-    end
-    
+  def authorizedEdit
     if !@course.userRole(getCurrentUser).try(:teacher?)
-      flash[:message] = "You do not have permission to edit or delete this course"
-      redirect_to course_show_path(@course) and return false
-    end
-    return true
+      render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
   end
 
 end

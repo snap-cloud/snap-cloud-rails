@@ -1,12 +1,16 @@
+require 'byebug'
+
 Given(/^I visit the new course page$/) do
   visit course_new_path
 end
 
-Given (/^a user is signed up as "(.*?)" with password "(.*?)"$/) do |user, password|
+Given (/^a user is signed up as "(.*?)" with username "(.*?)" and password "(.*?)"$/) do |user, username, password|
   visit signup_path
   fill_in "user_email", :with => user
+  fill_in "user_username", :with => username
   fill_in "user_password", :with => password
   fill_in "user_password_confirmation", :with => password
+  check(tos_agree)
   click_button "Sign up"
 end
 
@@ -28,7 +32,7 @@ Then(/^I should see that course creation succeeded$/) do
 end
 
 Then /I should see that I cannot create a course/ do
-	text = "Log in to create a course"
+	text = "You don't have permission to access this page :("
 	if page.respond_to? :should
     	page.should have_content(text)
   	else
@@ -47,7 +51,7 @@ When(/^I go to delete that course$/) do
 end
 
 Then /I should see that I cannot delete this course/ do
-	text = "You do not have permission to edit or delete this course"
+	text = "You don't have permission to access this page :("
 	if page.respond_to? :should
     	page.should have_content(text)
   	else
@@ -65,7 +69,7 @@ Then(/^I should see that course deletion succeeded$/) do
 end
 
 Then(/^I should see that I need to log in to delete this course$/) do
-  	text = "You must log in to edit or delete courses"
+  	text = "You don't have permission to access this page :("
 	if page.respond_to? :should
     	page.should have_content(text)
   	else
@@ -85,7 +89,7 @@ When(/^I try to visit the edit page for "(.*?)"$/) do |courseTitle|
 end
 
 Then(/^I should see that I need to be logged in to edit$/) do
-    text = "You must log in to edit or delete courses"
+    text = "You don't have permission to access this page :("
 	if page.respond_to? :should
     	page.should have_content(text)
   	else
@@ -112,7 +116,7 @@ Given(/^user "(.*?)" is enrolled as a student in "(.*?)"$/) do |semail, c|
 end
 
 Then(/^I should see that I do not have permission to edit$/) do
-  	test = "You do not have permission to edit or delete this course"
+  	test = "You don't have permission to access this page :("
 	if page.respond_to? :should
     	page.should have_content(text)
   	else
