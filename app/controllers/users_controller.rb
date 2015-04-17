@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   def profile
     if params[:id]
       @user = User.find(params[:id])
-      @about_me = @user.about_me || "Enter information about you and your interests here."
+      @about_me = @user.about_me || ""
       @projects = @user.projects
       @owner = @user == current_user
       if not @owner
@@ -36,7 +36,16 @@ class UsersController < ApplicationController
   end
 
   def edit
-    # Do users even edit themselves this way?
+    if params[:id]
+      @user = User.find_by_id params[:id]
+      if current_user && current_user == @user
+        @about_me = @user.about_me || "Enter information about you and your interests here."
+      else
+        render file: "#{Rails.root}/public/401.html", layout: false, status: 401
+      end
+    else
+      render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+    end
   end
 
   def destroy

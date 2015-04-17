@@ -2,32 +2,21 @@
   <%= stylesheet_link_tag "profile", "marketing" %>
 <% end %>
 
+<link rel="stylesheet" href="http://saeedalipoor.github.io/icono/icono.min.css">
+
 <h2 id="username"><%= @user.username %></h2>
+<% if not @user == current_user %>
+<a id="report-profile" class="pure-button" style="background: rgb(202,60,60);" href="/users/<%= @user.id %>/edit">
+  <div class="icono-flag">
+  </div>
+</a>
+<% else %>
+<a id="report-profile" class="pure-button" style="background: rgb(202,60,60);" href="/users/<%= @user.id %>/edit">
+  <div class="icono-gear">
+  </div>
+</a>
+<% end %>
 <div class="pure-g profile-wrapper">
-  <% if @owner %>
-  <%= form_for(@user, multipart: true) do |f| %>
-  <div class="pure-u-1-3" id="basic-info">
-    <h3 id="about">About Me</h3>
-    <div class="profile-content">
-      <%= image_tag @user.avatar.url(:thumb) %>
-      <div>
-	<%= f.label "Change profile pic" %>
-	<%= f.file_field :avatar %>
-      </div>
-    </div>
-  </div>
-  <div class="pure-u-2-3" id="">
-    <div class="profile-content">
-      <h4 class="profile-content-text">
-	<%= f.text_area :about_me, :value => @about_me %>
-      </h4>
-    </div>
-  </div>
-  <div id="profile-edit-submit">
-    <%= f.submit 'Update' %>
-  </div>
-  <% end %>
-  <% else %>
   <div class="pure-u-1-3" id="basic-info">
     <h3 id="about">About Me</h3>
     <div class="profile-content">
@@ -41,7 +30,6 @@
       </h4>
     </div>
   </div>
-  <% end %>
 </div>
 
 <div class="pure-g profile-wrapper">
