@@ -1,9 +1,9 @@
 require 'byebug'
 
 class CoursesController < ApplicationController
-  before_filter :userLoggedIn, :except => [:index, :show]
-  before_filter :courseExists, :except => [:new, :create, :index]
-  before_filter :authorizedEdit, :only => [:update, :delete, :edit]
+    before_filter :userLoggedIn, :except => [:index, :show]
+    before_filter :courseExists, :except => [:new, :create, :index]
+    before_filter :authorizedEdit, :only => [:update, :delete, :edit]
 
   def create
     user = getCurrentUser
@@ -101,8 +101,6 @@ class CoursesController < ApplicationController
       @course.destroy
       flash[:message] = "Course has been deleted"
       redirect_to course_index_path and return
-    end
-
   end
 
   def new
@@ -111,6 +109,7 @@ class CoursesController < ApplicationController
 
   def index
     #find all courses
+    byebug
     @courses = Course.all
   end
 
@@ -145,6 +144,7 @@ class CoursesController < ApplicationController
   def authorizedEdit
     if !@course.userRole(getCurrentUser).try(:teacher?)
       render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
+    end
   end
-
+  
 end
