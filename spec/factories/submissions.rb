@@ -1,4 +1,4 @@
 FactoryGirl.define do
-  factory :project do
+  factory :submission do
   end
 end

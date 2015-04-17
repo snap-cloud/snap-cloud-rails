@@ -4,8 +4,6 @@ Feature: Editing a Course
 	I want to be able to see who is in my course
 
 Background:
-	Given a user is signed up as "test@example.com" with password "password"
-	Given a user is signed up as "teacher@cal.edu" with password "password"
 
 	Given the following courses exist:
 	| id | title |
@@ -18,6 +16,8 @@ Background:
 	| 300 | charlie | charlie@cal.edu | password | password |
 	| 400 | diane | diane@cal.edu | password | password |
 	| 500 | emily | emily@cal.edu | password | password |
+	| 600 | teacher | teacher@cal.edu | password | password |
+	| 700 | test | test@example.com | password | password |
 
 	Given user "teacher@cal.edu" is enrolled as a teacher in "testcourse"
 	Given user "alice@cal.edu" is enrolled as a student in "testcourse"
@@ -25,7 +25,7 @@ Background:
 
 Scenario: Not logged in user tries to edit
 When I try to visit the edit page for "testcourse"
-Then I should see that I need to be logged in to edit
+Then I should see that I need to log in
 
 Scenario: User that not a teacher tries to edit
 Given I am logged in as "test@example.com" with password "password"
