@@ -5,6 +5,7 @@ describe User do
 
   subject { @user }
 
+  it { should respond_to(:username) }
   it { should respond_to(:email) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
@@ -16,6 +17,13 @@ describe User do
     it { should_not be_valid }
   end
 
+  describe "when username is not present" do
+    before { @user.username = " " }
+    it { should_not be_valid }
+  end
+
+  it { should validate_presence_of(:username) }
+  it { should validate_uniqueness_of(:username) }
   it { should validate_presence_of(:email) }
   it { should validate_uniqueness_of(:email) }
   it { should validate_confirmation_of(:password) }

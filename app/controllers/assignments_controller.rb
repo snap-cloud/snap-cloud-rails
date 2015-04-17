@@ -10,6 +10,7 @@ class AssignmentsController < ApplicationController
 
 	def new
 		#render the page to create new assignment
+    @course = Course.find(params[:course_id])
 	end
 
 	def create
@@ -26,6 +27,8 @@ class AssignmentsController < ApplicationController
 
 	def edit
 		#render the edit page. :assignmentExists should populate @assignment
+    @assignment = Assignment.find(params[:id])
+    @course = @assignment.course
 	end
 
 	def update

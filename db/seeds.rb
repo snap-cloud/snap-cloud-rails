@@ -52,26 +52,22 @@ my_course = Course.create(title: "CS161", description: "A course about security 
     startdate: 10.days.ago,
     enddate: 10.days.from_now)
 
-my_course.assignments << Assignment.create(title: "Linda's evil assignment", 
+my_course.assignments << Assignment.create(title: "Arjun's evil assignment", 
     description: "Your grade will be randn(100). MUHAHA.",
     start_date: my_course.startdate,
     due_date: my_course.enddate)
 
-my_course.assignments << Assignment.create(title: "Linda's nice assignment", 
+my_course.assignments << Assignment.create(title: "Alec's nice assignment", 
     description: "Press the submit button for EC! WHOO.",
     start_date: my_course.startdate,
     due_date: my_course.enddate)
 
-my_course.addUser(linda, :teacher)
+my_course.addUser(linda, :student)
 my_course.addUser(steven, :student)
-my_course.addUser(alec, :student)
+my_course.addUser(alec, :teacher)
 my_course.addUser(michael, :student)
 my_course.addUser(jason, :student)
-my_course.addUser(arjun, :student)
-
-
-
-
+my_course.addUser(arjun, :teacher)
 
 Announcement.create(source: 'snap', source_id:'1', text: 'Snap! will be down for maintenance tomorrow from 5-6 p.m. UTC.', time: '4:35 p.m.')
 Announcement.create(source: 'cs169', source_id:'1', text: 'Homework 5 (due April 6th) has been released.', time: '12:00 p.m.')
