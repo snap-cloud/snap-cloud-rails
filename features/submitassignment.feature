@@ -8,8 +8,6 @@ Feature: Project Submission
     I should be able to see projects they've submitted
 
 
-
-
     Scenario: Student submits project to an assignment from a course they are a part of
         Givens some assignments, projects I own, and a course i'm part of
         When I go to course page
@@ -59,3 +57,9 @@ Feature: Project Submission
         Given everything this needs
         When I try to visit the submission page for an assignment
         Then I should be redirected to 401
+
+    Scenario
+        Given everything this needs
+        When I am on the show assignment page
+        And the assignment has ended
+        Then I should not be able to submit a project to it
