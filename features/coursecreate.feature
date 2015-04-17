@@ -4,11 +4,13 @@ Feature: Creating a Course
 	I want to be able to create a course
 
 Background:
-  Given a user is signed up as "test@example.com" with password "hellohello"
+	Given the following users exist:
+	| id | username | email | password | password_confirmation |
+	| 100 | test | test@example.com | hellohello | hellohello |
 
 Scenario: Creating a course while not logged in
 Given I visit the new course page
-Then I should see that I cannot create a course
+Then I should see that I need to log in
 
 Scenario: Deleting a course I cannot while not logged in
 Given there is a course I did not create
