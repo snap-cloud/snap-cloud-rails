@@ -16,6 +16,12 @@ class User < ActiveRecord::Base
     Project.where(:owner => self.id).all
   end
 
+  def assignments
+    #THIS NEEDS TO HAPPEN
+    #Assignment.where(:course_id => self.courses.assignments.course_id).all
+    true
+  end
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
