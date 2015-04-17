@@ -24,12 +24,17 @@
     <%= render 'newsfeed', :locals => {:announcements => @announcements} %> 
 	<br><br>
 
+	<!-- a user's list of assignments--> 
+	<%= render 'users/assignments', :locals => {:assignments => @assignments} %>
+	<br><br>
+
 	<!-- a user's list of courses--> 
-	<%= render 'users/enrolled_classes', :locals => {:courses => @courses} %> 
+	<%= render 'users/enrolled_classes', :locals => {:courses => @courses} %>
 	<br><br>
 
 	<!-- user's list of projects -->
     <%= render 'projects/projectlist', :locals => {:projects => @projects} %> 
+    <br><br>
 
     </div>
 
