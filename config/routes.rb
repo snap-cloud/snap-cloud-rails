@@ -58,7 +58,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'users/:id', to: 'users#profile', as: 'user_profile'
+  get 'users/:id/profile', to: 'users#profile', as: 'user_profile'
   
   # Shortcuts to the Snap! submodule
   # NOTE: the redirect needs a trailing / to load the JS properly.
