@@ -17,10 +17,16 @@ class User < ActiveRecord::Base
   end
 
   def assignments
-    #THIS NEEDS TO HAPPEN
-    #Assignment.where(:course_id => self.courses.assignments.course_id).all
-    true
+    self.courses.map(&:assignments).flatten
+    ### old way
+    #assignments = [] 
+    #self.courses.each do |course| 
+    #  assignments << Assignment.where(:course_id => course.id).all
+    #end 
+    #assignments
   end
+
+  
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

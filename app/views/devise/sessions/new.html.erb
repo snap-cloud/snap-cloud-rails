@@ -1,5 +1,9 @@
 <h2>Log in</h2>
 
+<% if flash[:notice] %>
+<p id="login-error" style="color:rgb(202,60,60);"><%= flash[:notice] %></p>
+<% end %>
+
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :login %><br />
