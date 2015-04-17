@@ -12,6 +12,7 @@ Feature: Project Submission
         Givens some assignments, projects I own, and a course i'm part of
         When I go to course page
         And I click some assignment
+        Then I should be on the show assignment page
         Then I should be on the submission page
         And I change the dropdown to pick the project I want to submit
         And click submit
@@ -37,7 +38,7 @@ Feature: Project Submission
         And I am visit the show page for that assignment
         And I click edit
         Then I should be on the assignment edit page
-        I should see some stuff from that assignment
+        Then I should see some stuff from that assignment
         And I change title to "blah"
         Then I click save
         Then I should beon the assignment show page for that assignment
