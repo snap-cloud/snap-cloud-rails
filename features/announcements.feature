@@ -19,7 +19,7 @@ Background:
 
 Scenario: See all announcements 
   Given I am on the dashboard
-  I should see "hello", "hw5 up", "good job!"
+  Then I should see "hello", "hw5 up", "good job!"
 
 Scenario: Sort announcements by time
   Given I am on the dashboard
