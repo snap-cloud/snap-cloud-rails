@@ -2,6 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
   respond_to :json
 
   def create
+    puts 'in create...'
     @user = User.create(user_params)
     if @user.save
       status = { :code => 0}
