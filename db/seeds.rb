@@ -15,10 +15,19 @@ alec = User.create(username: 'alecguertin',
             password: 'hellodolly') #id: 4
 arjun = User.create(username: 'arjun', 
             email: 'arjun@arjun.com',
-            password: 'arjun') #id: 8
+            password: 'arjun') #id: 5
 steven = User.create(username: 'steverino',
             email: 'stevenc1030@berkeley.edu',
-            password: 'password123')
+            password: 'password123') #id: 6
+michael2 = User.create(username: 'michael.ball', 
+            email: 'michael.ball@berkeley.edu',
+            password: '12345678') #id: 7
+michael3 = User.create(username: 'ball', 
+            email: 'ball@berkeley.edu',
+            password: '12345678') #id: 8
+bh = User.create(username: 'bh', 
+            email: 'bh@cs.berkeley.edu',
+            password: '12345678') #id: 9
 
 my_course = Course.create(title: "CS169", description: "A course about software engineering.  Students design an app " \
     + "over the course of the semester for a non-profit organization.  The follows the SaaS " \
