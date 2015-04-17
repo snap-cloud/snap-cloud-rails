@@ -7,6 +7,7 @@ class SessionsController < Devise::SessionsController
   # FIXME Won't allow you to login on two devices
   # at the same time (so does logout).
   def create
+    # debugger
     self.resource = warden.authenticate!(auth_options)
     sign_in(resource_name, resource)
 

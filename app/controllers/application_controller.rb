@@ -4,14 +4,12 @@ class ApplicationController < ActionController::Base
 
 
   # This is for JSON APIs
-  # protect_from_forgery with: :null_session
-  #, :if => Proc.new { |c| c.request.format == 'application/json' }
+  protect_from_forgery with: :exception
+  protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format == 'application/json' }
 
   # for session tokens
   # acts_as_token_authentication_handler_for User
 
-  # protect_from_forgery with: :exception
-  
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
