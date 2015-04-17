@@ -1,21 +1,21 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
-User.create(username: 'cycomachead', 
+michael = User.create(username: 'cycomachead', 
             email: 'cycomachead@gmail.com',
             password: '12345678') #id: 1
-User.create(username: 'ball', 
-            email: 'ball@berkeley.edu',
-            password: '12345678') #id: 2
-User.create(username: 'testuser', 
-            email: 'test@test.com',
-            password: 'yoloswaggins') #id: 3
-User.create(username: 'alecguertin', 
+jason = User.create(username: 'jason', 
+            email: 'jason@jason.com',
+            password: 'jason') #id: 2
+linda = User.create(username: 'linda', 
+            email: 'linda@linda.com',
+            password: 'linda') #id: 3
+alec = User.create(username: 'alecguertin', 
             email: 'alecguertin@berkeley.edu',
             password: 'hellodolly') #id: 4
-User.create(username: 'michael.ball', 
-            email: 'michael.ballball@berkeley.edu',
-            password: '12345678') #id: 8
+arjun = User.create(username: 'arjun', 
+            email: 'arjun@arjun.com',
+            password: 'arjun') #id: 8
 steven = User.create(username: 'steverino',
             email: 'stevenc1030@berkeley.edu',
             password: 'password123')
@@ -40,12 +40,34 @@ my_course.assignments << Assignment.create(title: "You will never finish",
     due_date: 1.day.ago)
 
 my_course.addUser(steven, :teacher)
+my_course.addUser(linda, :student)
+my_course.addUser(alec, :student)
+my_course.addUser(michael, :student)
+my_course.addUser(jason, :student)
+my_course.addUser(arjun, :student)
 
 my_course = Course.create(title: "CS161", description: "A course about security taught by Alec and his sidekick Arjun.  " \
     + "Most students will fail this course and learn nothing because nobody attends lecture.  " \
     + "Luckily the class has webcasts which students use to catch up at the last minute.",
     startdate: 10.days.ago,
     enddate: 10.days.from_now)
+
+my_course.assignments << Assignment.create(title: "Linda's evil assignment", 
+    description: "Your grade will be randn(100). MUHAHA.",
+    start_date: my_course.startdate,
+    due_date: my_course.enddate)
+
+my_course.assignments << Assignment.create(title: "Linda's nice assignment", 
+    description: "Press the submit button for EC! WHOO.",
+    start_date: my_course.startdate,
+    due_date: my_course.enddate)
+
+my_course.addUser(linda, :teacher)
+my_course.addUser(steven, :student)
+my_course.addUser(alec, :student)
+my_course.addUser(michael, :student)
+my_course.addUser(jason, :student)
+my_course.addUser(arjun, :student)
 
 
 
