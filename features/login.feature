@@ -25,14 +25,14 @@ Scenario: Login with username
   And I click "Login"
   Then I should be on the home page
 
-Senario: Incorrect login with email
+Scenario: Incorrect login with email
   Given I am on the login page
   And I enter "testusers" for "email"
   And I enter "hellodolly" for "password"
   And I click "Login"
   Then I should see "Incorrect username/email or password"
 
-Senario: Incorrect login with password
+Scenario: Incorrect login with password
   Given I am on the login page
   And I enter "testuser" for "email"
   And I enter "hellodloly" for "password"

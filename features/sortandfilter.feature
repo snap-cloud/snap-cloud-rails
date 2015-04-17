@@ -24,7 +24,7 @@ Scenario: Sort by Date, showing most recent first
 
 Scenario: Sort by Class, alphabetically
   Given I sort by class
-  I should see Foo, Not, Bar
+  Then I should see Foo, Not, Bar
 
 Scenario: Filter by Public or Private
   Given if I click Public
