@@ -7,6 +7,7 @@
     <thead> 
         <tr>
             <th> Your Assignments </th>
+            <th> Course </th>
             <th> Date Assigned </th>
             <th> Last Updated </th>
             <th> Due Date</th>
@@ -17,6 +18,8 @@
         <tr> <% locals[:assignments].each do |assignment| %> 
             <td> <a href="../assignments/<%=assignment.id%>"><%= assignment.title%></a>
                 <br> &nbsp;&nbsp;&nbsp;&nbsp; <%= assignment.description %></td></td>
+            <!-- TODO: translate course_id into course name-->
+            <td> <%= assignment.course_id%></td>
             <td> <%= assignment.created_at%></td>
             <td> <%= assignment.updated_at %></td>
             <td> <%= assignment.due_date %></td>
