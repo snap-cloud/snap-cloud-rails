@@ -16,11 +16,11 @@ class AssignmentsController < ApplicationController
 		@assignment = Assignment.new(assignment_params)
 		if @assignment.valid?
 			@course.save
-      flash[:message] = "You have created this assignment"
-      redirect_to assignment_show_path(@assignment)
-    else
-    	render 'new'
-    	return
+            flash[:message] = "You have created this assignment"
+            redirect_to assignment_show_path(@assignment)
+        else
+    	   render 'new'
+    	   return
 		end
 	end
 
@@ -71,7 +71,7 @@ class AssignmentsController < ApplicationController
   	if !Assignment.exists?(params[:id])
     	render file: "#{Rails.root}/public/404.html", layout: false, status: 404 and return
     else
-    	@assignment = Assignment.find(params[:course_id])
+    	@assignment = Assignment.find(params[:id])
     end
   end
 end
