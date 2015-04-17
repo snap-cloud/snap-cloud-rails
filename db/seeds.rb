@@ -63,11 +63,11 @@ my_course.assignments << Assignment.create(title: "Alec's nice assignment",
     due_date: my_course.enddate)
 
 my_course.addUser(linda, :student)
-my_course.addUser(steven, :student)
-my_course.addUser(alec, :teacher)
-my_course.addUser(michael, :student)
-my_course.addUser(jason, :student)
-my_course.addUser(arjun, :teacher)
+# my_course.addUser(steven, :student)
+# my_course.addUser(alec, :teacher)
+# my_course.addUser(michael, :student)
+# my_course.addUser(jason, :student)
+# my_course.addUser(arjun, :teacher)
 
 
 
