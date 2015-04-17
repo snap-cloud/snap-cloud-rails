@@ -26,6 +26,8 @@ class AssignmentsController < ApplicationController
 
 	def edit
 		#render the edit page. :assignmentExists should populate @assignment
+    @assignment = Assignment.find(params[:id])
+    @course = @assignment.course
 	end
 
 	def update
