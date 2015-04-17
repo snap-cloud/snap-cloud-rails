@@ -10,6 +10,6 @@
 -if Date.today < @assignment.due_date
     =button_to 'Submit Project to Assignment', submission_new_path(@assignment), method: :get
 -else
-    =button_to 'Submit Project to Assignment', submission_new_path(@assignment), method: :get, disabled: true    
+    =button_to 'Submission closed', submission_new_path(@assignment), method: :get, disabled: true    
 %br
 %br
