@@ -3,7 +3,9 @@ When(/^I click the create assignment button$/) do
 end
 
 When(/^I fill in everything to create a new assignment$/) do
-  pending # express the regexp above with the code you wish you had
+  fill_in 'assignment_title', :with => "test title for assignment"
+  fill_in 'assignment_description', :with => "test description for assignment"
+  click_button 'save'
 end
 
 Then(/^I should see that I created an assignment$/) do
