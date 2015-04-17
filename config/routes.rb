@@ -27,7 +27,6 @@ Rails.application.routes.draw do
 
   get 'submissions/:assignment_id/new', to: 'submissions#new', as: 'submission_new'
 
-
   post 'courses/create',      to: 'courses#create', as: 'course_create'
   get 'courses/new',          to: 'courses#new', as: 'course_new'
   post 'courses/:id/update',  to: 'courses#update', as: 'course_update'
