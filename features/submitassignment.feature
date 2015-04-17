@@ -12,14 +12,24 @@ Background:
     Given the following courses exist:
     | id | title |
     | 1234567 | testcourse |
+    | 234 | assignmentcourse |
 
     Given the following users exist:
     | username | email | password | password_confirmation |
     | teacher | teacher@cal.edu | password | password |
     | alice | alice@cal.edu | password | password |
+    | beatrice | beatrice@cal.edu | password | password |
+
+    Given the following assignments exist:
+    | title | description | course_id |
+    | assign1 | "description for #1" | 234 |
+    | assign2 | "description for #2" | 234 |
+    | assign3 | "description for #3" | 234 |
 
     Given user "teacher@cal.edu" is enrolled as a teacher in "testcourse"
+    Given user "teacher@cal.edu" is enrolled as a teacher in "assignmentcourse"
     Given user "alice@cal.edu" is enrolled as a student in "testcourse"
+    Given user "beatrice@cal.edu" is enrolled as a student in "assignmentcourse"
 
 Scenario: Teacher creates assignment
     Given I am logged in as "teacher@cal.edu" with password "password"
@@ -29,25 +39,24 @@ Scenario: Teacher creates assignment
     Then I should see that I created an assignment
 
 Scenario: Teacher edits assignment
-    Given everything this needs
-    And I am visit the show page for that assignment
-    And I click edit
-    Then I should be on the assignment edit page
+    Given I am logged in as "teacher@cal.edu" with password "password"
+    And I create one assignment for "testcourse"
+    And I visit the show page for that assignment
+    And I click edit assignment
     Then I should see some stuff from that assignment
-    And I change title to "blah"
-    Then I click save
-    Then I should beon the assignment show page for that assignment
-    And I should see "blah"
+    And I change title to "Thisisthenewtitle"
+    Then I should see that I edited this assignment
+    And I should see "Thisisthenewtitle"
 
 Scenario: Teacher views assignments for a class
-    Given everything this needs
-    And I am on the course show page
-    Then I should see all the assignments in my given
+    Given I am logged in as "teacher@cal.edu" with password "password"
+    Then I should see all the assignments for "assignmentcourse"
 
 Scenario: Student views assignments for a class
-    Given everything this needs
-    And I am on the course show page
-    Then I should see all assignments in my given
+    Given I am logged in as "beatrice@cal.edu" with password "password"
+    Then I should see all the assignments for "assignmentcourse"
+
+# end of features for just assignments
 
 Scenario: Student submits project to an assignment from a course they are a part of
     Givens some assignments, projects I own, and a course i'm part of
