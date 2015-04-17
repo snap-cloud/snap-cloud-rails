@@ -42,7 +42,7 @@ Rails.application.configure do
   # Devise Accounts Config
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-  # Set up s3 storage.
+  # Set up S3 storage.
   config.paperclip_defaults = {
     :storage => :s3,
     :bucket => ENV['S3_BUCKET_NAME'],
