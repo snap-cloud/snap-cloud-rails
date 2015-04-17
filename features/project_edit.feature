@@ -1,4 +1,4 @@
-ture: Editing a Project
+Feature: Editing a Project
 	As a project owner
 	So that I can keep my project info as updated as possible
 	I want to be able to edit projects that I own
@@ -14,18 +14,34 @@ Background:
   	| title   | notes        | owner | is_public |
 	| ohsnap! | awesomesauce | 1     | true      |
 
+	Given I am logged in as "alice@cal.edu" with password "password"
 	And I am on the project edit page for "ohsnap!"
 
 Scenario: Edit title of project
-	Given I am logged in as "alice@cal.edu" with password "password"
-	When I enter "arjunisawesome" as the "project_name"
-	And I press "Submit"
+	When I fill in "project_title" with "arjunisawesome"
+	And I press "Save Changes"
 	Then I should see "arjunisawesome"
 	And I should not see "ohsnap!"
 
 Scenario: Edit description of project
-	Given I am logged in as "alice@cal.edu" with password "password"
-        When I enter "snapperclapper" as the "project_description"
-        And I press "Submit"
-        Then I should see "snapperclapper"
-        And I should not see "awesomesauce"
+    When I fill in "project_notes" with "snapperclapper"
+    And I press "Save Changes"
+    Then I should see "snapperclapper"
+    And I should not see "awesomesauce"
+
+Scenario: Make project private
+	When I uncheck "project_is_public"
+	And I press "Save Changes"
+	Then I should see "Private"
+	And I should not see "Public"
+
+Scenario: Make project public
+	When I check "project_is_public"
+	And I press "Save Changes"
+	Then I should see "Public"
+	And I should not see "Private"
+
+Scenario: Only owner can edit
+	Given I am logged in as "bob@cal.edu" with password "password"
+	And I am on the project edit page for "ohsnap!"
+	Then I should see "You don't have permission to access this page"

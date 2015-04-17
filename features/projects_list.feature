@@ -19,7 +19,7 @@ Background:
 
 Scenario: See all projects 
   Given I am on the dashboard 
-  I should see foo, bar, baz
+  Then I should see foo, bar, baz
 
 Scenario: Sort projects by title
   Given I am on the dashboard

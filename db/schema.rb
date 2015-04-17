@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150405010356) do
+ActiveRecord::Schema.define(version: 20150417010557) do
+
+  create_table "Assignments", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "course_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "Assignments", ["course_id"], name: "index_assignments_on_course_id_id"
 
   create_table "announcements", force: :cascade do |t|
     t.text     "source"
@@ -45,6 +57,18 @@ ActiveRecord::Schema.define(version: 20150405010356) do
   add_index "enrollments", ["user_id"], name: "index_enrollments_on_user_id"
 
   create_table "projects", force: :cascade do |t|
+    t.string   "title"
+    t.text     "notes"
+    t.binary   "thumbnail"
+    t.text     "contents"
+    t.boolean  "is_public"
+    t.integer  "owner"
+    t.datetime "last_modified"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "submissions", force: :cascade do |t|
     t.string   "title"
     t.text     "notes"
     t.binary   "thumbnail"
