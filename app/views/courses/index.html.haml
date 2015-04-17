@@ -5,6 +5,6 @@
 -if flash[:message]
     %h3= flash[:message]
 
--@courses do |course|
+-@courses.each do |course|
     =link_to course.title, course_show_path(course)
     %br
