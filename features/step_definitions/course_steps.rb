@@ -44,9 +44,9 @@ Then /I should see that I cannot create a course/ do
 	text = "You don't have permission to access this page :("
 	if page.respond_to? :should
     	page.should have_content(text)
-  	else
+  else
     	assert page.has_content?(text)
-  	end
+  end
 end
 
 Given /there is a course I did not create/ do
@@ -165,4 +165,9 @@ end
 
 Then(/^I should not have any email errors$/) do
   page.should have_no_content("Email could not be found: ")
+end
+
+When(/^I try to visit the page for "(.*?)"$/) do |course|
+  @cour = Course.find_by_title(course)
+  visit course_show_path @cour
 end

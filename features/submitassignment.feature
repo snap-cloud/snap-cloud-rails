@@ -33,15 +33,14 @@ Background:
 
 Scenario: Teacher creates assignment
     Given I am logged in as "teacher@cal.edu" with password "password"
-    When I try to visit the edit page for "testcourse"
+    When I try to visit the page for "testcourse"
     And I click the create assignment button
     And I fill in everything to create a new assignment
     Then I should see that I created an assignment
 
 Scenario: Teacher edits assignment
     Given I am logged in as "teacher@cal.edu" with password "password"
-    And I create one assignment for "testcourse"
-    And I visit the show page for that assignment
+    And I visit the assignment show page for "assign1"
     And I click edit assignment
     Then I should see some stuff from that assignment
     And I change title to "Thisisthenewtitle"
