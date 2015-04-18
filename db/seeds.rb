@@ -1,19 +1,19 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
-michael = User.create!(username: 'cycomachead', 
+michael = User.create!(username: 'cycomachead',
             email: 'cycomachead@gmail.com',
             password: '12345678') #id: 1
-jason = User.create!(username: 'jason', 
+jason = User.create!(username: 'jason',
             email: 'jason@jason.com',
             password: 'jasonjason') #id: 2
-linda = User.create!(username: 'linda', 
+linda = User.create!(username: 'linda',
             email: 'linda@linda.com',
             password: 'lindalinda') #id: 3
-alec = User.create!(username: 'alecguertin', 
+alec = User.create!(username: 'alecguertin',
             email: 'alecguertin@berkeley.edu',
             password: 'hellodolly') #id: 4
-arjun = User.create!(username: 'arjun', 
+arjun = User.create!(username: 'arjun',
             email: 'arjun@arjun.com',
             password: 'arjunarjun') #id: 5
 steven = User.create!(username: 'steverino',
