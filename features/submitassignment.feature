@@ -35,11 +35,6 @@ Background:
     | beatriceproj2 | 300 |
     | beatriceproj3 | 300 |
 
-    Given the following submissions exist:
-    | title | assignment_id | 
-    | submittedproj1 | 100 |
-    | submittedproj2 | 100 |
-
     Given user "teacher@cal.edu" is enrolled as a teacher in "testcourse"
     Given user "teacher@cal.edu" is enrolled as a teacher in "assignmentcourse"
     Given user "alice@cal.edu" is enrolled as a student in "testcourse"
@@ -100,5 +95,5 @@ Scenario: Student submits project to an assignment from a course they are not a 
 
 Scenario: Submitting late assignments
     Given I am logged in as "beatrice@cal.edu" with password "password"
-    And I visit the assignment show page for "assign1"
+    And I visit the assignment show page for "assign2"
     Then I should not be able to submit a project to it

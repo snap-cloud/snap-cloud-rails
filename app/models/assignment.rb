@@ -11,6 +11,6 @@ class Assignment < ActiveRecord::Base
     subCopy.submitted = true
     subCopy.title += " --Submitted: #{Time.now}--"
   	subCopy.save
-  	Submission.create(title: subCopy.title, assignment_id: assignment_id, comments: comments, project_id: subCopy.id)
+  	Submission.create(assignment_id: self.id, comments: comments, project_id: subCopy.id)
   end
 end
