@@ -31,11 +31,13 @@ describe Course do
         end
 
         it "Should return all the students in the course" do
-            SIDS = @course.students.map(&:id)
-            puts SIDS
-            expect(SIDS).to include @alec.id
-            expect(SIDS).to include @jason.id
-            expect(SIDS).to include @arjun.id
+            all_students = @course.students.map { |s| s.id }
+            puts 'HERE BE ERRORS'
+            puts @alec.id
+            puts 'wat'
+            expect(all_students).to include @alec.id
+            expect(all_students).to include @jason.id
+            expect(all_students).to include @arjun.id
         end
 
         it "Should not return any students not enrolled in the course" do
