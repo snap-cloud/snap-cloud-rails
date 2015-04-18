@@ -15,7 +15,7 @@
 %br
 -if @assignment.course.userRole(@user).teacher?
     =button_to 'Edit Assignment', assignment_edit_path(@assignment), method: :get
-    =button_to 'Delete Assignment', assignment_delete_path(@assignment), method: :get
+    =button_to 'Delete Assignment', assignment_delete_path(@assignment), method: :post
 
 
 
