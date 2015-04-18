@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 
   # Clean Error Handler Methods
   # Use these in place of handling errors individually.
-  def access_not_allowed # Equivalent 401
+  def access_denied # Equivalent 401
     raise SnapException::AccessDenied.new('You don\'t have permission to view this.')
   end
   

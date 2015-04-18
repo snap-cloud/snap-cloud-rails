@@ -26,17 +26,12 @@ class Api::V1::ProjectsController < ApplicationController
         respond_with Project.where(owner: id, is_public: true)
       end
     end
-    # respond_with status: 404
   end
 
   def create
     project = Project.new({})
     project.save
     render :nothing => true, status: 200
-    ## old code
-    #render json: project, status: 201, location: [:api, project]
-
-
   end
 
 
@@ -95,8 +90,7 @@ class Api::V1::ProjectsController < ApplicationController
       @owner = User.find_by!(username: username)
       @project = Project.find_by!(owner: @owner.id, title: projectname)
       if !@project.is_public && @project.owner != self.getCurrentUser.id
-        # Project Is private -- display a 404 for privacy concerns
-        item_not_found
+        access_denied
       end
     end
       
