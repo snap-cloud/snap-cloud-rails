@@ -99,7 +99,7 @@ end
 
 When(/^I select "(.*?)" to submit$/) do |proj|
 	proj = Project.find_by_title(proj)
-  select proj.id, :from => "submission[project_id]"
+  select proj.title, :from => "submission[project_id]"
   click_button 'Submit'
 end
 
@@ -144,13 +144,13 @@ Given(/^user "(.*?)" with password "(.*?)" submits "(.*?)" "(.*?)" "(.*?)" to "(
   assignment = Assignment.find_by_title(assign)
   visit assignment_show_path assignment.id
   proj1 = Project.find_by_title(proj1)
-  select proj1.id, :from => "submission[project_id]"
+  select proj1.title, :from => "submission[project_id]"
   click_button 'Submit'
   proj2 = Project.find_by_title(proj2)
-  select proj2.id, :from => "submission[project_id]"
+  select proj2.title, :from => "submission[project_id]"
   click_button 'Submit'
   proj3 = Project.find_by_title(proj3)
-  select proj3.id, :from => "submission[project_id]"
+  select proj3.title, :from => "submission[project_id]"
   click_button 'Submit'
 
 end
