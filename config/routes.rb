@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about', as: 'about'
   get 'help', to: 'pages#help', as: 'help'
 
+  get 'users/:id', to: 'users#profile', as: 'user_profile'
+
   devise_for :users, :path => 'api/users',
              :controllers => { sessions: 'sessions',
                                registrations: 'registrations' },
@@ -58,8 +60,6 @@ Rails.application.routes.draw do
       # Comments eventually?
     end
   end
-
-  get 'users/:id/profile', to: 'users#profile', as: 'user_profile'
   
   # Shortcuts to the Snap! submodule
   # NOTE: the redirect needs a trailing / to load the JS properly.

@@ -10,11 +10,12 @@ class User < ActiveRecord::Base
   # A user has many projects, and deleting user deletes projects of that user
   has_many :enrollments
   has_many :courses,  :through => :enrollments
+  has_many :projects, :class_name => "Project", :foreign_key => :owner
 
   # FIXME -- how do we handle projects with multiple owners?
-  def projects
-    Project.where(:owner => self.id).all
-  end
+  # def projects
+  #   Project.where(:owner => self.id).all
+  # end
 
   def assignments
     self.courses.map(&:assignments).flatten
