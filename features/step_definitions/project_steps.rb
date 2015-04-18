@@ -127,6 +127,10 @@ Then(/^I will be on the edit page for user (.*?)$/) do |id|
   page.current_path.should eq "/users/" + id.to_s + "/edit"
 end
 
+Then(/^I will be on the profile page for user (.*?)$/) do |id|
+  page.current_path.should eq "/users/" + id.to_s
+end
+
 Then(/^I will be on the home page$/) do
   page.current_path.should eq "/"
 end
