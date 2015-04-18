@@ -22,8 +22,8 @@ Background:
 
     Given the following assignments exist:
     | title | description | course_id | start_date | due_date |
-    | assign1 | "description for #1" | 234 | 1.day.ago | 1.hour.ago |
-    | assign2 | "description for #2" | 234 | 2.day.ago | 2.hour.ago |
+    | assign1 | "description for #1" | 234 | 1.day.ago | Date.current.advance(days: 3) |
+    | assign2 | "description for #2" | 234 | 2.day.ago | 5.minute.ago |
     | assign3 | "description for #3" | 234 | 3.day.ago | 3.hour.ago |
 
     Given the following projects exist:
@@ -31,6 +31,12 @@ Background:
     | aliceproj1 | 200 |
     | aliceproj2 | 200 |
     | aliceproj3 | 200 |
+    | beatriceproj1 | 300 |
+    | beatriceproj2 | 300 |
+    | beatriceproj3 | 300 |
+
+    Given the following submissions exist:
+    | title | 
 
     Given user "teacher@cal.edu" is enrolled as a teacher in "testcourse"
     Given user "teacher@cal.edu" is enrolled as a teacher in "assignmentcourse"
@@ -73,27 +79,24 @@ Scenario: Student views assignments for a class
 # end of features for just assignments
 
 Scenario: Student submits project to an assignment from a course they are a part of
-    Given I am logged in as "alice@cal.edu" with password "password"
+    Given I am logged in as "beatrice@cal.edu" with password "password"
     When I try to visit the page for "assignmentcourse"
     And I click on assignment "assign1"
-    And I change the dropdown to pick "aliceproj1"
-    And click submit
+    And I select "aliceproj1" to submit
     Then I should see that my submission was successful
 
 Scenario: Teacher views submissions for an assignment
     Given everything this needs
-    When I go to the course page
-    And pick an assignment
-    Then I should be on the assignment view page
-    And I should see all of the submissions for that assignment
+    When I try to visit the page for "assignmentcourse"
+    And I click on assignment "assign1"
+    And I should see all of the submissions "assign1"
 
 Scenario: Student submits project to an assignment from a course they are not a part of
-    Given everything this needs
-    When I try to visit the submission page for an assignment
-    Then I should be redirected to 401
+    Given I am logged in as "alice@cal.edu" with password "password"
+    When I visit the assignment show page for "assign1"
+    Then I should see that I do not have permission to submit an assignment
 
 Scenario: Submitting late assignments
-    Given everything this needs
-    When I am on the show assignment page
-    And the assignment has ended
+    Given I am logged in as "beatrice@cal.edu" with password "password"
+    And I visit the assignment show page for "assign1"
     Then I should not be able to submit a project to it
