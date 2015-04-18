@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150418005633) do
+ActiveRecord::Schema.define(version: 20150418021123) do
 
   create_table "Assignments", force: :cascade do |t|
     t.string   "title"
@@ -70,15 +70,11 @@ ActiveRecord::Schema.define(version: 20150418005633) do
 
   create_table "submissions", force: :cascade do |t|
     t.string   "title"
-    t.text     "notes"
-    t.binary   "thumbnail"
-    t.text     "contents"
-    t.boolean  "is_public"
-    t.integer  "owner"
-    t.datetime "last_modified"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "assignment_id"
+    t.integer  "project_id"
     t.text     "comments"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade do |t|
