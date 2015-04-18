@@ -9,15 +9,26 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+
+  # Custom Error Methos
+  module SnapException
+    class AccessDenied < StandardError; end
+  end 
+
   # Clean Error Handler Methods
-  # Use item_not_found in code, and we have a rescue method to properly handle
-  # JSON or HTML based responses and can do any cleanup if need be.
-  def item_not_found
+  # Use these in place of handling errors individually.
+  def access_not_allowed # Equivalent 401
+    raise SnapException::AccessDenied.new('You don\'t have permission to view this.')
+  end
+  
+  def item_not_found # Equivalent 404
     raise ActiveRecord::RecordNotFound.new('Not Found')
   end
   
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
-  
+  # Treat 401s as 404s for privacy concerns
+  rescue_from SnapException::AccessDenied, :with => :record_not_found
+
 
   protected
 
