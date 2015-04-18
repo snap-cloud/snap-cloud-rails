@@ -10,7 +10,7 @@
 -if @assignments
     %h3 Assignments:
     -@assignments.each do |assignment|
-        =link_to assignment.title, assignment_show_path(assignment.id), id: "assignment_#{@assignment.id}"
+        =link_to assignment.title, assignment_show_path(assignment.id), id: "assignment_#{assignment.id}"
         %br
 %br
 -if @course.userRole(@user).try(:teacher?)
