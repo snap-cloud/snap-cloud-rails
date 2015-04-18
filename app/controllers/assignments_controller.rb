@@ -44,7 +44,7 @@ class AssignmentsController < ApplicationController
 	end
 
 	def delete
-		flash[:message] = "Assignment \"#{@assignment.title}\" has been deleted"
+		flash[:message] = "Assignment has been deleted"
 		@assignment.destroy
 		redirect_to course_show_path @course.id
 	end
@@ -59,7 +59,7 @@ class AssignmentsController < ApplicationController
 
 	def userLoggedIn
   	if getCurrentUser.nil?
-    	render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
+    	redirect_to login_path and return
     else
     	@user = getCurrentUser
     end

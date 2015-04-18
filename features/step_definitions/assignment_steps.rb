@@ -63,3 +63,16 @@ Then(/^I should see all the assignments for "(.*?)"$/) do |course|
 	  end
 	end
 end
+
+Given(/^I click delete assignment$/) do
+  click_button 'Delete Assignment'
+end
+
+Then(/^I should see that I deleted the assignment$/) do
+  text = "Assignment has been deleted"
+	if page.respond_to? :should
+   	page.should have_content(text)
+  else
+   	assert page.has_content?(text)
+  end
+end
