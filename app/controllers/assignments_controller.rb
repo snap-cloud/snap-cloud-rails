@@ -2,6 +2,7 @@ class AssignmentsController < ApplicationController
 	before_filter :userLoggedIn
 	before_filter :courseExists, :only => [:new, :create]
 	before_filter :assignmentExists, :only => [:show, :edit, :update, :delete]
+  before_filter :partOfCourse, :only => [:show]
 	before_filter :authCourseEdit, :except => [:show]
 
 	def show
@@ -90,6 +91,12 @@ class AssignmentsController < ApplicationController
     	render file: "#{Rails.root}/public/404.html", layout: false, status: 404 and return
     else
     	@assignment = Assignment.find(params[:id])
+    end
+  end
+
+  def partOfCourse
+    if @assignment.course.userRole(@user).nil?
+      render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
     end
   end
 end
