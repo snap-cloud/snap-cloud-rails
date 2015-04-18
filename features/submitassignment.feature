@@ -39,7 +39,7 @@ Background:
     Given user "teacher@cal.edu" is enrolled as a teacher in "assignmentcourse"
     Given user "alice@cal.edu" is enrolled as a student in "testcourse"
     Given user "beatrice@cal.edu" is enrolled as a student in "assignmentcourse"
-    Given user "beatrice@cal.edu" with password "password" submits "beatriceproj1" "beatriceproj2" "beatriceproj3" to "assign1"
+    Given user "beatrice@cal.edu" with password "password" submits "beatriceproj1" and "beatriceproj2" and "beatriceproj3" to "assign1"
 
 Scenario: Not logged in user tries to access assignment
     When I visit the assignment show page for "assign1"
