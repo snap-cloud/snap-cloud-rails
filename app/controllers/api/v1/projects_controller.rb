@@ -1,5 +1,5 @@
 class Api::V1::ProjectsController < ApplicationController
-  before_action :find_project
+  # before_action :find_project
   respond_to :json
 
   # FIXME -- this method needs auth checking as well.`
@@ -10,6 +10,7 @@ class Api::V1::ProjectsController < ApplicationController
   # returns all projects if user is looking at own projects
   # returns public projects for users if otherwise
   def index
+    find_project
     if @project
       respond_with @project
       return
@@ -25,7 +26,7 @@ class Api::V1::ProjectsController < ApplicationController
         respond_with Project.where(owner: id, is_public: true)
       end
     end
-    respond_with status: 404
+    # respond_with status: 404
   end
 
   def create
@@ -91,33 +92,19 @@ class Api::V1::ProjectsController < ApplicationController
       # projects that can't be found, and ones that are explicitly private
       # 401 reveals that a project does at least exist...is this a problem?
       # TODO: Handle multiple ownership
-      @owner = User.find_by(username: username) or item_not_found
-      if @owner == nil
-        # FIXME -- add notice username not found
-        respond_with status: 404 # FIXME - 401?
-      end
-      @project = Project.find_by(owner: @owner.id, title: projectname) or item_not_found
-      if @project == nil
-        respond_with status: 404 # FIXME -- 401? Project could be private
-        return
-      end
+      @owner = User.find_by!(username: username)
+      @project = Project.find_by!(owner: @owner.id, title: projectname)
       if !@project.is_public && @project.owner != self.getCurrentUser.id
-        # Project Is private
-        respond_with status: 404
+        # Project Is private -- display a 404 for privacy concerns
+        item_not_found
       end
-      # @project = project
-      # respond_with project
     end
       
     def find_project
       if params[:username] && params[:projectname]
         find_project_by_name(params[:username], params[:projectname])
-      elsif not Project.exists?(params[:id])
-        render status: 404
-        # render file: "/public/404.html", layout: false, status: 404
-        return
-      else
-        @project = Project.find(params[:id])
+      elsif params[:id]
+        @project = Project.find!(params[:id])
       end
     end
 
