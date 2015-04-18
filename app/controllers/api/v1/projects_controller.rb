@@ -91,12 +91,12 @@ class Api::V1::ProjectsController < ApplicationController
       # projects that can't be found, and ones that are explicitly private
       # 401 reveals that a project does at least exist...is this a problem?
       # TODO: Handle multiple ownership
-      @owner = User.find_by(username: username)
+      @owner = User.find_by(username: username) or item_not_found
       if @owner == nil
         # FIXME -- add notice username not found
         respond_with status: 404 # FIXME - 401?
       end
-      @project = Project.find_by(owner: @owner.id, title: projectname)
+      @project = Project.find_by(owner: @owner.id, title: projectname) or item_not_found
       if @project == nil
         respond_with status: 404 # FIXME -- 401? Project could be private
         return
