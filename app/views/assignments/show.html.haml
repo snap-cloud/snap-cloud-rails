@@ -11,6 +11,12 @@
 -if @assignment.course.userRole(@user).try(:teacher?)
     =button_to 'Edit Assignment', assignment_edit_path(@assignment), method: :get
     =button_to 'Delete Assignment', assignment_delete_path(@assignment), method: :post
+    %br
+    %br
+    %p Submissions for this assignment:
+    -@assignment.projects.each do |project|
+        =link_to project.title, project_show_path(project), id: "project_#{project.id}"
+
 -elsif Time.now < @assignment.due_date
     %p Submit assignment:
     =form_tag submission_create_path(@assignment), method: :post, class:"pure-form pure-form-aligned" do
