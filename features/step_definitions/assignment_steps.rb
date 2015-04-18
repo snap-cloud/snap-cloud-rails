@@ -98,8 +98,7 @@ Given(/^the following submissions exist:$/) do |table|
 end
 
 When(/^I select "(.*?)" to submit$/) do |proj|
-	proj = Project.find_by_title(proj)
-  select proj.title, :from => "submission[project_id]"
+  select proj, :from => "submission[project_id]"
   click_button 'Submit'
 end
 
@@ -133,7 +132,7 @@ Then(/^I should not be able to submit a project to it$/) do
   end
 end
 
-Given(/^user "(.*?)" with password "(.*?)" submits "(.*?)" "(.*?)" "(.*?)" to "(.*?)"$/) do |user, password, proj1, proj2, proj3, assign|
+Given(/^user "(.*?)" with password "(.*?)" submits "(.*?)" and "(.*?)" to "(.*?)"$/) do |user, password, proj1, proj2, assign|
   if page.body.include? "Logout"
     visit logout_path
   end
@@ -143,14 +142,10 @@ Given(/^user "(.*?)" with password "(.*?)" submits "(.*?)" "(.*?)" "(.*?)" to "(
   click_button "Log in"
   assignment = Assignment.find_by_title(assign)
   visit assignment_show_path assignment.id
-  proj1 = Project.find_by_title(proj1)
-  select proj1.title, :from => "submission[project_id]"
+  select proj1, :from => "submission[project_id]"
   click_button 'Submit'
-  proj2 = Project.find_by_title(proj2)
-  select proj2.title, :from => "submission[project_id]"
+  select proj2, :from => "submission[project_id]"
   click_button 'Submit'
-  proj3 = Project.find_by_title(proj3)
-  select proj3.title, :from => "submission[project_id]"
-  click_button 'Submit'
+  visit logout_path
 
 end
