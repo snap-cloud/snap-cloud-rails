@@ -5,50 +5,60 @@ Feature: User Dashboard Page
 
 Background:
   Given the following users exist:
-  | username | id |       email       | password | password_confirmation |
-  | testuser | 1  | test@example.com  |  hello   |       hello           |
+  | id | username|       email      | password      | password_confirmation |
+  | 1  | linda   | linda@linda.com  |  lindalinda   |       lindalinda      |
 
-Scenario: Dashboard not visible without logging in 
-  Given I am not logged in
-  And I visit the home page
-  Then I should see the splash page 
+  And the following announcements exist: 
+  | id | source |  text |   time   | 
+  | 1  | cs169  | 'foo' | today    | 
+  | 2  | snap!  | 'bar' | yesterday|
+
+  And the following projects exist:
+  | id |     title    | notes | owner | is_public |
+  | 1  | lindas-proj1 | proj1 | 1     | true      |
+  | 2  | lindas-proj2 | proj2 | 1     | false     |
+
+  And the following courses exist:
+  | id | title   | description  |    website   | updated_at | enddate | 
+  | 1  | cs169   | learn ruby!  | www.cs169.com| today      | tomorrow| 
+
+  And the following assignments exist:
+  | id | title       | description  | created_at | updated_at | due_date | 
+  | 1  | assignment1 | do this now. | yesterday  | today      | tomorrow |  
+
+Given I am logged in as "linda@linda.com" with password "lindalinda"
+Given I am on the home page
 
 Scenario: Dashboard is visible upon logging in
-  Given I am logged in as testuser
-  And I visit the home page
-  Then I should see the dashboard page 
-  And I should see a news feed
-  And I should see a projects listing
-  And I should see a class listing 
+  Then I can see the dashboard 
 
-Scenario: Users can create a project from the dashboard
-  Given I am logged in as testuser
-  And I visit the home page
-  And I follow Create
-  Then I will be on the snap page
+Scenario: Dashboard not visible without logging in 
+  Given I log out 
+  And I am on the home page
+  Then I should see the splash page 
 
-Scenario: Users can get help from the dashboard
-  Given I am logged in as testuser
-  And I visit the home page
-  And I follow Get Started
-  Then I will be on the help page
+Scenario: Run Snap from the Dashboard
+  Given I can see the dashboard
+  And I press RunSnap
+  Then I am on the snap page
 
-Scenario: Users can learn more about snap from the dashboard
-  Given I am logged in as testuser
-  And I visit the home page
-  And I follow About
-  Then I will be on the about snap page
+Scenario: Newsfeed
+  Given I can see the dashboard
+  Then I should see "News Feed"
 
-Scenario: Users can see their profile from the dashboard
-  Given I am logged in as testuser
-  And I visit the home page
-  And I follow Profile
-  Then I will be on the profile page for testuser
+Scenario: Assignments
+  Given I can see the dashboard
+  Then I should see "Your Assignments"
 
-Scenario: Users can logout from the dashboard
-  Given I am logged in as testuser
-  And I visit the home page
-  And I follow Logout
-  Then I should be logged out
+Scenario: Courses
+  Given I can see the dashboard
+  Then I should see "Your Courses"
 
+Scenario: Projects
+  Given I can see the dashboard
+  Then I should see "Your Projects"
+
+Scenario: Side Navbar 
+  Given I can see the dashboard
+  Then I should see "Navigation"
 

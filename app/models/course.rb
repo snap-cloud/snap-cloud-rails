@@ -19,7 +19,7 @@ class Course < ActiveRecord::Base
     end
 
     def userRole(person)
-    	Enrollment.find_by(user_id: person.id, course_id: self.id)
+    	Enrollment.find_by(user_id: person.try(:id), course_id: self.id) 
     end
 
 
