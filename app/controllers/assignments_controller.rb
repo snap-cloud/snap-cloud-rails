@@ -58,6 +58,8 @@ class AssignmentsController < ApplicationController
 	def userLoggedIn
   	if getCurrentUser.nil?
     	render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
+    else
+    	@user = getCurrentUser
     end
   end
 
