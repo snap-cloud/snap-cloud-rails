@@ -1,5 +1,5 @@
-class Api::V1::ProjectsController < ApplicationController
-  # before_action :find_project
+class Api::V1::ProjectsController < ProjectsController
+  before_action :find_project, only: [:index]
   respond_to :json
 
   # FIXME -- this method needs auth checking as well.`
@@ -10,7 +10,7 @@ class Api::V1::ProjectsController < ApplicationController
   # returns all projects if user is looking at own projects
   # returns public projects for users if otherwise
   def index
-    find_project
+    # find_project
     if @project
       respond_with @project
       return
@@ -80,26 +80,6 @@ class Api::V1::ProjectsController < ApplicationController
     def project_params
       params.require(:project).permit(:title, :notes, :thumbnail, :contents,
         :is_public, :owner, :last_modified, :created_at, :updated_at)
-    end
-    
-    def find_project_by_name(username, projectname)
-      # NOTE: This method needs serious consideration about how to handle
-      # projects that can't be found, and ones that are explicitly private
-      # 401 reveals that a project does at least exist...is this a problem?
-      # TODO: Handle multiple ownership
-      @owner = User.find_by!(username: username)
-      @project = Project.find_by!(owner: @owner.id, title: projectname)
-      if !@project.is_public && @project.owner != self.getCurrentUser.id
-        access_denied
-      end
-    end
-      
-    def find_project
-      if params[:username] && params[:projectname]
-        find_project_by_name(params[:username], params[:projectname])
-      elsif params[:id]
-        @project = Project.find!(params[:id])
-      end
     end
 
 end
