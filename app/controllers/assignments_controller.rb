@@ -10,6 +10,7 @@ class AssignmentsController < ApplicationController
 
 	def new
 		#render the page to create new assignment
+    @course = Course.find(params[:course_id])
 	end
 
 	def create
@@ -43,7 +44,9 @@ class AssignmentsController < ApplicationController
 	end
 
 	def delete
+		flash[:message] = "Assignment has been deleted"
 		@assignment.destroy
+		redirect_to course_show_path @course.id
 	end
 
 	def getCurrentUser
@@ -56,7 +59,9 @@ class AssignmentsController < ApplicationController
 
 	def userLoggedIn
   	if getCurrentUser.nil?
-    	render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
+    	redirect_to login_path and return
+    else
+    	@user = getCurrentUser
     end
   end
 
@@ -72,8 +77,8 @@ class AssignmentsController < ApplicationController
   	if params[:course_id]
   		@course = Course.find(params[:course_id])
   	else
-  		@assignment = Assignment.find(params[:id])
-  		@course = Course.find(@assignment.course)
+  		assignment = Assignment.find(params[:id])
+  		@course = Course.find(@assignment.course.id)
   	end
     if !@course.userRole(getCurrentUser).try(:teacher?)
       render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return

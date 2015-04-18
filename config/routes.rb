@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about', as: 'about'
   get 'help', to: 'pages#help', as: 'help'
 
+  get 'users/:id', to: 'users#profile', as: 'user_profile'
+
   devise_for :users, :path => 'api/users',
              :controllers => { sessions: 'sessions',
                                registrations: 'registrations' },
@@ -18,15 +20,16 @@ Rails.application.routes.draw do
   resources :users
 
 
-  post 'assignments/create',      to: 'assignments#create', as: 'assignment_create' 
+  get 'assignments/:course_id/new', to: 'assignments#new', as: 'assignment_new'
+  post 'assignments/:course_id/create',      to: 'assignments#create', as: 'assignment_create' 
   post 'assignments/:id/update',  to: 'assignments#update', as: 'assignment_update'
   post 'assignments/:id/delete',  to: 'assignments#delete', as: 'assignment_delete'
   get 'assignments/:id/edit',     to: 'assignments#edit', as: 'assignment_edit'
   get 'assignments/:id',          to: 'assignments#show', as: 'assignment_show'
-  get 'assignments/:course_id/new', to: 'assignments#new', as: 'assignment_new'
 
 <<<<<<< Local Changes
   get 'submissions/:assignment_id/new', to: 'submissions#new', as: 'submission_new'
+  post 'submissions/create', to: 'submissions#create', as: 'submission_create'
 
 =======
   get 'submissions/:assignment_id/new', to: 'submissions#new', as: 'submission_new'
@@ -64,8 +67,6 @@ Rails.application.routes.draw do
       # Comments eventually?
     end
   end
-
-  get 'users/:id/profile', to: 'users#profile', as: 'user_profile'
   
   # Shortcuts to the Snap! submodule
   # NOTE: the redirect needs a trailing / to load the JS properly.

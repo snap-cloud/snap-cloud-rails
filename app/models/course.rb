@@ -10,8 +10,6 @@ class Course < ActiveRecord::Base
 
     has_many :assignments
 
-    
-
     def addUser(person, role)
         Enrollment.create(user_id: person.id, course_id: self.id, role: role)
     end
@@ -21,7 +19,9 @@ class Course < ActiveRecord::Base
     end
 
     def userRole(person)
-    	Enrollment.find_by(user_id: person.id, course_id: self.id)
+    	Enrollment.find_by(user_id: person.try(:id), course_id: self.id) 
     end
+
+
 
 end
