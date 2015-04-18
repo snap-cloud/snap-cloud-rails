@@ -39,7 +39,7 @@ Background:
     Given user "teacher@cal.edu" is enrolled as a teacher in "assignmentcourse"
     Given user "alice@cal.edu" is enrolled as a student in "testcourse"
     Given user "beatrice@cal.edu" is enrolled as a student in "assignmentcourse"
-    Given user "beatrice@cal.edu" with password "password" submits "beatriceproj1" "beatriceproj2" "beatriceproj3" to "assign1"
+    Given user "beatrice@cal.edu" with password "password" submits "beatriceproj1" and "beatriceproj2" to "assign1"
 
 Scenario: Not logged in user tries to access assignment
     When I visit the assignment show page for "assign1"
@@ -80,7 +80,7 @@ Scenario: Student submits project to an assignment from a course they are a part
     Given I am logged in as "beatrice@cal.edu" with password "password"
     When I try to visit the page for "assignmentcourse"
     And I click on assignment "assign1"
-    And I select "aliceproj1" to submit
+    And I select "beatriceproj3" to submit
     Then I should see that my submission was successful
 
 Scenario: Teacher views submissions for an assignment

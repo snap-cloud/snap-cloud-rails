@@ -36,6 +36,7 @@ class SubmissionsController < ApplicationController
         render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
       end
     end
+
     def getCurrentUser
       current_user
     end
