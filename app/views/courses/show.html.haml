@@ -13,9 +13,9 @@
         =link_to assignment.title, assignment_show_path(assignment.id)
         %br
 %br
-=button_to 'Delete', course_delete_path(@course)
-=button_to 'Edit', course_edit_path(@course), method: :get
 -if @course.userRole(@user).teacher?
+    =button_to 'Delete', course_delete_path(@course)
+    =button_to 'Edit', course_edit_path(@course), method: :get
     =button_to 'Add Assignment', assignment_new_path(@course), method: :get
     
     
