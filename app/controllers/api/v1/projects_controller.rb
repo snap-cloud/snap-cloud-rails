@@ -1,4 +1,5 @@
 class Api::V1::ProjectsController < ApplicationController
+  before_action :find_project
   respond_to :json
 
   # FIXME -- this method needs auth checking as well.`
@@ -77,6 +78,40 @@ class Api::V1::ProjectsController < ApplicationController
       params.require(:project).permit(:title, :notes, :thumbnail, :contents,
         :is_public, :owner, :last_modified, :created_at, :updated_at)
     end
-
+    
+    def find_project_by_name(username, projectname)
+      # NOTE: This method needs serious consideration about how to handle
+      # projects that can't be found, and ones that are explicitly private
+      # 401 reveals that a project does at least exist...is this a problem?
+      # TODO: Handle multiple ownership
+      owner = User.find_by(username: username)
+      if !owner
+        # FIXME -- add notice username not found
+        render status: 404 # FIXME - 401?
+      end
+      owner_id = owner.id
+      project = Project.find_by(owner: owner_id, title: projectname)
+      if !project
+        render status: 404 # FIXME -- 401? Project could be private
+      end
+      if !project.is_public && project.owner != self.getCurrentUser.id
+        render status: 404
+      end
+      @project = project
+      # respond_with project
+    end
+      
+    def find_project
+      puts 'find find find'
+      if params[:username] && params[:projectname]
+        find_project_by_name(params[:username], params[:projectname])
+      elsif not Project.exists?(params[:id])
+        render status: 404
+        # render file: "/public/404.html", layout: false, status: 404
+        return
+      else
+        @project = Project.find(params[:id])
+      end
+    end
 
 end
