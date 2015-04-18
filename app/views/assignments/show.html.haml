@@ -13,3 +13,6 @@
     =button_to 'Submission closed', submission_new_path(@assignment), method: :get, disabled: true    
 %br
 %br
+-if @assignment.course.userRole(@user).try(:teacher?)
+    =button_to 'Edit Assignment', assignment_edit_path(@assignment), method: :get
+    =button_to 'Delete Assignment', assignment_delete_path(@assignment), method: :post

@@ -30,6 +30,11 @@ Scenario: View profile of other user or not logged in
   And I should not see "nosauce"
   And I should not see a file input
 
+Scenario: Report a user profile
+  Given I am on the profile page for "testuser"
+  Then I should not see an element "#edit-profile"
+  And I should see an element "#report-profile"
+
 Scenario: View own profile when logged in
   Given I am logged in as "test@example.com" with password "hellodolly"
   And I am on the profile page for "testuser"
@@ -42,8 +47,5 @@ Scenario: View own profile when logged in
   And I should see "sauceawesome"
   And I should not see "snapp!"
   And I should not see "nosauce"
-  And I should see a file input
-
-Scenario: Report a user profile
-  Given I am on the profile page for "testuser"
-  Then I should see "Report"
+  Then I should see an element "#edit-profile"
+  And I should not see an element "#report-profile"

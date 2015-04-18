@@ -4,11 +4,11 @@
 # Linda: We can totally do better! 
 
 Then /^(?:|I) should see "(.*?)"$/ do |input|
-	page.should have_content input
+  page.should have_content input
 end
 
 Then /^(?:|I) should not see "(.*?)"$/ do |input|
-	page.should_not have_content input
+  page.should_not have_content input
 end
 
 Then /^(?:|I) should see an image$/ do
@@ -23,7 +23,7 @@ end
 
 
 Then /^(?:|I) should see the link "(.*?)" to "(.*?)"$/ do |link, url|
-	page.should have_link(link, :href => url)
+  page.should have_link(link, :href => url)
 end
 
 Then /^(?:|I) should see the submit button "(.*?)"$/ do |input|
@@ -72,10 +72,10 @@ end
 
 Given /^(?:|I) am on the profile page for "(.*?)"$/ do |username|
   user = User.find_by_username username
-  visit "/users/" + user.id.to_s + "/profile"
+  visit "/users/" + user.id.to_s
 end
 
-Given /^(?:|I) am on the splash page$/ do
+Given /^(?:|I) am on the home page$/ do
   visit "/"
 end
 
