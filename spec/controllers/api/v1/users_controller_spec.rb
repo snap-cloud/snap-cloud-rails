@@ -13,7 +13,7 @@ describe Api::V1::UsersController do
       fakeuser = double('user')
       allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
       allow(controller).to receive(:current_user).and_return(fakeuser)
-      
+
 
 
       @user = FactoryGirl.create :user
@@ -33,20 +33,19 @@ describe Api::V1::UsersController do
 
     context "when is successfully created" do
       before(:each) do
-        @user_attributes = FactoryGirl.attributes_for :user
+        @user_attrs = FactoryGirl.attributes_for :user
 
-        #Added by steve for alec
+        # Added by steve for alec
         fakeuser = double('user')
         allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
         allow(controller).to receive(:current_user).and_return(fakeuser)
 
-
-        post :create, { user: @user_attributes }, format: :json
+        post :create, { user: @user_attrs }, format: :json
       end
 
       it "renders the json representation for the user record just created" do
         user_response = JSON.parse(response.body, symbolize_names: true)
-        expect(user_response[:email]).to eql @user_attributes[:email]
+        expect(user_response[:email]).to eql @user_attrs[:email]
       end
 
       it { should respond_with 201 }
@@ -72,7 +71,7 @@ describe Api::V1::UsersController do
         expect(user_response).to have_key(:errors)
       end
 
-      it "renders the json errors on whye the user could not be created" do
+      it "renders the json errors on why the user could not be created" do
         user_response = JSON.parse(response.body, symbolize_names: true)
         expect(user_response[:errors][:email]).to include "can't be blank"
       end
@@ -94,9 +93,9 @@ describe Api::V1::UsersController do
 
 
     end
-    
+
     it { should respond_with 204 }
-    
+
   end
 
   describe "PUT/PATCH #update" do
@@ -104,7 +103,7 @@ describe Api::V1::UsersController do
     context "when is successfully updated" do
       before(:each) do
         @user = FactoryGirl.create :user
-        
+
 
         fakeuser = double('user')
         allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)

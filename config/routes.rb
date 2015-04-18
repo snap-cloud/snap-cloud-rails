@@ -21,14 +21,13 @@ Rails.application.routes.draw do
 
 
   get 'assignments/:course_id/new', to: 'assignments#new', as: 'assignment_new'
-  post 'assignments/:course_id/create',      to: 'assignments#create', as: 'assignment_create' 
+  post 'assignments/:course_id/create',      to: 'assignments#create', as: 'assignment_create'
   post 'assignments/:id/update',  to: 'assignments#update', as: 'assignment_update'
   post 'assignments/:id/delete',  to: 'assignments#delete', as: 'assignment_delete'
   get 'assignments/:id/edit',     to: 'assignments#edit', as: 'assignment_edit'
   get 'assignments/:id',          to: 'assignments#show', as: 'assignment_show'
 
   get 'submissions/:assignment_id/new', to: 'submissions#new', as: 'submission_new'
-  post 'submissions/create', to: 'submissions#create', as: 'submission_create'
 
   post 'courses/create',      to: 'courses#create', as: 'course_create'
   get 'courses/new',          to: 'courses#new', as: 'course_new'
@@ -38,7 +37,8 @@ Rails.application.routes.draw do
   get 'courses/:id',          to: 'courses#show', as: 'course_show'
   get 'courses',              to: 'courses#index', as: 'course_index'
 
-  # Redirect simple requets for the viewable app
+  # Cleaner URLs for HTML pages.
+
   devise_scope :user do
     get 'login', to: 'sessions#new', as: :login
     get 'logout', to: 'sessions#destroy', as: :logout
@@ -61,7 +61,7 @@ Rails.application.routes.draw do
       # Comments eventually?
     end
   end
-  
+
   # Shortcuts to the Snap! submodule
   # NOTE: the redirect needs a trailing / to load the JS properly.
   # TODO: Serving this way is probably not the best...

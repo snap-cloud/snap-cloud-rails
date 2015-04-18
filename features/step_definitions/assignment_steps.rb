@@ -81,3 +81,18 @@ When(/^I click on assignment "(.*?)"$/) do |assign|
   a = Assignment.find_by_title(assign)
   click_link("assignment_#{a.id}")
 end
+
+Then(/^I should see that I do not have permission to submit an assignment$/) do
+  test = "You don't have permission to access this page :("
+	if page.respond_to? :should
+  	page.should have_content(text)
+  else
+  	assert page.has_content?(text)
+  end
+end
+
+Given(/^the following submissions exist:$/) do |table|
+	pending # express the regexp above with the code you wish you had
+	table.hashes.each do |sub|
+	end
+end
