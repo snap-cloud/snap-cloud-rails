@@ -5,7 +5,12 @@ class SubmissionsController < ApplicationController
 
     def create
       @submission = submission_params
-      @assignment.submit(@submission[:project_id], @submission[:comments])
+      project_id = @submission[:project_id]
+      comments = @submission[:comments]
+      @assignment.submit(project_id, comments)
+      flash[:message] = "You will be redirected to the assignment page"
+      flash[:message] = "Submission successful"
+      flash[:message] = "Submission completed"
       flash[:message] = "Yay, your project was submitted!"
       redirect_to assignment_show_path @assignment.id and return
     end
@@ -36,6 +41,7 @@ class SubmissionsController < ApplicationController
         render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
       end
     end
+
     def getCurrentUser
       current_user
     end
