@@ -14,15 +14,18 @@ class Api::V1::ProjectsController < ApplicationController
       respond_with @project
       return
     end
-    begin
-      id = Integer(params[:user_id])
-    rescue
+    if params[:user_id]
+      begin
+        id = Integer(params[:user_id])
+      rescue
+      end
+      if !getCurrentUser.nil? && getCurrentUser.id == id
+        respond_with Project.where(owner: id)
+      else
+        respond_with Project.where(owner: id, is_public: true)
+      end
     end
-    if !getCurrentUser.nil? && getCurrentUser.id == id
-      respond_with Project.where(owner: id)
-    else
-      respond_with Project.where(owner: id, is_public: true)
-    end
+    respond_with status: 404
   end
 
   def create
@@ -91,16 +94,16 @@ class Api::V1::ProjectsController < ApplicationController
       @owner = User.find_by(username: username)
       if @owner == nil
         # FIXME -- add notice username not found
-        render status: 404 # FIXME - 401?
+        respond_with status: 404 # FIXME - 401?
       end
       @project = Project.find_by(owner: @owner.id, title: projectname)
       if @project == nil
-        render status: 404 # FIXME -- 401? Project could be private
+        respond_with status: 404 # FIXME -- 401? Project could be private
         return
       end
       if !@project.is_public && @project.owner != self.getCurrentUser.id
         # Project Is private
-        render status: 404
+        respond_with status: 404
       end
       # @project = project
       # respond_with project
