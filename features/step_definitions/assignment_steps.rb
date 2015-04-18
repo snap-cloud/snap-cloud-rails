@@ -83,7 +83,7 @@ When(/^I click on assignment "(.*?)"$/) do |assign|
 end
 
 Then(/^I should see that I do not have permission to submit an assignment$/) do
-  test = "You don't have permission to access this page :("
+  text = "You don't have permission to access this page :("
 	if page.respond_to? :should
   	page.should have_content(text)
   else
@@ -92,7 +92,42 @@ Then(/^I should see that I do not have permission to submit an assignment$/) do
 end
 
 Given(/^the following submissions exist:$/) do |table|
-	pending # express the regexp above with the code you wish you had
 	table.hashes.each do |sub|
+		Submission.create(sub)
 	end
+end
+
+When(/^I select "(.*?)" to submit$/) do |proj|
+	proj = Project.find_by_title(proj)
+  select proj.id, :from => "submission[project_id]"
+end
+
+Then(/^I should see that my submission was successful$/) do
+  test = "Yay, your project was submitted!"
+	if page.respond_to? :should
+  	page.should have_content(text)
+  else
+  	assert page.has_content?(text)
+  end
+end
+
+When(/^I should see all of the submissions "(.*?)"$/) do |assign|
+  assignment = Assignment.find_by_title(assign)
+  assignment.submissions.each do |sub|
+	  text = sub.title
+		if page.respond_to? :should
+	   	page.should have_content(text)
+	  else
+	   	assert page.has_content?(text)
+	  end
+	end
+end
+
+Then(/^I should not be able to submit a project to it$/) do
+  text = "Submission for this assignment has been closed."
+	if page.respond_to? :should
+  	page.should have_content(text)
+  else
+  	assert page.has_content?(text)
+  end
 end

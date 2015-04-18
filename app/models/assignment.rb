@@ -1,5 +1,7 @@
 class Assignment < ActiveRecord::Base
   belongs_to :course
+  has_many :submissions
+  has_many :projects, through: :submissions
 
   def submit(project_id, comments)
   	proj = Project.find(project_id)

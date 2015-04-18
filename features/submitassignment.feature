@@ -21,10 +21,10 @@ Background:
     | 300 | beatrice | beatrice@cal.edu | password | password |
 
     Given the following assignments exist:
-    | title | description | course_id | start_date | due_date |
-    | assign1 | "description for #1" | 234 | 1.day.ago | Date.current.advance(days: 3) |
-    | assign2 | "description for #2" | 234 | 2.day.ago | 5.minute.ago |
-    | assign3 | "description for #3" | 234 | 3.day.ago | 3.hour.ago |
+    | id | title | description | course_id | start_date | due_date |
+    | 100 | assign1 | "description for #1" | 234 | 1.day.ago | Date.current.advance(days: 3) |
+    | 200 | assign2 | "description for #2" | 234 | 2.day.ago | 5.minute.ago |
+    | 300 | assign3 | "description for #3" | 234 | 3.day.ago | 3.hour.ago |
 
     Given the following projects exist:
     | title | owner |
@@ -36,7 +36,9 @@ Background:
     | beatriceproj3 | 300 |
 
     Given the following submissions exist:
-    | title | 
+    | title | assignment_id | 
+    | submittedproj1 | 100 |
+    | submittedproj2 | 100 |
 
     Given user "teacher@cal.edu" is enrolled as a teacher in "testcourse"
     Given user "teacher@cal.edu" is enrolled as a teacher in "assignmentcourse"
@@ -86,7 +88,7 @@ Scenario: Student submits project to an assignment from a course they are a part
     Then I should see that my submission was successful
 
 Scenario: Teacher views submissions for an assignment
-    Given everything this needs
+    Given I am logged in as "teacher@cal.edu" with password "password"
     When I try to visit the page for "assignmentcourse"
     And I click on assignment "assign1"
     And I should see all of the submissions "assign1"
