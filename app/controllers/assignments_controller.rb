@@ -58,6 +58,8 @@ class AssignmentsController < ApplicationController
 	def userLoggedIn
   	if getCurrentUser.nil?
     	render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
+    else
+    	@user = getCurrentUser
     end
   end
 
@@ -71,10 +73,10 @@ class AssignmentsController < ApplicationController
 
   def authCourseEdit
   	if params[:course_id]
-  		@course = Course.find(params[:course_id])
+  		course = Course.find(params[:course_id])
   	else
-  		@assignment = Assignment.find(params[:id])
-  		@course = Course.find(@assignment.course)
+  		assignment = Assignment.find(params[:id])
+  		course = Course.find(@assignment.course)
   	end
     if !@course.userRole(getCurrentUser).try(:teacher?)
       render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
