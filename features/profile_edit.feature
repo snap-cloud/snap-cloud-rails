@@ -16,6 +16,10 @@ Background:
   | snapoh! | sauceawesome | 1     | false     |
   | snapp!  | nosauce      | 2     | true      |
 
+Scenario: View others profile edit page
+  Given I am on the profile edit page for "testuser"
+  Then I should see "You don't have permission to access this page"
+
 Scenario: View own profile edit page
   Given I am logged in as "test@example.com" with password "hellodolly"
   And I am on the profile page for "testuser"
