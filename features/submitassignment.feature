@@ -50,6 +50,12 @@ Scenario: Teacher edits assignment
     Then I should see that I edited this assignment
     And I should see "Thisisthenewtitle"
 
+Scenario: Teacher tries to delete assignment
+    Given I am logged in as "teacher@cal.edu" with password "password"
+    And I visit the assignment show page for "assign1"
+    And I click delete assignment
+    Then I should see that I deleted the assignment
+
 Scenario: Teacher views assignments for a class
     Given I am logged in as "teacher@cal.edu" with password "password"
     Then I should see all the assignments for "assignmentcourse"
