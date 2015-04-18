@@ -32,10 +32,11 @@ class ApplicationController < ActionController::Base
     def record_not_found(error)
       respond_to do |format|
         format.html {
+          # TODO: Render specific error message somewhere?
           render file: "pages/_404.html", layout: true, status: 404
         }
         format.json {
-          render json: {:error => error.message}, status: :not_found
+          render json: {:error => error.message}, status: 404
         }
       end
     end
