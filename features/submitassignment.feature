@@ -33,7 +33,7 @@ Background:
 
 Scenario: Not logged in user tries to access assignment
     When I visit the assignment show page for "assign1"
-    I should see that I need to log in
+    Then I should see that I need to log in
 
 Scenario: Teacher creates assignment
     Given I am logged in as "teacher@cal.edu" with password "password"
@@ -49,6 +49,12 @@ Scenario: Teacher edits assignment
     And I change title to "Thisisthenewtitle"
     Then I should see that I edited this assignment
     And I should see "Thisisthenewtitle"
+
+Scenario: Teacher tries to delete assignment
+    Given I am logged in as "teacher@cal.edu" with password "password"
+    And I visit the assignment show page for "assign1"
+    And I click delete assignment
+    Then I should see that I deleted the assignment
 
 Scenario: Teacher views assignments for a class
     Given I am logged in as "teacher@cal.edu" with password "password"
