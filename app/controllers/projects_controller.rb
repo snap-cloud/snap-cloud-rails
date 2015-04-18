@@ -90,7 +90,6 @@ class ProjectsController < ApplicationController
       end
       owner_id = @owner.id
       @project = Project.find_by(owner: owner_id, title: projectname)
-      debugger
       if @project == nil
         render status: 404 # FIXME -- 401? Project could be private
         return
