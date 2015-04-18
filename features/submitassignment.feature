@@ -73,7 +73,8 @@ Scenario: Student views assignments for a class
 # end of features for just assignments
 
 Scenario: Student submits project to an assignment from a course they are a part of
-    When I try to visit the page for "testcourse"
+    Given I am logged in as "alice@cal.edu" with password "password"
+    When I try to visit the page for "assignmentcourse"
     And I click on assignment "assign1"
     And I change the dropdown to pick "aliceproj1"
     And click submit
