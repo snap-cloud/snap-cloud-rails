@@ -5,6 +5,8 @@ class SubmissionsController < ApplicationController
 
     def create
       @assignment.submit(submission_params)
+      flash[:message] = "Yay, your project was submitted!"
+      redirect_to assignment_show_path @assignment.id and return
     end
 
     def submission_params
