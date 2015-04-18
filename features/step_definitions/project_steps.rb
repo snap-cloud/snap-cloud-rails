@@ -56,7 +56,7 @@ Then /^I enter "(.*?)" for "(.*?)"$/ do |value, field|
   fill_in field, :with => value
 end
 
-Then /^I log out $/ do
+Then /^I log out$/ do
   visit logout_path
 end
 
