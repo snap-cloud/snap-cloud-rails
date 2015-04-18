@@ -23,10 +23,11 @@ Background:
   | 1  | cs169   | learn ruby!  | www.cs169.com| today      | tomorrow| 
 
   And the following assignments exist:
-  | id | title       | description  | created_at | updated_at | due_date | 
-  | 1  | assignment1 | do this now. | yesterday  | today      | tomorrow |  
+  | id | title   |     description      | course_id | start_date | due_date   |
+  | 1  | assign1 | "description for #1" |     1     | 1.day.ago  | 1.hour.ago |
 
 Given I am logged in as "linda@linda.com" with password "lindalinda"
+Given user "linda@linda.com" is enrolled as a student in "cs169"
 Given I am on the home page
 
 Scenario: Dashboard is visible upon logging in
@@ -39,26 +40,33 @@ Scenario: Dashboard not visible without logging in
 
 Scenario: Run Snap from the Dashboard
   Given I can see the dashboard
-  And I press RunSnap
+  And I press "RunSnap"
   Then I am on the snap page
 
 Scenario: Newsfeed
   Given I can see the dashboard
   Then I should see "News Feed"
+  And I should see my announcements
 
 Scenario: Assignments
   Given I can see the dashboard
   Then I should see "Your Assignments"
+  And I should see my assignments
 
 Scenario: Courses
   Given I can see the dashboard
   Then I should see "Your Courses"
+  And I should see my courses
 
 Scenario: Projects
   Given I can see the dashboard
   Then I should see "Your Projects"
+  And I should see my projects
 
 Scenario: Side Navbar 
   Given I can see the dashboard
   Then I should see "Navigation"
+  And I should see navigation links
+
+
 
