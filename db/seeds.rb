@@ -63,11 +63,11 @@ my_course.assignments << Assignment.create(title: "Alec's nice assignment",
     due_date: my_course.enddate)
 
 my_course.addUser(linda, :student)
-# my_course.addUser(steven, :student)
-# my_course.addUser(alec, :teacher)
-# my_course.addUser(michael, :student)
-# my_course.addUser(jason, :student)
-# my_course.addUser(arjun, :teacher)
+my_course.addUser(steven, :student)
+my_course.addUser(alec, :teacher)
+my_course.addUser(michael, :student)
+my_course.addUser(jason, :student)
+my_course.addUser(arjun, :teacher)
 
 Announcement.create(source: 'snap', source_id:'1', text: 'Snap! will be down for maintenance tomorrow from 5-6 p.m. UTC.', time: '4:35 p.m.')
 Announcement.create(source: 'cs169', source_id:'1', text: 'Homework 5 (due April 6th) has been released.', time: '12:00 p.m.')
