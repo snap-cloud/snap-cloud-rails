@@ -16,7 +16,7 @@ Background:
   | snapoh! | sauceawesome | 1     | false     |
   | snapp!  | nosauce      | 2     | true      |
 
-Scenario: View own profile when logged in
+Scenario: View own profile edit page
   Given I am logged in as "test@example.com" with password "hellodolly"
   And I am on the profile page for "testuser"
   Then I should see "testuser"
