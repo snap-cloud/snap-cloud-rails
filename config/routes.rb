@@ -54,11 +54,13 @@ Rails.application.routes.draw do
       # Tokens are an easier way to handle API auth.
       resources :users do
         # TODO: Restrict options here
-        resources :projects
+        resources :projects, only: [:index]
       end
       # TODO: Restrict options here to not duplicate the ones above.
-      resources :projects
+      resources :projects #, except: [:index]
       # Comments eventually?
+      # Classes
+      # Assignments / Submissions
     end
   end
 

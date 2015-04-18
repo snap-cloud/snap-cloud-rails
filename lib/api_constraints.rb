@@ -1,4 +1,5 @@
 # This is a RailsCasts model for versioning APIs.
+# http://railscasts.com/episodes/350-rest-api-versioning
 class ApiConstraints
   def initialize(options)
     @version = options[:version]
