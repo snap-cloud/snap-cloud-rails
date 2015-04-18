@@ -40,7 +40,7 @@ Scenario: Dashboard not visible without logging in
 
 Scenario: Run Snap from the Dashboard
   Given I can see the dashboard
-  And I press RunSnap
+  And I press "RunSnap"
   Then I am on the snap page
 
 Scenario: Newsfeed

@@ -21,11 +21,6 @@ Then /^(?:|I) am on the snap page$/ do
   visit "/snap/"
 end
 
-###### NEED TO WORK ON THIS STUFF vvvv. 
-
-And /^(?:|I) press RunSnap$/ do
-end
-
 Then /^(?:|I) should see my announcements$/ do 
   #check that assignments are populated.
   announcements = Announcement.all
@@ -61,8 +56,6 @@ Then /^(?:|I) should see my projects$/ do
     expect(project.owner).to eq(user.id)
   end 
 end
-
-###### NEED TO WORK ON THIS STUFF ^^^^ . 
 
 Then /^(?:|I) should see navigation links$/ do 
   page.should have_content "Home"
