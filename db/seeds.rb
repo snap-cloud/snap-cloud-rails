@@ -15,10 +15,19 @@ alec = User.create!(username: 'alecguertin',
             password: 'hellodolly') #id: 4
 arjun = User.create!(username: 'arjun', 
             email: 'arjun@arjun.com',
-            password: 'arjunarjun') #id: 8
+            password: 'arjunarjun') #id: 5
 steven = User.create!(username: 'steverino',
             email: 'stevenc1030@berkeley.edu',
-            password: 'password123')
+            password: 'password123') #id: 6
+michael2 = User.create(username: 'michael.ball',
+            email: 'michael.ball@berkeley.edu',
+            password: '12345678') #id: 7
+michael3 = User.create(username: 'ball',
+            email: 'ball@berkeley.edu',
+            password: '12345678') #id: 8
+bh = User.create(username: 'bh',
+            email: 'bh@cs.berkeley.edu',
+            password: '12345678') #id: 9
 
 my_course = Course.create(title: "CS169", description: "A course about software engineering.  Students design an app " \
     + "over the course of the semester for a non-profit organization.  The follows the SaaS " \
@@ -63,11 +72,11 @@ my_course.assignments << Assignment.create(title: "Alec's nice assignment",
     due_date: my_course.enddate)
 
 my_course.addUser(linda, :student)
-# my_course.addUser(steven, :student)
-# my_course.addUser(alec, :teacher)
-# my_course.addUser(michael, :student)
-# my_course.addUser(jason, :student)
-# my_course.addUser(arjun, :teacher)
+my_course.addUser(steven, :student)
+my_course.addUser(alec, :teacher)
+my_course.addUser(michael, :student)
+my_course.addUser(jason, :student)
+my_course.addUser(arjun, :teacher)
 
 Announcement.create(source: 'snap', source_id:'1', text: 'Snap! will be down for maintenance tomorrow from 5-6 p.m. UTC.', time: '4:35 p.m.')
 Announcement.create(source: 'cs169', source_id:'1', text: 'Homework 5 (due April 6th) has been released.', time: '12:00 p.m.')
