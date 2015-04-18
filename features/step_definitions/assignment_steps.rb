@@ -81,3 +81,71 @@ When(/^I click on assignment "(.*?)"$/) do |assign|
   a = Assignment.find_by_title(assign)
   click_link("assignment_#{a.id}")
 end
+
+Then(/^I should see that I do not have permission to submit an assignment$/) do
+  text = "You don't have permission to access this page :("
+	if page.respond_to? :should
+  	page.should have_content(text)
+  else
+  	assert page.has_content?(text)
+  end
+end
+
+Given(/^the following submissions exist:$/) do |table|
+	table.hashes.each do |sub|
+		Submission.create(sub)
+	end
+end
+
+When(/^I select "(.*?)" to submit$/) do |proj|
+  select proj, :from => "submission[project_id]"
+  click_button 'Submit'
+end
+
+Then(/^I should see that my submission was successful$/) do
+  test = "Yay, your project was submitted!"
+	if page.respond_to? :should
+  	page.should have_content(text)
+  else
+  	assert page.has_content?(text)
+  end
+end
+
+When(/^I should see all of the submissions "(.*?)"$/) do |assign|
+  assignment = Assignment.find_by_title(assign)
+  assignment.submissions.each do |sub|
+	  text = sub.project.title
+		if page.respond_to? :should
+	   	page.should have_content(text)
+	  else
+	   	assert page.has_content?(text)
+	  end
+	end
+end
+
+Then(/^I should not be able to submit a project to it$/) do
+  text = "Submission for this assignment has been closed."
+	if page.respond_to? :should
+  	page.should have_content(text)
+  else
+  	assert page.has_content?(text)
+  end
+end
+
+Given(/^user "(.*?)" with password "(.*?)" submits "(.*?)" and "(.*?)" to "(.*?)"$/) do |user, password, proj1, proj2, assign|
+  if page.body.include? "Logout"
+    visit logout_path
+  end
+  visit login_path
+  fill_in "user_login", :with => user
+  fill_in "user_password", :with => password
+  click_button "Log in"
+  assignment = Assignment.find_by_title(assign)
+  visit assignment_show_path assignment.id
+  select proj1, :from => "submission[project_id]"
+  click_button 'Submit'
+  select proj2, :from => "submission[project_id]"
+  click_button 'Submit'
+  visit logout_path
+
+end

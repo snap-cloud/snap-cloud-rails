@@ -16,7 +16,11 @@ Background:
   | snapoh! | sauceawesome | 1     | false     |
   | snapp!  | nosauce      | 2     | true      |
 
-Scenario: View own profile edit page
+Scenario: View others profile edit page
+  Given I am on the profile edit page for "testuser"
+  Then I should see "You don't have permission to access this page"
+
+Scenario: View own profile edit page and submit
   Given I am logged in as "test@example.com" with password "hellodolly"
   And I am on the profile page for "testuser"
   Then I should see "testuser"
@@ -29,3 +33,6 @@ Scenario: View own profile edit page
   And I should see the submit button "Update"
   And I should see "Change profile pic"
   And I should see a file input
+  And I enter "About testuser" for "user_about_me"
+  And I press "Update"
+  Then I will be on the profile page for user 1
