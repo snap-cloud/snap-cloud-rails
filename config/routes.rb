@@ -25,7 +25,12 @@ Rails.application.routes.draw do
   get 'assignments/:id',          to: 'assignments#show', as: 'assignment_show'
   get 'assignments/:course_id/new', to: 'assignments#new', as: 'assignment_new'
 
+<<<<<<< Local Changes
   get 'submissions/:assignment_id/new', to: 'submissions#new', as: 'submission_new'
+
+=======
+  get 'submissions/:assignment_id/new', to: 'submissions#new', as: 'submission_new'
+>>>>>>> External Changes
 
   post 'courses/create',      to: 'courses#create', as: 'course_create'
   get 'courses/new',          to: 'courses#new', as: 'course_new'
@@ -35,7 +40,8 @@ Rails.application.routes.draw do
   get 'courses/:id',          to: 'courses#show', as: 'course_show'
   get 'courses',              to: 'courses#index', as: 'course_index'
 
-  # Redirect simple requets for the viewable app
+  # Cleaner URLs for HTML pages. 
+  
   devise_scope :user do
     get 'login', to: 'sessions#new', as: :login
     get 'logout', to: 'sessions#destroy', as: :logout
