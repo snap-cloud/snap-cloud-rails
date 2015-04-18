@@ -44,7 +44,9 @@ class AssignmentsController < ApplicationController
 	end
 
 	def delete
+		flash[:message] = "Assignment \"#{@assignment.title}\" has been deleted"
 		@assignment.destroy
+		redirect_to course_show_path @course.id
 	end
 
 	def getCurrentUser
@@ -73,10 +75,10 @@ class AssignmentsController < ApplicationController
 
   def authCourseEdit
   	if params[:course_id]
-  		course = Course.find(params[:course_id])
+  		@course = Course.find(params[:course_id])
   	else
   		assignment = Assignment.find(params[:id])
-  		course = Course.find(@assignment.course)
+  		@course = Course.find(@assignment.course.id)
   	end
     if !@course.userRole(getCurrentUser).try(:teacher?)
       render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
