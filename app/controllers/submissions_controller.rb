@@ -4,7 +4,8 @@ class SubmissionsController < ApplicationController
   before_filter :canSubmit
 
     def create
-      @assignment.submit(submission_params)
+      @submission = submission_params
+      @assignment.submit(@submission[:project_id], @submission[:comments])
       flash[:message] = "Yay, your project was submitted!"
       redirect_to assignment_show_path @assignment.id and return
     end
@@ -35,6 +36,8 @@ class SubmissionsController < ApplicationController
         render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
       end
     end
-
+    def getCurrentUser
+      current_user
+    end
 
 end
