@@ -1,18 +1,18 @@
 language: ruby
 rvm:
 - 2.2.1
-# bundler_args: "--without production"
 script:
-    - RAILS_ENV=test bundle exec rake db:migrate 
-    - bundle exec rspec
-    - bundle exec cucumber
+- RAILS_ENV=test bundle exec rake db:migrate
+- bundle exec rspec
+- bundle exec cucumber
 cache: bundler
 addons:
-  postgresql: "9.3"
-notifcations:
+  postgresql: '9.3'
+notifications:
   email:
     on_success: never
     on_failure: change
   hipchat:
     rooms:
-      secure: KbkZp4ory6CIHPfbgViakBCRwhQL6lBaqZIqZU135WoRVtCFEoF5hre93y/+UKf093xefERq2eEI6z6duGFsqDPu1A6MJ1yy6vb9stf1wWozPTkwzz1glo3L0tHFI0XW9WDxQY729QR/7+C9InkDrpZHujghw3UU7YpfqDQ8fK4=
+      secure: w205gWStE9mkRjFoTP5ejaMGtcPixjlWW717kOIh3vbRMNeccpfrofEHTEADmG/b3WQudqQdqKU9rpJcOfSU/D/B6gfLG3sIDX7cObkqoNl6JtxC3FHka0coNEqOw0nr8OJs3nNLbE6msu18cO3rMLGku23d7qezh1ID0aYgnrY=
+    notify: true
