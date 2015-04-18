@@ -6,9 +6,11 @@ class Assignment < ActiveRecord::Base
   def submit(project_id, comments)
   	proj = Project.find(project_id)
   	subCopy = proj.dup
-  	subCopy.last_modified = proj.last_modified
+  	subCopy.last_modified = Time.now
   	subCopy.read_only = true
+    subCopy.submitted = true
+    subCopy.title += " --Submitted: #{Time.now}--"
   	subCopy.save
-  	Submission.create(title: subCopy.title, assignment_id: assignment_id, comments: comments, project_id: subCopy.id)
+  	Submission.create(assignment_id: self.id, comments: comments, project_id: subCopy.id)
   end
 end

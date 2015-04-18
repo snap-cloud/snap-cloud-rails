@@ -27,13 +27,13 @@ Background:
     | 300 | assign3 | "description for #3" | 234 | 3.day.ago | 3.hour.ago |
 
     Given the following projects exist:
-    |id | title | owner |
-    | 1 | aliceproj1 | 200 |
-    | 2 | aliceproj2 | 200 |
-    | 3 | aliceproj3 | 200 |
-    | 4 | beatriceproj1 | 300 |
-    | 5 | beatriceproj2 | 300 |
-    | 6 | beatriceproj3 | 300 |
+    | title | owner |
+    | aliceproj1 | 200 |
+    | aliceproj2 | 200 |
+    | aliceproj3 | 200 |
+    | beatriceproj1 | 300 |
+    | beatriceproj2 | 300 |
+    | beatriceproj3 | 300 |
 
     Given user "teacher@cal.edu" is enrolled as a teacher in "testcourse"
     Given user "teacher@cal.edu" is enrolled as a teacher in "assignmentcourse"
