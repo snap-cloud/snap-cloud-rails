@@ -61,7 +61,6 @@ class ProjectsController < ApplicationController
   private
 
     def find_project
-      puts 'find find find'
       if params[:username] && params[:projectname]
         find_project_by_name(params[:username], params[:projectname])
       elsif not Project.exists?(params[:id])
@@ -89,7 +88,7 @@ class ProjectsController < ApplicationController
         render status: 404 # FIXME - 401?
       end
       owner_id = @owner.id
-      @project = Project.find_by(owner: owner_id, title: projectname)
+      @project = Project.find_by!(owner: owner_id, title: projectname)
       if @project == nil
         render status: 404 # FIXME -- 401? Project could be private
         return
