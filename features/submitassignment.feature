@@ -33,7 +33,7 @@ Background:
 
 Scenario: Not logged in user tries to access assignment
     When I visit the assignment show page for "assign1"
-    I should see that I need to log in
+    Then I should see that I need to log in
 
 Scenario: Teacher creates assignment
     Given I am logged in as "teacher@cal.edu" with password "password"
