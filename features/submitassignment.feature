@@ -15,16 +15,22 @@ Background:
     | 234 | assignmentcourse |
 
     Given the following users exist:
-    | username | email | password | password_confirmation |
-    | teacher | teacher@cal.edu | password | password |
-    | alice | alice@cal.edu | password | password |
-    | beatrice | beatrice@cal.edu | password | password |
+    |id | username | email | password | password_confirmation |
+    | 100 | teacher | teacher@cal.edu | password | password |
+    | 200 | alice | alice@cal.edu | password | password |
+    | 300 | beatrice | beatrice@cal.edu | password | password |
 
     Given the following assignments exist:
     | title | description | course_id | start_date | due_date |
     | assign1 | "description for #1" | 234 | 1.day.ago | 1.hour.ago |
     | assign2 | "description for #2" | 234 | 2.day.ago | 2.hour.ago |
     | assign3 | "description for #3" | 234 | 3.day.ago | 3.hour.ago |
+
+    Given the following projects exist:
+    | title | owner |
+    | aliceproj1 | 200 |
+    | aliceproj2 | 200 |
+    | aliceproj3 | 200 |
 
     Given user "teacher@cal.edu" is enrolled as a teacher in "testcourse"
     Given user "teacher@cal.edu" is enrolled as a teacher in "assignmentcourse"
@@ -67,13 +73,11 @@ Scenario: Student views assignments for a class
 # end of features for just assignments
 
 Scenario: Student submits project to an assignment from a course they are a part of
-    Givens some assignments, projects I own, and a course i'm part of
-    When I go to course page
-    And I click some assignment
-    Then I should be on the show assignment page
-    Then I should be on the submission page
-    And I change the dropdown to pick the project I want to submit
+    When I try to visit the page for "testcourse"
+    And I click on assignment "assign1"
+    And I change the dropdown to pick "aliceproj1"
     And click submit
+    Then I should see that my submission was successful
 
 Scenario: Teacher views submissions for an assignment
     Given everything this needs
