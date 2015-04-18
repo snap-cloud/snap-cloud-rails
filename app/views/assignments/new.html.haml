@@ -8,7 +8,7 @@
 -@assignment.try(:errors).try(:each) do |attribute, error|
     %h3= attribute.to_s + " " + error.to_s
     %br
-=form_tag assignment_new_path(@course), method: :post, class:"pure-form pure-form-aligned" do
+=form_tag assignment_create_path(@course), method: :post, class:"pure-form pure-form-aligned" do
     %fieldset
         .pure-control-group
             %label{for: "assignment_title"} Title:
