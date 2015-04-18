@@ -63,3 +63,21 @@ Then(/^I should see all the assignments for "(.*?)"$/) do |course|
 	  end
 	end
 end
+
+Given(/^I click delete assignment$/) do
+  click_button 'Delete Assignment'
+end
+
+Then(/^I should see that I deleted the assignment$/) do
+  text = "Assignment has been deleted"
+	if page.respond_to? :should
+   	page.should have_content(text)
+  else
+   	assert page.has_content?(text)
+  end
+end
+
+When(/^I click on assignment "(.*?)"$/) do |assign|
+  a = Assignment.find_by_title(assign)
+  click_link("assignment_#{a.id}")
+end
