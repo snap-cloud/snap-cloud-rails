@@ -7,12 +7,30 @@
 %p= "Start: #{@assignment.start_date.to_s}"
 %p= "Due:   #{@assignment.due_date.to_s}"
 
--if Date.today < @assignment.due_date
-    =button_to 'Submit Project to Assignment', submission_new_path(@assignment), method: :get
--else
-    =button_to 'Submission closed', submission_new_path(@assignment), method: :get, disabled: true    
-%br
 %br
 -if @assignment.course.userRole(@user).try(:teacher?)
     =button_to 'Edit Assignment', assignment_edit_path(@assignment), method: :get
     =button_to 'Delete Assignment', assignment_delete_path(@assignment), method: :post
+-elsif Time.now < @assignment.due_date
+    %p Submit assignment:
+    =form_tag submission_create_path(@assignment), method: :post, class:"pure-form pure-form-aligned" do
+        %fieldset
+            .pure-control-group
+                %label{for: "submission_project_id"} Project:
+                %select{ :name => "submission[project_id]" }
+                    -if @user.projects.empty?
+                        %option{value: 'nothing'} You do not have any projects
+                    -@user.projects.each do |project|
+                        %option{value: project.id}= project.title
+            .pure-control-group
+                %label{for: "submission_comments"} Comments:
+                =text_area_tag 'submission[comments]'
+            %br
+            %br
+            -if @user.projects.empty?
+                =submit_tag "Submit",  disabled: true
+            -else
+                =submit_tag "Submit",  disabled: false
+
+-else
+    %p Submission for this assignment has been closed.
