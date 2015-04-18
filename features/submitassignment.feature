@@ -31,6 +31,10 @@ Background:
     Given user "alice@cal.edu" is enrolled as a student in "testcourse"
     Given user "beatrice@cal.edu" is enrolled as a student in "assignmentcourse"
 
+Scenario: Not logged in user tries to access assignment
+    When I visit the assignment show page for "assign1"
+    I should see that I need to log in
+
 Scenario: Teacher creates assignment
     Given I am logged in as "teacher@cal.edu" with password "password"
     When I try to visit the page for "testcourse"
@@ -42,7 +46,6 @@ Scenario: Teacher edits assignment
     Given I am logged in as "teacher@cal.edu" with password "password"
     And I visit the assignment show page for "assign1"
     And I click edit assignment
-    Then I should see some stuff from that assignment
     And I change title to "Thisisthenewtitle"
     Then I should see that I edited this assignment
     And I should see "Thisisthenewtitle"

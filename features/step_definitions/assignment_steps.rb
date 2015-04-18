@@ -30,9 +30,36 @@ end
 
 Given(/^I visit the assignment show page for "(.*?)"$/) do |assignment|
   assign = Assignment.find_by_title(assignment)
-  visit assignment_show_path assign
+  visit assignment_show_path assign.id
 end
 
 Given(/^I click edit assignment$/) do
   click_button 'Edit Assignment'
+end
+
+Then(/^I change title to "(.*?)"$/) do |title|
+  fill_in 'assignment_title', :with => title
+  click_button 'save'
+end
+
+Then(/^I should see that I edited this assignment$/) do
+  text = "You have edited this assignment"
+	if page.respond_to? :should
+   	page.should have_content(text)
+  else
+   	assert page.has_content?(text)
+  end
+end
+
+Then(/^I should see all the assignments for "(.*?)"$/) do |course|
+	cour = Course.find_by_title(course)
+	visit course_show_path cour.id
+	cour.assignments.each do |assignment|
+	  text = assignment.title
+		if page.respond_to? :should
+	   	page.should have_content(text)
+	  else
+	   	assert page.has_content?(text)
+	  end
+	end
 end
