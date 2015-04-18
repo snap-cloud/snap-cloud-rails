@@ -10,6 +10,10 @@ class Api::V1::ProjectsController < ApplicationController
   # returns all projects if user is looking at own projects
   # returns public projects for users if otherwise
   def index
+    if @project
+      respond_with @project
+      return
+    end
     begin
       id = Integer(params[:user_id])
     rescue
@@ -84,25 +88,25 @@ class Api::V1::ProjectsController < ApplicationController
       # projects that can't be found, and ones that are explicitly private
       # 401 reveals that a project does at least exist...is this a problem?
       # TODO: Handle multiple ownership
-      owner = User.find_by(username: username)
-      if !owner
+      @owner = User.find_by(username: username)
+      if @owner == nil
         # FIXME -- add notice username not found
         render status: 404 # FIXME - 401?
       end
-      owner_id = owner.id
-      project = Project.find_by(owner: owner_id, title: projectname)
-      if !project
+      @project = Project.find_by(owner: @owner.id, title: projectname)
+      if @project == nil
         render status: 404 # FIXME -- 401? Project could be private
+        return
       end
-      if !project.is_public && project.owner != self.getCurrentUser.id
+      if !@project.is_public && @project.owner != self.getCurrentUser.id
+        # Project Is private
         render status: 404
       end
-      @project = project
+      # @project = project
       # respond_with project
     end
       
     def find_project
-      puts 'find find find'
       if params[:username] && params[:projectname]
         find_project_by_name(params[:username], params[:projectname])
       elsif not Project.exists?(params[:id])
