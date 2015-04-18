@@ -19,12 +19,6 @@ class User < ActiveRecord::Base
 
   def assignments
     self.courses.map(&:assignments).flatten
-    ### old way
-    #assignments = [] 
-    #self.courses.each do |course| 
-    #  assignments << Assignment.where(:course_id => course.id).all
-    #end 
-    #assignments
   end
 
   
