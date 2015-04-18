@@ -66,8 +66,8 @@ ActiveRecord::Schema.define(version: 20150418033151) do
     t.datetime "last_modified"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "read_only"
-    t.boolean  "submitted"
+    t.boolean  "read_only",     default: false
+    t.boolean  "submitted",     default: false
   end
 
   create_table "submissions", force: :cascade do |t|

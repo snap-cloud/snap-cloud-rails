@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :find_project
+  before_action :find_project, except: [:new]
 
   def new
     @project = Project.new
@@ -27,19 +27,16 @@ class ProjectsController < ApplicationController
       @owner = User.find_by_id @project.owner
 
       if not (current_user && @owner == current_user)
-        access_not_allowed # 404 due to privacy concerns.
-        # render file: "#{Rails.root}/public/401.html", layout: false, status: 401
-        return
+        access_denied
       end
 
       render :action => "edit"
     else
-      render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+      item_not_found
     end
   end
 
   def update
-    # @project = find_project()
     if @project != nil
       @owner = User.find_by_id @project.owner
     end
@@ -63,9 +60,7 @@ class ProjectsController < ApplicationController
       if params[:username] && params[:projectname]
         find_project_by_name(params[:username], params[:projectname])
       elsif not Project.exists?(params[:id])
-        render status: 404
-        # render file: "/public/404.html", layout: false, status: 404
-        return
+        item_not_found
       else
         @project = Project.find(params[:id])
       end
@@ -77,26 +72,11 @@ class ProjectsController < ApplicationController
     end
 
     def find_project_by_name(username, projectname)
-      # NOTE: This method needs serious consideration about how to handle
-      # projects that can't be found, and ones that are explicitly private
-      # 401 reveals that a project does at least exist...is this a problem?
       # TODO: Handle multiple ownership
-      @owner = User.find_by(username: username)
-      if @owner == nil
-        # FIXME -- add notice username not found
-        render status: 404 # FIXME - 401?
-      end
-      owner_id = @owner.id
-      @project = Project.find_by!(owner: owner_id, title: projectname)
-      if @project == nil
-        render status: 404 # FIXME -- 401? Project could be private
-        return
-      end
+      @owner = User.find_by!(username: username)
+      @project = Project.find_by!(owner: @owner.id, title: projectname)
       if !@project.is_public && @project.owner != self.getCurrentUser.id
-        # Project Is private
-        render status: 404
+        access_denied
       end
-      # @project = project
-      # respond_with project
     end
 end
