@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150418030145) do
+ActiveRecord::Schema.define(version: 20150418033151) do
 
   create_table "Assignments", force: :cascade do |t|
     t.string   "title"
@@ -71,7 +71,6 @@ ActiveRecord::Schema.define(version: 20150418030145) do
   end
 
   create_table "submissions", force: :cascade do |t|
-    t.string   "title"
     t.integer  "assignment_id"
     t.integer  "project_id"
     t.text     "comments"
