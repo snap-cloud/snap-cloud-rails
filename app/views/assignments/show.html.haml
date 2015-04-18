@@ -15,7 +15,8 @@
     %br
     %p Submissions for this assignment:
     -@assignment.projects.each do |project|
-        =link_to project.title, project_show_path(project), id: "project_#{project.id}"
+        / TODO: Change the path to use a path helper
+        =link_to project.title, "/projects/#{project.id}", id: "project_#{project.id}"
 
 -elsif Time.now < @assignment.due_date
     %p Submit assignment:
