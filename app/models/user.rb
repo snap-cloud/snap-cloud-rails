@@ -34,12 +34,12 @@ class User < ActiveRecord::Base
 
   has_attached_file :avatar,
   :default_url => "default_avatar.jpg",
-  :storage => :s3,
-  :bucket => 'snap-cloud',
-  :s3_credentials => {
-    :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-    :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
-  },
+  # :storage => :s3,
+  # :bucket => 'snap-cloud',
+  # :s3_credentials => {
+  #   :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+  #   :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+  # },
   :styles => {
     :thumb    => ['100x100#',  :jpg, :quality => 60],
     :preview  => ['480x480#',  :jpg, :quality => 60],

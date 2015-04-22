@@ -45,11 +45,8 @@ Rails.application.configure do
   # Set up S3 storage.
   config.paperclip_defaults = {
     :storage => :filesystem,
-    :path => "#{Rails.root}/tmp/uploads/"
+    :path => "#{Rails.root}/public/uploads/",
+    :url => "public/uploads/users/avatars/:file"
   }
-
-  # TODO: Do we need this....?
-  AWS.config(:credential_provider => AWS::Core::CredentialProviders::ENVProvider.new("AWS"))
-  s3 = AWS::S3.new
 
 end

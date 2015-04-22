@@ -41,9 +41,11 @@ class UsersController < ApplicationController
       if current_user && current_user == @user
         @about_me = @user.about_me || "Enter information about you and your interests here."
       else
+        # FIXME
         render file: "#{Rails.root}/public/401.html", layout: false, status: 401
       end
     else
+      # FIXME
       render file: "#{Rails.root}/public/404.html", layout: false, status: 404
     end
   end

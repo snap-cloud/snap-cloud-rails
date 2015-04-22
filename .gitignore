@@ -7,6 +7,7 @@ capybara-*.html
 /log
 !/log/.keep
 /tmp
+!/tmp/**/.keep
 /db/*.sqlite3
 /db/*.sqlite3-journal
 /public/system
