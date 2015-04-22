@@ -1,4 +1,4 @@
-require 'byebug'
+
 
 When(/^I click the create assignment button$/) do
   click_button('Add Assignment')
