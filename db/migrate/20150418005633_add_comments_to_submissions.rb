@@ -1,5 +1,5 @@
 class AddCommentsToSubmissions < ActiveRecord::Migration
   def change
-    add_column :Submissions, :comments, :text
+    add_column :submissions, :comments, :text
   end
 end
