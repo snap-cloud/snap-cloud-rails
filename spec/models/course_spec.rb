@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper' 
 
 describe Course do
     describe "#students" do
