@@ -15,7 +15,7 @@ alec = User.create!(username: 'alecguertin',
             password: 'hellodolly') #id: 4
 arjun = User.create!(username: 'arjun',
             email: 'arjun@arjun.com',
-            password: 'arjunarjun') #id: 5
+            password: 'yoloswaggins') #id: 5
 steven = User.create!(username: 'steverino',
             email: 'stevenc1030@berkeley.edu',
             password: 'password123') #id: 6
