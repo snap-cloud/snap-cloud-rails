@@ -1,4 +1,4 @@
-require 'byebug'
+# require 'byebug'
 
 Given(/^I visit the new course page$/) do
   visit course_new_path
