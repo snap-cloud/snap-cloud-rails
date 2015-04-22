@@ -150,6 +150,7 @@ describe Api::V1::ProjectsController do
       proj4 = Project.create(title: "nonuser private", owner:not_users_id, is_public: 0)
       get :index, {user_id: user.id}, format: :json
       project_response = JSON.parse(response.body, symbolize_names: true)
+
       expect(project_response.length).to eq(2)
       expect(project_response[0][:title]).to eq("user public")
       expect(project_response[1][:title]).to eq("user private")
