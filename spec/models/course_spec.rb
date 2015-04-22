@@ -10,17 +10,23 @@ describe Course do
                                     startdate: 10.days.ago,
                                     enddate: 10.days.from_now)
 
-            @alec = User.create(email: "alec@alec.com",
+            @alec = User.create( username: "alec",
+                                email: "alec@alec.com",
                                 password: "passwordhungary")
-            @jason = User.create(email: "jason@jason.com",
+            @jason = User.create( username: "jason",
+                                email: "jason@jason.com",
                                 password: "passwordhungary")
-            @arjun = User.create(email: "arjun@arjun.com",
+            @arjun = User.create( username: "arjun",
+                                email: "arjun@arjun.com",
                                 password: "passwordhungary")
-            @linda = User.create(email: "linda@linda.com",
+            @linda = User.create( username: "linda",
+                                email: "linda@linda.com",
                                 password: "passwordhungary")
-            @steve = User.create(email: "steve@steve.com",
+            @steve = User.create( username: "steve",
+                                email: "steve@steve.com",
                                 password: "passwordhungary")
-            @michael = User.create(email: "michael@michael.com",
+            @michael = User.create( username: "michael",
+                                email: "michael@michael.com",
                                 password: "passwordhungary")
 
             @course.addUser(@alec, :student)
@@ -33,9 +39,9 @@ describe Course do
         it "Should return all the students in the course" do
             all_students = @course.students.map { |s| s.id }
             
-            # expect(all_students).to include @alec.id
-            # expect(all_students).to include @jason.id
-            # expect(all_students).to include @arjun.id
+            expect(all_students).to include @alec.id
+            expect(all_students).to include @jason.id
+            expect(all_students).to include @arjun.id
         end
 
         it "Should not return any students not enrolled in the course" do
