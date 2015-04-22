@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'api/v1/projects_controller'
-require 'byebug'
+# require 'byebug'
 
 describe Api::V1::ProjectsController do
 
