@@ -3,9 +3,12 @@ require 'sessions_controller'
 require 'registrations_controller'
 require 'api/v1/users_controller'
 
-describe Api::V1::UsersController do
+describe Api::V1::UsersController, :type => :request do
 
-  before(:each) { request.headers['Accept'] = "application/json" }
+  before(:each) do
+    puts @request
+    # @request.headers['Accept'] = "application/json"
+  end
 
   describe "GET #show" do
     before(:each) do
