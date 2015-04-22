@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper' 
 require 'sessions_controller'
 require 'registrations_controller'
 require 'api/v1/users_controller'
