@@ -1,10 +1,10 @@
-require 'spec_helper'
+require 'rails_helper' 
 require 'sessions_controller'
 require 'registrations_controller'
 require 'api/v1/users_controller'
 
 describe Api::V1::UsersController do
-
+  
   before(:each) { request.headers['Accept'] = "application/json" }
 
   describe "GET #show" do
@@ -14,7 +14,7 @@ describe Api::V1::UsersController do
       allow(controller).to receive(:current_user).and_return(fakeuser)
 
       @user = FactoryGirl.create :user
-      get :show, id: @user.id, format: :json
+      get :show, id: @user.id
 
     end
 
@@ -35,7 +35,7 @@ describe Api::V1::UsersController do
         allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
         allow(controller).to receive(:current_user).and_return(fakeuser)
 
-        post :create, { user: @user_attrs }, format: :json
+        post :create, { user: @user_attrs }
       end
 
       it "renders the json representation for the user record just created" do
@@ -57,7 +57,7 @@ describe Api::V1::UsersController do
         allow(controller).to receive(:current_user).and_return(fakeuser)
 
 
-        post :create, { user: @invalid_user_attributes }, format: :json
+        post :create, { user: @invalid_user_attributes }
       end
 
       it "renders json with errors" do
@@ -82,11 +82,10 @@ describe Api::V1::UsersController do
       allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
       allow(controller).to receive(:current_user).and_return(fakeuser)
 
-      delete :destroy, { id: @user.id }, format: :json
+      delete :destroy, { id: @user.id }
     end
 
     it { should respond_with 204 }
-
   end
 
   describe "PUT/PATCH #update" do
@@ -100,7 +99,7 @@ describe Api::V1::UsersController do
         allow(controller).to receive(:current_user).and_return(fakeuser)
 
         patch :update, { id: @user.id,
-                         user: { email: "newmail@example.com" } }, format: :json
+                         user: { email: "newmail@example.com" } }
 
       end
 
@@ -121,11 +120,10 @@ describe Api::V1::UsersController do
         allow(controller).to receive(:current_user).and_return(fakeuser)
 
 
-        patch :update, { id: @user.id,
-                         user: { email: "bademail.com" } }, format: :json
+        patch :update, { id: @user.id, user: { email: "bademail.com" } }
       end
 
-      it "renders an errors json" do
+      it "rendered json with errors" do
         user_response = JSON.parse(response.body, symbolize_names: true)
         expect(user_response).to have_key(:errors)
       end
