@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20150418033151) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "assignments", ["course_id"], name: "index_assignments_on_course_id_id"
+  # add_index "assignments", ["course_id"], name: "index_assignments_on_course_id_id"
 
   create_table "announcements", force: :cascade do |t|
     t.text     "source"
