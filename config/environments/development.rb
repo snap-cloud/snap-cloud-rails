@@ -45,8 +45,8 @@ Rails.application.configure do
   # Set up S3 storage.
   config.paperclip_defaults = {
     :storage => :filesystem,
-    :path => "#{Rails.root}/public/uploads/",
-    :url => "public/uploads/users/avatars/:file"
+    :path => "#{Rails.root}/public/:url",
+    :url => "uploads/users/avatars/:file"
   }
 
 end
