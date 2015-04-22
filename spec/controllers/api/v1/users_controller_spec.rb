@@ -3,12 +3,9 @@ require 'sessions_controller'
 require 'registrations_controller'
 require 'api/v1/users_controller'
 
-describe Api::V1::UsersController, :type => :request do
-
-  before(:each) do
-    puts @request
-    # @request.headers['Accept'] = "application/json"
-  end
+describe Api::V1::UsersController, :type => :controller do
+  #
+  before(:each) { request.headers['Accept'] = "application/json" }
 
   describe "GET #show" do
     before(:each) do
@@ -17,7 +14,7 @@ describe Api::V1::UsersController, :type => :request do
       allow(controller).to receive(:current_user).and_return(fakeuser)
 
       @user = FactoryGirl.create :user
-      get :show, id: @user.id, format: :json
+      get :show, id: @user.id
 
     end
 
@@ -38,7 +35,7 @@ describe Api::V1::UsersController, :type => :request do
         allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
         allow(controller).to receive(:current_user).and_return(fakeuser)
 
-        post :create, { user: @user_attrs }, format: :json
+        post :create, { user: @user_attrs }
       end
 
       it "renders the json representation for the user record just created" do
