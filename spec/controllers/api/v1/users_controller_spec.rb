@@ -3,8 +3,8 @@ require 'sessions_controller'
 require 'registrations_controller'
 require 'api/v1/users_controller'
 
-describe Api::V1::UsersController, :type => :controller do
-  #
+describe Api::V1::UsersController do
+  
   before(:each) { request.headers['Accept'] = "application/json" }
 
   describe "GET #show" do
@@ -57,7 +57,7 @@ describe Api::V1::UsersController, :type => :controller do
         allow(controller).to receive(:current_user).and_return(fakeuser)
 
 
-        post :create, { user: @invalid_user_attributes }, format: :json
+        post :create, { user: @invalid_user_attributes }
       end
 
       it "renders json with errors" do
@@ -82,11 +82,10 @@ describe Api::V1::UsersController, :type => :controller do
       allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
       allow(controller).to receive(:current_user).and_return(fakeuser)
 
-      delete :destroy, { id: @user.id }, format: :json
+      delete :destroy, { id: @user.id }
     end
 
     it { should respond_with 204 }
-
   end
 
   describe "PUT/PATCH #update" do
@@ -100,7 +99,7 @@ describe Api::V1::UsersController, :type => :controller do
         allow(controller).to receive(:current_user).and_return(fakeuser)
 
         patch :update, { id: @user.id,
-                         user: { email: "newmail@example.com" } }, format: :json
+                         user: { email: "newmail@example.com" } }
 
       end
 
@@ -122,7 +121,7 @@ describe Api::V1::UsersController, :type => :controller do
 
 
         patch :update, { id: @user.id,
-                         user: { email: "bademail.com" } }, format: :json
+                         user: { email: "bademail.com" } }
       end
 
       it "renders an errors json" do
