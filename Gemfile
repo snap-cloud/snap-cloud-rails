@@ -42,9 +42,7 @@ gem 'rack-cache'
 group :development, :test do
   # Cucumber, testing and coverage
   gem 'cucumber-rails', :require => false
-  gem 'rspec-rails', '>= 3.1
-  
-  '
+  gem 'rspec-rails', '>= 3.1'
   gem 'simplecov'
   gem "factory_girl_rails"
   gem 'faker'
