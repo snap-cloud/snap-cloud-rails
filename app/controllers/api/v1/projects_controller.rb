@@ -10,7 +10,6 @@ class Api::V1::ProjectsController < ProjectsController
   # returns all projects if user is looking at own projects
   # returns public projects for users if otherwise
   def index
-    # find_project
     if @project
       respond_with @project
       return

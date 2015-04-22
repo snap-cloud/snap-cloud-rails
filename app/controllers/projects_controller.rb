@@ -10,13 +10,13 @@ class ProjectsController < ApplicationController
     if @project
       render :action => "show"
     end
-    
+    # TODO: Show interesting Public Projects
   end
   
   def show
     # @project = find_project()
     if @project != nil
-      @project = Project.find(params[:id])
+      # @project = Project.find(params[:id])
       @owner = User.find_by_id @project.owner
       render :action => "show"
     end
@@ -57,11 +57,11 @@ class ProjectsController < ApplicationController
   private
 
     def find_project
+      @project = nil
       if params[:username] && params[:projectname]
         find_project_by_name(params[:username], params[:projectname])
-      elsif not Project.exists?(params[:id])
-        item_not_found
-      else
+      elsif params[:id]
+        # AR will automatically throw a not found exception
         @project = Project.find(params[:id])
       end
     end
