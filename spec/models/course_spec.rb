@@ -45,9 +45,9 @@ describe Course do
         end
 
         it "Should not return any students not enrolled in the course" do
-            SIDS = @course.students.map(&:id)
-            expect(SIDS).not_to include @steve.id
-            expect(SIDS).not_to include @michael.id
+            enrolled = @course.students.map(&:id)
+            expect(enrolled).not_to include @steve.id
+            expect(enrolled).not_to include @michael.id
         end
 
         it "Should not return any teachers" do
