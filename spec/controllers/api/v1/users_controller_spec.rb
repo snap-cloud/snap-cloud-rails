@@ -120,11 +120,10 @@ describe Api::V1::UsersController do
         allow(controller).to receive(:current_user).and_return(fakeuser)
 
 
-        patch :update, { id: @user.id,
-                         user: { email: "bademail.com" } }
+        patch :update, { id: @user.id, user: { email: "bademail.com" } }
       end
 
-      it "renders an errors json" do
+      it "rendered json with errors" do
         user_response = JSON.parse(response.body, symbolize_names: true)
         expect(user_response).to have_key(:errors)
       end
