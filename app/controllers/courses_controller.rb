@@ -1,4 +1,4 @@
-# require 'byebug'
+
 
 class CoursesController < ApplicationController
     before_filter :userLoggedIn, :except => [:index, :show]
