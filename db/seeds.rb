@@ -55,18 +55,18 @@ my_course.addUser(michael, :student)
 my_course.addUser(jason, :student)
 my_course.addUser(arjun, :student)
 
-my_course = Course.create(title: "CS161", description: "A course about security taught by Alec and his sidekick Arjun.  " \
+my_course = Course.create(title: "CS161", description: "A course about security taught by the godly Arjun and some loser named Alec.  " \
     + "Most students will fail this course and learn nothing because nobody attends lecture.  " \
     + "Luckily the class has webcasts which students use to catch up at the last minute.",
     startdate: 10.days.ago,
     enddate: 10.days.from_now)
 
-my_course.assignments << Assignment.create(title: "Arjun's evil assignment",
+my_course.assignments << Assignment.create(title: "Arjun's colossally awesome assignment",
     description: "Your grade will be randn(100). MUHAHA.",
     start_date: my_course.startdate,
     due_date: my_course.enddate)
 
-my_course.assignments << Assignment.create(title: "Alec's nice assignment",
+my_course.assignments << Assignment.create(title: "Alec's can-hardly-be-called-an-assignment",
     description: "Press the submit button for EC! WHOO.",
     start_date: my_course.startdate,
     due_date: my_course.enddate)
