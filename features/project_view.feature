@@ -12,6 +12,7 @@ Background:
   And the following projects exist:
   | id | title   | notes        | owner | is_public |
   | 1  | ohsnap! | awesomesauce | 1     | true      |
+  | 2  | ohpriv! | ucantseeme   | 1     | false     |
 
   Given I am logged in as "test@test.com" with password "yoloswaggins"
   Given I am on the project details page for "ohsnap!"
@@ -45,3 +46,8 @@ Scenario: Seeing project thumbnail
 Scenario: Editing the project from details as not owner
   Given I am logged in as "yolo@yolo.com" with password "idfkmanhehe"
   Then I should not see "edit_project"
+
+Scenario: Hide Private Project
+  And am on the project details page for "ohpriv!"
+  # Note -- We are currently returning 404's for 401's due to privacy concerns.
+  Then I should see "404"
