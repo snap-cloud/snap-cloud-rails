@@ -7,6 +7,9 @@ A CS169 Project to create a new cloud sharing system for [Snap<i>!</i>][sbe].
 
 * [![Coverage Status](https://coveralls.io/builds/2178945/badge)](https://coveralls.io/builds/2178945)
 
+* [![Inline docs](http://inch-ci.org/github/snap-cloud/snap-cloud.svg?branch=master)](http://inch-ci.org/github/snap-cloud/snap-cloud)
+
+* 
 For CS169: Please see the [wiki][wiki] for documentation about each iteration.
 
 # What is Snap<i>!</i>?
