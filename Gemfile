@@ -40,7 +40,7 @@ gem 'rack-cache'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :development, :test do
+group :test do
   # Cucumber, testing and coverage
   gem 'cucumber-rails', :require => false
   gem 'rspec-rails', '>= 3.1'
@@ -48,8 +48,10 @@ group :development, :test do
   gem 'faker'
   gem "shoulda-matchers"
   
+  # Lots of different coverage things...
   gem 'simplecov'
   gem 'coveralls', require: false
+  gem "codeclimate-test-reporter", require: nil
   
   gem "database_cleaner"
 end
