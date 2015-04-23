@@ -47,12 +47,12 @@ group :test do
   gem "factory_girl_rails"
   gem 'faker'
   gem "shoulda-matchers"
-  
+
   # Lots of different coverage things...
   gem 'simplecov'
   gem 'coveralls', require: false
   gem "codeclimate-test-reporter", require: nil
-  
+
   gem "database_cleaner"
 end
 
@@ -76,16 +76,16 @@ group :development do
   # Custtom Error Pages in Dev Only
   gem "better_errors"
   gem "binding_of_caller"
-  
+
   # Disable logging Assets in the Server log
   gem 'quiet_assets'
-  
+
   # Code Linting
   gem 'rubocop', require: false
-  
+
   # Better Debugging From Rails Console (See Readme)
   gem 'awesome_print'
-  
+
   # Code Quality Locally
   gem 'metric_fu'
 end
@@ -97,7 +97,7 @@ end
 group :staging, :production do
   # Use Unicorn as the app server
   # gem 'puma'
-  
+
   # Postgres DB
   gem 'pg'
   # Perf and other Heroku features

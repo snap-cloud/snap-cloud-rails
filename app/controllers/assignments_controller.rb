@@ -68,7 +68,7 @@ class AssignmentsController < ApplicationController
 
   def courseExists
   	if !Course.exists?(params[:course_id])
-    	render file: "#{Rails.root}/public/404.html", layout: false, status: 404 and return
+    	item_not_found
     else
     	@course = Course.find(params[:course_id])
     end
@@ -82,13 +82,13 @@ class AssignmentsController < ApplicationController
   		@course = Course.find(@assignment.course.id)
   	end
     if !@course.userRole(getCurrentUser).try(:teacher?)
-      render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
+      access_denied
     end
   end
 
   def assignmentExists
   	if !Assignment.exists?(params[:id])
-    	render file: "#{Rails.root}/public/404.html", layout: false, status: 404 and return
+    	item_not_found
     else
     	@assignment = Assignment.find(params[:id])
     end
@@ -96,7 +96,7 @@ class AssignmentsController < ApplicationController
 
   def partOfCourse
     if @assignment.course.userRole(@user).nil?
-      render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
+      access_denied
     end
   end
 end

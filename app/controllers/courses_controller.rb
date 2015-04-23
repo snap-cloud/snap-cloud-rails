@@ -135,7 +135,7 @@ class CoursesController < ApplicationController
 
   def courseExists
     if !Course.exists?(params[:id])
-      render file: "#{Rails.root}/public/404.html", layout: false, status: 404 and return
+      item_not_found
     else
       @course = Course.find(params[:id])
     end
@@ -143,8 +143,8 @@ class CoursesController < ApplicationController
 
   def authCourseEdit
     if !@course.userRole(getCurrentUser).try(:teacher?)
-      render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
+      access_denied
     end
   end
-  
+
 end
