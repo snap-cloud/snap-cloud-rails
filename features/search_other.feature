@@ -69,7 +69,7 @@ Scenario: See my own presonal private projects.
   # NOW REVEAL PRIVATE PROJECTS
   Then I should see "ohsnap-private!" in the "Project Results" section
 
-Secnario: No Content Is Found.
+Scenario: No Content Is Found.
   Given I enter a search term "iamnotarealuser"
   Then I should be redirected to the search results page
   Then I should see "Search Term"
