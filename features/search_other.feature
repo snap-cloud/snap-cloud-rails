@@ -53,7 +53,7 @@ Scenario: Searching By Project Title
   # DO NOT REVEAL PRIVATE PROJECTS
   Then I should not see "ohsnap-private!" in the "Project Results" section
 
-Scenario: See my own presonal private projects.
+Scenario: See all my own projects
   Given I am logged in as "test@test.com" with password "yoloswaggins"
   Given I enter a search term "ohsnap"
   Then I should be redirected to the search results page
@@ -69,7 +69,7 @@ Scenario: See my own presonal private projects.
   # NOW REVEAL PRIVATE PROJECTS
   Then I should see "ohsnap-private!" in the "Project Results" section
 
-Secnario: No Content Is Found.
+Scenario: No Content Is Found
   Given I enter a search term "iamnotarealuser"
   Then I should be redirected to the search results page
   Then I should see "Search Term"
