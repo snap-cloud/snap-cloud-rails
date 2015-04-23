@@ -83,6 +83,9 @@ group :development do
   
   # Better Debugging From Rails Console (See Readme)
   gem 'awesome_print'
+  
+  # Code Quality Locally
+  gem 'metric_fu'
 end
 
 group :staging do
