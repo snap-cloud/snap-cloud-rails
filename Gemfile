@@ -65,7 +65,7 @@ group :development do
   gem 'spring'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  # gem 'web-console', '~> 2.0'
   # Security Analysis
   gem 'brakeman'
   # DB Query Analysis / Optimizations
@@ -81,7 +81,7 @@ group :development do
   # Code Linting
   gem 'rubocop', require: false
   
-  # Better Debugging From Rails Console
+  # Better Debugging From Rails Console (See Readme)
   gem 'awesome_print'
 end
 
