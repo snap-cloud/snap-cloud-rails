@@ -1,9 +1,7 @@
-
-
 class CoursesController < ApplicationController
-    before_filter :userLoggedIn, :except => [:index, :show]
-    before_filter :courseExists, :except => [:new, :create, :index]
-    before_filter :authCourseEdit, :only => [:update, :delete, :edit]
+    before_filter :userLoggedIn, except: [:index, :show]
+    before_filter :courseExists, except: [:new, :create, :index]
+    before_filter :authCourseEdit, only: [:update, :delete, :edit]
 
   def create
     user = getCurrentUser
@@ -26,7 +24,7 @@ class CoursesController < ApplicationController
     @assignments = @course.assignments
     @user = getCurrentUser
     # @course = Course.find(params[:id])
-    #Find the course with the give id
+    # Find the course with the give id
   end
 
   def update

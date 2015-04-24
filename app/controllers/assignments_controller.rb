@@ -1,9 +1,9 @@
 class AssignmentsController < ApplicationController
   before_filter :userLoggedIn
-  before_filter :courseExists, :only => [:new, :create]
-  before_filter :assignmentExists, :only => [:show, :edit, :update, :delete]
-  before_filter :partOfCourse, :only => [:show]
-  before_filter :authCourseEdit, :except => [:show]
+  before_filter :courseExists, only: [:new, :create]
+  before_filter :assignmentExists, only: [:show, :edit, :update, :delete]
+  before_filter :partOfCourse, only: [:show]
+  before_filter :authCourseEdit, except: [:show]
 
   def show
     @assignment = Assignment.find_by(id: params[:id])
@@ -19,7 +19,7 @@ class AssignmentsController < ApplicationController
     if @assignment.valid?
       @course.assignments << @assignment
       flash[:message] = "You have created this assignment"
-      redirect_to assignment_show_path(@assignment) and return
+      redirect_to assignment_show_path(@assignment) && return
     else
       render 'new'
       return
@@ -37,7 +37,7 @@ class AssignmentsController < ApplicationController
     if @update.valid?
       Assignment.update(@assignment.id, assignment_params)
       flash[:message] = "You have edited this assignment"
-      redirect_to assignment_show_path(@assignment) and return
+      redirect_to assignment_show_path(@assignment) && return
     else
       render 'edit'
       return
@@ -60,7 +60,7 @@ class AssignmentsController < ApplicationController
 
   def userLoggedIn
     if getCurrentUser.nil?
-      redirect_to login_path and return
+      redirect_to login_path && return
     else
       @user = getCurrentUser
     end
@@ -78,7 +78,7 @@ class AssignmentsController < ApplicationController
     if params[:course_id]
       @course = Course.find(params[:course_id])
     else
-      assignment = Assignment.find(params[:id])
+      # assignment = Assignment.find(params[:id])
       @course = Course.find(@assignment.course.id)
     end
     if !@course.userRole(getCurrentUser).try(:teacher?)
