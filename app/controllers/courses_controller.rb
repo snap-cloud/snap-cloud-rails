@@ -60,32 +60,6 @@ class CoursesController < ApplicationController
     params.require(:course).permit(:title, :website, :description, :startdate, :enddate)
   end
 
-  # def getCurrentUser
-  #   current_user
-  # end
-
-  # def userLoggedIn
-  #   if getCurrentUser.nil?
-  #       redirect_to login_path and return
-  #   else
-  #     @user = getCurrentUser
-  #   end
-  # end
-
-  # def courseExists
-  #   if !Course.exists?(params[:id])
-  #     render file: "#{Rails.root}/public/404.html", layout: false, status: 404 and return
-  #   else
-  #     @course = Course.find(params[:id])
-  #   end
-  # end
-
-  # def authCourseEdit
-  #   if !@course.userRole(getCurrentUser).try(:teacher?)
-  #     render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
-  #   end
-  # end
-
   private
 
   def dropUsers
@@ -98,18 +72,24 @@ class CoursesController < ApplicationController
     end
   end
 
-  def addUsers
-    incorrectEmails = ""
+  def parseEmails
     adds = params[:adds]
     addField = params[:add_field]
     emails = []
     if adds then emails += adds.values end
     if addField then emails << addField.to_s end
+    emails.reject!(&:empty?)
+    return emails
+  end
+
+  def addUsers
+    incorrectEmails = ""
+    emails = parseEmails
     emails.each do |email|
       addUser = User.find_by(email: email)
       if !addUser.nil?
         @course.addUser(addUser, :student)
-      elsif !email.nil? && !email.empty?
+      else
         incorrectEmails += "Email could not be found: " + email + "\n"
       end
     end
