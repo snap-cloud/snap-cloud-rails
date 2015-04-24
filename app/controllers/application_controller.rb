@@ -17,14 +17,14 @@ class ApplicationController < ActionController::Base
 
   # Clean Error Handler Methods
   # Use these in place of handling errors individually.
-  def access_denied(msg = nil)  # Equivalent 401
-    default = 'You don\'t have permission to view this.'
+  def access_denied(msg=nil)  # Equivalent 401
+    default = "You don't have permission to view this."
     msg = msg || default
     raise SnapException::AccessDenied.new(msg)
   end
 
-  def item_not_found(msg = nil) # Equivalent 404
-    default = 'This is Could Not Be Found'
+  def item_not_found(msg=nil) # Equivalent 404
+    default = "This item couldn't be found."
     msg = msg || default
     raise ActiveRecord::RecordNotFound.new(msg)
   end

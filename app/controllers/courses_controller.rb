@@ -18,7 +18,7 @@ class CoursesController < ApplicationController
       render 'new'
       return
     end
-    #form on the new page gets submitted here
+    # form on the new page gets submitted here
   end
 
   def show
@@ -55,7 +55,6 @@ class CoursesController < ApplicationController
     if adds
       adds.each do |key, email|
         addUser = User.find_by(email: email)
-        #byebug
         if !addUser.nil?
           @course.addUser(addUser, :student)
         elsif !email.nil? && !email.empty?
@@ -66,7 +65,6 @@ class CoursesController < ApplicationController
     addField = params[:add_field]
     if addField
       addUser = User.find_by(email: addField)
-      #byebug
       if !addUser.nil?
         @course.addUser(addUser, :student)
       elsif !addField.nil? && !addField.empty?
@@ -77,7 +75,7 @@ class CoursesController < ApplicationController
       flash[:message] = incorrectEmails
     end
     redirect_to course_edit_path(@course)
-    #form on the edit page submitted here
+    # form on the edit page submitted here
   end
 
   def delete
@@ -109,7 +107,6 @@ class CoursesController < ApplicationController
   end
 
   def index
-    #find all courses
     @courses = Course.all
   end
 
@@ -126,8 +123,9 @@ class CoursesController < ApplicationController
   end
 
   def userLoggedIn
+    # FIXME This is app level stuff
     if getCurrentUser.nil?
-        redirect_to login_path and return
+      redirect_to login_path and return
     else
       @user = getCurrentUser
     end
@@ -146,5 +144,4 @@ class CoursesController < ApplicationController
       access_denied
     end
   end
-
 end
