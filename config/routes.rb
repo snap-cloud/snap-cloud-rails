@@ -22,19 +22,19 @@ Rails.application.routes.draw do
 
   get 'assignments/:course_id/new', to: 'assignments#new', as: 'assignment_new'
   post 'assignments/:course_id/create',      to: 'assignments#create', as: 'assignment_create'
-  post 'assignments/:id/update',  to: 'assignments#update', as: 'assignment_update'
-  post 'assignments/:id/delete',  to: 'assignments#delete', as: 'assignment_delete'
-  get 'assignments/:id/edit',     to: 'assignments#edit', as: 'assignment_edit'
-  get 'assignments/:id',          to: 'assignments#show', as: 'assignment_show'
+  post 'assignments/:assignment_id/update',  to: 'assignments#update', as: 'assignment_update'
+  post 'assignments/:assignment_id/delete',  to: 'assignments#delete', as: 'assignment_delete'
+  get 'assignments/:assignment_id/edit',     to: 'assignments#edit', as: 'assignment_edit'
+  get 'assignments/:assignment_id',          to: 'assignments#show', as: 'assignment_show'
 
   post 'submissions/:assignment_id/create', to: 'submissions#create', as: 'submission_create'
 
   post 'courses/create',      to: 'courses#create', as: 'course_create'
   get 'courses/new',          to: 'courses#new', as: 'course_new'
-  post 'courses/:id/update',  to: 'courses#update', as: 'course_update'
-  post 'courses/:id/delete',  to: 'courses#delete', as: 'course_delete'
-  get 'courses/:id/edit',     to: 'courses#edit', as: 'course_edit'
-  get 'courses/:id',          to: 'courses#show', as: 'course_show'
+  post 'courses/:course_id/update',  to: 'courses#update', as: 'course_update'
+  post 'courses/:course_id/delete',  to: 'courses#delete', as: 'course_delete'
+  get 'courses/:course_id/edit',     to: 'courses#edit', as: 'course_edit'
+  get 'courses/:course_id',          to: 'courses#show', as: 'course_show'
   get 'courses',              to: 'courses#index', as: 'course_index'
 
   # Cleaner URLs for HTML pages.
