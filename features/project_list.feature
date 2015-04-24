@@ -9,10 +9,10 @@ Background:
   | testuser | 1  | test@example.com  |  hello   |       hello           |
 
   And the following projects exist:
-  | title  |   notes      | owner | is_public | created_on | class | 
-  | foo    | description0 |   1   |   true    |    3:00    | cs169 |
-  | bar    | description1 |   1   |   false   |    2:00    | cs169 | 
-  | baz    | description2 |   1   |   true    |    1:00    | cs170 |
+  | title  |   notes      | owner | is_public | created_at |
+  | foo    | description0 |   1   |   true    |    3:00    |
+  | bar    | description1 |   1   |   false   |    2:00    |
+  | baz    | description2 |   1   |   true    |    1:00    |
 
   Given I am logged in as testuser
   And I visit the home page

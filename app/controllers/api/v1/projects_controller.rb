@@ -1,4 +1,5 @@
-class Api::V1::ProjectsController < ApplicationController
+class Api::V1::ProjectsController < ProjectsController
+  before_action :find_project, only: [:index]
   respond_to :json
 
   # FIXME -- this method needs auth checking as well.`
@@ -9,14 +10,20 @@ class Api::V1::ProjectsController < ApplicationController
   # returns all projects if user is looking at own projects
   # returns public projects for users if otherwise
   def index
-    begin
-      id = Integer(params[:user_id])
-    rescue
+    if @project
+      respond_with @project
+      return
     end
-    if !getCurrentUser.nil? && getCurrentUser.id == id
-      respond_with Project.where(owner: id)
-    else
-      respond_with Project.where(owner: id, is_public: true)
+    if params[:user_id]
+      begin
+        id = Integer(params[:user_id])
+      rescue
+      end
+      if !getCurrentUser.nil? && getCurrentUser.id == id
+        respond_with Project.where(owner: id)
+      else
+        respond_with Project.where(owner: id, is_public: true)
+      end
     end
   end
 
@@ -24,10 +31,6 @@ class Api::V1::ProjectsController < ApplicationController
     project = Project.new({})
     project.save
     render :nothing => true, status: 200
-    ## old code
-    #render json: project, status: 201, location: [:api, project]
-
-
   end
 
 
@@ -77,6 +80,5 @@ class Api::V1::ProjectsController < ApplicationController
       params.require(:project).permit(:title, :notes, :thumbnail, :contents,
         :is_public, :owner, :last_modified, :created_at, :updated_at)
     end
-
 
 end

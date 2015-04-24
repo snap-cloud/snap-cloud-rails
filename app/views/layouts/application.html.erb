@@ -28,7 +28,12 @@
     </ul>
   </div>
 
-<%= yield %>
+    <div class="content">
+        <% if current_user %>
+            <% render partial: 'pages/navigation' %>
+        <% end %>
+        <%= yield %>
+    </div>
 
 </body>
 </html>
