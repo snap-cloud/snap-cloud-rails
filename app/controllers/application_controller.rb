@@ -20,4 +20,31 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :username, :email, :password, :remember_me) }
       devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :password_confirmation, :current_password) }
     end
+
+    def getCurrentUser
+      current_user
+    end
+
+    def userLoggedIn
+      if getCurrentUser.nil?
+          redirect_to login_path and return
+      else
+        @user = getCurrentUser
+      end
+    end
+
+    def courseExists
+      if params[:course_id]
+        @course = Course.find(params[:course_id])
+      elsif params[:assignment_id]
+        @assignment = Assignment.find(params[:assignment_id])
+        @course = Course.find(@assignment.course.id)
+      end
+    end
+
+    def authCourseEdit
+      if !@course.userRole(getCurrentUser).try(:teacher?)
+        render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
+      end
+    end
 end

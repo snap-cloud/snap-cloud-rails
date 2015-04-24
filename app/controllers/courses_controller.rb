@@ -22,57 +22,14 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.find(params[:id])
     @assignments = @course.assignments
     @user = getCurrentUser
-    # @course = Course.find(params[:id])
     #Find the course with the give id
   end
 
   def update
-=begin
-    @course = courseExists?("The course you're trying to update does not exist")
-    if !@course
-      return
-    end
-    if !userLoggedIn?("You must be logged in to edit a course")
-      return
-    end
-    if !@course.userRole(getCurrentUser).try(:teacher?)
-      flash[:message] = "You do not have permission to edit this course"
-    end
-=end
-    @course = Course.find(params[:id])
-    drops = params[:drops]
-    if drops
-      drops.each_key do |email|
-        drop = User.find_by(email: email)
-        @course.removeUser(drop)
-      end
-    end
-    incorrectEmails = ""
-    adds = params[:adds]
-    if adds
-      adds.each do |key, email|
-        addUser = User.find_by(email: email)
-        #byebug
-        if !addUser.nil?
-          @course.addUser(addUser, :student)
-        elsif !email.nil? && !email.empty?
-          incorrectEmails += "Email could not be found: " + email + "\n"
-        end
-      end
-    end
-    addField = params[:add_field]
-    if addField
-      addUser = User.find_by(email: addField)
-      #byebug
-      if !addUser.nil?
-        @course.addUser(addUser, :student)
-      elsif !addField.nil? && !addField.empty?
-        incorrectEmails += "Email could not be found: " + addField + "\n"
-      end
-    end
+    dropUsers
+    incorrectEmails = addUsers
     if !incorrectEmails.empty?
       flash[:message] = incorrectEmails
     end
@@ -81,27 +38,9 @@ class CoursesController < ApplicationController
   end
 
   def delete
-=begin
-    if !userLoggedIn?("Log in to delete this course")
-      return
-    end
-    @course = courseExists?("The course you're trying to delete does not exist")
-    if !@course
-      return
-    end
-    if @course.userRole(getCurrentUser).try(:teacher?)
-      @course.destroy
-      flash[:message] = "Course has been deleted"
-      redirect_to course_index_path and return
-    else
-      flash[:message] = "You do not have permission to delete this course"
-      redirect_to course_show_path(@course) and return
-    end
-=end
-      @course = Course.find(params[:id])
-      @course.destroy
-      flash[:message] = "Course has been deleted"
-      redirect_to course_index_path and return
+    @course.destroy
+    flash[:message] = "Course has been deleted"
+    redirect_to course_index_path and return
   end
 
   def new
@@ -121,30 +60,60 @@ class CoursesController < ApplicationController
     params.require(:course).permit(:title, :website, :description, :startdate, :enddate)
   end
 
-  def getCurrentUser
-    current_user
-  end
+  # def getCurrentUser
+  #   current_user
+  # end
 
-  def userLoggedIn
-    if getCurrentUser.nil?
-        redirect_to login_path and return
-    else
-      @user = getCurrentUser
+  # def userLoggedIn
+  #   if getCurrentUser.nil?
+  #       redirect_to login_path and return
+  #   else
+  #     @user = getCurrentUser
+  #   end
+  # end
+
+  # def courseExists
+  #   if !Course.exists?(params[:id])
+  #     render file: "#{Rails.root}/public/404.html", layout: false, status: 404 and return
+  #   else
+  #     @course = Course.find(params[:id])
+  #   end
+  # end
+
+  # def authCourseEdit
+  #   if !@course.userRole(getCurrentUser).try(:teacher?)
+  #     render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
+  #   end
+  # end
+
+  private
+
+  def dropUsers
+    drops = params[:drops]
+    if drops
+      drops.each_key do |email|
+        drop = User.find_by(email: email)
+        @course.removeUser(drop)
+      end
     end
   end
 
-  def courseExists
-    if !Course.exists?(params[:id])
-      render file: "#{Rails.root}/public/404.html", layout: false, status: 404 and return
-    else
-      @course = Course.find(params[:id])
+  def addUsers
+    incorrectEmails = ""
+    adds = params[:adds]
+    addField = params[:add_field]
+    emails = []
+    if adds then emails += adds.values end
+    if addField then emails << addField.to_s end
+    emails.each do |email|
+      addUser = User.find_by(email: email)
+      if !addUser.nil?
+        @course.addUser(addUser, :student)
+      elsif !email.nil? && !email.empty?
+        incorrectEmails += "Email could not be found: " + email + "\n"
+      end
     end
-  end
-
-  def authCourseEdit
-    if !@course.userRole(getCurrentUser).try(:teacher?)
-      render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
-    end
+    return incorrectEmails
   end
   
 end
