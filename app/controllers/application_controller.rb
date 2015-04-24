@@ -1,9 +1,6 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-
-
-  # This is for JSON APIs
   protect_from_forgery with: :exception
   protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format == 'application/json' }
 
@@ -11,6 +8,27 @@ class ApplicationController < ActionController::Base
   # acts_as_token_authentication_handler_for User
 
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+
+  # Custom Error Methos
+  module SnapException
+    class AccessDenied < StandardError; end
+  end 
+
+  # Clean Error Handler Methods
+  # Use these in place of handling errors individually.
+  def access_denied # Equivalent 401
+    raise SnapException::AccessDenied.new('You don\'t have permission to view this.')
+  end
+  
+  def item_not_found # Equivalent 404
+    raise ActiveRecord::RecordNotFound.new('Not Found')
+  end
+  
+  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+  # Treat 401s as 404s for privacy concerns
+  rescue_from SnapException::AccessDenied, :with => :record_not_found
+
 
   protected
 
@@ -45,6 +63,19 @@ class ApplicationController < ActionController::Base
     def authCourseEdit
       if !@course.userRole(getCurrentUser).try(:teacher?)
         render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
+      end
+    end
+    
+  private
+    def record_not_found(error)
+      respond_to do |format|
+        format.html {
+          # TODO: Render specific error message somewhere?
+          render file: "pages/_404.html", layout: true, status: 404
+        }
+        format.json {
+          render json: {:error => error.message}, status: 404
+        }
       end
     end
 end

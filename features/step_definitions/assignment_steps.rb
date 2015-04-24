@@ -1,4 +1,4 @@
-require 'byebug'
+
 
 When(/^I click the create assignment button$/) do
   click_button('Add Assignment')
@@ -98,7 +98,6 @@ Given(/^the following submissions exist:$/) do |table|
 end
 
 When(/^I select "(.*?)" to submit$/) do |proj|
-	pro = Project.find_by_title(proj)
   select proj, :from => "submission[project_id]"
   click_button 'Submit'
 end
@@ -143,10 +142,8 @@ Given(/^user "(.*?)" with password "(.*?)" submits "(.*?)" and "(.*?)" to "(.*?)
   click_button "Log in"
   assignment = Assignment.find_by_title(assign)
   visit assignment_show_path assignment.id
-  pro1 = Project.find_by_title(proj1)
   select proj1, :from => "submission[project_id]"
   click_button 'Submit'
-  pro2 = Project.find_by_title(proj2)
   select proj2, :from => "submission[project_id]"
   click_button 'Submit'
   visit logout_path

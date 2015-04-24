@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'api/v1/projects_controller'
-require 'byebug'
+
 
 describe Api::V1::ProjectsController do
 
@@ -14,7 +14,7 @@ describe Api::V1::ProjectsController do
       allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
       allow(controller).to receive(:current_user).and_return(fakeuser)
 
-      get :show, id: @project.id, format: :json
+      get :show, id: @project.id
     end
 
     it { should respond_with 200 }
@@ -38,14 +38,14 @@ describe Api::V1::ProjectsController do
       proj = Project.create(title: "Test proj", owner:user.id)
       Project.any_instance.should_receive(:update_attributes)
       Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user)
-      put :update, { project_params: proj.attributes, id:proj.id }, format: :json
+      put :update, { project_params: proj.attributes, id:proj.id }
       expect(response.status).to eq(204)
     end
 
     it "should reject the request when I am not logged in" do
       proj = Project.create(title: "Test proj")
       Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(nil)
-      put :update, { project_params: proj.attributes, id:proj.id}, format: :json
+      put :update, { project_params: proj.attributes, id:proj.id}
       expect(response.status).to eq(401)
     end
 
@@ -54,7 +54,7 @@ describe Api::V1::ProjectsController do
       not_users_id = user.id+1
       proj = Project.create(title: "Test proj", owner:(not_users_id))
       Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user)
-      put :update, { project_params: proj.attributes, id:proj.id }, format: :json
+      put :update, { project_params: proj.attributes, id:proj.id }
       expect(response.status).to eq(401)
     end    
 
@@ -62,7 +62,7 @@ describe Api::V1::ProjectsController do
       user = User.create(email: "steven@berk.edu")
       proj = Project.create(title: "Test proj", owner:user.id)
       Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user)
-      put :update, { project_params: proj.attributes, id:(proj.id+1) }, format: :json
+      put :update, { project_params: proj.attributes, id:(proj.id+1) }
       expect(response.status).to eq(404)
     end
   end
@@ -83,12 +83,9 @@ describe Api::V1::ProjectsController do
       Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user1)
 
       post :create, {project_params: {title: "test proj for user 1", owner:user1.id}}
-      expect(response.status).to eq(200) #:ok
+      expect(response.status).to eq(200)
     end
 
- 
-
- 
   end
 
   describe "DELETE #destroy" do
@@ -109,22 +106,19 @@ describe Api::V1::ProjectsController do
       Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user1)
       user1_proj = Project.create(title: "user1 proj", owner:user1.id)
 
-      delete :destroy, {id: user1_proj.id}
-      #project_response = JSON.parse(response.body, symbolize_names: true)
-      ## response is populated with last response; last line is unnecessary for now
-      expect(response.status).to eq(200) #:ok
+      delete :destroy, { id: user1_proj.id }
+      expect(response.status).to eq(200)
     end
     
     it "should reject the request if user is not an owner" do 
       user1 = User.create(email: "linda@berk.edu")
       user2 = User.create(email: "ellen@berk.edu")
       Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user2)
-      user1_proj = Project.create(title: "user1 proj", owner:user1.id)
+      user1_proj = Project.create(title: "user1 proj", owner: user1.id)
 
-      delete :destroy, {id: user1_proj.id} 
-      #project_response = JSON.parse(response.body, symbolize_names: true)
-      ## response is populated with last response; last line is unnecessary for now
-      expect(response.status).to eq(401) #:unauthorized
+      delete :destroy, { id: user1_proj.id }
+      # FIXME -- Should probably be a 404.
+      expect(response.status).to eq(401)
     end 
   end
 
@@ -148,14 +142,15 @@ describe Api::V1::ProjectsController do
       proj2 = Project.create(title: "user private", owner:user.id, is_public: 0)
       proj3 = Project.create(title: "nonuser public", owner:not_users_id, is_public: 1)
       proj4 = Project.create(title: "nonuser private", owner:not_users_id, is_public: 0)
-      get :index, {user_id: user.id}, format: :json
+      get :index, {user_id: user.id}
       project_response = JSON.parse(response.body, symbolize_names: true)
+
       expect(project_response.length).to eq(2)
       expect(project_response[0][:title]).to eq("user public")
       expect(project_response[1][:title]).to eq("user private")
     end
 
-    it "Should show only public projects if user not logged in" do
+    it "should show only public projects if user not logged in" do
       user = User.create(email: "jwang@berk.edu")
       not_users_id = user.id+1
       Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(nil)
@@ -163,7 +158,7 @@ describe Api::V1::ProjectsController do
       proj2 = Project.create(title: "user private", owner:user.id, is_public: 0)
       proj3 = Project.create(title: "nonuser public", owner:not_users_id, is_public: 1)
       proj4 = Project.create(title: "nonuser private", owner:not_users_id, is_public: 0)
-      get :index, {user_id: user.id}, format: :json
+      get :index, {user_id: user.id}
       project_response = JSON.parse(response.body, symbolize_names: true)
       expect(project_response.length).to eq(1)
       expect(project_response[0][:title]).to eq("user public")
@@ -176,8 +171,7 @@ describe Api::V1::ProjectsController do
   #     before(:each) do
   #       @project = FactoryGirl.create :project
   #       patch :update, { id: @project.id,
-  #                        project: { title: "new title" } }, format: :json
-  #     end
+  #                        project: { title: "new title" } }  #     end
 
   #     it "renders the json representation for the updated project" do
   #       project_response = JSON.parse(response.body, symbolize_names: true)
@@ -191,8 +185,7 @@ describe Api::V1::ProjectsController do
   #     before(:each) do
   #       @project = FactoryGirl.create :project
   #       patch :update, { id: @project.id,
-  #                        project: { title: "bad title" } }, format: :json
-  #     end
+  #                        project: { title: "bad title" } }  #     end
 
   #     it "renders an errors json" do
   #       project_response = JSON.parse(response.body, symbolize_names: true)

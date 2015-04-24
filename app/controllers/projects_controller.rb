@@ -1,38 +1,42 @@
 class ProjectsController < ApplicationController
+  before_action :find_project, except: [:new]
 
   def new
     @project = Project.new
   end
 
 
+  def index
+    if @project
+      render :action => "show"
+    end
+    # TODO: Show interesting Public Projects
+  end
+  
   def show
-    @project = find_project()
+    # @project = find_project()
     if @project != nil
-      @project = Project.find(params[:id])
+      # @project = Project.find(params[:id])
       @owner = User.find_by_id @project.owner
       render :action => "show"
     end
   end
 
   def edit
-    # TODO: don't forget to see if the user is an owner before actually letting them edit!
-    @project = find_project()
     if @project != nil
       @owner = User.find_by_id @project.owner
 
       if not (current_user && @owner == current_user)
-        render file: "#{Rails.root}/public/401.html", layout: false, status: 401
-        return
+        access_denied
       end
 
       render :action => "edit"
     else
-      render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+      item_not_found
     end
   end
 
   def update
-    @project = find_project()
     if @project != nil
       @owner = User.find_by_id @project.owner
     end
@@ -53,16 +57,26 @@ class ProjectsController < ApplicationController
   private
 
     def find_project
-      if not Project.exists?(params[:id])
-        render file: "#{Rails.root}/public/404.html", layout: false, status: 404
-        return
+      @project = nil
+      if params[:username] && params[:projectname]
+        find_project_by_name(params[:username], params[:projectname])
+      elsif params[:id]
+        # AR will automatically throw a not found exception
+        @project = Project.find(params[:id])
       end
-      return Project.find(params[:id])
     end
 
     def project_params
-      params.require(:project).permit(:title, :notes, :is_public)
+      # FIXME -- verify with API controller?
+      params.require(:project).permit(:title, :notes, :is_public, :contents)
     end
 
-
+    def find_project_by_name(username, projectname)
+      # TODO: Handle multiple ownership
+      @owner = User.find_by!(username: username)
+      @project = Project.find_by!(owner: @owner.id, title: projectname)
+      if !@project.is_public && @project.owner != self.getCurrentUser.id
+        access_denied
+      end
+    end
 end

@@ -44,14 +44,11 @@ Rails.application.configure do
 
   # Set up S3 storage.
   config.paperclip_defaults = {
-    :storage => :s3,
-    :bucket => ENV['S3_BUCKET_NAME'],
-    :s3_credentials => {
-      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
-    }
+    :storage => :filesystem,
+    :path => "#{Rails.root}/tmp/uploads/"
   }
 
+  # TODO: Do we need this....?
   AWS.config(:credential_provider => AWS::Core::CredentialProviders::ENVProvider.new("AWS"))
   s3 = AWS::S3.new
 

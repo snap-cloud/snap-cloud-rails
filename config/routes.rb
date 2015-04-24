@@ -17,7 +17,10 @@ Rails.application.routes.draw do
 
   # viewable project mappings
   resources :projects #, :only => [:show] # , :new, :create
-  resources :users
+  resources :users do
+    resources :projects
+  end
+  
 
 
   get 'assignments/:course_id/new', to: 'assignments#new', as: 'assignment_new'
@@ -48,17 +51,19 @@ Rails.application.routes.draw do
   # NOTE: We should probably use a subdomain in the future, add:
   # constraints: { subdomain: 'api' }, path: '/'
   # Scoping is used so that there isn't a version in the URL
+  # FIXME -- force all api stuff to be json, but this line is broken:
+  # format: true, contrainsts: {format: :json},
   namespace :api, defaults: { format: :json }  do
     scope module: :v1,
           constraints: ApiConstraints.new(version: 1, default: true) do
       # Tokens are an easier way to handle API auth.
       resources :users do
-        # TODO: Restrict options here
-        resources :projects
+        resources :projects, only: [:index]
       end
-      # TODO: Restrict options here to not duplicate the ones above.
-      resources :projects
+      resources :projects #, except: [:index]
       # Comments eventually?
+      # Classes
+      # Assignments / Submissions
     end
   end
 
