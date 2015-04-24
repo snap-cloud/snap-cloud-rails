@@ -52,18 +52,4 @@ class AssignmentsController < ApplicationController
     params.require(:assignment).permit(:title, :description, :start_date, :due_date)
   end
 
-  def assignmentExists
-  	if !Assignment.exists?(params[:assignment_id])
-    	render file: "#{Rails.root}/public/404.html", layout: false, status: 404 and return
-    else
-    	@assignment = Assignment.find(params[:assignment_id])
-    end
-  end
-
-  def partOfCourse
-    if @assignment.course.userRole(@user).nil?
-      render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
-    end
-  end
-
 end
