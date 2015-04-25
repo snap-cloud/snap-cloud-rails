@@ -5,7 +5,7 @@ A CS169 Project to create a new cloud sharing system for [Snap<i>!</i>][sbe].
 
 * [![Build Status](https://travis-ci.org/snap-cloud/snap-cloud.svg?branch=master)](https://travis-ci.org/snap-cloud/snap-cloud)
 
-* [![Coverage Status](https://coveralls.io/builds/2178945/badge)](https://coveralls.io/builds/2178945)
+* [![Coverage Status](https://coveralls.io/repos/snap-cloud/snap-cloud/badge.svg?branch=master)](https://coveralls.io/r/snap-cloud/snap-cloud?branch=master)
 
 Please see the [wiki][wiki] for documentation about each iteration.
 
