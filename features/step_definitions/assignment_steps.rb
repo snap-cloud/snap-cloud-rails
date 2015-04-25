@@ -1,13 +1,11 @@
-
-
-When(/^I click the create assignment button$/) do
-  click_button('Add Assignment')
+When (/^I click the create assignment button$/) do
+  click_button("Add Assignment")
 end
 
-When(/^I fill in everything to create a new assignment$/) do
-  fill_in 'assignment_title', :with => "test title for assignment"
-  fill_in 'assignment_description', :with => "test description for assignment"
-  click_button 'save'
+When (/^I fill in everything to create a new assignment$/) do
+  fill_in "assignment_title", :with => "test title for assignment"
+  fill_in "assignment_description", :with => "test description for assignment"
+  click_button "save"
 end
 
 Then(/^I should see that I created an assignment$/) do
@@ -34,12 +32,12 @@ Given(/^I visit the assignment show page for "(.*?)"$/) do |assignment|
 end
 
 Given(/^I click edit assignment$/) do
-  click_button 'Edit Assignment'
+  click_button "Edit Assignment"
 end
 
 Then(/^I change title to "(.*?)"$/) do |title|
-  fill_in 'assignment_title', :with => title
-  click_button 'save'
+  fill_in "assignment_title", :with => title
+  click_button "save"
 end
 
 Then(/^I should see that I edited this assignment$/) do
@@ -65,7 +63,7 @@ Then(/^I should see all the assignments for "(.*?)"$/) do |course|
 end
 
 Given(/^I click delete assignment$/) do
-  click_button 'Delete Assignment'
+  click_button "Delete Assignment"
 end
 
 Then(/^I should see that I deleted the assignment$/) do
@@ -82,12 +80,13 @@ When(/^I click on assignment "(.*?)"$/) do |assign|
   click_link("assignment_#{a.id}")
 end
 
-Then(/^I should see that I do not have permission to submit an assignment$/) do
-  text = "You don't have permission to access this page :("
-	if page.respond_to? :should
-  	page.should have_content(text)
+Then (/^I should see that I do not have permission to submit an assignment$/) do
+  text = "404"
+  # text = "You don't have permission to access this page :("
+  if page.respond_to? :should
+    page.should have_content(text)
   else
-  	assert page.has_content?(text)
+    assert page.has_content?(text)
   end
 end
 
@@ -99,7 +98,7 @@ end
 
 When(/^I select "(.*?)" to submit$/) do |proj|
   select proj, :from => "submission[project_id]"
-  click_button 'Submit'
+  click_button "Submit"
 end
 
 Then(/^I should see that my submission was successful$/) do
@@ -143,9 +142,9 @@ Given(/^user "(.*?)" with password "(.*?)" submits "(.*?)" and "(.*?)" to "(.*?)
   assignment = Assignment.find_by_title(assign)
   visit assignment_show_path assignment.id
   select proj1, :from => "submission[project_id]"
-  click_button 'Submit'
+  click_button "Submit"
   select proj2, :from => "submission[project_id]"
-  click_button 'Submit'
+  click_button "Submit"
   visit logout_path
 
 end

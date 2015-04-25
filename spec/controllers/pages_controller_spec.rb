@@ -1,10 +1,10 @@
-require 'rails_helper' 
+require "rails_helper" 
 
 describe PagesController do
 
-  describe "GET 'index'" do
+  describe "GET" "index" do
     it "returns http success" do
-      get 'index'
+      get "index"
       expect(response).to be_success
     end
   end

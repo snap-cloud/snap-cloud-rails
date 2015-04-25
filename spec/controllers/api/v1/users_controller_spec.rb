@@ -1,16 +1,16 @@
-require 'rails_helper' 
-require 'sessions_controller'
-require 'registrations_controller'
-require 'api/v1/users_controller'
+require "rails_helper" 
+require "sessions_controller"
+require "registrations_controller"
+require "api/v1/users_controller"
 
 describe Api::V1::UsersController do
   
-  before(:each) { request.headers['Accept'] = "application/json" }
+  before(:each) { request.headers["Accept"] = "application/json" }
 
   describe "GET #show" do
     before(:each) do
-      fakeuser = double('user')
-      allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
+      fakeuser = double("user")
+      allow(request.env["warden"]).to receive(:authenticate!).and_return(fakeuser)
       allow(controller).to receive(:current_user).and_return(fakeuser)
 
       @user = FactoryGirl.create :user
@@ -31,8 +31,8 @@ describe Api::V1::UsersController do
       before(:each) do
         @user_attrs = FactoryGirl.attributes_for :user
 
-        fakeuser = double('user')
-        allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
+        fakeuser = double("user")
+        allow(request.env["warden"]).to receive(:authenticate!).and_return(fakeuser)
         allow(controller).to receive(:current_user).and_return(fakeuser)
 
         post :create, { user: @user_attrs }
@@ -52,8 +52,8 @@ describe Api::V1::UsersController do
         @invalid_user_attributes = { password: "12345678",
                                      password_confirmation: "12345678" }
 
-        fakeuser = double('user')
-        allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
+        fakeuser = double("user")
+        allow(request.env["warden"]).to receive(:authenticate!).and_return(fakeuser)
         allow(controller).to receive(:current_user).and_return(fakeuser)
 
 
@@ -78,8 +78,8 @@ describe Api::V1::UsersController do
     before(:each) do
       @user = FactoryGirl.create :user
 
-      fakeuser = double('user')
-      allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
+      fakeuser = double("user")
+      allow(request.env["warden"]).to receive(:authenticate!).and_return(fakeuser)
       allow(controller).to receive(:current_user).and_return(fakeuser)
 
       delete :destroy, { id: @user.id }
@@ -94,8 +94,8 @@ describe Api::V1::UsersController do
         @user = FactoryGirl.create :user
 
 
-        fakeuser = double('user')
-        allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
+        fakeuser = double("user")
+        allow(request.env["warden"]).to receive(:authenticate!).and_return(fakeuser)
         allow(controller).to receive(:current_user).and_return(fakeuser)
 
         patch :update, { id: @user.id,
@@ -115,8 +115,8 @@ describe Api::V1::UsersController do
       before(:each) do
         @user = FactoryGirl.create :user
 
-        fakeuser = double('user')
-        allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
+        fakeuser = double("user")
+        allow(request.env["warden"]).to receive(:authenticate!).and_return(fakeuser)
         allow(controller).to receive(:current_user).and_return(fakeuser)
 
 

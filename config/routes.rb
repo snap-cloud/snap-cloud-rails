@@ -1,19 +1,20 @@
 # Our constraints around versioning.
-require 'api_constraints'
+require "api_constraints"
 
 Rails.application.routes.draw do
   get '', to: 'pages#index', as: 'home'
   get 'about', to: 'pages#about', as: 'about'
   get 'help', to: 'pages#help', as: 'help'
 
+  # FIXME -- this is nor necessary?
   get 'users/:id', to: 'users#profile', as: 'user_profile'
 
-  devise_for :users, :path => 'api/users',
-             :controllers => { sessions: 'sessions',
-                               registrations: 'registrations' },
-             :path_names => { :sign_in => 'login',
-                              :sign_out => 'logout',
-                              :sign_up => 'signup' }
+  devise_for :users, :path => "api/users",
+             :controllers => { sessions: "sessions",
+                               registrations: "registrations" },
+             :path_names => { :sign_in => "login",
+                              :sign_out => "logout",
+                              :sign_up => "signup" }
 
   # viewable project mappings
   resources :projects #, :only => [:show] # , :new, :create
@@ -24,20 +25,20 @@ Rails.application.routes.draw do
 
 
   get 'assignments/:course_id/new', to: 'assignments#new', as: 'assignment_new'
-  post 'assignments/:course_id/create', to: 'assignments#create', as: 'assignment_create'
-  post 'assignments/:id/update',  to: 'assignments#update', as: 'assignment_update'
-  post 'assignments/:id/delete',  to: 'assignments#delete', as: 'assignment_delete'
-  get 'assignments/:id/edit',     to: 'assignments#edit', as: 'assignment_edit'
-  get 'assignments/:id',          to: 'assignments#show', as: 'assignment_show'
+  post 'assignments/:course_id/create',      to: 'assignments#create', as: 'assignment_create'
+  post 'assignments/:assignment_id/update',  to: 'assignments#update', as: 'assignment_update'
+  post 'assignments/:assignment_id/delete',  to: 'assignments#delete', as: 'assignment_delete'
+  get 'assignments/:assignment_id/edit',     to: 'assignments#edit', as: 'assignment_edit'
+  get 'assignments/:assignment_id',          to: 'assignments#show', as: 'assignment_show'
 
   post 'submissions/:assignment_id/create', to: 'submissions#create', as: 'submission_create'
 
   post 'courses/create',      to: 'courses#create', as: 'course_create'
   get 'courses/new',          to: 'courses#new', as: 'course_new'
-  post 'courses/:id/update',  to: 'courses#update', as: 'course_update'
-  post 'courses/:id/delete',  to: 'courses#delete', as: 'course_delete'
-  get 'courses/:id/edit',     to: 'courses#edit', as: 'course_edit'
-  get 'courses/:id',          to: 'courses#show', as: 'course_show'
+  post 'courses/:course_id/update',  to: 'courses#update', as: 'course_update'
+  post 'courses/:course_id/delete',  to: 'courses#delete', as: 'course_delete'
+  get 'courses/:course_id/edit',     to: 'courses#edit', as: 'course_edit'
+  get 'courses/:course_id',          to: 'courses#show', as: 'course_show'
   get 'courses',              to: 'courses#index', as: 'course_index'
 
   # Cleaner URLs for HTML pages.
@@ -71,5 +72,6 @@ Rails.application.routes.draw do
   # NOTE: the redirect needs a trailing / to load the JS properly.
   # TODO: Serving this way is probably not the best...
   get 'run', to: redirect('snap/')
+  get 'snap', to: redirect('snap/')
 
 end
