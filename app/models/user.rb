@@ -35,22 +35,22 @@ class User < ActiveRecord::Base
   has_attached_file :avatar,
   :default_url => "default_avatar.jpg",
   :storage => :s3,
-  :bucket => 'snap-cloud',
+  :bucket => "snap-cloud",
   :s3_credentials => {
-    :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-    :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+    :access_key_id => ENV["AWS_ACCESS_KEY_ID"],
+    :secret_access_key => ENV["AWS_SECRET_ACCESS_KEY"]
   },
   :styles => {
-    :thumb    => ['100x100#',  :jpg, :quality => 60],
-    :preview  => ['480x480#',  :jpg, :quality => 60],
-    :large    => ['600>',      :jpg, :quality => 60],
-    :retina   => ['1200>',     :jpg, :quality => 60]
+    :thumb    => ["100x100#",  :jpg, :quality => 60],
+    :preview  => ["480x480#",  :jpg, :quality => 60],
+    :large    => ["600>",      :jpg, :quality => 60],
+    :retina   => ["1200>",     :jpg, :quality => 60]
   },
   :convert_options => {
-    :thumb    => '-set colorspace sRGB -strip',
-    :preview  => '-set colorspace sRGB -strip',
-    :large    => '-set colorspace sRGB -strip',
-    :retina   => '-set colorspace sRGB -strip -sharpen 0x0.5'
+    :thumb    => "-set colorspace sRGB -strip",
+    :preview  => "-set colorspace sRGB -strip",
+    :large    => "-set colorspace sRGB -strip",
+    :retina   => "-set colorspace sRGB -strip -sharpen 0x0.5"
   }
 
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
@@ -65,10 +65,9 @@ class User < ActiveRecord::Base
     end
   end
   
-  validates :username,
-            :presence => true,
-            :uniqueness => {
-              :case_sensitive => false
-            }
+  # Usernames are case-INsensitive because URLs aren't and there could be vanity
+  # urls in Snap! someday...
+  validates :username, presence: true,
+            uniqueness: { case_sensitive: false }
     
 end

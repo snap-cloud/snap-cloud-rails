@@ -1,4 +1,4 @@
-require 'rails_helper' 
+require "rails_helper" 
 
 describe Announcement do
   pending "add some examples to (or delete) #{__FILE__}"

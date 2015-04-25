@@ -18,7 +18,8 @@ Background:
 
 Scenario: View others profile edit page
   Given I am on the profile edit page for "testuser"
-  Then I should see "You don't have permission to access this page"
+  # Identify Error Page by Status Codes.
+  Then I should see "404"
 
 Scenario: View own profile edit page and submit
   Given I am logged in as "test@example.com" with password "hellodolly"
