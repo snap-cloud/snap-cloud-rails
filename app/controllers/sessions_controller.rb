@@ -14,19 +14,14 @@ class SessionsController < Devise::SessionsController
 
     respond_to do |format|
       format.json {
-        render :json => {
-          :user => current_user,
-          :status => :ok,
-          :authentication_token => current_user.authentication_token
+        render json: {
+          user: current_user,
+          status: :ok,
+          authentication_token: current_user.authentication_token
         }
       }
       format.html {
-        redirect_to '/', flash[:notice] => 'You have been logged in.'
-        # render :html => {
-        #   :user => current_user,
-        #   :status => :ok,
-        #   :authentication_token => current_user.authentication_token
-        # }
+        redirect_to "/", flash[:message] => "You have been logged in."
       }
     end
   end
@@ -38,15 +33,14 @@ class SessionsController < Devise::SessionsController
 
   # DELETE /resource/sign_out
   def destroy
-
     respond_to do |format|
       format.json {
         if current_user
           current_user.update authentication_token: nil
           signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
-          render :json => {}.to_json, :status => :ok
+          render json: {}.to_json, status: :ok
         else
-          render :json => {}.to_json, :status => :unprocessable_entity
+          render json: {}.to_json, status: :unprocessable_entity
         end
       }
       format.html {
@@ -57,7 +51,7 @@ class SessionsController < Devise::SessionsController
         else
           notice = 'You need to log in to be able to log out.'
         end
-        redirect_to '/', flash[:notice] => notice
+        redirect_to "/", flash[:notice] => notice
       }
     end
   end

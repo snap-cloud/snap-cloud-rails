@@ -3,8 +3,7 @@ ruby '2.2.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -25,35 +24,40 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem "devise"
 # allows for user sessions in JSON APIs
-gem 'simple_token_authentication', '~> 1.0' # see semver.org
+gem 'simple_token_authentication', '~> 1.0'
 
+
+# ASSETS:
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 5.0'
+# gem 'bower-rails'
 # allows for hellza sexiness
 # FIXME -- remove
 gem 'jquery-rails'
 
 gem 'rack-cache'
 
-# Use Unicorn as the app server
-# gem 'unicorn'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :development, :test do
+group :test do
   # Cucumber, testing and coverage
   gem 'cucumber-rails', :require => false
   gem 'rspec-rails', '>= 3.1'
-  gem 'simplecov'
   gem "factory_girl_rails"
   gem 'faker'
   gem "shoulda-matchers"
+
+  # Lots of different coverage things...
+  gem 'simplecov'
   gem 'coveralls', require: false
+  gem "codeclimate-test-reporter", require: nil
+
   gem "database_cleaner"
 end
 
 # Development Only Gems. Speed up loading in Travis.
 group :development do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
   # Use sqlite3 as the database for Active Record
@@ -63,15 +67,37 @@ group :development do
   gem 'spring'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  # gem 'web-console', '~> 2.0'
   # Security Analysis
   gem 'brakeman'
   # DB Query Analysis / Optimizations
   gem "bullet"
 
+  # Custtom Error Pages in Dev Only
+  gem "better_errors"
+  gem "binding_of_caller"
+
+  # Disable logging Assets in the Server log
+  gem 'quiet_assets'
+
+  # Code Linting
+  gem 'rubocop', require: false
+
+  # Better Debugging From Rails Console (See Readme)
+  gem 'awesome_print'
+
+  # Code Quality Locally
+  gem 'metric_fu'
 end
 
-group :production do
+group :staging do
+  # Heh, we need a real staging enviornment...
+end
+
+group :staging, :production do
+  # Use Unicorn as the app server
+  # gem 'puma'
+
   # Postgres DB
   gem 'pg'
   # Perf and other Heroku features

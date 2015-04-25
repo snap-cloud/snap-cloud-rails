@@ -4,27 +4,30 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format == 'application/json' }
 
-  # for session tokens
-  # acts_as_token_authentication_handler_for User
-
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-
-  # Custom Error Methos
+  # Custom Error Methods
+  # These are app level errors that we can use to configure how to handle them
+  # They should be created when there is not an already applicable Rails error
+  # Use 
   module SnapException
     class AccessDenied < StandardError; end
-  end 
+  end
 
   # Clean Error Handler Methods
   # Use these in place of handling errors individually.
-  def access_denied # Equivalent 401
-    raise SnapException::AccessDenied.new('You don\'t have permission to view this.')
+  def access_denied(msg= nil)  # Equivalent 401
+    default = "You don't have permission to view this."
+    msg = msg || default
+    raise SnapException::AccessDenied.new(msg)
   end
-  
-  def item_not_found # Equivalent 404
-    raise ActiveRecord::RecordNotFound.new('Not Found')
+
+  def item_not_found(msg= nil) # Equivalent 404
+    default = "This item couldn't be found."
+    msg = msg || default
+    raise ActiveRecord::RecordNotFound.new(msg)
   end
-  
+
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
   # Treat 401s as 404s for privacy concerns
   rescue_from SnapException::AccessDenied, :with => :record_not_found
@@ -33,16 +36,21 @@ class ApplicationController < ActionController::Base
   protected
 
     def configure_permitted_parameters
+      # FIXME line length....
       # FIXME == birthday and TOS agree?
       devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password, :password_confirmation, :remember_me) }
       devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :username, :email, :password, :remember_me) }
       devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :password_confirmation, :current_password) }
     end
 
+    # This method allows stubbing in rspec testing.
+    # FIXME -- name should be migrated to get_current_user
+    # TODO: can't we just stub current_user method?
     def getCurrentUser
       current_user
     end
 
+    # FIXME -- snake_case the name.
     def userLoggedIn
       if getCurrentUser.nil?
           redirect_to login_path and return
@@ -62,13 +70,13 @@ class ApplicationController < ActionController::Base
 
     def authCourseEdit
       if !@course.userRole(getCurrentUser).try(:teacher?)
-        render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
+        access_denied
       end
     end
 
     def assignmentExists
       if !Assignment.exists?(params[:assignment_id])
-        render file: "#{Rails.root}/public/404.html", layout: false, status: 404 and return
+        item_not_found
       else
         @assignment = Assignment.find(params[:assignment_id])
       end
@@ -76,7 +84,7 @@ class ApplicationController < ActionController::Base
 
     def partOfCourse
       if @assignment.course.userRole(@user).nil?
-        render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
+        access_denied
       end
     end
     

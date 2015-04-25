@@ -1,19 +1,20 @@
 # Our constraints around versioning.
-require 'api_constraints'
+require "api_constraints"
 
 Rails.application.routes.draw do
   get '', to: 'pages#index', as: 'home'
   get 'about', to: 'pages#about', as: 'about'
   get 'help', to: 'pages#help', as: 'help'
 
+  # FIXME -- this is nor necessary?
   get 'users/:id', to: 'users#profile', as: 'user_profile'
 
-  devise_for :users, :path => 'api/users',
-             :controllers => { sessions: 'sessions',
-                               registrations: 'registrations' },
-             :path_names => { :sign_in => 'login',
-                              :sign_out => 'logout',
-                              :sign_up => 'signup' }
+  devise_for :users, :path => "api/users",
+             :controllers => { sessions: "sessions",
+                               registrations: "registrations" },
+             :path_names => { :sign_in => "login",
+                              :sign_out => "logout",
+                              :sign_up => "signup" }
 
   # viewable project mappings
   resources :projects #, :only => [:show] # , :new, :create
@@ -71,5 +72,6 @@ Rails.application.routes.draw do
   # NOTE: the redirect needs a trailing / to load the JS properly.
   # TODO: Serving this way is probably not the best...
   get 'run', to: redirect('snap/')
+  get 'snap', to: redirect('snap/')
 
 end

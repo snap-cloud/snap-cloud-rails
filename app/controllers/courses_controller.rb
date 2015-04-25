@@ -1,9 +1,7 @@
-
-
 class CoursesController < ApplicationController
-    before_filter :userLoggedIn, :except => [:index, :show]
-    before_filter :courseExists, :except => [:new, :create, :index]
-    before_filter :authCourseEdit, :only => [:update, :delete, :edit]
+    before_filter :userLoggedIn, except: [:index, :show]
+    before_filter :courseExists, except: [:new, :create, :index]
+    before_filter :authCourseEdit, only: [:update, :delete, :edit]
 
   def create
     user = getCurrentUser
@@ -15,16 +13,15 @@ class CoursesController < ApplicationController
       redirect_to course_show_path(@course.id)
       return
     else
-      render 'new'
-      return
+      render 'new' && return
     end
-    #form on the new page gets submitted here
+    # form on the new page gets submitted here
   end
 
   def show
     @assignments = @course.assignments
     @user = getCurrentUser
-    #Find the course with the give id
+    # Find the course with the give id
   end
 
   def update
@@ -34,21 +31,20 @@ class CoursesController < ApplicationController
       flash[:message] = incorrectEmails
     end
     redirect_to course_edit_path(@course)
-    #form on the edit page submitted here
+    # form on the edit page submitted here
   end
 
   def delete
     @course.destroy
     flash[:message] = "Course has been deleted"
-    redirect_to course_index_path and return
+    redirect_to course_index_path && return
   end
 
   def new
-    #render a view so the user has a form to submit
+    # render a view so the user has a form to submit
   end
 
   def index
-    #find all courses
     @courses = Course.all
   end
 
@@ -61,7 +57,6 @@ class CoursesController < ApplicationController
   end
 
   private
-
   def dropUsers
     drops = params[:drops]
     if drops
@@ -95,5 +90,4 @@ class CoursesController < ApplicationController
     end
     return incorrectEmails
   end
-  
 end

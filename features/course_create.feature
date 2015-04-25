@@ -1,12 +1,12 @@
 Feature: Creating a Course
-	In order to teach a course
-	As a teacher
-	I want to be able to create a course
+  In order to teach a course
+  As a teacher
+  I want to be able to create a course
 
 Background:
-	Given the following users exist:
-	| id | username | email | password | password_confirmation |
-	| 100 | test | test@example.com | hellohello | hellohello |
+  Given the following users exist:
+    | id | username | email | password | password_confirmation |
+    | 100 | test | test@example.com | hellohello | hellohello |
 
 Scenario: Creating a course while not logged in
 Given I visit the new course page

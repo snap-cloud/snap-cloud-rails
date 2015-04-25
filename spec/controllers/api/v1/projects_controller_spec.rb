@@ -1,17 +1,17 @@
-require 'rails_helper'
-require 'api/v1/projects_controller'
+require "rails_helper"
+require "api/v1/projects_controller"
 
 
 describe Api::V1::ProjectsController do
 
-  before(:each) { request.headers['Accept'] = "application/json" }
+  before(:each) { request.headers["Accept"] = "application/json" }
 
   describe "GET #show" do
     before(:each) do
       @project = FactoryGirl.create :project
 
-      fakeuser = double('user')
-      allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
+      fakeuser = double("user")
+      allow(request.env["warden"]).to receive(:authenticate!).and_return(fakeuser)
       allow(controller).to receive(:current_user).and_return(fakeuser)
 
       get :show, id: @project.id
@@ -28,8 +28,8 @@ describe Api::V1::ProjectsController do
       User.stub(:valid?).and_return(true)
       User.any_instance.stub(:valid?).and_return(true)
 
-      fakeuser = double('user')
-      allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
+      fakeuser = double("user")
+      allow(request.env["warden"]).to receive(:authenticate!).and_return(fakeuser)
       allow(controller).to receive(:current_user).and_return(fakeuser)
     end
     
@@ -73,8 +73,8 @@ describe Api::V1::ProjectsController do
       Project.stub(:valid?).and_return(true)
       Project.any_instance.stub(:valid?).and_return(true)
 
-      fakeuser = double('user')
-      allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
+      fakeuser = double("user")
+      allow(request.env["warden"]).to receive(:authenticate!).and_return(fakeuser)
       allow(controller).to receive(:current_user).and_return(fakeuser)
     end
 
@@ -95,8 +95,8 @@ describe Api::V1::ProjectsController do
       User.stub(:valid?).and_return(true)
       User.any_instance.stub(:valid?).and_return(true)
 
-      fakeuser = double('user')
-      allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
+      fakeuser = double("user")
+      allow(request.env["warden"]).to receive(:authenticate!).and_return(fakeuser)
       allow(controller).to receive(:current_user).and_return(fakeuser)
     end
 
@@ -129,8 +129,8 @@ describe Api::V1::ProjectsController do
       User.stub(:valid?).and_return(true)
       User.any_instance.stub(:valid?).and_return(true)
 
-      fakeuser = double('user')
-      allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
+      fakeuser = double("user")
+      allow(request.env["warden"]).to receive(:authenticate!).and_return(fakeuser)
       allow(controller).to receive(:current_user).and_return(fakeuser)
     end
 
