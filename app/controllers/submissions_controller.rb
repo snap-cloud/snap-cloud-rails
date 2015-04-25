@@ -7,7 +7,7 @@ class SubmissionsController < ApplicationController
       @submission = submission_params
       @assignment.submit(@submission[:project_id], @submission[:comments])
       flash[:message] = "Yay, your project was submitted!"
-      redirect_to assignment_show_path @assignment.id and return
+      redirect_to assignment_show_path @assignment.id && return
     end
 
     def submission_params
@@ -16,7 +16,7 @@ class SubmissionsController < ApplicationController
 
     def userLoggedIn
       if getCurrentUser.nil?
-        redirect_to login_path and return
+        redirect_to login_path && return
       else
         @user = getCurrentUser
       end
@@ -33,7 +33,7 @@ class SubmissionsController < ApplicationController
     def canSubmit
       course = @assignment.course
       if not course.student_ids.include? @user.id
-        render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
+        access_denied
       end
     end
 

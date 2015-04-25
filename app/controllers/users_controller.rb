@@ -41,7 +41,7 @@ class UsersController < ApplicationController
       if current_user && current_user == @user
         @about_me = @user.about_me || "Enter information about you and your interests here."
       else
-        render file: "#{Rails.root}/public/401.html", layout: false, status: 401
+        access_denied
       end
     else
       item_not_found

@@ -1,9 +1,7 @@
-
-
 class CoursesController < ApplicationController
-    before_filter :userLoggedIn, :except => [:index, :show]
-    before_filter :courseExists, :except => [:new, :create, :index]
-    before_filter :authCourseEdit, :only => [:update, :delete, :edit]
+    before_filter :userLoggedIn, except: [:index, :show]
+    before_filter :courseExists, except: [:new, :create, :index]
+    before_filter :authCourseEdit, only: [:update, :delete, :edit]
 
   def create
     user = getCurrentUser
@@ -18,7 +16,7 @@ class CoursesController < ApplicationController
       render 'new'
       return
     end
-    #form on the new page gets submitted here
+    # form on the new page gets submitted here
   end
 
   def show
@@ -26,7 +24,7 @@ class CoursesController < ApplicationController
     @assignments = @course.assignments
     @user = getCurrentUser
     # @course = Course.find(params[:id])
-    #Find the course with the give id
+    # Find the course with the give id
   end
 
   def update
@@ -55,7 +53,6 @@ class CoursesController < ApplicationController
     if adds
       adds.each do |key, email|
         addUser = User.find_by(email: email)
-        #byebug
         if !addUser.nil?
           @course.addUser(addUser, :student)
         elsif !email.nil? && !email.empty?
@@ -66,7 +63,6 @@ class CoursesController < ApplicationController
     addField = params[:add_field]
     if addField
       addUser = User.find_by(email: addField)
-      #byebug
       if !addUser.nil?
         @course.addUser(addUser, :student)
       elsif !addField.nil? && !addField.empty?
@@ -77,7 +73,7 @@ class CoursesController < ApplicationController
       flash[:message] = incorrectEmails
     end
     redirect_to course_edit_path(@course)
-    #form on the edit page submitted here
+    # form on the edit page submitted here
   end
 
   def delete
@@ -109,7 +105,6 @@ class CoursesController < ApplicationController
   end
 
   def index
-    #find all courses
     @courses = Course.all
   end
 
@@ -126,8 +121,9 @@ class CoursesController < ApplicationController
   end
 
   def userLoggedIn
+    # FIXME This is app level stuff
     if getCurrentUser.nil?
-        redirect_to login_path and return
+      redirect_to login_path and return
     else
       @user = getCurrentUser
     end
@@ -135,7 +131,7 @@ class CoursesController < ApplicationController
 
   def courseExists
     if !Course.exists?(params[:id])
-      render file: "#{Rails.root}/public/404.html", layout: false, status: 404 and return
+      item_not_found
     else
       @course = Course.find(params[:id])
     end
@@ -143,9 +139,7 @@ class CoursesController < ApplicationController
 
   def authCourseEdit
     if !@course.userRole(getCurrentUser).try(:teacher?)
-      # FIXME
-      render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
+      access_denied
     end
   end
-  
 end
