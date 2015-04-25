@@ -13,62 +13,20 @@ class CoursesController < ApplicationController
       redirect_to course_show_path(@course.id)
       return
     else
-      render 'new'
-      return
+      render 'new' && return
     end
     # form on the new page gets submitted here
   end
 
   def show
-    @course = Course.find(params[:id])
     @assignments = @course.assignments
     @user = getCurrentUser
-    # @course = Course.find(params[:id])
     # Find the course with the give id
   end
 
   def update
-=begin
-    @course = courseExists?("The course you're trying to update does not exist")
-    if !@course
-      return
-    end
-    if !userLoggedIn?("You must be logged in to edit a course")
-      return
-    end
-    if !@course.userRole(getCurrentUser).try(:teacher?)
-      flash[:message] = "You do not have permission to edit this course"
-    end
-=end
-    @course = Course.find(params[:id])
-    drops = params[:drops]
-    if drops
-      drops.each_key do |email|
-        drop = User.find_by(email: email)
-        @course.removeUser(drop)
-      end
-    end
-    incorrectEmails = ""
-    adds = params[:adds]
-    if adds
-      adds.each do |key, email|
-        addUser = User.find_by(email: email)
-        if !addUser.nil?
-          @course.addUser(addUser, :student)
-        elsif !email.nil? && !email.empty?
-          incorrectEmails += "Email could not be found: " + email + "\n"
-        end
-      end
-    end
-    addField = params[:add_field]
-    if addField
-      addUser = User.find_by(email: addField)
-      if !addUser.nil?
-        @course.addUser(addUser, :student)
-      elsif !addField.nil? && !addField.empty?
-        incorrectEmails += "Email could not be found: " + addField + "\n"
-      end
-    end
+    dropUsers
+    incorrectEmails = addUsers
     if !incorrectEmails.empty?
       flash[:message] = incorrectEmails
     end
@@ -77,31 +35,13 @@ class CoursesController < ApplicationController
   end
 
   def delete
-=begin
-    if !userLoggedIn?("Log in to delete this course")
-      return
-    end
-    @course = courseExists?("The course you're trying to delete does not exist")
-    if !@course
-      return
-    end
-    if @course.userRole(getCurrentUser).try(:teacher?)
-      @course.destroy
-      flash[:message] = "Course has been deleted"
-      redirect_to course_index_path and return
-    else
-      flash[:message] = "You do not have permission to delete this course"
-      redirect_to course_show_path(@course) and return
-    end
-=end
-      @course = Course.find(params[:id])
-      @course.destroy
-      flash[:message] = "Course has been deleted"
-      redirect_to course_index_path and return
+    @course.destroy
+    flash[:message] = "Course has been deleted"
+    redirect_to course_index_path && return
   end
 
   def new
-    #render a view so the user has a form to submit
+    # render a view so the user has a form to submit
   end
 
   def index
@@ -116,30 +56,38 @@ class CoursesController < ApplicationController
     params.require(:course).permit(:title, :website, :description, :startdate, :enddate)
   end
 
-  def getCurrentUser
-    current_user
-  end
-
-  def userLoggedIn
-    # FIXME This is app level stuff
-    if getCurrentUser.nil?
-      redirect_to login_path and return
-    else
-      @user = getCurrentUser
+  private
+  def dropUsers
+    drops = params[:drops]
+    if drops
+      drops.each_key do |email|
+        drop = User.find_by(email: email)
+        @course.removeUser(drop)
+      end
     end
   end
 
-  def courseExists
-    if !Course.exists?(params[:id])
-      item_not_found
-    else
-      @course = Course.find(params[:id])
-    end
+  def parseEmails
+    adds = params[:adds]
+    addField = params[:add_field]
+    emails = []
+    if adds then emails += adds.values end
+    if addField then emails << addField.to_s end
+    emails.reject!(&:empty?)
+    return emails
   end
 
-  def authCourseEdit
-    if !@course.userRole(getCurrentUser).try(:teacher?)
-      access_denied
+  def addUsers
+    incorrectEmails = ""
+    emails = parseEmails
+    emails.each do |email|
+      addUser = User.find_by(email: email)
+      if !addUser.nil?
+        @course.addUser(addUser, :student)
+      else
+        incorrectEmails += "Email could not be found: " + email + "\n"
+      end
     end
+    return incorrectEmails
   end
 end

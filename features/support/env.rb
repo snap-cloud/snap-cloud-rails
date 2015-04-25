@@ -5,6 +5,11 @@
 # files.
 require 'simplecov'
 SimpleCov.start 'rails'
+SimpleCov.merge_timeout 3600
+
+require 'coveralls'
+Coveralls.wear_merged!
+
 
 require 'cucumber/rails'
 

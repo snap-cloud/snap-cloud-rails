@@ -169,7 +169,7 @@ end
 
 When(/^I try to visit the page for "(.*?)"$/) do |course|
   @cour = Course.find_by_title(course)
-  visit course_show_path @cour
+  visit course_show_path @cour.id
 end
 
 When(/^I go to that course$/) do

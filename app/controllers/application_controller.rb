@@ -4,13 +4,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format == 'application/json' }
 
-  # for session tokens
-  # acts_as_token_authentication_handler_for User
-
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-
-  # Custom Error Methos
+  # Custom Error Methods
+  # These are app level errors that we can use to configure how to handle them
+  # They should be created when there is not an already applicable Rails error
+  # Use 
   module SnapException
     class AccessDenied < StandardError; end
   end
@@ -37,12 +36,58 @@ class ApplicationController < ActionController::Base
   protected
 
     def configure_permitted_parameters
+      # FIXME line length....
       # FIXME == birthday and TOS agree?
       devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password, :password_confirmation, :remember_me) }
       devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :username, :email, :password, :remember_me) }
       devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :password_confirmation, :current_password) }
     end
 
+    # This method allows stubbing in rspec testing.
+    # FIXME -- name should be migrated to get_current_user
+    # TODO: can't we just stub current_user method?
+    def getCurrentUser
+      current_user
+    end
+
+    # FIXME -- snake_case the name.
+    def userLoggedIn
+      if getCurrentUser.nil?
+          redirect_to login_path and return
+      else
+        @user = getCurrentUser
+      end
+    end
+
+    def courseExists
+      if params[:course_id]
+        @course = Course.find(params[:course_id])
+      elsif params[:assignment_id]
+        @assignment = Assignment.find(params[:assignment_id])
+        @course = Course.find(@assignment.course.id)
+      end
+    end
+
+    def authCourseEdit
+      if !@course.userRole(getCurrentUser).try(:teacher?)
+        access_denied
+      end
+    end
+
+    def assignmentExists
+      if !Assignment.exists?(params[:assignment_id])
+        item_not_found
+      else
+        @assignment = Assignment.find(params[:assignment_id])
+      end
+    end
+
+    def partOfCourse
+      if @assignment.course.userRole(@user).nil?
+        access_denied
+      end
+    end
+    
   private
     def record_not_found(error)
       respond_to do |format|
