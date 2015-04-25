@@ -21,7 +21,7 @@ class AssignmentsController < ApplicationController
       flash[:message] = "You have created this assignment"
       redirect_to assignment_show_path(@assignment) && return
     else
-      render 'new' && return
+      render "new" && return
     end
   end
 
@@ -38,7 +38,7 @@ class AssignmentsController < ApplicationController
       flash[:message] = "You have edited this assignment"
       redirect_to assignment_show_path(@assignment) && return
     else
-      render 'edit' and return
+      render "edit" && return
     end
   end
 
