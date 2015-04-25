@@ -44,7 +44,7 @@ class UsersController < ApplicationController
         render file: "#{Rails.root}/public/401.html", layout: false, status: 401
       end
     else
-      render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+      item_not_found
     end
   end
 

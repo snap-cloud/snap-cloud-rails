@@ -143,6 +143,7 @@ class CoursesController < ApplicationController
 
   def authCourseEdit
     if !@course.userRole(getCurrentUser).try(:teacher?)
+      # FIXME
       render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
     end
   end

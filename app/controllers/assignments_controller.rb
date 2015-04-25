@@ -68,7 +68,7 @@ class AssignmentsController < ApplicationController
 
   def courseExists
   	if !Course.exists?(params[:course_id])
-    	render file: "#{Rails.root}/public/404.html", layout: false, status: 404 and return
+    	item_not_found
     else
     	@course = Course.find(params[:course_id])
     end
@@ -88,7 +88,7 @@ class AssignmentsController < ApplicationController
 
   def assignmentExists
   	if !Assignment.exists?(params[:id])
-    	render file: "#{Rails.root}/public/404.html", layout: false, status: 404 and return
+    	item_not_found
     else
     	@assignment = Assignment.find(params[:id])
     end
