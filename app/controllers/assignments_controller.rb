@@ -87,13 +87,8 @@ class AssignmentsController < ApplicationController
   end
 
   def assignmentExists
-<<<<<<< HEAD
-  	if !Assignment.exists?(params[:id])
-    	item_not_found
-=======
     if !Assignment.exists?(params[:id])
       item_not_found
->>>>>>> d642ca8808c505a308c2659353457b560bc48ed1
     else
       @assignment = Assignment.find(params[:id])
     end
