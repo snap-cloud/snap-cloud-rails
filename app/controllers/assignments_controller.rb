@@ -6,7 +6,7 @@ class AssignmentsController < ApplicationController
   before_filter :authCourseEdit, except: [:show]
 
   def show
-    @assignment = Assignment.find_by(id: params[:id])
+    @assignment = Assignment.find_by(id: params[:assignment_id])
   end
 
   def new
@@ -21,14 +21,13 @@ class AssignmentsController < ApplicationController
       flash[:message] = "You have created this assignment"
       redirect_to assignment_show_path(@assignment) && return
     else
-      render 'new'
-      return
+      render "new" && return
     end
   end
 
   def edit
     # render the edit page. :assignmentExists should populate @assignment
-    @assignment = Assignment.find(params[:id])
+    @assignment = Assignment.find(params[:assignment_id])
     @course = @assignment.course
   end
 
@@ -39,8 +38,7 @@ class AssignmentsController < ApplicationController
       flash[:message] = "You have edited this assignment"
       redirect_to assignment_show_path(@assignment) && return
     else
-      render 'edit'
-      return
+      render "edit" && return
     end
   end
 
@@ -50,53 +48,7 @@ class AssignmentsController < ApplicationController
     redirect_to course_show_path @course.id
   end
 
-  def getCurrentUser
-    current_user
-  end
-
   def assignment_params
     params.require(:assignment).permit(:title, :description, :start_date, :due_date)
-  end
-
-  def userLoggedIn
-    if getCurrentUser.nil?
-      redirect_to login_path && return
-    else
-      @user = getCurrentUser
-    end
-  end
-
-  def courseExists
-    if !Course.exists?(params[:course_id])
-      item_not_found
-    else
-      @course = Course.find(params[:course_id])
-    end
-  end
-
-  def authCourseEdit
-    if params[:course_id]
-      @course = Course.find(params[:course_id])
-    else
-      # assignment = Assignment.find(params[:id])
-      @course = Course.find(@assignment.course.id)
-    end
-    if !@course.userRole(getCurrentUser).try(:teacher?)
-      access_denied
-    end
-  end
-
-  def assignmentExists
-    if !Assignment.exists?(params[:id])
-      item_not_found
-    else
-      @assignment = Assignment.find(params[:id])
-    end
-  end
-
-  def partOfCourse
-    if @assignment.course.userRole(@user).nil?
-      access_denied
-    end
   end
 end

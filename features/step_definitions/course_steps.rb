@@ -63,10 +63,10 @@ Then /I should see that I cannot delete this course/ do
   text = "404"
   # text = "You don't have permission to access this page :("
   if page.respond_to? :should
-      page.should have_content(text)
-    else
-      assert page.has_content?(text)
-    end
+    page.should have_content(text)
+  else
+    assert page.has_content?(text)
+  end
 end
 
 Then (/^I should see that course deletion succeeded$/) do
@@ -103,10 +103,10 @@ Then (/^I should see that I need to be logged in to edit$/) do
   text = "404"
   # text = "You don't have permission to access this page :("
   if page.respond_to? :should
-      page.should have_content(text)
-    else
-      assert page.has_content?(text)
-    end
+    page.should have_content(text)
+  else
+    assert page.has_content?(text)
+  end
 end
 
 Given (/^the following enrollments exist:$/) do |enrollmentTable|

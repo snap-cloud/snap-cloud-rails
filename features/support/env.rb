@@ -10,7 +10,6 @@ SimpleCov.merge_timeout 3600
 require "coveralls"
 Coveralls.wear_merged!
 
-
 require "cucumber/rails"
 
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
