@@ -84,6 +84,10 @@ Given /^(?:|I) am on the home page$/ do
   visit "/"
 end
 
+Given(/^I go to the link "(.*?)"$/) do |link|
+  visit link
+end
+
 And /^(?:|I) enter in "(.*?)" $/ do |entry|
 	flunk "Unimplemented"
 end
