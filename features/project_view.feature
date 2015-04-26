@@ -48,6 +48,6 @@ Scenario: Editing the project from details as not owner
   Then I should not see "edit_project"
 
 Scenario: Hide Private Project
-  And am on the project details page for "ohpriv!"
+  And I am on the project details page for "ohpriv!"
   # Note -- We are currently returning 404's for 401's due to privacy concerns.
   Then I should see "404"
