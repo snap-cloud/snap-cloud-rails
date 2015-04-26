@@ -1,8 +1,8 @@
-div.project-title{
+div.project-title-bar{
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
-	background: black;
+	background: #2d3e50;
 	color: white;
 }
 
