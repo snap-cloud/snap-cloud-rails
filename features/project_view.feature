@@ -51,7 +51,7 @@ Scenario: Hide Private Project
   Given I am logged in as "yolo@yolo.com" with password "idfkmanhehe"
   And I am on the project details page for "ohpriv!"
   # Note -- We are currently returning 404's for 401's due to privacy concerns.
-  Then I should see "401"
+  Then I should see "404"
 
 Scenario: Accessing nonexistant project
   Given I go to the link "/projects/10"
