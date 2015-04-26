@@ -14,9 +14,7 @@ class ProjectsController < ApplicationController
   end
   
   def show
-    # @project = find_project()
     if @project != nil
-      # @project = Project.find(params[:id])
       @owner = User.find_by_id @project.owner
       if !@project.is_public
         if not (current_user && @owner == current_user)
