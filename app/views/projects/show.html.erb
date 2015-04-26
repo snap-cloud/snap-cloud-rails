@@ -22,23 +22,18 @@
 	</div>
 
 	<div class="pure-u-1-8" style="background: black; display: table-cell; vertical-align: middle;">
-		<div class="center-element">
 		
 			<% if current_user == @owner %>
 			<a id="edit_project" class="pure-button pure-button-primary" href="/projects/<%= @project.id %>/edit">
-				<div style="width: 80%; height: 100%;"> Edit </div>
-				<div class="icono-gear" "width: 20%; height: 100%;">
-				</div>
+				<i class="icono-gear"></i>
+				Edit
 			</a>
 			<% end %>
 
-			<a id="report_project" class="pure-button" style="background: rgb(202, 60, 60);" href="#">
-				<!-- <div style="width: 80%; height: 100%;"> Report </div> -->
-				<div class="icono-flag" style="width: 20%; height: 100%;"> Report
-				</div>
+			<a id="report_project" class="pure-button" style="background: rgb(202, 60, 60); color: white;" href="#">
+				<i class="icono-flag"> </i>
+				Report
 			</a>
-
-		</div>
 	</div>
 
 </div>
