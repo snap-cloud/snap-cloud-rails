@@ -1,8 +1,8 @@
-div.project-title{
+div.project-title-bar{
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
-	background: black;
+	background: #2d3e50;
 	color: white;
 }
 
@@ -51,4 +51,20 @@ div.image-with-border {
 
 div.overlay-top {
 	z-index: 10;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
 }
