@@ -5,7 +5,7 @@ Given(/^I visit the new course page$/) do
 end
 
 Then(/^I should see that I need to log in$/) do
-  text = "Log in"
+  text = "Log In"
   if page.respond_to? :should
       page.should have_content(text)
     else
