@@ -69,6 +69,8 @@ group :development do
   # DB Query Analysis / Optimizations
   gem "bullet"
 
+  # Code Linting
+  gem 'rubocop'
 end
 
 group :production do
