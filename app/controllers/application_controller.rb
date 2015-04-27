@@ -10,19 +10,26 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
 
-  # Custom Error Methos
+  # Custom Error Methods
+  # These are app level errors that we can use to configure how to handle them
+  # They should be created when there is not an already applicable Rails error
+  # TODO: We need to determine for the best split up 401 and 404 errors.
   module SnapException
     class AccessDenied < StandardError; end
   end 
 
   # Clean Error Handler Methods
   # Use these in place of handling errors individually.
-  def access_denied # Equivalent 401
-    raise SnapException::AccessDenied.new('You don\'t have permission to view this.')
+  def access_denied(msg = nil) # Equivalent 401
+    default = 'You don\'t have permission to view this.'
+    msg ||= default
+    raise SnapException::AccessDenied.new(msg)
   end
   
-  def item_not_found # Equivalent 404
-    raise ActiveRecord::RecordNotFound.new('Not Found')
+  def item_not_found(msg = nil) # Equivalent 404
+    default = "This item couldn't be found."
+    msg ||= default
+    raise ActiveRecord::RecordNotFound.new(msg)
   end
   
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
@@ -39,6 +46,9 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :password_confirmation, :current_password) }
     end
 
+    # This method allows stubbing in rspec testing.
+    # FIXME -- name should be migrated to get_current_user
+    # TODO: can't we just stub current_user method?
     def getCurrentUser
       current_user
     end
