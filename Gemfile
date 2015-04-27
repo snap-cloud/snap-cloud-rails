@@ -63,7 +63,9 @@ group :development do
   gem 'spring'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  # gem 'web-console', '~> 2.0'
+  # Use a better web console
+  gem 'better-console'
   # Security Analysis
   gem 'brakeman'
   # DB Query Analysis / Optimizations

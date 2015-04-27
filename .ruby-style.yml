@@ -19,7 +19,7 @@ AllCops:
   - "vendor/**/*"
   - "db/schema.rb"
   RunRailsCops: false
-  DisplayCopNames: true
+  DisplayCopNames: false
   StyleGuideCopsOnly: false
 Style/AccessModifierIndentation:
   Description: Check indentation of private/protected visibility modifiers.
@@ -363,7 +363,7 @@ Style/SingleLineMethods:
 Style/StringLiterals:
   Description: Checks if uses of quotes match the configured preference.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#consistent-string-literals
-  Enabled: true
+  Enabled: false
   EnforcedStyle: double_quotes
   SupportedStyles:
   - single_quotes
@@ -371,7 +371,7 @@ Style/StringLiterals:
 Style/StringLiteralsInInterpolation:
   Description: Checks if uses of quotes inside expressions in interpolated strings
     match the configured preference.
-  Enabled: true
+  Enabled: false
   EnforcedStyle: single_quotes
   SupportedStyles:
   - single_quotes
@@ -492,7 +492,7 @@ Metrics/AbcSize:
 Metrics/BlockNesting:
   Description: Avoid excessive block nesting
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#three-is-the-number-thou-shalt-count
-  Enabled: false
+  Enabled: true
   Max: 3
 Metrics/ClassLength:
   Description: Avoid classes longer than 100 lines of code.
@@ -502,7 +502,7 @@ Metrics/ClassLength:
 Metrics/CyclomaticComplexity:
   Description: A complexity metric that is strongly correlated to the number of test
     cases needed to validate a method.
-  Enabled: false
+  Enabled: true
   Max: 6
 Metrics/LineLength:
   Description: Limit lines to 80 characters.
@@ -516,19 +516,19 @@ Metrics/LineLength:
 Metrics/MethodLength:
   Description: Avoid methods longer than 10 lines of code.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#short-methods
-  Enabled: false
+  Enabled: true
   CountComments: false
-  Max: 10
+  Max: 25
 Metrics/ParameterLists:
   Description: Avoid parameter lists longer than three or four parameters.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#too-many-params
-  Enabled: false
+  Enabled: true
   Max: 5
   CountKeywordArgs: true
 Metrics/PerceivedComplexity:
   Description: A complexity metric geared towards measuring complexity for a human
     reader.
-  Enabled: false
+  Enabled: true
   Max: 7
 Lint/AssignmentInCondition:
   Description: Don't use assignment in conditions.
@@ -686,10 +686,10 @@ Style/DefWithParentheses:
 Style/DeprecatedHashMethods:
   Description: Checks for use of deprecated Hash methods.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#hash-key
-  Enabled: false
+  Enabled: true
 Style/Documentation:
   Description: Document classes and non-namespace modules.
-  Enabled: false
+  Enabled: true
 Style/DoubleNegation:
   Description: Checks for uses of double negation (!!).
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#no-bang-bang
