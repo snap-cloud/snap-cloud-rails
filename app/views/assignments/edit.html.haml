@@ -1,27 +1,30 @@
-%br
-%br
-%h1= "Editing #{@assignment.title} for #{@course.title}"
+/ WARNING: THIS DOC USES 4 SPACES INDENTATION
 
-
-
-%h1=  flash[:message]
--@assignment.errors.try(:each) do |attribute, error|
-    %h3= attribute.to_s + " " + error.to_s
+.pure-u-1-1
     %br
-=form_tag assignment_update_path(@assignment), method: :post, class:"pure-form pure-form-aligned" do
-    %fieldset
-        .pure-control-group
-            %label{for: "assignment_title"} Title:
-            =text_field_tag 'assignment[title]', @assignment.try(:title)
-        .pure-control-group
-            %label{for: "assignment_description"} Description:
-            =text_field_tag 'assignment[description]', @assignment.try(:description)
-        .pure-control-group
-            %label{for: "assignment_startdate"} Starts:
-            =date_select :assignment, :start_date, default: @assignment.try(:start_date)
-        .pure-control-group
-            %label{for: "assignment_enddate"} Due:
-            =datetime_select :assignment, :due_date, default: @assignment.try(:end_date)
+    %br
+    %h1= "Editing #{@assignment.title} for #{@course.title}"
+
+
+
+    %h1=  flash[:message]
+    -@assignment.errors.try(:each) do |attribute, error|
+        %h3= attribute.to_s + " " + error.to_s
         %br
-        %br
-        =submit_tag "save"
+    =form_tag assignment_update_path(@assignment), method: :post, class:"pure-form pure-form-aligned" do
+        %fieldset
+            .pure-control-group
+                %label{for: "assignment_title"} Title:
+                =text_field_tag 'assignment[title]', @assignment.try(:title)
+            .pure-control-group
+                %label{for: "assignment_description"} Description:
+                =text_field_tag 'assignment[description]', @assignment.try(:description)
+            .pure-control-group
+                %label{for: "assignment_startdate"} Starts:
+                =date_select :assignment, :start_date, default: @assignment.try(:start_date)
+            .pure-control-group
+                %label{for: "assignment_enddate"} Due:
+                =datetime_select :assignment, :due_date, default: @assignment.try(:end_date)
+            %br
+            %br
+            =submit_tag "save"

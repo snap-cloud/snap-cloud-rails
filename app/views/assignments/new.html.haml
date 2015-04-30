@@ -1,27 +1,30 @@
-%br
-%br
-%h1= "Creating assignment for #{@course.title}"
+/ WARNING: THIS DOC USES 4 SPACES INDENTATION
 
-
-
-%h1=  flash[:message]
--@assignment.try(:errors).try(:each) do |attribute, error|
-    %h3= attribute.to_s + " " + error.to_s
+.pure-u-1-1
     %br
-=form_tag assignment_create_path(@course), method: :post, class:"pure-form pure-form-aligned" do
-    %fieldset
-        .pure-control-group
-            %label{for: "assignment_title"} Title:
-            =text_field_tag 'assignment[title]'
-        .pure-control-group
-            %label{for: "assignment_description"} Description:
-            =text_field_tag 'assignment[description]'
-        .pure-control-group
-            %label{for: "assignment_startdate"} Starts:
-            =date_select :assignment, :start_date, default: Date.today
-        .pure-control-group
-            %label{for: "assignment_enddate"} Due:
-            =datetime_select :assignment, :due_date, default: Time.now, ampm: true
+    %br
+    %h1= "Creating assignment for #{@course.title}"
+
+
+
+    %h1=  flash[:message]
+    -@assignment.try(:errors).try(:each) do |attribute, error|
+        %h3= attribute.to_s + " " + error.to_s
         %br
-        %br
-        =submit_tag "save"
+    =form_tag assignment_create_path(@course), method: :post, class:"pure-form pure-form-aligned" do
+        %fieldset
+            .pure-control-group
+                %label{for: "assignment_title"} Title:
+                =text_field_tag 'assignment[title]'
+            .pure-control-group
+                %label{for: "assignment_description"} Description:
+                =text_field_tag 'assignment[description]'
+            .pure-control-group
+                %label{for: "assignment_startdate"} Starts:
+                =date_select :assignment, :start_date, default: Date.today
+            .pure-control-group
+                %label{for: "assignment_enddate"} Due:
+                =datetime_select :assignment, :due_date, default: Time.now, ampm: true
+            %br
+            %br
+            =submit_tag "save"
