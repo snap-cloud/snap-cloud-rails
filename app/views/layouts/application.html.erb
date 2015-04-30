@@ -1,57 +1,58 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <!-- FIXME: each page needs title... -->
-  <title>Snap! Build Your Own Blocks</title>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= stylesheet_link_tag "http://yui.yahooapis.com/pure/0.6.0/pure-min.css" %>
+  <head>
+      <!-- FIXME: each page needs title... -->
+    <title>Snap! Build Your Own Blocks</title>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <!-- FIXME: Holy Crap this causes tears -->
+    <%= stylesheet_link_tag "https://yui.yahooapis.com/pure/0.6.0/pure-min.css" %>
   
-  <%= yield :head %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+    <%= yield :head %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
-  <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-    <ul class="pure-menu-list" id="splash-menu">
-      <li class="pure-menu-item">
-          <a href=<%= home_path %> class="pure-menu-heading"><%= image_tag "snap-logo.png", alt: "Snap! logo", class: "run-snap-logo" %></a>
-      </li>
-      <li class="pure-menu-item">
-          <%= link_to "Create", "/snap/", :class => "pure-menu-link" %>
-      </li>
-      <li class="pure-menu-item">
-          <%= link_to "Get Started", help_path, :class => "pure-menu-link" %>
-      </li>
-      <li class="pure-menu-item">
-          <%= link_to "About", about_path, :class => "pure-menu-link" %>
-      </li>
-    </ul>
+    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+      <ul class="pure-menu-list" id="splash-menu">
+        <li class="pure-menu-item">
+            <a href=<%= home_path %> class="pure-menu-heading"><%= image_tag "snap-logo.png", alt: "Snap! logo", class: "run-snap-logo" %></a>
+        </li>
+        <li class="pure-menu-item">
+            <%= link_to "Create", "/snap/", :class => "pure-menu-link" %>
+        </li>
+        <li class="pure-menu-item">
+            <%= link_to "Get Started", help_path, :class => "pure-menu-link" %>
+        </li>
+        <li class="pure-menu-item">
+            <%= link_to "About", about_path, :class => "pure-menu-link" %>
+        </li>
+      </ul>
 
-    <ul class="pure-menu-list">
-      <% if current_user %>
-      <li class="pure-menu-item">
-        <%= link_to "Profile", user_profile_path(current_user.id), :class => "pure-menu-link" %>
-      </li>
-      <li class="pure-menu-item">
+      <ul class="pure-menu-list">
+        <% if current_user %>
+        <li class="pure-menu-item">
+          <%= link_to "Profile", user_profile_path(current_user.id), :class => "pure-menu-link" %>
+        </li>
+        <li class="pure-menu-item">
 
-        <%= link_to "Logout", logout_path, :class => "pure-menu-link" %>
-      </li>
-      <% else %>
-      <li class="pure-menu-item">
-        <%= link_to "Sign Up", signup_path, :class => "pure-menu-link" %>
-      </li>
-      <li class="pure-menu-item">
-        <%= link_to "Sign In", login_path, :class => "pure-menu-link" %>
-      </li>
-      <% end %>
-    </ul>
-  </div>
-
-  <div class="content">
-    <div class="pure-g">
-      <%= yield %>
+          <%= link_to "Logout", logout_path, :class => "pure-menu-link" %>
+        </li>
+        <% else %>
+        <li class="pure-menu-item">
+          <%= link_to "Sign Up", signup_path, :class => "pure-menu-link" %>
+        </li>
+        <li class="pure-menu-item">
+          <%= link_to "Sign In", login_path, :class => "pure-menu-link" %>
+        </li>
+        <% end %>
+      </ul>
     </div>
-  </div>
-</body>
+
+    <div class="content">
+      <div class="pure-g">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
 </html>
