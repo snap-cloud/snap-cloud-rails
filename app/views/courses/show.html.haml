@@ -1,19 +1,20 @@
-%br
--if flash[:message]
-    %h1= flash[:message] 
-    %br
-%h2= @course.title 
-%p= @course.description
-%p= @course.website
-%br
+.pure-u-1-1
+  %br
+  -if flash[:message]
+      %h1= flash[:message] 
+      %br
+  %h2= @course.title 
+  %p= @course.description
+  %p= @course.website
+  %br
 
--if @assignments
-    %h3 Assignments:
-    -@assignments.each do |assignment|
-        =link_to assignment.title, assignment_show_path(assignment.id), id: "assignment_#{assignment.id}"
-        %br
-%br
--if @course.userRole(@user).try(:teacher?)
-    =button_to 'Delete', course_delete_path(@course)
-    =button_to 'Edit', course_edit_path(@course), method: :get
-    =button_to 'Add Assignment', assignment_new_path(@course), method: :get
+  -if @assignments
+      %h3 Assignments:
+      -@assignments.each do |assignment|
+          =link_to assignment.title, assignment_show_path(assignment.id), id: "assignment_#{assignment.id}"
+          %br
+  %br
+  -if @course.userRole(@user).try(:teacher?)
+      =button_to 'Delete', course_delete_path(@course)
+      =button_to 'Edit', course_edit_path(@course), method: :get
+      =button_to 'Add Assignment', assignment_new_path(@course), method: :get
