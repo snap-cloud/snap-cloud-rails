@@ -1,10 +1,11 @@
-%br
-%br
-%h1 All Snap! Courses
-%br
--if flash[:message]
-    %h3= flash[:message]
+.pure-u-1-1
+  %br
+  %br
+  %h1 All Snap! Courses
+  %br
+  -if flash[:message]
+      %h3= flash[:message]
 
--@courses.each do |course|
-    =link_to course.title, course_show_path(course)
-    %br
+  -@courses.each do |course|
+      =link_to course.title, course_show_path(course)
+      %br
