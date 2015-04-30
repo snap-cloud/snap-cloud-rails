@@ -1,0 +1,29 @@
+<div>
+  <%= search_form_for @q do |f| %>
+  <%= f.label :title_cont %>
+  <%= f.search_field :title_cont %>
+  
+  <%= f.submit %>
+  <% end %>
+
+  <table id="projects-table">
+    <tr>
+      <th>
+	<%= sort_link @q, :title, "Project Title" %>
+      </th>
+      <th>
+	<%= sort_link @q, :notes, "Project Notes" %>
+      </th>
+    </tr>
+    <% @projects.each do |project| %>
+    <tr>
+      <td>
+	<%= link_to project.title, project %>
+      </td>
+      <td>
+	<%= project.notes %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>

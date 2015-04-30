@@ -33,6 +33,9 @@ gem 'haml'
 # gem 'bower-rails'
 
 
+# Search
+gem 'ransack'
+
 # PRODUCTION AND PERF TOOLS:
 # Page Caching
 gem 'rack-cache'
