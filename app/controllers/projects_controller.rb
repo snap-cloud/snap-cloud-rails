@@ -5,11 +5,10 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
-
+  
   def index
-    if @project
-      render :action => "show"
-    end
+    @q = Project.search(params[:q])
+    @projects = @q.result(distinct: true)
     # TODO: Show interesting Public Projects
   end
   
