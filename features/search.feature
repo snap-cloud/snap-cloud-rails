@@ -15,9 +15,8 @@ Background:
   | blah    | this is a game | 1     | true      |
   | hmmmmm  | another game   | 1     | false     |
 
-  Given that I am logged in as "blah@blah.com" with password "hehehe"
-
 Scenario: Search for a user and their projects
+  Given I am logged in as "test@test.com" with password "yoloswaggins"
   Given I can see the dashboard
   And I enter "bob" for "search_input"
   And I press "Search"
