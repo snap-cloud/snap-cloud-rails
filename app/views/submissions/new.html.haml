@@ -1,24 +1,27 @@
-%br
-%br
-%h1= "Submit your project for: #{@assignment.title}"
+/ WARNING: THIS DOC USES 4 SPACES INDENTATION
 
-
-
-%h1=  flash[:message]
--@submission.try(:errors).try(:each) do |attribute, error|
-    %h3= attribute.to_s + " " + error.to_s
+.pure-u-1-1
     %br
-=form_tag submission_create_path(@assignment), method: :post, class:"pure-form pure-form-aligned" do
-    %fieldset
-        .pure-control-group
-            %label{for: "submission_project_id"} Title:
-            %select{ :name => "submission[project_id]" }
-            -@user.projects.each do |project|
-                %option{value: project.id}= project.title
-        .pure-control-group
-            %label{for: "submission_comments"} Title:
-            =text_field_tag 'submission[comments]'
+    %br
+    %h1= "Submit your project for: #{@assignment.title}"
 
+
+
+    %h1=  flash[:message]
+    -@submission.try(:errors).try(:each) do |attribute, error|
+        %h3= attribute.to_s + " " + error.to_s
         %br
-        %br
-        =submit_tag "Submit"
+    =form_tag submission_create_path(@assignment), method: :post, class:"pure-form pure-form-aligned" do
+        %fieldset
+            .pure-control-group
+                %label{for: "submission_project_id"} Title:
+                %select{ :name => "submission[project_id]" }
+                -@user.projects.each do |project|
+                    %option{value: project.id}= project.title
+            .pure-control-group
+                %label{for: "submission_comments"} Title:
+                =text_field_tag 'submission[comments]'
+
+            %br
+            %br
+            =submit_tag "Submit"
