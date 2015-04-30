@@ -14,5 +14,6 @@
  *= require main
  */
 
-*= require_tree pure
-*= require pure/forms
+= require_tree pure
+= require pure/forms
+= require_self
