@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
   
   def index
     @q = Project.search(params[:q])
-    @projects = @q.result(distinct: true)
+    @projects = @q.result(distinct: true).includes(:user)
     # TODO: Show interesting Public Projects
   end
   

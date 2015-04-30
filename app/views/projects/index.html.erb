@@ -1,9 +1,8 @@
 <div>
   <%= search_form_for @q do |f| %>
-  <%= f.label :title_cont %>
-  <%= f.search_field :title_cont %>
+  <%= f.search_field :title_or_notes_or_user_username_cont, placeholder: "Search Projects or Users" %>
   
-  <%= f.submit %>
+  <%= submit_tag "Search" %>
   <% end %>
 
   <table id="projects-table">
@@ -14,6 +13,9 @@
       <th>
 	<%= sort_link @q, :notes, "Project Notes" %>
       </th>
+      <th>
+	<%= sort_link @q, :user_username, "User" %>
+      </th>
     </tr>
     <% @projects.each do |project| %>
     <tr>
@@ -22,6 +24,9 @@
       </td>
       <td>
 	<%= project.notes %>
+      </td>
+      <td>
+	<%= project.user.username %>
       </td>
     </tr>
     <% end %>
