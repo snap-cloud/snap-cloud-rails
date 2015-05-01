@@ -7,9 +7,11 @@ class ProjectsController < ApplicationController
 
   
   def index
-    @q = Project.search(params[:q])
+    @p = params[:q]
+    puts @p
+    # @p = {"title_or_notes_user_username_cont": @p}
+    @q = Project.search(@p)
     @projects = @q.result(distinct: true).includes(:user)
-    # TODO: Show interesting Public Projects
   end
   
   def show
