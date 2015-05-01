@@ -7,10 +7,7 @@ class ProjectsController < ApplicationController
 
   
   def index
-    @p = params[:q]
-    puts @p
-    # @p = {"title_or_notes_user_username_cont": @p}
-    @q = Project.search(@p)
+    @q = Project.search(params[:q])
     @projects = @q.result(distinct: true).includes(:user)
   end
   
