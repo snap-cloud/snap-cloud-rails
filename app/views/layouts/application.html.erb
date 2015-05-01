@@ -4,7 +4,7 @@
       <!-- FIXME: each page needs title... -->
     <title>Snap! Build Your Own Blocks</title>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> <!-- remove this line for the jquery error to go away -->
     <%= csrf_meta_tags %>
     
     <%= yield :head %>
