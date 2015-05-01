@@ -7,7 +7,7 @@ Background:
   Given the following users exist:
   | email         | password     | username |
   | test@test.com | yoloswaggins | bob	    |
-  | tes@tes.com   | yoloswaggins | bill     |
+  | tes@tes.com   | yoloswaggins | alec     |
 
   And the following projects exist:
   | title   | notes          | owner | is_public |
@@ -45,3 +45,9 @@ Scenario: Search for projects by notes
   And I should see "blah"
   And I should not see "ohsnap!"
   And I should see "hmmmmm"
+  Then I press "Project Title"
+  And I should first see "blah" before "hmmmmm"
+  Then I press "Project Notes"
+  And I should first see "hmmmmm" before "blah"
+  Then I press "User"
+  And I should first see "hmmmmm" before "blah"
