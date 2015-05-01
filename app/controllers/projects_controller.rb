@@ -70,7 +70,7 @@ class ProjectsController < ApplicationController
 
     def project_params
       # FIXME -- verify with API controller?
-      params.require(:project).permit(:title, :notes, :is_public, :contents)
+      params.require(:project).permit(:title, :notes, :is_public, :contents, :snap_file)
     end
 
     def find_project_by_name(username, projectname)
