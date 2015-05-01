@@ -86,7 +86,7 @@ Given /^(?:|I) am on the profile edit page for "(.*?)"$/ do |username|
   visit "/users/" + user.id.to_s + "/edit"
 end
 
-Given /^(?:|I) am on the home page$/ do
+Given /^(?:|I) am on the (?:|home|splash) page$/ do
   visit "/"
 end
 
