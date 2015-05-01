@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
 
   
   def index
+    # comment!
     @q = Project.search(params[:q])
     @projects = @q.result(distinct: true).includes(:user)
   end
