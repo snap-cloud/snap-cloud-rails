@@ -1,16 +1,14 @@
 <div>
-  <!--%= form_tag projects_path, method: :get do %-->
-  <!--%= text_field_tag :q, placeholder: "Search Projects or Users" %-->
   
-  <%= search_form_for @i=Project.search do |f| %>
-  <%= f.search_field :title_or_notes_or_user_username_cont %>
-  <%= submit_tag "Search" %>
+  <%= search_form_for Project.search do |f| %>
+  <%= f.search_field :title_or_notes_or_user_username_cont, placeholder: "Search Projects and Users" %>
+  <%= submit_tag "Search", class: "pure-button", style: "margin:10px;" %>
   <% end %>
 
   <table id="projects-table" style="letter-spacing:1px;">
     <tr>
       <th>
-	<%= sort_link @q, :title, "Project Title", action: "index"%>
+	<%= sort_link @q, :title, "Project Title" %>
       </th>
       <th>
 	<%= sort_link @q, :notes, "Project Notes" %>
