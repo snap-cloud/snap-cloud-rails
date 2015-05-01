@@ -11,7 +11,7 @@ class Assignment < ActiveRecord::Base
   	subCopy.read_only = true
     subCopy.submitted = true
     subCopy.title += " --Submitted: #{Time.now}--"
-    supCopy.snap_file = proj.snap_file
+    subCopy.snap_file = proj.snap_file
   	subCopy.save
   	Submission.create(assignment_id: self.id, comments: comments, project_id: subCopy.id)
   end
