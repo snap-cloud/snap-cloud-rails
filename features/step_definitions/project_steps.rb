@@ -145,6 +145,10 @@ Then(/^I will be on the home page$/) do
   page.current_path.should eq "/"
 end
 
+Then(/^I will be on the search page$/) do
+  page.current_path.should eq "/projects"
+end
+
 Given(/^I am on the login page$/) do
   visit login_path
 end
