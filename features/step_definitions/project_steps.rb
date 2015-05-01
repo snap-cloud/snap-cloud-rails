@@ -26,6 +26,12 @@ Then /^(?:|I) should see the link "(.*?)" to "(.*?)"$/ do |link, url|
   page.should have_link(link, :href => url)
 end
 
+Then /^(?:|I) should see "(.*?)" before "(.*?)"$/ do |first, second|
+  assert page.include? first
+  assert page.include? second
+  assert page.index(first) < page.index(second)
+end
+
 Then /^(?:|I) should see the submit button "(.*?)"$/ do |input|
   page.should have_selector("input[type=submit][value='#{input}']")
 end

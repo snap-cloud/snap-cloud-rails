@@ -7,12 +7,16 @@
 <h2 id="username"><%= @user.username %></h2>
 <% if not @user == current_user %>
 <a id="report-profile" class="pure-button" style="background: rgb(202,60,60);" href="/users/<%= @user.id %>/edit">
-  <div class="icono-flag">
+  <div>
+    <i class="icono-flag"></i>
+    Report
   </div>
 </a>
 <% else %>
 <a id="edit-profile" class="pure-button" style="background: rgb(202,60,60);" href="/users/<%= @user.id %>/edit">
-  <div class="icono-gear">
+  <div>
+    <i class="icono-gear"></i>
+    Edit
   </div>
 </a>
 <% end %>
