@@ -1,0 +1,34 @@
+<div>
+  
+  <%= search_form_for Project.search do |f| %>
+  <%= f.search_field :title_or_notes_or_user_username_cont, placeholder: "Search Projects and Users" %>
+  <%= submit_tag "Search", class: "pure-button", style: "margin:10px;" %>
+  <% end %>
+
+  <table id="projects-table" style="letter-spacing:1px;">
+    <tr>
+      <th>
+	<%= sort_link @q, :title, "Project Title" %>
+      </th>
+      <th>
+	<%= sort_link @q, :notes, "Project Notes" %>
+      </th>
+      <th>
+	<%= sort_link @q, :user_username, "User" %>
+      </th>
+    </tr>
+    <% @projects.each do |project| %>
+    <tr>
+      <td>
+	<%= link_to project.title, project %>
+      </td>
+      <td>
+	<%= project.notes %>
+      </td>
+      <td>
+	<%= project.user.username %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>

@@ -29,11 +29,16 @@
 
       <ul class="pure-menu-list">
         <% if current_user %>
+	<li class="pure-menu-item">
+	  <%= search_form_for Project.search do |f| %>
+	  <%= f.search_field :title_or_notes_or_user_username_cont, placeholder: "Search Projects and Users" %>
+	  <%= submit_tag "Search", class: "pure-button" %>
+	  <% end %>
+	</li>
         <li class="pure-menu-item">
           <%= link_to "Profile", user_profile_path(current_user.id), :class => "pure-menu-link" %>
         </li>
         <li class="pure-menu-item">
-
           <%= link_to "Logout", logout_path, :class => "pure-menu-link" %>
         </li>
         <% else %>
