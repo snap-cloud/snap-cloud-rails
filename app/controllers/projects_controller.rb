@@ -5,12 +5,11 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
-
+  
   def index
-    if @project
-      render :action => "show"
-    end
-    # TODO: Show interesting Public Projects
+    # comment!
+    @q = Project.search(params[:q])
+    @projects = @q.result(distinct: true).includes(:user)
   end
   
   def show
@@ -72,7 +71,7 @@ class ProjectsController < ApplicationController
 
     def project_params
       # FIXME -- verify with API controller?
-      params.require(:project).permit(:title, :notes, :is_public, :contents)
+      params.require(:project).permit(:title, :notes, :is_public, :contents, :snap_file)
     end
 
     def find_project_by_name(username, projectname)
