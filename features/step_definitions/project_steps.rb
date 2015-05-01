@@ -53,7 +53,7 @@ Given /^(?:|I) am logged in as "(.*?)" with password "(.*?)"$/ do |user, passwor
     visit logout_path
   end
   visit login_path
-  fill_in "user_email", :with => user
+  fill_in "user_login", :with => user
   fill_in "user_password", :with => password
   click_button "Log in"
 end
