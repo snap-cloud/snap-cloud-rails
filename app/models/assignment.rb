@@ -3,6 +3,9 @@ class Assignment < ActiveRecord::Base
   has_many :submissions
   has_many :projects, through: :submissions
 
+  validates_presence_of :title
+  validates_presence_of :description
+
   #Currently downloads the snap file from S3 and reuploads it attached to sumbission
   def submit(project_id, comments)
   	proj = Project.find(project_id)

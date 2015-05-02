@@ -8,9 +8,9 @@
 
 
     %h1=  flash[:message]
-    -@assignment.try(:errors).try(:each) do |attribute, error|
-        %h3= attribute.to_s + " " + error.to_s
-        %br
+    -if @assignment
+        -@assignment.errors.full_messages.each do |msg|
+            %h3= msg
     =form_tag assignment_create_path(@course), method: :post, class:"pure-form pure-form-aligned" do
         %fieldset
             .pure-control-group
