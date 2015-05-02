@@ -180,3 +180,26 @@ Then(/^I should see that I can't edit the assignment$/) do
     assert page.has_content?(text)
   end
 end
+
+
+When(/^I click the save button$/) do
+  click_button('save')
+end
+
+Then(/^I should see the title field can't be blank$/) do
+  text = "Title can't be blank"
+  if page.respond_to? :should
+    page.should have_content(text)
+  else
+    assert page.has_content?(text)
+  end
+end
+
+Then(/^I should see the description field can't be blank$/) do
+  text = "Description can't be blank"
+  if page.respond_to? :should
+    page.should have_content(text)
+  else
+    assert page.has_content?(text)
+  end
+end
