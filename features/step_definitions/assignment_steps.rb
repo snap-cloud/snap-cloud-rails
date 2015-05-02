@@ -203,3 +203,8 @@ Then(/^I should see the description field can't be blank$/) do
     assert page.has_content?(text)
   end
 end
+
+
+Given(/^I clear the "(.*?)" textbox$/) do |arg1|
+  fill_in arg1, :with => ""
+end

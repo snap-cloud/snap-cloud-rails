@@ -59,3 +59,14 @@ Background:
         And I click the save button
         Then I should see the title field can't be blank
         And I should see the description field can't be blank
+
+
+    Scenario: Try to edit assignment with fields missing
+        Given I am logged in as "teacher@cal.edu" with password "password"
+        And I visit the assignment show page for "assign1"
+        And I click edit assignment
+        And I clear the "assignment_title" textbox
+        And I clear the "assignment_description" textbox
+        And I click the save button
+        Then I should see the title field can't be blank
+        And I should see the description field can't be blank
