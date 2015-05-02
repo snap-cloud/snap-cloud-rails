@@ -33,7 +33,8 @@
         <% if current_user %>
         <li class="pure-menu-item">
           <%= search_form_for Project.search do |f| %>
-            <%= f.search_field :title_or_notes_or_user_username_cont, placeholder: "Search Projects and Users", class: "nav-search-bar" %>
+            <!-- <%= submit_tag "", class: "icono-search"%> -->
+            <%= f.search_field :title_or_notes_or_user_username_cont, placeholder: "Search", class: "nav-search-bar" %>
             <%= submit_tag "Search", class: "pure-button" %>
           <% end %>
         </li>

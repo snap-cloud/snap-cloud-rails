@@ -19,3 +19,11 @@
   *= require main
   *= require_self
 */
+
+.nav-search-bar {
+  display: inline-block;
+  margin-right: .2em;
+  border-radius: 1.2em;
+  padding: .1em .6em;
+  width: 20em;
+}
