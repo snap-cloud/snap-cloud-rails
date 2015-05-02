@@ -169,3 +169,21 @@ end
 When(/^I uncheck "(.*?)"$/) do |check_box|
   uncheck check_box
 end
+
+Then /^(?:|I) should see the name "(.*?)"$/ do |input|
+  page.should have_content input
+end
+
+
+Then(/^I should be on the profile page of "(.*?)"$/) do |input|
+  text = "#{input}'s Profile"
+  if page.respond_to? :should
+      page.should have_content(text)
+    else
+      assert page.has_content?(text)
+    end
+end
+
+When(/^I go to the url "(.*?)"$/) do |arg1|
+  visit arg1
+end
