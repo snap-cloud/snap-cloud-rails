@@ -51,3 +51,11 @@ Background:
         And I visit the assignment show page for "assign3"
         Then I should not see button for "Edit Assignment"
         And I should see that I can't edit the assignment
+
+    Scenario: Try to create assignment with fields missing
+        Given I am logged in as "teacher@cal.edu" with password "password"
+        When I try to visit the page for "testcourse"
+        And I click the create assignment button
+        And I click the save button
+        Then I should see the title field can't be blank
+        And I should see the description field can't be blank
