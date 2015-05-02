@@ -78,7 +78,7 @@
   <tbody> 
     <tr> <% @projects.each do |project| %> 
       <td> <a href="../projects/<%=project.id%>"><%= project.title %> </a>
-	<br> &nbsp;&nbsp;&nbsp;&nbsp; <%= project.notes %></td>
+        <br> &nbsp;&nbsp;&nbsp;&nbsp; <%= project.notes %></td>
       <td> <%= project.is_public ? "Public": "Private"%></td>
       <td> <%= project.created_at %></td>
       <td> <%= project.updated_at %></td>

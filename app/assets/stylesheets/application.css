@@ -10,10 +10,12 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_self
- *= require main
  */
 
-= require_tree pure
-= require pure/forms
-= require_self
+/*
+  *= require pure/pure-min
+  *= require pure/grids-responsive-min
+  *= require icono/dist/icono.min
+  *= require main
+  *= require_self
+*/
