@@ -60,7 +60,7 @@ Scenario: Courses
 
 Scenario: Projects
   Given I can see the dashboard
-  Then I should see "Your Projects"
+  Then I should see "Projects"
   And I should see my projects
 
 Scenario: Side Navbar 
