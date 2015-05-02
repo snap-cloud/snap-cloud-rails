@@ -7,18 +7,18 @@
 
 <!-- <div class="pure-g"> -->
 
-	<div class="pure-u-1-8 project-title-bar" style="display: table-cell; vertical-align: middle;">
-		<div class="centered-label-darkgray" ><%= @project.is_public ? "Public Project" : "Private Project"%>
+	<div class="pure-u-1-8 project-title-bar" style="display: table-cell; vertical-align: middle; background: #2d3e50; color: white;">
+		<div class="centered-label-dirtygold" ><%= @project.is_public ? "Public Project" : "Private Project"%>
 		</div>
 	</div>
 	
 
 	<div class="pure-u-3-4 project-title-bar">
-		<div id="project-title" style="font-size: 200%; text-align: center;"> <%= @project.title %> </div>
-		<div style="text-align: center;"> <%= @owner.email %> </div>
+		<div id="project-title" class="project-title-bar" style="font-size: 200%; text-align: center; background: #2d3e50; color: white;"> <%= @project.title %> </div>
+		<div style="text-align: center; background: #2d3e50; color: white;"> <%= @owner.email %> </div>
 	</div>
 
-	<div class="pure-u-1-8 project-title-bar" style="display: table-cell; vertical-align: middle;">
+	<div class="pure-u-1-8 project-title-bar" style="display: table-cell; vertical-align: middle; background: #2d3e50; color: white;">
 		
 			<% if current_user == @owner %>
 			<a id="edit_project" class="pure-button pure-button-primary" href="/projects/<%= @project.id %>/edit">
