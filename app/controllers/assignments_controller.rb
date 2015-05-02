@@ -16,6 +16,12 @@ class AssignmentsController < ApplicationController
 
   def create
     @assignment = Assignment.new(assignment_params)
+
+    if @assignment.due_date < Date.today
+      flash[:message] = "Cannot create an assignment that has already ended."
+      render 'new' and return  
+    end
+    
     if @assignment.valid?
       @course.assignments << @assignment
       flash[:message] = "You have created this assignment"
