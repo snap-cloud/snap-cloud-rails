@@ -26,12 +26,10 @@ Scenario: View own profile edit page and submit
   Then I should see "testuser"
   And I should see "My Projects"
   And I should see "About Me"
-  And I should not see "Change profile pic"
   And I should not see the submit button "Update"
   And I press "edit-profile"
   Then I will be on the edit page for user 1
   And I should see the submit button "Update"
-  And I should see "Change profile pic"
   And I should see a file input
   And I enter "About testuser" for "user_about_me"
   And I press "Update"
