@@ -66,8 +66,8 @@ ActiveRecord::Schema.define(version: 20150501072634) do
     t.datetime "last_modified"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "read_only"
-    t.boolean  "submitted"
+    t.boolean  "read_only",              default: false
+    t.boolean  "submitted",              default: false
     t.string   "snap_file_file_name"
     t.string   "snap_file_content_type"
     t.integer  "snap_file_file_size"
