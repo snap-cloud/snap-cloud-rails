@@ -2,31 +2,34 @@
   <%= stylesheet_link_tag "profile", "marketing" %>
 <% end %>
 
-<link rel="stylesheet" href="http://saeedalipoor.github.io/icono/icono.min.css">
+<div style="letter-spacing:1px;">
+  <link rel="stylesheet" href="http://saeedalipoor.github.io/icono/icono.min.css">
 
-<h2 id="username"><%= @user.username %></h2>
-<div class="pure-g profile-wrapper">
-  <%= form_for(@user, multipart: true) do |f| %>
-  <div class="pure-u-1-3" id="basic-info">
-    <h3 id="about">About Me</h3>
-    <div class="profile-content">
-      <%= image_tag @user.avatar.url(:thumb) %>
-      <div>
-	<%= f.label "Change profile pic" %>
-	<%= f.file_field :avatar %>
+  <h2 id="username">Edit <%= @user.username %>'s Profile</h2>
+  <div class="pure-g profile-wrapper">
+    <%= form_for(@user, multipart: true) do |f| %>
+    <div class="pure-u-3-3" id="basic-info" style="letter-spacing:1px;">
+      <h3 id="about">Edit Profile Picture</h3>
+      <div class="profile-content">
+	<%= image_tag @user.avatar.url(:thumb) %>
+	<div>
+	  <%= f.file_field :avatar %>
+	</div>
       </div>
     </div>
-  </div>
-  <div class="pure-u-2-3" id="">
-    <div class="profile-content">
-      <h4 class="profile-content-text">
-	<%= f.text_area :about_me, :value => @about_me %>
-      </h4>
+    <br>
+    <div class="pure-u-3-3" id="about-me-box" style="letter-spacing:1px;">
+      <h3 id="about">Edit About Me</h3>
+      <div class="profile-content">
+	<h4 class="profile-content-text">
+	  <%= f.text_area :about_me, :value => @about_me %>
+	</h4>
+      </div>
     </div>
+    <div id="profile-edit-submit">
+      <%= f.submit 'Update', class: "pure-button" %>
+      <button class="pure-button" href="<%= user_profile_path(current_user.id) %>" style="margin:10px;">Cancel</button>
+    </div>
+    <% end %>
   </div>
-  <div id="profile-edit-submit">
-    <%= f.submit 'Update', class: "pure-button" %>
-    <button class="pure-button" href="<%= user_profile_path(current_user.id) %>">Cancel</button>
-  </div>
-  <% end %>
 </div>
