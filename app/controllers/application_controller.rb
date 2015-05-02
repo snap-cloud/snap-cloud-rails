@@ -77,7 +77,7 @@ class ApplicationController < ActionController::Base
     end
 
     def assignmentExists
-      if !Assignment.exists?(params[:assignment_id])
+      if !Assignment.exists?(id: params[:assignment_id])
         render file: "#{Rails.root}/public/404.html", layout: false, status: 404 and return
       else
         @assignment = Assignment.find(params[:assignment_id])
