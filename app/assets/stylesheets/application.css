@@ -13,8 +13,9 @@
  */
 
 /*
-  *= require main
   *= require pure/pure-min
+  *= require pure/grids-responsive-min
   *= require icono/dist/icono.min
+  *= require main
   *= require_self
 */
