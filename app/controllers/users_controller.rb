@@ -4,6 +4,13 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def prettyname
+    @user = User.find_by(username: params[:username])
+    params[:id] = @user.id
+    profile
+    render 'profile'
+  end
+
   def profile
     if params[:id]
       @user = User.find(params[:id])
