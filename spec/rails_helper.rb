@@ -7,12 +7,16 @@ require 'rspec/rails'
 
 require 'devise'
 
+# Test Coverage... 3X.
 require 'simplecov'
 SimpleCov.start
 SimpleCov.merge_timeout 3600
 
 require 'coveralls'
 Coveralls.wear!('rails')
+
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are

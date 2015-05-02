@@ -56,8 +56,8 @@ group :test do
 
   # CODE COVERAGE
   gem 'simplecov'
-  gem 'coveralls', require: false
-  gem "codeclimate-test-reporter", require: nil
+  gem 'coveralls'
+  gem "codeclimate-test-reporter"
   
   gem "database_cleaner"
 end
