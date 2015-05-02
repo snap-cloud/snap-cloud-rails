@@ -49,5 +49,3 @@ Scenario: Search for projects by notes
   And I should first see "blah" before "hmmmmm"
   Then I press "Project Notes"
   And I should first see "hmmmmm" before "blah"
-  Then I press "User"
-  And I should first see "hmmmmm" before "blah"
