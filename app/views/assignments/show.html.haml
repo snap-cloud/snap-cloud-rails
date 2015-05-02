@@ -12,8 +12,11 @@
 
     %br
     -if @assignment.course.userRole(@user).try(:teacher?)
-        =button_to 'Edit Assignment', assignment_edit_path(@assignment), method: :get
-        =button_to 'Delete Assignment', assignment_delete_path(@assignment), method: :post
+        -if Time.now < @assignment.due_date
+            =button_to 'Edit Assignment', assignment_edit_path(@assignment), method: :get
+            =button_to 'Delete Assignment', assignment_delete_path(@assignment), method: :post
+        -else
+            %h1 Assignment has been closed for submission and edits.
         %br
         %br
         %p Submissions for this assignment:
