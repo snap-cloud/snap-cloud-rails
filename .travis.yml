@@ -3,8 +3,8 @@ rvm:
 - 2.2.1
 script:
 - RAILS_ENV=test bundle exec rake db:migrate
-- bundle exec rspec
 - bundle exec cucumber
+- bundle exec rspec
 cache: bundler
 addons:
   postgresql: '9.3'
