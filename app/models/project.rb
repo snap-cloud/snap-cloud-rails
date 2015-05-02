@@ -11,5 +11,6 @@ class Project < ActiveRecord::Base
     :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
   }
 
+  validates_attachment_content_type :snap_file, :content_type => 'text/xml'
 
 end
