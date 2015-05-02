@@ -12,7 +12,7 @@ SimpleCov.start
 SimpleCov.merge_timeout 3600
 
 require 'coveralls'
-Coveralls.wear_merged!
+Coveralls.wear!('rails')
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
