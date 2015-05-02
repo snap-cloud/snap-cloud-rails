@@ -7,6 +7,8 @@ class UsersController < ApplicationController
   def prettyname
     @user = User.find_by(username: params[:username])
     params[:id] = @user.try(:id)
+    render file: "#{Rails.root}/public/404.html", layout: false, status: 404 unless params[:id]
+    return unless params[:id]
     profile
     render 'profile'
   end
