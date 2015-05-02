@@ -14,7 +14,7 @@
 	<%= sort_link @q, :notes, "Project Notes" %>
       </th>
       <th>
-	<%= sort_link @q, :user_username, "User" %>
+	User
       </th>
     </tr>
     <% @projects.each do |project| %>
@@ -26,7 +26,7 @@
 	<%= project.notes %>
       </td>
       <td>
-	<%= project.user.username %>
+	<%= link_to project.user.username, project.user %>
       </td>
     </tr>
     <% end %>

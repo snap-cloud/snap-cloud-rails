@@ -10,6 +10,11 @@ When(/^I fill in everything to create a new assignment$/) do
   click_button 'save'
 end
 
+When(/^I fill in assignment due_date as late$/) do
+  select 1.year.ago.year, :from => "assignment_due_date_1i"
+end
+
+
 Then(/^I should see that I created an assignment$/) do
 	text = "You have created this assignment"
 	if page.respond_to? :should
@@ -147,5 +152,59 @@ Given(/^user "(.*?)" with password "(.*?)" submits "(.*?)" and "(.*?)" to "(.*?)
   select proj2, :from => "submission[project_id]"
   click_button 'Submit'
   visit logout_path
+end
 
+
+Then (/^I should see that I can't create assignments due in the past$/) do
+  text = "Cannot create an assignment that has already ended."
+  if page.respond_to? :should
+    page.should have_content(text)
+  else
+    assert page.has_content?(text)
+  end
+end
+
+Then(/^I should not see button for "(.*?)"$/) do |arg1|
+  if page.respond_to? :should
+    page.should have_no_selector('input', :text => arg1)
+  else
+    assert !page.has_selector?('input', :text => arg1)
+  end
+end
+
+Then(/^I should see that I can't edit the assignment$/) do
+  text = "Assignment has been closed for submission and edits."
+  if page.respond_to? :should
+    page.should have_content(text)
+  else
+    assert page.has_content?(text)
+  end
+end
+
+
+When(/^I click the save button$/) do
+  click_button('save')
+end
+
+Then(/^I should see the title field can't be blank$/) do
+  text = "Title can't be blank"
+  if page.respond_to? :should
+    page.should have_content(text)
+  else
+    assert page.has_content?(text)
+  end
+end
+
+Then(/^I should see the description field can't be blank$/) do
+  text = "Description can't be blank"
+  if page.respond_to? :should
+    page.should have_content(text)
+  else
+    assert page.has_content?(text)
+  end
+end
+
+
+Given(/^I clear the "(.*?)" textbox$/) do |arg1|
+  fill_in arg1, :with => ""
 end
