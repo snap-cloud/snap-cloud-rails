@@ -15,5 +15,6 @@
 /*
   *= require main
   *= require pure/pure-min
+  *= require icono/dist/icono.min
   *= require_self
 */
