@@ -1,49 +1,47 @@
-/ WARNING: THIS DOC USES 4 SPACES INDENTATION
-
 .pure-u-1-1
+  %br
+  -if flash[:message]
+    %h1= flash[:message] 
     %br
-    -if flash[:message]
-        %h1= flash[:message] 
-        %br
-    %h2= @assignment.title 
-    %p= @assignment.description
-    %p= "Start: #{@assignment.start_date.to_s}"
-    %p= "Due:   #{@assignment.due_date.to_s}"
+  %h2= @assignment.title 
+  %p= @assignment.description
+  %p= "Start: #{@assignment.start_date.to_s}"
+  %p= "Due:   #{@assignment.due_date.to_s}"
 
-    %br
-    -if @assignment.course.userRole(@user).try(:teacher?)
-        -if Time.now < @assignment.due_date
-            =button_to 'Edit Assignment', assignment_edit_path(@assignment), method: :get
-            =button_to 'Delete Assignment', assignment_delete_path(@assignment), method: :post
-        -else
-            %h1 Assignment has been closed for submission and edits.
-        %br
-        %br
-        %p Submissions for this assignment:
-        -@assignment.projects.each do |project|
-            / TODO: Change the path to use a path helper
-            =link_to project.title, "/projects/#{project.id}", id: "project_#{project.id}"
-
-    -elsif Time.now < @assignment.due_date
-        %p Submit assignment:
-        =form_tag submission_create_path(@assignment), method: :post, class:"pure-form pure-form-aligned" do
-            %fieldset
-                .pure-control-group
-                    %label{for: "submission_project_id"} Project:
-                    %select{ :name => "submission[project_id]" }
-                        -if @user.projects.empty?
-                            %option{value: 'nothing'} You do not have any projects
-                        -@user.projects.each do |project|
-                            %option{value: project.id}= project.title
-                .pure-control-group
-                    %label{for: "submission_comments"} Comments:
-                    =text_area_tag 'submission[comments]'
-                %br
-                %br
-                -if @user.projects.empty?
-                    =submit_tag "Submit",  disabled: true
-                -else
-                    =submit_tag "Submit",  disabled: false
-
+  %br
+  -if @assignment.course.userRole(@user).try(:teacher?)
+    -if Time.now < @assignment.due_date
+      =button_to 'Edit Assignment', assignment_edit_path(@assignment), method: :get
+      =button_to 'Delete Assignment', assignment_delete_path(@assignment), method: :post
     -else
-        %p Submission for this assignment has been closed.
+      %h1 Assignment has been closed for submission and edits.
+    %br
+    %br
+    %p Submissions for this assignment:
+    -@assignment.projects.each do |project|
+      / TODO: Change the path to use a path helper
+      =link_to project.title, "/projects/#{project.id}", id: "project_#{project.id}"
+
+  -elsif Time.now < @assignment.due_date
+    %p Submit assignment:
+    =form_tag submission_create_path(@assignment), method: :post, class:"pure-form pure-form-aligned" do
+      %fieldset
+        .pure-control-group
+          %label{for: "submission_project_id"} Project:
+          %select{ :name => "submission[project_id]" }
+            -if @user.projects.empty?
+              %option{value: 'nothing'} You do not have any projects
+            -@user.projects.each do |project|
+              %option{value: project.id}= project.title
+        .pure-control-group
+          %label{for: "submission_comments"} Comments:
+          =text_area_tag 'submission[comments]'
+        %br
+        %br
+        -if @user.projects.empty?
+          =submit_tag "Submit",  disabled: true
+        -else
+          =submit_tag "Submit",  disabled: false
+
+  -else
+    %p Submission for this assignment has been closed.
