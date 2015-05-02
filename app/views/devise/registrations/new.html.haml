@@ -25,7 +25,7 @@
         %br/
         %label
           When were you born?
-        = date_select :user, :birthdate
+        = date_select :user, :birthdate, start_year: 75.years.ago.year
         %em
           If you are less than 13 years old, you must have you parent's permission, and use your parent's email address.
       
