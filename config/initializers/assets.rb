@@ -11,3 +11,4 @@ Rails.application.config.assets.paths << 'vendor/bower'
 # Rails.application.config.assets.precompile += %w( search.js )
 
 Rails.application.config.assets.precompile += [/.*\.js/,/.*\.css/]
+
