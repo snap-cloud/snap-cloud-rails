@@ -4,7 +4,7 @@
       <!-- FIXME: each page needs title... -->
     <title>Snap! Build Your Own Blocks</title>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> <!-- remove this line for the jquery error to go away -->
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
     
     <%= yield :head %>
@@ -35,7 +35,7 @@
           <%= search_form_for Project.search do |f| %>
             <!-- <%= submit_tag "", class: "icono-search"%> -->
             <%= f.search_field :title_or_notes_or_user_username_cont, placeholder: "Search", class: "nav-search-bar" %>
-            <%= submit_tag "Search", class: "pure-button" %>
+            <%= submit_tag "Search", class: "button-xsmall pure-button" %>
           <% end %>
         </li>
         <li class="pure-menu-item">
