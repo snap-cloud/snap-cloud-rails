@@ -5,20 +5,17 @@
 <link rel="stylesheet" href="http://saeedalipoor.github.io/icono/icono.min.css">
 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
 
-<div class="pure-g">
+<!-- <div class="pure-g"> -->
 
 	<div class="pure-u-1-8 project-title-bar" style="display: table-cell; vertical-align: middle;">
 		<div class="centered-label-darkgray" ><%= @project.is_public ? "Public Project" : "Private Project"%>
-			<!-- <% if @project.is_public %>
-				<div class="icono-eye"></div>
-			<% end %> -->
 		</div>
 	</div>
 	
 
 	<div class="pure-u-3-4 project-title-bar">
-		<div id="project-title" style="font-size: 200%;"> <%= @project.title %> </div>
-		<div> <%= @owner.email %> </div>
+		<div id="project-title" style="font-size: 200%; text-align: center;"> <%= @project.title %> </div>
+		<div style="text-align: center;"> <%= @owner.email %> </div>
 	</div>
 
 	<div class="pure-u-1-8 project-title-bar" style="display: table-cell; vertical-align: middle;">
@@ -36,7 +33,7 @@
 			</a>
 	</div>
 
-</div>
+<!-- </div> -->
 
 <div class="pure-g" style="margin-left: auto; margin-right: auto; background: white">
     <div class="pure-u-1 pure-u-md-3-4 bottom-margin-med" id="project-description">
