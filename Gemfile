@@ -30,6 +30,8 @@ gem 'haml'
 # TODO: Configure Bower
 # gem 'bower-rails'
 
+# Manage Keys
+gem 'figaro'
 
 # Search
 gem 'ransack'
@@ -37,9 +39,10 @@ gem 'ransack'
 # PRODUCTION AND PERF TOOLS:
 # Page Caching
 gem 'rack-cache'
+# App Monitoring
+gem 'newrelic_rpm'
 # Use Puma as the app server
-# TODO: Test before enabling! (See Heroku docs)
-# gem 'puma'
+gem 'puma'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
