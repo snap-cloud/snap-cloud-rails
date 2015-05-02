@@ -62,7 +62,4 @@ Then /^(?:|I) should see navigation links$/ do
   page.should have_content "Profile"
   page.should have_content "Projects"
   page.should have_content "Courses"
-  page.should have_content "Assignments"
-  page.should have_content "Announcements"
-  page.should have_content "Collaborators"
 end
