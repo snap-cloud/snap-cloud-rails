@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def prettyname
     @user = User.find_by(username: params[:username])
-    params[:id] = @user.id
+    params[:id] = @user.try(:id)
     profile
     render 'profile'
   end
