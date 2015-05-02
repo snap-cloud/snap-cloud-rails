@@ -10,7 +10,7 @@ Rails.application.config.assets.paths << 'vendor/bower'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( stylesheets/** )
 
-Rails.application.config.assets.precompile += [ /.*\/app\/.*\.js/, /.*\/app\/.*\.css/ ]
+# Rails.application.config.assets.precompile += [ /.*\/app\/.*\.js/, /.*\/app\/.*\.css/ ]
 
-#  Rails.application.config.assets.precompile += [/.*\.js/,/.*\.css/]
+Rails.application.config.assets.precompile += [/.*\.js/,/.*\.css/]
 
