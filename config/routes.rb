@@ -40,6 +40,8 @@ Rails.application.routes.draw do
   get 'courses/:course_id',          to: 'courses#show', as: 'course_show'
   get 'courses',              to: 'courses#index', as: 'course_index'
 
+  get '/@/:username', to: 'users#prettyname', as: 'user_prettyname'
+
   # Cleaner URLs for HTML pages.
 
   devise_scope :user do
