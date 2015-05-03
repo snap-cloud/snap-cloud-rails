@@ -76,7 +76,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  # Set up s3 storage.
+  # Set up S3 storage.
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
