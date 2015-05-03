@@ -30,7 +30,6 @@
       </ul>
 
       <ul class="pure-menu-list">
-        <% if current_user %>
         <li class="pure-menu-item">
           <%= search_form_for Project.search do |f| %>
             <!-- <%= submit_tag "", class: "icono-search"%> -->
@@ -38,6 +37,7 @@
             <%= submit_tag "Search", class: "button-xsmall pure-button" %>
           <% end %>
         </li>
+        <% if current_user %>
         <li class="pure-menu-item">
           <%= link_to "Profile", user_profile_path(current_user.id), class: "pure-menu-link" %>
         </li>
