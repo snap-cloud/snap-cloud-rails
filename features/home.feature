@@ -25,7 +25,7 @@ Scenario: View the header buttons
 Scenario: View the splash page main frame content
   And I should see "Run"
   And I should see "Now"
-  And I should see "Welcome to Snap!"
+  And I should see "Welcome to snap"
   And I should see an image
 
 Scenario: View the projects

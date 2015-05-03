@@ -2,21 +2,20 @@ class RegistrationsController < Devise::RegistrationsController
   respond_to :json
 
   def create
-    puts 'in create...'
     @user = User.create(user_params)
     if @user.save
-      status = { :code => 0}
+      status = { code: 0}
       data = @user
     else
-      status = { :code => 1, :messages => @user.errors.full_messages }
-      data = nil 
+      status = { code: 1, messages: @user.errors.full_messages }
+      data = nil
     end
     respond_to do |format|
       format.json {
-        render :json => {:state =>  status, :data => data}
+        render json: {state:  status, data: data}
       }
       format.html {
-        redirect_to '/', :state => status, :data => data
+        redirect_to '/', state: status, data: data
       }
     end
   end

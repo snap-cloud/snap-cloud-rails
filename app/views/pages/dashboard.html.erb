@@ -1,6 +1,4 @@
-<div class="pure-g">
-
-  <!-- blank div for spacing --> 
+  <!-- blank div for spacing -->
   <div class="pure-u-1-24">
   </div>
 
@@ -10,38 +8,32 @@
     <%= render 'navigation' %>
   </div>
 
-  <!-- blank div for spacing --> 
+  <!-- blank div for spacing -->
   <div class="pure-u-1-24">
   </div>
 
   <div class="pure-u-5-6" text-align="center">
-    <br>
-    <br>
-    <br>
-    <br>
-    <!-- FIXME this needs some CSS-->
-    <font size="10"><%= @user.username%>'s Dashboard</font>
+    <h2 class="user-header"><%= @user.username %>'s Dashboard</h2>
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <a id="RunSnap" class="pure-button" href="/snap/">
+    <a id="RunSnap" class="pure-button" href="/snap">
       Run <%= image_tag "snap-logo.png", alt: "Snap!", class: "run-snap-logo" %>
     </a>
     <br>
     <br>
     <!-- a user's news feed -->
-    <%= render 'newsfeed', :locals => {:announcements => @announcements} %> 
+    <%= render 'newsfeed', :locals => {:announcements => @announcements} %>
     <br>
     <br>
-    <!-- a user's list of assignments --> 
+    <!-- a user's list of assignments -->
     <%= render 'users/assignments', :locals => {:assignments => @assignments} %>
     <br>
     <br>
-    <!-- a user's list of courses --> 
+    <!-- a user's list of courses -->
     <%= render 'users/enrolled_classes', :locals => {:courses => @courses} %>
     <br>
     <br>
     <!-- user's list of projects -->
-    <%= render 'projects/projectlist', :locals => {:projects => @projects} %> 
+    <%= render 'projects/projectlist', :locals => {:projects => @projects} %>
     <br>
     <br>
   </div>
-</div>

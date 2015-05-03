@@ -1,29 +1,27 @@
-/ WARNING: THIS DOC USES 4 SPACES INDENTATION
-
 .pure-u-1-1
-    %br
-    %br
-    %h1 Create a course
+  %br
+  %br
+  %h1 Create a course
 
-    %h1=  flash[:message]
-    =@course.try(:errors).try(:each) do |attribute, error|
-        %h3= attribute.to_s + " " + error.to_s
-        %br
-    =form_tag course_create_path, method: :post, class:"pure-form pure-form-aligned" do
-        %fieldset
-            .pure-control-group
-                %label{for: "course_title"} Title:
-                =text_field_tag 'course[title]', @course.try(:title)
-            .pure-control-group
-                %label{for: "course_description"} Description:
-                =text_field_tag 'course[description]', @course.try(:description)
-            .pure-control-group
-                %label{for: "course_website"} Website:
-                =text_field_tag 'course[website]', @course.try(:website)
-            .pure-control-group
-                %label{for: "course_startdate"} Starts:
-                =date_select :course, :startdate, default: @course.try(:startdate)
-            .pure-control-group
-                %label{for: "course_enddate"} Ends:
-                =date_select :course, :enddate, default: @course.try(:enddate)
-            =submit_tag "Create"
+  %h1= flash[:message]
+  =@course.try(:errors).try(:each) do |attribute, error|
+    %h3= attribute.to_s + " " + error.to_s
+    %br
+  =form_tag course_create_path, method: :post, class:"pure-form pure-form-aligned" do
+    %fieldset
+      .pure-control-group
+        %label{for: "course_title"} Title:
+        =text_field_tag 'course[title]', @course.try(:title)
+      .pure-control-group
+        %label{for: "course_description"} Description:
+        =text_field_tag 'course[description]', @course.try(:description)
+      .pure-control-group
+        %label{for: "course_website"} Website:
+        =text_field_tag 'course[website]', @course.try(:website)
+      .pure-control-group
+        %label{for: "course_startdate"} Starts:
+        =date_select :course, :startdate, default: @course.try(:startdate)
+      .pure-control-group
+        %label{for: "course_enddate"} Ends:
+        =date_select :course, :enddate, default: @course.try(:enddate)
+      =submit_tag "Create"

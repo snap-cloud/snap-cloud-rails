@@ -5,22 +5,23 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
-  
+
   def index
     # comment!
     @q = Project.search(params[:q])
     @projects = @q.result(distinct: true).includes(:user)
   end
-  
+
   def show
     if @project != nil
       @owner = User.find_by_id @project.owner
+      # FIXME -- refactor
       if !@project.is_public
         if not (current_user && @owner == current_user)
           access_denied
         end
       else
-        render :action => "show"
+        render action: "show"
       end
     end
   end
@@ -28,11 +29,9 @@ class ProjectsController < ApplicationController
   def edit
     if @project != nil
       @owner = User.find_by_id @project.owner
-
       if not (current_user && @owner == current_user)
         access_denied
       end
-
       render :action => "edit"
     else
       item_not_found
@@ -48,7 +47,7 @@ class ProjectsController < ApplicationController
       flash[:success] = "Project updated!"
       redirect_to @project
     else
-      render :action => "edit"
+      render action: "edit"
     end
   end
 
