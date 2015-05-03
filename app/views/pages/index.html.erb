@@ -31,7 +31,9 @@
         Featured Projects
       </h2>
       <%= render 'projects/projectlist', :locals => {:projects => @projects} %>
-      <!-- <%= render 'projects/projectslide', project: @projects.first %> -->
+      <!-- FIXME: Render a visual partial, but the thumbnail is buggy if
+          @project is an assignment.
+       -->
     </div>
   </div>
   <div class="pure-g">
