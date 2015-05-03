@@ -1,34 +1,26 @@
-<div>
+<div class="pure-u-1-1">
   
   <%= search_form_for Project.search do |f| %>
-  <%= f.search_field :title_or_notes_or_user_username_cont, placeholder: "Search Projects and Users" %>
-  <%= submit_tag "Search", class: "pure-button", style: "margin:10px;" %>
+    <%= f.search_field :title_or_notes_or_user_username_cont, placeholder: "Search Projects and Users" %>
+    <%= submit_tag "Search", class: "pure-button pure-button-primary button-large" %>
   <% end %>
 
-  <table id="projects-table" style="letter-spacing:1px;">
-    <tr>
-      <th>
-	<%= sort_link @q, :title, "Project Title" %>
-      </th>
-      <th>
-	<%= sort_link @q, :notes, "Project Notes" %>
-      </th>
-      <th>
-	User
-      </th>
-    </tr>
-    <% @projects.each do |project| %>
-    <tr>
-      <td>
-	<%= link_to project.title, project %>
-      </td>
-      <td>
-	<%= project.notes %>
-      </td>
-      <td>
-	<%= link_to project.user.username, project.user %>
-      </td>
-    </tr>
-    <% end %>
+  <table id="projects-table">
+    <thead>
+      <tr>
+        <th><%= sort_link @q, :title, "Project Title" %></th>
+        <th><%= sort_link @q, :notes, "Project Notes" %></th>
+        <th>User</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @projects.each do |project| %>
+      <tr>
+        <td><%= link_to project.title, project %></td>
+        <td><%= project.notes %></td>
+        <td><%= link_to project.user.username, project.user %></td>
+      </tr>
+      <% end %>
+    </tbody>
   </table>
 </div>
