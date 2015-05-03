@@ -1,9 +1,3 @@
-* {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
 /*
  * -- BASE STYLES --
  */
@@ -200,14 +194,9 @@ a.pure-button-primary {
     .home-menu {
         text-align: left;
     }
-        .home-menu ul {
-            float: right;
-        }
-
-    /* We increase the height of the splash-container */
-/*    .splash-container {
-        height: 500px;
-    }*/
+    .home-menu ul {
+      float: right;
+    }
 
     /* We decrease the width of the .splash, since we have more width
     to work with */
@@ -219,23 +208,9 @@ a.pure-button-primary {
     .splash-head {
         font-size: 250%;
     }
-
-
+    
     /* We remove the border-separator assigned to .l-box-lrg */
     .l-box-lrg {
         border: none;
-    }
-
-}
-
-/*
- * -- DESKTOP (AND UP) MEDIA QUERIES --
- * On desktops and other large devices, we want to over-ride some
- * of the mobile and tablet styles.
- */
-@media (min-width: 78em) {
-    /* We increase the header font size even more */
-    .splash-head {
-        font-size: 300%;
     }
 }
