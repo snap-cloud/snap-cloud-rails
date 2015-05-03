@@ -1,5 +1,5 @@
 namespace :exceptions do
-  task :list => :environment do
+  task list: :environment do
     exceptions = []
 
     ObjectSpace.each_object(Class) do |k|

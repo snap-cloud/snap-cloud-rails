@@ -23,7 +23,7 @@ end
 
 
 Then /^(?:|I) should see the link "(.*?)" to "(.*?)"$/ do |link, url|
-  page.should have_link(link, :href => url)
+  page.should have_link(link, href: url)
 end
 
 Then /^(?:|I) should first see "(.*?)" before "(.*?)"$/ do |t1, t2|
@@ -53,13 +53,13 @@ Given /^(?:|I) am logged in as "(.*?)" with password "(.*?)"$/ do |user, passwor
     visit logout_path
   end
   visit login_path
-  fill_in "user_login", :with => user
-  fill_in "user_password", :with => password
+  fill_in "user_login", with: user
+  fill_in "user_password", with: password
   click_button "Log in"
 end
 
 Then /^I enter "(.*?)" for "(.*?)"$/ do |value, field|
-  fill_in field, :with => value
+  fill_in field, with: value
 end
 
 Then /^I log out$/ do
@@ -154,7 +154,7 @@ Given(/^I am on the login page$/) do
 end
 
 When(/^I fill in "(.*?)" with "(.*?)"$/) do |field, value|
-  fill_in field, :with => value
+  fill_in field, with: value
 end
 
 When(/^I press "(.*?)"$/) do |button|

@@ -22,10 +22,10 @@ class SessionsController < Devise::SessionsController
       }
       format.html {
         redirect_to '/', flash[:notice] => 'You have been logged in.'
-        # render :html => {
-        #   :user => current_user,
-        #   :status => :ok,
-        #   :authentication_token => current_user.authentication_token
+        # render html: {
+        #   user: current_user,
+        #   status: :ok,
+        #   authentication_token: current_user.authentication_token
         # }
       }
     end

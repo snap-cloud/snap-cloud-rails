@@ -15,7 +15,7 @@
         %fieldset
             .pure-control-group
                 %label{for: "submission_project_id"} Title:
-                %select{ :name => "submission[project_id]" }
+                %select{ name: "submission[project_id]" }
                 -@user.projects.each do |project|
                     %option{value: project.id}= project.title
             .pure-control-group
