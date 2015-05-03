@@ -14,7 +14,7 @@ Then /^(?:|I) can see the dashboard$/ do
 end
 
 Then /^(?:|I) should see the splash page$/ do 
-  page.should have_content "Welcome to Snap!"
+  page.should have_content "Welcome to snap"
 end
 
 Then /^(?:|I) am on the snap page$/ do
