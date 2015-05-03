@@ -1,9 +1,9 @@
 class AssignmentsController < ApplicationController
   before_filter :userLoggedIn
-  before_filter :courseExists, :except => [:show]
-  before_filter :assignmentExists, :only => [:show, :edit, :update, :delete]
-  before_filter :partOfCourse, :only => [:show]
-  before_filter :authCourseEdit, :except => [:show]
+  before_filter :courseExists, except: [:show]
+  before_filter :assignmentExists, only: [:show, :edit, :update, :delete]
+  before_filter :partOfCourse, only: [:show]
+  before_filter :authCourseEdit, except: [:show]
 
   def show
     @assignment = Assignment.find_by(id: params[:assignment_id])

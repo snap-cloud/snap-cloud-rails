@@ -32,7 +32,7 @@ class ProjectsController < ApplicationController
       if not (current_user && @owner == current_user)
         access_denied
       end
-      render :action => "edit"
+      render action: "edit"
     else
       item_not_found
     end

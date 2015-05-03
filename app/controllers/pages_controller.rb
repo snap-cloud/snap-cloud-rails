@@ -9,7 +9,7 @@ class PagesController < ApplicationController
       @assignments = @user.assignments
       render 'dashboard'
     else
-      @projects = Project.where(:is_public => true).take(1)
+      @projects = Project.where(is_public: true).take(1)
       render 'index'
     end
   end

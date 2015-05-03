@@ -15,18 +15,18 @@ end
 
 Given (/^a user is signed up as "(.*?)" with username "(.*?)" and password "(.*?)"$/) do |user, username, password|
   visit signup_path
-  fill_in "user_email", :with => user
-  fill_in "user_username", :with => username
-  fill_in "user_password", :with => password
-  fill_in "user_password_confirmation", :with => password
+  fill_in "user_email", with: user
+  fill_in "user_username", with: username
+  fill_in "user_password", with: password
+  fill_in "user_password_confirmation", with: password
   check(tos_agree)
   click_button "Sign up"
 end
 
 Given /I enter the course information/ do
-	fill_in('course_title', :with => 'Oh SNAP!')
-	fill_in('course_description', :with => 'My test snap course')
-	fill_in('course_website', :with => 'www.mytestsnapcourse.edu')
+	fill_in('course_title', with: 'Oh SNAP!')
+	fill_in('course_description', with: 'My test snap course')
+	fill_in('course_website', with: 'www.mytestsnapcourse.edu')
 	click_button('Create')
 	@cour = Course.find_by_title('Oh SNAP!')
 end
@@ -151,12 +151,12 @@ When(/^I submit the course edit$/) do
 end
 
 When(/^I try to add "(.*?)"$/) do |email|
-  	fill_in 'add_field', :with => email
+  	fill_in 'add_field', with: email
 end
 
 When(/^I try to add "(.*?)" and "(.*?)" at the same time$/) do |user1, user2|
- 	fill_in 'adds[1]', :with => user1
- 	fill_in 'adds[2]', :with => user2
+ 	fill_in 'adds[1]', with: user1
+ 	fill_in 'adds[2]', with: user2
 end
 
 Then(/^I should see "(.*?)" could not be found$/) do |email|
