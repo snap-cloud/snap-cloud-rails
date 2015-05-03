@@ -88,7 +88,7 @@ When(/^I click on assignment "(.*?)"$/) do |assign|
 end
 
 Then(/^I should see that I do not have permission to submit an assignment$/) do
-  text = "You don't have permission to access this page :("
+  text = "404"
 	if page.respond_to? :should
   	page.should have_content(text)
   else

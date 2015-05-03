@@ -1,70 +1,58 @@
-div.project-title-bar{
-	text-align: center;
-	margin-left: auto;
-	margin-right: auto;
-	background: #2d3e50;
-	color: white;
+div.project-title-bar {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  background: #2d3e50;
+  color: white;
 }
 
-div.centered-label-dirtygold{
-	background: #EEBA4C;
-	width: 70%;
-    height: 40%;
-    margin: auto;
-    padding: 10px;
-    position: relative;
-    border-radius: 5px;
-    text-align: center;
-    top: -50%;
+div.centered-label-dirtygold {
+  background: #EEBA4C;
+  width: 70%;
+  height: 40%;
+  margin: auto;
+  padding: 10px;
+  position: relative;
+  border-radius: 5px;
+  text-align: center;
+  top: -50%;
 }
 
-.fill-parent{
-	width: 100%;
-	height: 100%;
+.fill-parent {
+  width: 100%;
+  height: 100%;
 }
 
-.bottom-margin-med{
-	margin-bottom: 5em;
+.bottom-margin-med {
+  margin-bottom: 5em;
 }
 
-div.center-text{
-	text-align: center;
-	vertical-align: middle;
+div.center-text {
+  text-align: center;
+  vertical-align: middle;
 }
 
-.center-element{
-	margin: auto;
-	padding: 10px;
-	position: relative;
-	text-align: center;
+.center-element {
+  margin: auto;
+  padding: 10px;
+  position: relative;
+  text-align: center;
 }
 
 .button-error {
-    background: rgb(202, 60, 60); /* this is a maroon */
+  background: rgb(202, 60, 60); /* this is a maroon */
 }
 
 div.image-with-border {
-	border-radius: 25px;
-	border: 2px solid #2d3e50;
-	padding: 0px;
+  border-radius: 25px;
+  border: 2px solid #2d3e50;
+  padding: 0px;
 }
 
 div.overlay-top {
-	z-index: 10;
+  z-index: 10;
 }
 
-a:link {
-    text-decoration: none;
-}
-
-a:visited {
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: none;
-}
-
-a:active {
-    text-decoration: none;
+a:visited, a:hover, a:active, a:link {
+  text-decoration: none;
 }

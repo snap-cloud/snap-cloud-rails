@@ -4,7 +4,7 @@
 require File.expand_path('../config/application', __FILE__)
 
 # These gems are loaded only in dev / test env's
-if ENV['RAILS_ENV'] != 'production'
+if !Rails.env.production? && !Rails.env.staging?
   require 'metric_fu'
   require 'rubocop/rake_task'
   

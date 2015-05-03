@@ -23,32 +23,30 @@ gem 'simple_token_authentication', '~> 1.0'
 
 # ASSETS
 # Use SCSS for stylesheets
+# Includes the :sass compiler for CSS minification
 gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-# FIXME -- remove
-gem 'jquery-rails'
+# Use Google's Closure to compress JS files.
+gem 'closure-compiler'
 gem 'haml'
-# TODO: Configure Bower
-# gem 'bower-rails'
+# Work with Paperclip for better asset generation
+# gem 'rails-retina'
 
+# Manage Keys
+gem 'figaro'
 
 # Search
 gem 'ransack'
 
-# PRODUCTION AND PERF TOOLS:
-# Page Caching
-gem 'rack-cache'
-# Use Puma as the app server
-# TODO: Test before enabling! (See Heroku docs)
-# gem 'puma'
+# App Monitoring
+# Exclude from :test ...there must be a better way to do this...
+gem 'newrelic_rpm', group: [:development, :production, :staging]
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 group :test do
   # Cucumber and rspec tools
-  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails', require: false
   gem 'rspec-rails', '>= 3.1'
   gem "factory_girl_rails"
   gem 'faker'
@@ -58,7 +56,7 @@ group :test do
   gem 'simplecov'
   gem 'coveralls'
   gem "codeclimate-test-reporter"
-  
+
   gem "database_cleaner"
 end
 
@@ -96,11 +94,18 @@ group :development do
   gem "bullet"
 end
 
+
 group :staging do
   # Heh, we need a real staging enviornment...
 end
 
 group :production do
+  # Page Caching
+  gem 'rack-cache'
+
+  # Use Puma as the app server
+  gem 'puma'
+
   # Postgres DB
   gem 'pg'
   # Perf and other Heroku features

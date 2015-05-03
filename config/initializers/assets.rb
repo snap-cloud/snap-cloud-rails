@@ -1,13 +1,20 @@
 # Be sure to restart your server when you modify this file.
 
-# Version of your assets, change this if you want to expire all your assets.
-Rails.application.config.assets.version = '1.0'
+Rails.application.configure do
 
-# Add additional assets to the asset load path
-Rails.application.config.assets.paths << 'vendor/bower'
+  # Version of your assets, change this if you want to expire all your assets.
+  config.assets.version = '1.0'
 
-# Precompile additional assets.
-# application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-# Rails.application.config.assets.precompile += %w( search.js )
+  # Add additional assets to the asset load path
+  config.assets.paths << 'vendor/bower'
 
-Rails.application.config.assets.precompile += [/.*\.js/,/.*\.css/]
+  # Precompile additional assets.
+  # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
+  config.assets.precompile += %w( stylesheets/** )
+
+  # config.assets.precompile += [/.*\.js/,/.*\.css/]
+
+  config.assets.precompile += ["*stylesheets*", "*javascripts*"]
+  config.assets.precompile += ["splash.css", "about.css"] # FIXME
+
+end

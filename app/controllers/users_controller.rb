@@ -7,8 +7,7 @@ class UsersController < ApplicationController
   def prettyname
     @user = User.find_by(username: params[:username])
     params[:id] = @user.try(:id)
-    render file: "#{Rails.root}/public/404.html", layout: false, status: 404 unless params[:id]
-    return unless params[:id]
+    item_not_found unless params[:id]
     profile
     render 'profile'
   end
@@ -50,10 +49,10 @@ class UsersController < ApplicationController
       if current_user && current_user == @user
         @about_me = @user.about_me || "Enter information about you and your interests here."
       else
-        render file: "#{Rails.root}/public/401.html", layout: false, status: 401
+        access_denied
       end
     else
-      render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+      item_not_found
     end
   end
 

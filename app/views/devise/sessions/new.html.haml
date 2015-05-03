@@ -1,38 +1,38 @@
-.content.page-content
-  .pure-u-1.pure-u-md-1-3
-    %div
-  .pure-u-1.pure-u-md-1-3.center
-    %h2 Log In
-    - if flash[:notice]
-      #login-error{ style: "color:rgb(202,60,60)" }
-        = flash[:notice]
+.pure-u-1.pure-u-md-1-3.pure-u-lg-9-24
+  %div
+.pure-u-1.pure-u-md-1-3.pure-u-lg-1-4
+  %h2 Log In
+  = devise_error_messages!
+  - if flash[:notice]
+    #login-error{ style: "color:rgb(202,60,60)" }
+      = flash[:notice]
 
-    = form_for(resource, as: resource_name, url: session_path(resource_name),
-        html: {class: "pure-form pure-form-stacked"}) do |f|
-      %fieldset
-        = devise_error_messages!
-        %legend
-          Sign in to your
-          %span.snap
-            snap
-          account.
-        = f.label :login
-        %em
-          You may use your username or email address.
-        = f.text_field :login, autofocus: true, class: 'pure-u-1-2'
-        = f.label :password
-        = f.password_field :password, autocomplete: "off", class: 'pure-u-1-2'
-        
-        - if devise_mapping.rememberable?
-          .field
-            = f.check_box :remember_me
-            = f.label :remember_me
+  = form_for(resource, as: resource_name, url: session_path(resource_name),
+      html: {class: "pure-form pure-form-stacked"}) do |f|
+    %fieldset
+      = devise_error_messages!
+      %legend
+        Sign in to your
+        %span.snap
+          snap
+        account.
+      = f.label :login
+      %em
+        You may use your username or email address.
+      = f.text_field :login, autofocus: true, class: 'pure-u-1-2'
+      = f.label :password
+      = f.password_field :password, autocomplete: "off", class: 'pure-u-1-2'
+      
+      - if devise_mapping.rememberable?
+        .field
+          = f.label :remember_me
+          = f.check_box :remember_me
 
-        .actions
-          %br/
-          = f.submit "Log in", class: 'pure-button pure-input-1-2 pure-button-primary'
-          %br
-          = render "devise/shared/links"
-  .pure-u-1.pure-u-md-1-3
-    %div
-    
+      .actions
+        %br/
+        = f.submit "Log in", class: 'pure-button pure-input-1-2 pure-button-primary'
+        %br
+        = render "devise/shared/links"
+.pure-u-1.pure-u-md-1-3.pure-u-lg-9-24
+  %div
+  

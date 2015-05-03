@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format == 'application/json' }
+  # For APIs, you may want to use :null_session instead.
+  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
 
   # for session tokens
   # acts_as_token_authentication_handler_for User
@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   # TODO: We need to determine for the best split up 401 and 404 errors.
   module SnapException
     class AccessDenied < StandardError; end
-  end 
+  end
 
   # Clean Error Handler Methods
   # Use these in place of handling errors individually.
@@ -25,16 +25,16 @@ class ApplicationController < ActionController::Base
     msg ||= default
     raise SnapException::AccessDenied.new(msg)
   end
-  
+
   def item_not_found(msg = nil) # Equivalent 404
     default = "This item couldn't be found."
     msg ||= default
     raise ActiveRecord::RecordNotFound.new(msg)
   end
-  
-  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   # Treat 401s as 404s for privacy concerns
-  rescue_from SnapException::AccessDenied, :with => :record_not_found
+  rescue_from SnapException::AccessDenied, with: :record_not_found
 
 
   protected
@@ -72,13 +72,13 @@ class ApplicationController < ActionController::Base
 
     def authCourseEdit
       if !@course.userRole(getCurrentUser).try(:teacher?)
-        render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
+        access_denied
       end
     end
 
     def assignmentExists
       if !Assignment.exists?(id: params[:assignment_id])
-        render file: "#{Rails.root}/public/404.html", layout: false, status: 404 and return
+        item_not_found
       else
         @assignment = Assignment.find(params[:assignment_id])
       end
@@ -86,10 +86,10 @@ class ApplicationController < ActionController::Base
 
     def partOfCourse
       if @assignment.course.userRole(@user).nil?
-        render file: "#{Rails.root}/public/401.html", layout: false, status: 401 and return
+        access_denied
       end
     end
-    
+
   private
     def record_not_found(error)
       respond_to do |format|
@@ -98,7 +98,7 @@ class ApplicationController < ActionController::Base
           render file: "pages/_404.html", layout: true, status: 404
         }
         format.json {
-          render json: {:error => error.message}, status: 404
+          render json: {error: error.message}, status: 404
         }
       end
     end

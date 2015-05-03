@@ -6,9 +6,17 @@
     </thead>
 
     <tbody>
-        <tr> <td><a href="/"> Home </td></a></tr>
-    	<tr> <td><a href= <%='/users/'+ current_user.id.to_s%> > Profile </td></a></tr>
-    	<tr> <td><a href="/projects"> Projects </td></a></td></tr>
-    	<tr> <td><a href="/courses"> Courses </td></a></tr>
+      <tr>
+        <td><a href="/"> Home</a></td>
+      </tr>
+      <tr>
+        <td><a href= "<%='/users/'+ current_user.id.to_s %>"> Profile</a></td>
+      </tr>
+      <tr>
+        <td><a href="/projects">Projects</a></td>
+      </tr>
+      <tr>
+        <td><a href="/courses">Courses</a></td>
+      </tr>
     </tbody>
 </table>

@@ -16,6 +16,42 @@
   *= require pure/pure-min
   *= require pure/grids-responsive-min
   *= require icono/dist/icono.min
+  *= require_tree ./pure-custom/
   *= require main
+  *= require marketing
   *= require_self
 */
+
+.pure-g {
+  /* Pure defaults to -.3em...wtf */
+  letter-spacing: -.1em;
+}
+
+.nav-search-bar {
+  display: inline-block;
+  margin-right: .2em;
+  border-radius: 1.2em;
+  padding: .1em .6em;
+  width: 20em;
+}
+
+
+/**** SPECIAL CONTENT CLASSES ***/
+/* .snap inserts the logo using the proper formatting.
+* Insert using "<span class="snap">snap</span>"
+*/
+.snap:first-letter {
+  font-variant: normal;
+}
+
+.snap {
+  text-transform: capitalize;
+  font-variant: small-caps;
+  font-style: normal;
+}
+
+.snap:after {
+  content: "!";
+  font-style: italic;
+}
+/* END .snap */
