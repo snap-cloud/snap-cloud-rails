@@ -10,10 +10,11 @@ Rails.application.configure do
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-  # config.assets.precompile += %w( stylesheets/** )
+  config.assets.precompile += %w( stylesheets/** )
 
   # config.assets.precompile += [/.*\.js/,/.*\.css/]
 
-  config.assets.precompile += ["*stylesheets*"]
+  config.assets.precompile += ["*stylesheets*", "*javascripts*"]
+  config.assets.precompile += ["splash.css", "about.css"] # FIXME
 
 end
