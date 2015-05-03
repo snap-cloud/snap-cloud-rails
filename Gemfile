@@ -22,11 +22,10 @@ gem "devise"
 gem 'simple_token_authentication', '~> 1.0'
 
 # ASSETS
-gem 'sprockets-rails', :require => 'sprockets/railtie'
 # Use SCSS for stylesheets
+# Includes the :sass compiler for CSS minification
 gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+# Use Google's Closure to compress JS files.
 gem 'closure-compiler'
 gem 'haml'
 
