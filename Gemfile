@@ -35,20 +35,16 @@ gem 'figaro'
 # Search
 gem 'ransack'
 
-# PRODUCTION AND PERF TOOLS:
-# Page Caching
-gem 'rack-cache'
 # App Monitoring
-gem 'newrelic_rpm'
-# Use Puma as the app server
-gem 'puma'
+# Exclude from :test ...there must be a better way to do this...
+gem 'newrelic_rpm', group: [:development, :production, :staging]
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 group :test do
   # Cucumber and rspec tools
-  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails', require: false
   gem 'rspec-rails', '>= 3.1'
   gem "factory_girl_rails"
   gem 'faker'
@@ -58,7 +54,7 @@ group :test do
   gem 'simplecov'
   gem 'coveralls'
   gem "codeclimate-test-reporter"
-  
+
   gem "database_cleaner"
 end
 
@@ -96,11 +92,18 @@ group :development do
   gem "bullet"
 end
 
+
 group :staging do
   # Heh, we need a real staging enviornment...
 end
 
 group :production do
+  # Page Caching
+  gem 'rack-cache'
+
+  # Use Puma as the app server
+  gem 'puma'
+
   # Postgres DB
   gem 'pg'
   # Perf and other Heroku features
