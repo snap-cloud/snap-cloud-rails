@@ -39,6 +39,7 @@ class Api::V1::UsersController < ApplicationController
 
     def user_params
       # FIXME -- allow TOS, bday parameters.
+      # FIXME -- avatar and other content
       params.require(:user).permit(:username, :email, :password, :password_confirmation)
     end
 end
