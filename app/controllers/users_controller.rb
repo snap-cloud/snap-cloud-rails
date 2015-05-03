@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       @projects = @user.projects
       @owner = @user == current_user
       if not @owner
-        @projects = @projects.where(:is_public => true)
+        @projects = @projects.where(is_public: true)
       end
     else
       redirect_to "/"

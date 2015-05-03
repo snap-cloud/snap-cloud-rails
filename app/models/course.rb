@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-    has_many :enrollments, :dependent => :delete_all
+    has_many :enrollments, dependent: :delete_all
     has_many :users, through: :enrollments
 
     has_many :teacher_enrollments, -> {Enrollment.teacher}, class_name: 'Enrollment'

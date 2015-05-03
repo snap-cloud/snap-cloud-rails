@@ -1,15 +1,15 @@
 <div style="width: 95%; height: 100%; margin: auto; position: relative; margin-top: 2em;">
-    <%= form_for(@project, :html => {:class => "pure-form pure-form-stacked"}) do |f| %>
+    <%= form_for(@project, html: {class: "pure-form pure-form-stacked"}) do |f| %>
 
         <%= f.label "Project Title" %>
-        <%= f.text_field :title, :required => true, :class => "pure-input-2-3" %> <br>
+        <%= f.text_field :title, required: true, class: "pure-input-2-3" %> <br>
 
         <%= f.label "Project Description" %>
-        <%= f.text_area :notes, :class => "pure-input-2-3" %> <br>
+        <%= f.text_area :notes, class: "pure-input-2-3" %> <br>
 
         <%= f.label "Check for public project, uncheck for private project:" %>
         <%= f.check_box :is_public, {}, "1", "0" %> Public? <br><br>
 
-        <%= f.submit "Save Changes", :class => "pure-button pure-button-primary" %>
+        <%= f.submit "Save Changes", class: "pure-button pure-button-primary" %>
     <% end %>
 </div>

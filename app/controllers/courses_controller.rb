@@ -1,9 +1,9 @@
 
 
 class CoursesController < ApplicationController
-    before_filter :userLoggedIn, :except => [:index, :show]
-    before_filter :courseExists, :except => [:new, :create, :index]
-    before_filter :authCourseEdit, :only => [:update, :delete, :edit]
+    before_filter :userLoggedIn, except: [:index, :show]
+    before_filter :courseExists, except: [:new, :create, :index]
+    before_filter :authCourseEdit, only: [:update, :delete, :edit]
 
   def create
     user = getCurrentUser

@@ -30,7 +30,7 @@ class Api::V1::ProjectsController < ProjectsController
   def create
     project = Project.new({})
     project.save
-    render :nothing => true, status: 200
+    render nothing: true, status: 200
   end
 
 
@@ -41,15 +41,15 @@ class Api::V1::ProjectsController < ProjectsController
         if project.owner == self.getCurrentUser.id
           project.update_attributes(params[:project_params])
           project.save
-          render :nothing => true, status: 204 #:no_content
+          render nothing: true, status: 204 #:no_content
         else
-          render :nothing => true, status: 401 #:unauthorized
+          render nothing: true, status: 401 #:unauthorized
         end
       else
-        render :nothing => true, status: 404 #:not_found
+        render nothing: true, status: 404 #:not_found
       end
     else
-      render :nothing => true, status: 401 #:unauthorized
+      render nothing: true, status: 401 #:unauthorized
     end
   end
 
@@ -58,9 +58,9 @@ class Api::V1::ProjectsController < ProjectsController
     project = Project.find(params[:id])
     if project.owner == self.getCurrentUser.id
       project.destroy
-      render :nothing => true, status: 200 #:ok
+      render nothing: true, status: 200 #:ok
     else
-      render :nothing => true, status: 401 #:unauthorized
+      render nothing: true, status: 401 #:unauthorized
     end
   end
 
