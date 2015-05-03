@@ -1,4 +1,13 @@
-<!-- This is going to be a partial which shows an icon of the project, 
-the title, and the author. --> 
+<!-- This is going to be a partial which shows an icon of the project,
+the title, and the author. -->
 
-<!-- TODO: actually make this partial -->
+<div class="pure-u-1-4">
+  <img src="<%= project.thumbnail %>" />
+  <br>
+  <strong>
+    <a href="/projects/<%= project.id %>"><%= project.title %></a>
+  </strong>
+  <br>
+  <span class="project-date"><%= project.updated_at %></span>
+</div>
+
