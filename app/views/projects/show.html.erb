@@ -20,20 +20,20 @@
   </div>
 </div>
 
-  <div class="pure-u-1-8 project-title-bar" style="display: table-cell; vertical-align: middle;">
+<div class="pure-u-1-8 project-title-bar" style="display: table-cell; vertical-align: middle;">
 
-      <% if current_user == @owner %>
-      <a id="edit_project" class="pure-button pure-button-primary" href="/projects/<%= @project.id %>/edit">
-        <i class="icono-gear"></i>
-        Edit
-      </a>
-      <% end %>
-
-      <a id="report_project" class="pure-button" style="background: rgb(202, 60, 60); color: white;" href="#">
-        <i class="icono-flag"> </i>
-        Report
-      </a>
-  </div>
+  <% if current_user == @owner %>
+  <a id="edit_project" class="pure-button pure-button-primary" href="/projects/<%= @project.id %>/edit">
+    <i class="icono-gear"></i>
+    Edit
+  </a>
+  <% end %>
+  <!--style="background: rgb(202, 60, 60); color: white;" -->
+  <a id="report_project" class="pure-button button-error" href="#">
+    <i class="icono-flag"> </i>
+    Report
+  </a>
+</div>
 
 <!-- </div> -->
 

@@ -41,7 +41,7 @@ Then(/^I should see that course creation succeeded$/) do
 end
 
 Then /I should see that I cannot create a course/ do
-	text = "You don't have permission to access this page :("
+	text = "404"
 	if page.respond_to? :should
     	page.should have_content(text)
   else
@@ -60,7 +60,7 @@ When(/^I go to delete that course$/) do
 end
 
 Then /I should see that I cannot delete this course/ do
-	text = "You don't have permission to access this page :("
+	text = "404"
 	if page.respond_to? :should
     	page.should have_content(text)
   	else
@@ -78,7 +78,7 @@ Then(/^I should see that course deletion succeeded$/) do
 end
 
 Then(/^I should see that I need to log in to delete this course$/) do
-  	text = "You don't have permission to access this page :("
+  	text = "404"
 	if page.respond_to? :should
     	page.should have_content(text)
   	else
@@ -98,7 +98,7 @@ When(/^I try to visit the edit page for "(.*?)"$/) do |courseTitle|
 end
 
 Then(/^I should see that I need to be logged in to edit$/) do
-    text = "You don't have permission to access this page :("
+    text = "404"
 	if page.respond_to? :should
     	page.should have_content(text)
   	else
@@ -125,7 +125,7 @@ Given(/^user "(.*?)" is enrolled as a student in "(.*?)"$/) do |semail, c|
 end
 
 Then(/^I should see that I do not have permission to edit$/) do
-  	test = "You don't have permission to access this page :("
+  	test = "404"
 	if page.respond_to? :should
     	page.should have_content(text)
   	else
