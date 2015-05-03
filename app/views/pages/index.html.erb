@@ -31,6 +31,7 @@
         Featured Projects
       </h2>
       <%= render 'projects/projectlist', :locals => {:projects => @projects} %>
+      <%= render 'projects/projectslide', project: @projects.first %>
     </div>
   </div>
   <div class="pure-g">

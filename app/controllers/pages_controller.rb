@@ -7,7 +7,7 @@ class PagesController < ApplicationController
       @announcements = Announcement.all
       @courses = @user.courses
       @assignments = @user.assignments
-      render 'dashboard' 
+      render 'dashboard'
     else
       @projects = Project.where(:is_public => true).take(1)
       render 'index'
@@ -21,5 +21,9 @@ class PagesController < ApplicationController
   def help
     render 'help'
   end
-  
+
+  def snap
+    render "#{Rails.root}/snap/index.html"
+  end
+
 end

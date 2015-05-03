@@ -5,23 +5,24 @@ Rails.application.routes.draw do
   get '', to: 'pages#index', as: 'home'
   get 'about', to: 'pages#about', as: 'about'
   get 'help', to: 'pages#help', as: 'help'
+  get 'snap', to: 'pages#snap', as: 'snap'
+  get 'run', to: 'pages#snap' # Alias for the old s.b.e shortcut.
+  # TODO: ? Alias init/ or tools to preload the tools library?
 
   get 'users/:id', to: 'users#profile', as: 'user_profile'
 
-  devise_for :users, :path => 'api/users',
-             :controllers => { sessions: 'sessions',
-                               registrations: 'registrations' },
-             :path_names => { :sign_in => 'login',
-                              :sign_out => 'logout',
-                              :sign_up => 'signup' }
+  devise_for :users, path: 'api/users',
+             controllers: { sessions: 'sessions',
+                            registrations: 'registrations' },
+             path_names: { sign_in: 'login',
+                           sign_out: 'logout',
+                           sign_up: 'signup' }
 
   # viewable project mappings
-  resources :projects #, :only => [:show] # , :new, :create
+  resources :projects #, only: [:show] # , :new, :create
   resources :users do
     resources :projects
   end
-  
-
 
   get 'assignments/:course_id/new', to: 'assignments#new', as: 'assignment_new'
   post 'assignments/:course_id/create',      to: 'assignments#create', as: 'assignment_create'
@@ -68,10 +69,5 @@ Rails.application.routes.draw do
       # Assignments / Submissions
     end
   end
-
-  # Shortcuts to the Snap! submodule
-  # NOTE: the redirect needs a trailing / to load the JS properly.
-  # TODO: Serving this way is probably not the best...
-  get 'run', to: redirect('snap/')
 
 end
