@@ -5,7 +5,7 @@ Feature: Project Submission
 
     As a teacher
     So that I can grade students
-    I should be able to see projects they've submitted
+    I should be able to see projects theyve submitted
 
 Background:
 
@@ -27,13 +27,13 @@ Background:
     | 300 | assign3 | "description for #3" | 234 | 3.day.ago | 3.hour.ago |
 
     Given the following projects exist:
-    | title | owner |
-    | aliceproj1 | 200 |
-    | aliceproj2 | 200 |
-    | aliceproj3 | 200 |
-    | beatriceproj1 | 300 |
-    | beatriceproj2 | 300 |
-    | beatriceproj3 | 300 |
+    | title | owner | thumbnail | contents |
+    | aliceproj1 | 200 | 'none' | "none" |
+    | aliceproj2 | 200 | 'none' | "none" |
+    | aliceproj3 | 200 | 'none' | "none" |
+    | beatriceproj1 | 300 | 'none' | "none" |
+    | beatriceproj2 | 300 | 'none' | "none" |
+    | beatriceproj3 | 300 | 'none' | "none" |
 
     Given user "teacher@cal.edu" is enrolled as a teacher in "testcourse"
     Given user "teacher@cal.edu" is enrolled as a teacher in "assignmentcourse"
