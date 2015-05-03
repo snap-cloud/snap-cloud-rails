@@ -28,6 +28,8 @@ gem 'sass-rails', '~> 5.0'
 # Use Google's Closure to compress JS files.
 gem 'closure-compiler'
 gem 'haml'
+# Work with Paperclip for better asset generation
+# gem 'rails-retina'
 
 # Manage Keys
 gem 'figaro'
