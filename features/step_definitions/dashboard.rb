@@ -50,7 +50,7 @@ end
 Then /^(?:|I) should see my projects$/ do 
   #check that I have all my projects, and all projects are owned by me.
   user = User.find_by_username('linda')
-  projects = Project.where(:owner => user.id).all
+  projects = Project.where(owner: user.id).all
   expect(projects.length).to eq(2)
   projects.each do |project| 
     expect(project.owner).to eq(user.id)

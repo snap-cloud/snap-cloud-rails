@@ -28,7 +28,7 @@
       %fieldset
         .pure-control-group
           %label{for: "submission_project_id"} Project:
-          %select{ :name => "submission[project_id]" }
+          %select{ name: "submission[project_id]" }
             -if @user.projects.empty?
               %option{value: 'nothing'} You do not have any projects
             -@user.projects.each do |project|
