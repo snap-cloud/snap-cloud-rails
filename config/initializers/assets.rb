@@ -15,6 +15,6 @@ Rails.application.configure do
   # config.assets.precompile += [/.*\.js/,/.*\.css/]
 
   config.assets.precompile += ["*stylesheets*", "*javascripts*"]
-  config.assets.precompile += ["splash.css", "about.css"] # FIXME
+  config.assets.precompile += ["splash.css", "about.css", "profile.css"]
 
 end

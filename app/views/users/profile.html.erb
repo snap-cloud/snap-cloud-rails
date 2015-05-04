@@ -1,5 +1,5 @@
 <% content_for :head do %>
-  <%= stylesheet_link_tag "profile", "marketing" %>
+  <%= stylesheet_link_tag "profile" %>
 <% end %>
 
 <div style="letter-spacing:1px;">
@@ -45,7 +45,7 @@
       <div class="profile-content">
         <h4 class="profile-content-text">
         </h4>
-        <%= render 'projects/projectlist', locals: {projects: @projects} %> 
+        <%= render 'projects/projectlist', locals: {projects: @projects} %>
       </div>
     </div>
   </div>
