@@ -16,18 +16,17 @@
   *= require pure/pure-min
   *= require pure/grids-responsive-min
   *= require icono/dist/icono.min
-  *= require_tree ./pure-custom/
   *= require main
   *= require marketing
+  *= require_tree ./pure-custom
   *= require_self
 */
 
-.pure-g {
-  /* Pure defaults to -.3em...wtf */
-  letter-spacing: -.1em;
-}
-
-.nav-search-bar {
+.nav-search-bar,
+.nav-search-bar:focus,
+input[type="search"],
+input[type="search"]:focus,
+input[type="search"].nav-bar-search:focus, {
   display: inline-block;
   margin-right: .2em;
   border-radius: 1.2em;
@@ -35,6 +34,9 @@
   width: 20em;
 }
 
+label .left {
+  text-align: left;
+}
 
 /**** SPECIAL CONTENT CLASSES ***/
 /* .snap inserts the logo using the proper formatting.

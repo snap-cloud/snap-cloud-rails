@@ -33,7 +33,7 @@ my_course = Course.create(title: "CS169", description: "A course about software 
     + "over the course of the semester for a non-profit organization.  The follows the SaaS " \
     + "architecture, taking place over the web rather than being something the user installs.",
     startdate: 10.days.ago,
-    enddate: 10.days.from_now)
+    enddate: 20.days.from_now)
 
 my_course.assignments << Assignment.create(title: "Intro assignment",
     description: "Submit a paper telling us about yourself, your interestes and skills",
