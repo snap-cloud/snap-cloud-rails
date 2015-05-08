@@ -1,0 +1,20 @@
+/* All customizations to form elements go here */
+
+.thin {
+  font-size: 0.8em;
+}
+
+.pure-form label {
+  text-align: left;
+  margin: 1em 0 0;
+  font-weight: bold;
+  font-size: 100%;
+}
+
+.pure-form input[type] {
+  border: 2px solid #ddd;
+}
+
+.pure-form input[type].wide {
+  width: 100%;
+}

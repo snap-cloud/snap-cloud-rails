@@ -19,7 +19,7 @@ Background:
 
 Scenario: Search for a user and their projects
   Given I can see the dashboard
-  And I enter "bob" for "q_title_or_notes_or_user_username_cont"
+  And I enter "bob" for "q_search_term"
   And I press "Search"
   Then I will be on the search page
   And I should see "bob"
@@ -30,7 +30,7 @@ Scenario: Search for a user and their projects
 
 Scenario: Search for projects by name
   Given I can see the dashboard
-  And I enter "blah" for "q_title_or_notes_or_user_username_cont"
+  And I enter "blah" for "q_search_term"
   And I press "Search"
   Then I will be on the search page
   And I should see "blah"
@@ -39,7 +39,7 @@ Scenario: Search for projects by name
 
 Scenario: Search for projects by notes
   Given I can see the dashboard
-  And I enter "game" for "q_title_or_notes_or_user_username_cont"
+  And I enter "game" for "q_search_term"
   And I press "Search"
   Then I will be on the search page
   And I should see "blah"

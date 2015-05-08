@@ -22,18 +22,6 @@
   *= require_self
 */
 
-.nav-search-bar,
-.nav-search-bar:focus,
-input[type="search"],
-input[type="search"]:focus,
-input[type="search"].nav-bar-search:focus, {
-  display: inline-block;
-  margin-right: .2em;
-  border-radius: 1.2em;
-  padding: .1em .6em;
-  width: 20em;
-}
-
 label .left {
   text-align: left;
 }

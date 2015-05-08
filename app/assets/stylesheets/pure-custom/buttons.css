@@ -43,3 +43,7 @@
 .button-xlarge {
     font-size: 125%;
 }
+
+.button-condensed {
+  padding: .6em;
+}
