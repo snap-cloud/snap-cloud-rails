@@ -35,7 +35,8 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   # Treat 401s as 404s for privacy concerns
   rescue_from SnapException::AccessDenied, with: :record_not_found
-
+  # This would handle all errors....
+  # rescue_from StandardError, with: :error_render_method
 
   protected
 

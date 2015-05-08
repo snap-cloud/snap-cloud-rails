@@ -1,6 +1,5 @@
-.pure-u-1-1
-  %br
-  %br
+.pure-u-1-3
+.pure-u-1-3
   %h1 Create a course
 
   %h1= flash[:message]
@@ -9,19 +8,21 @@
     %br
   =form_tag course_create_path, method: :post, class:"pure-form pure-form-aligned" do
     %fieldset
-      .pure-control-group
-        %label{for: "course_title"} Title:
+      .pure-control-group.left
+        %label.left{for: "course_title"} Title:
         =text_field_tag 'course[title]', @course.try(:title)
-      .pure-control-group
-        %label{for: "course_description"} Description:
+      .pure-control-group.left
+        %label.left{for: "course_description"} Description:
         =text_field_tag 'course[description]', @course.try(:description)
-      .pure-control-group
-        %label{for: "course_website"} Website:
+      .pure-control-group.left
+        %label.left{for: "course_website"} Website:
         =text_field_tag 'course[website]', @course.try(:website)
-      .pure-control-group
-        %label{for: "course_startdate"} Starts:
+      .pure-control-group.left
+        %label.left{for: "course_startdate"} Starts:
         =date_select :course, :startdate, default: @course.try(:startdate)
-      .pure-control-group
-        %label{for: "course_enddate"} Ends:
+      .pure-control-group.left
+        %label.left{for: "course_enddate"} Ends:
         =date_select :course, :enddate, default: @course.try(:enddate)
-      =submit_tag "Create"
+      %br
+      =submit_tag "Create", class: 'pure-button pure-button-primary'
+.pure-u-1-3

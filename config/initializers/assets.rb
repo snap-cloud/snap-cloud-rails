@@ -17,6 +17,7 @@ Rails.application.configure do
 
   # This line isn't quite working for some reason...
   config.assets.precompile += ["*stylesheets*", "*javascripts*"]
-  config.assets.precompile += ["splash.css", "about.css", "profile.css"]
+  config.assets.precompile += ["splash.css", "about.css",
+                            "profile.css", "project_listing.css"]
 
 end
