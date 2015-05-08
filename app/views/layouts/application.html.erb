@@ -22,7 +22,7 @@
             </a>
         </li>
         <li class="pure-menu-item">
-            <%= link_to "Create", "/snap/", class: "pure-menu-link" %>
+            <%= link_to "Create", "/snap", class: "pure-menu-link" %>
         </li>
         <li class="pure-menu-item">
             <%= link_to "Get Started", help_path, class: "pure-menu-link" %>
@@ -33,11 +33,13 @@
       </ul>
 
       <ul class="pure-menu-list">
-        <li class="pure-menu-item">
-          <%= search_form_for Project.search do |f| %>
-            <!-- <%= submit_tag "", class: "icono-search"%> -->
-            <%= f.search_field :title_or_notes_or_user_username_cont, placeholder: "Search", class: "nav-search-bar" %>
-            <%= submit_tag "Search", class: "button-xsmall pure-button" %>
+        <li class="pure-menu-item" style="width: 20em;">
+          <%= search_form_for Project.search, class: 'pure-form' do |f| %>
+            <%= f.search_field :title_or_notes_or_user_username_cont,
+              placeholder: "Search", class: "pure-input-rounded thin" %>
+            <button type="submit" class="button-small button-condensed pure-button">
+              Search
+            </button>
           <% end %>
         </li>
         <% if current_user %>
