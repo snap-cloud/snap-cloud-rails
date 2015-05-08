@@ -1,7 +1,7 @@
 /* All customizations to form elements go here */
 
-.thin {
-  font-size: 0.8em;
+.pure-form input.search {
+  padding: .25em 1em;
 }
 
 .pure-form label {
