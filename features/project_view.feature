@@ -21,7 +21,7 @@ Scenario: View title of project
   Then I should see "ohsnap!"
 
 Scenario: View owner of project
-  Then I should see "test@test.com"
+  Then I should see "test_man"
 
 Scenario: Editing the project from details as owner
   Then I press "edit_project"

@@ -93,12 +93,12 @@ And /^(?:|I) enter in "(.*?)" $/ do |entry|
 	flunk "Unimplemented"
 end
 
-# check if username/pw is valid, if signup is valid, etc.? 
+# check if username/pw is valid, if signup is valid, etc.?
 And /^(?:|my) "(.*?)" (is|are) valid$/ do |field|
 	flunk "Unimplemented"
 end
 
-#for things like <project's> <attribute> should be 
+#for things like <project's> <attribute> should be
 Then /^(?:|I) should be "(.+)" page$/ do |target|
 	flunk "Unimplemented"
 end
