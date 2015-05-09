@@ -1,15 +1,19 @@
-<div class="custom-wrapper pure-g home-menu" id="menu">
-  <div class="pure-u-1 pure-u-md-1-12">
-    <div class="pure-menu">
-      <a href="#" class="custom-toggle" id="toggle"><s class="bar"></s><s class="bar"></s></a>
+<div class="custom-wrapper pure-g main-menu pure-menu-fixed" id="menu">
+  <div class="pure-u-1 pure-u-md-1-24">
+    <div class="pure-menu pure-menu-horizontal">
+      <a href="#" class="custom-toggle" id="toggle">
+        <s class="bar"></s>
+        <s class="bar"></s>
+        <s class="bar"></s>
+      </a>
     </div>
   </div>
 
   <div class="pure-u-1 pure-u-md-11-24">
-    <div class="pure-menu pure-menu-horizontal pure-menu-fixed">
-      <ul class="pure-menu-list" id="splash-menu">
+    <div class="pure-menu pure-menu-horizontal">
+      <ul class="pure-menu-list left">
         <li class="pure-menu-item">
-          <a href=<%= home_path %> class="pure-menu-heading">
+          <a href="/">
             <%= image_tag "snap-logo.png", alt: "Snap! logo", class: "run-snap-logo" %>
           </a>
         </li>
@@ -27,8 +31,8 @@
   </div>
 
     <div class="pure-u-1 pure-u-md-11-24">
-      <div class="pure-menu pure-menu-horizontal pure-menu-fixed custom-menu-3 custom-can-transform">
-        <ul class="pure-menu-list">
+      <div class="pure-menu pure-menu-horizontal custom-menu-3 custom-can-transform">
+        <ul class="pure-menu-list right">
           <li class="pure-menu-item">
             <%= search_form_for Project.search, class: 'pure-form' do |f| %>
             <%= f.search_field :title_or_notes_or_user_username_cont,

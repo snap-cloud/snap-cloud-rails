@@ -2,8 +2,6 @@ div.project-title-bar {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  background: #2d3e50;
-  color: white;
 }
 
 div.centered-label-dirtygold {
@@ -37,10 +35,6 @@ div.center-text {
   padding: 10px;
   position: relative;
   text-align: center;
-}
-
-.button-error {
-  background: rgb(202, 60, 60); /* this is a maroon */
 }
 
 div.image-with-border {

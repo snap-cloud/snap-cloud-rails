@@ -1,26 +1,47 @@
 /*
 Responsive Scrolling Menu
-Pure Template from: http://purecss.io/layouts/tucked-menu-vertical/#
+Pure Template from: http://purecss.io/layouts/tucked-menu-vertical/
 */
 
+/* We can align the menu header to the left, but float the
+menu items to the right. */
+.pure-menu {
+  text-align: left;
+}
+
+.main-menu {
+  width: 100%;
+  background: #2d3e50;
+  padding: .3em;
+}
+
+.pure-menu-item a {
+  background: none;
+  border: none;
+  color: #6FBEF3;
+}
+
+.pure-menu-item a:hover {
+  background: none;
+  border: none;
+  color: #AECFE5;
+}
+
 .custom-wrapper {
-    background-color: #ffd390;
-    margin-bottom: 1em;
-    -webkit-font-smoothing: antialiased;
-    height: 2.1em;
-    overflow: hidden;
-    -webkit-transition: height 0.5s;
-    -moz-transition: height 0.5s;
-    -ms-transition: height 0.5s;
-    transition: height 0.5s;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  -webkit-transition: height 0.5s;
+  -moz-transition: height 0.5s;
+  -ms-transition: height 0.5s;
+  transition: height 0.5s;
 }
 
 .custom-wrapper.open {
-    height: 14em;
+  height: 14em;
 }
 
 .custom-menu-3 {
-    text-align: right;
+  text-align: right;
 }
 
 .custom-toggle {
@@ -69,24 +90,19 @@ Pure Template from: http://purecss.io/layouts/tucked-menu-vertical/#
     transform: rotate(-45deg);
 }
 
-
-/* We can align the menu header to the left, but float the
-menu items to the right. */
-.home-menu {
-    text-align: left;
-}
-.home-menu ul {
-  float: right;
+/* TODO: MAKE LEFT LIST OF HEADER CENTERED */
+ul.pure-menu-list {
+  margin: auto;
+  top: 50%;
+  vertical-align: middle;
 }
 
 @media (max-width: 47.999em) {
+  .custom-menu-3 {
+    text-align: left;
+  }
 
-    .custom-menu-3 {
-        text-align: left;
-    }
-
-    .custom-toggle {
-        display: block;
-    }
-
+  .custom-toggle {
+    display: block;
+  }
 }
