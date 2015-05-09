@@ -9,12 +9,12 @@ Background:
   | test@example.com | hellodolly    | testuser      |
   | test@sample.com  | dollyhello    | bill          |
 
-Scenario: Login with email
+Scenario: Login with email should fail
   Given I am on the login page
-  And I enter "test@example.com" for "user_login"
+  And I enter "test@test.com" for "user_login"
   And I enter "hellodolly" for "user_password"
   And I press "Log in"
-  Then I will be on the home page
+  Then I should see "Invalid username/email or password"
 
 Scenario: Login with username
   Given I am on the login page

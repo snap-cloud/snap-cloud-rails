@@ -1,9 +1,7 @@
-
-
 class CoursesController < ApplicationController
-    before_filter :userLoggedIn, except: [:index, :show]
-    before_filter :courseExists, except: [:new, :create, :index]
-    before_filter :authCourseEdit, only: [:update, :delete, :edit]
+  before_filter :userLoggedIn, except: [:index, :show]
+  before_filter :courseExists, except: [:new, :create, :index]
+  before_filter :authCourseEdit, only: [:update, :delete, :edit]
 
   def create
     user = getCurrentUser
@@ -15,10 +13,9 @@ class CoursesController < ApplicationController
       redirect_to course_show_path(@course.id)
       return
     else
-      render 'new'
-      return
+      render 'new' and return
     end
-    #form on the new page gets submitted here
+    # form on the new page gets submitted here
   end
 
   def show
@@ -29,9 +26,9 @@ class CoursesController < ApplicationController
 
   def update
     dropUsers
-    incorrectEmails = addUsers
-    if !incorrectEmails.empty?
-      flash[:message] = incorrectEmails
+    incorrectNames = addUsers
+    if !incorrectNames.empty?
+      flash[:message] = incorrectNames
     end
     redirect_to course_edit_path(@course)
     #form on the edit page submitted here
@@ -65,35 +62,36 @@ class CoursesController < ApplicationController
   def dropUsers
     drops = params[:drops]
     if drops
-      drops.each_key do |email|
-        drop = User.find_by(email: email)
+      # FIXME: Can't we combine this into on DB access?
+      drops.each_key do |username|
+        drop = User.find_by(username: username)
         @course.removeUser(drop)
       end
     end
   end
 
-  def parseEmails
+  def parseNames
     adds = params[:adds]
     addField = params[:add_field]
-    emails = []
-    if adds then emails += adds.values end
-    if addField then emails << addField.to_s end
-    emails.reject!(&:empty?)
-    return emails
+    names = []
+    if adds then names += adds.values end
+    if addField then names << addField.to_s end
+    names.reject!(&:empty?)
+    return names
   end
 
   def addUsers
-    incorrectEmails = ""
-    emails = parseEmails
-    emails.each do |email|
-      addUser = User.find_by(email: email)
+    incorrectNames = ""
+    names = parseNames
+    names.each do |name|
+      addUser = User.find_by(username: name)
       if !addUser.nil?
         @course.addUser(addUser, :student)
       else
-        incorrectEmails += "Email could not be found: " + email + "\n"
+        incorrectNames += "Username could not be found: " + name + "\n"
       end
     end
-    return incorrectEmails
+    return incorrectNames
   end
-  
+
 end

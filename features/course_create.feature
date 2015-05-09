@@ -18,19 +18,19 @@ When I go to that course
 Then I should not see "Delete"
 
 Scenario: Deleting a course I cannot
-Given I am logged in as "test@example.com" with password "hellohello"
+Given I am logged in as "test" with password "hellohello"
 Given there is a course I did not create
 When I go to that course
 Then I should not see "Delete"
 
 Scenario: Creating a course while logged in
-Given I am logged in as "test@example.com" with password "hellohello"
+Given I am logged in as "test" with password "hellohello"
 And I visit the new course page
 And I enter the course information
 Then I should see that course creation succeeded
 
 Scenario: Deleting one of my courses
-Given I am logged in as "test@example.com" with password "hellohello"
+Given I am logged in as "test" with password "hellohello"
 Given I visit the new course page
 And I enter the course information
 When I go to delete that course

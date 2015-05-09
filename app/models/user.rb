@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
   # use simple_token_authentication on users
   acts_as_token_authenticatable
-  
+
   # Allow login via username or email.
   attr_accessor :login
-  
+
   validates_length_of :about_me, maximum: 500, allow_blank: true
 
   # A user has many projects, and deleting user deletes projects of that user
@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
     self.courses.map(&:assignments).flatten
   end
 
-  
+
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -54,21 +54,21 @@ class User < ActiveRecord::Base
   }
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
-  
+
   # Allow login via username or email
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
-      where(conditions.to_hash).where(["lower(username) = :value OR lower(email) = :value", { value: login.downcase }]).first
+      where(conditions.to_hash).where(["lower(username) = :value", { value: login }]).first
     else
       where(conditions.to_hash).first
     end
   end
-  
+
   validates :username,
             presence: true,
             uniqueness: {
               case_sensitive: false
             }
-    
+
 end

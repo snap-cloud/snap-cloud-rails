@@ -6,7 +6,7 @@ Feature: Viewing Project Details Page
 Background:
   Given the following users exist:
   | id | username | email         | password     |
-  | 1  | test_man | test@test.com | yoloswaggins |
+  | 1  | testuser | test@test.com | yoloswaggins |
   | 2  | yolo_man | yolo@yolo.com | idfkmanhehe  |
 
   And the following projects exist:
@@ -14,14 +14,14 @@ Background:
   | 1  | ohsnap! | awesomesauce | 1     | true      |
   | 2  | ohpriv! | ucantseeme   | 1     | false     |
 
-  Given I am logged in as "test@test.com" with password "yoloswaggins"
+  Given I am logged in as "testuser" with password "yoloswaggins"
   Given I am on the project details page for "ohsnap!"
 
 Scenario: View title of project
   Then I should see "ohsnap!"
 
 Scenario: View owner of project
-  Then I should see "test_man"
+  Then I should see "testuser"
 
 Scenario: Editing the project from details as owner
   Then I press "edit_project"
@@ -57,7 +57,7 @@ Scenario: Public Project should be public to owner and non-owners
   Given I am logged in as "yolo@yolo.com" with password "idfkmanhehe"
   And I am on the project details page for "ohsnap!"
   Then I should see "awesomesauce"
-  Given I am logged in as "test@test.com" with password "yoloswaggins"
+  Given I am logged in as "testuser" with password "yoloswaggins"
   And I am on the project details page for "ohsnap!"
   Then I should see "awesomesauce"
 

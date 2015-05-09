@@ -6,7 +6,7 @@ Feature: Main Login Page
 Background:
   Given the following users exist:
   | email         | password     | username |
-  | test@test.com | yoloswaggins | bob	    |
+  | test@test.com | yoloswaggins | testuser |
 
   And the following projects exist:
   | title   | notes        | owner | is_public |
@@ -34,7 +34,7 @@ Scenario: View the projects
   And I should see "awesomesauce"
 
 Scenario: View the header buttons when logged in
-  Given I am logged in as "test@test.com" with password "yoloswaggins"
+  Given I am logged in as "testuser" with password "yoloswaggins"
   Given I am on the splash page
   Then I should see "Profile"
   And I should see "Logout"

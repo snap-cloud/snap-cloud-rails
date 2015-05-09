@@ -35,7 +35,7 @@ $(document).ready(function() {
 
     // Simple error handling incase something weird happens...
     if (!menu || !toggle) { return; }
-    
+
     toggle.addEventListener('click', function (e) {
         toggleMenu();
     });
