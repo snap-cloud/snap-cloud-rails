@@ -1,7 +1,7 @@
 <div class="pure-u-1-1">
   
   <%= search_form_for Project.search do |f| %>
-    <%= f.search_field :search_term, placeholder: "Search Projects and Users" %>
+    <%= f.search_field :title_or_notes_or_user_username_cont, placeholder: "Search Projects and Users" %>
     <%= submit_tag "Search", class: "pure-button pure-button-primary button-large" %>
   <% end %>
 
