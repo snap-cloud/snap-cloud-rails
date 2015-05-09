@@ -18,7 +18,7 @@ Scenario: View the header buttons
   Then I should see the link "Sign In" to "/login"
   Then I should see the link "Sign Up" to "/signup"
   And I should see an image
-  Then I should see the link "Create" to "/snap/"
+  Then I should see the link "Create" to "/snap"
   And I should see the link "Get Started" to "/help"
   And I should see the link "About" to "/about"
 

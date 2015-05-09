@@ -1,8 +1,3 @@
-# Linda: This is where our step definitions live.
-# Linda: Let's not try to have low-level step definitions
-#        (https://github.com/cucumber/cucumber-rails/issues/174)
-# Linda: We can totally do better! 
-
 Then /^(?:|I) should see "(.*?)"$/ do |input|
   page.should have_content input
 end
