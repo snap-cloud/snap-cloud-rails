@@ -23,14 +23,6 @@ label {
  * -- LAYOUT STYLES --
  * These are some useful classes which I will need
  */
-.l-box {
-    padding: 1em;
-}
-
-.l-box-lrg {
-    padding: 2em;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-}
 
 .is-center {
     text-align: center;
@@ -91,6 +83,15 @@ a.pure-button-primary {
     opacity: 0.8;
 }
 
+.l-box {
+    padding: 1em;
+}
+
+.l-box-lrg {
+    padding: 2em;
+}
+
+
 /*
  * -- CONTENT STYLES --
  * This represents the content area (everything below the blue section)
@@ -128,11 +129,6 @@ a.pure-button-primary {
 .ribbon {
     background: #003262;
     color: #aaa;
-}
-
-/* This is the class used for the footer */
-.footer {
-    background: #111;
 }
 
 /*

@@ -1,3 +1,16 @@
+body {
+/*  height: 100%;
+*/}
+
+.footer {
+  background: #111;
+  padding: 1em;
+  position: static;
+  bottom: 0;
+  margin: auto;
+  width: 97.5%;
+}
+
 .run-snap-logo {
   width: 50px;
   height: 30px;
