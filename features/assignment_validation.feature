@@ -32,14 +32,14 @@ Background:
     | beatriceproj2 | 300 | 'none' | "none" |
     | beatriceproj3 | 300 | 'none' | "none" |
 
-    Given user "teacher" is enrolled as a teacher in "testcourse"
-    Given user "teacher" is enrolled as a teacher in "assignmentcourse"
-    Given user "alice" is enrolled as a student in "testcourse"
-    Given user "beatrice" is enrolled as a student in "assignmentcourse"
-    Given user "beatrice" with password "password" submits "beatriceproj1" and "beatriceproj2" to "assign1"
+    Given user "teacher@cal.edu" is enrolled as a teacher in "testcourse"
+    Given user "teacher@cal.edu" is enrolled as a teacher in "assignmentcourse"
+    Given user "alice@cal.edu" is enrolled as a student in "testcourse"
+    Given user "beatrice@cal.edu" is enrolled as a student in "assignmentcourse"
+    Given user "beatrice@cal.edu" with password "password" submits "beatriceproj1" and "beatriceproj2" to "assign1"
 
     Scenario: Try to create an assignment that has already ended.
-        Given I am logged in as "teacher" with password "password"
+        Given I am logged in as "teacher@cal.edu" with password "password"
         When I try to visit the page for "testcourse"
         And I click the create assignment button
         And I fill in assignment due_date as late
@@ -47,13 +47,13 @@ Background:
         Then I should see that I can't create assignments due in the past
 
     Scenario: Try to edit assignment that has already ended.
-        Given I am logged in as "teacher" with password "password"
+        Given I am logged in as "teacher@cal.edu" with password "password"
         And I visit the assignment show page for "assign3"
         Then I should not see button for "Edit Assignment"
         And I should see that I can't edit the assignment
 
     Scenario: Try to create assignment with fields missing
-        Given I am logged in as "teacher" with password "password"
+        Given I am logged in as "teacher@cal.edu" with password "password"
         When I try to visit the page for "testcourse"
         And I click the create assignment button
         And I click the save button
@@ -62,7 +62,7 @@ Background:
 
 
     Scenario: Try to edit assignment with fields missing
-        Given I am logged in as "teacher" with password "password"
+        Given I am logged in as "teacher@cal.edu" with password "password"
         And I visit the assignment show page for "assign1"
         And I click edit assignment
         And I clear the "assignment_title" textbox

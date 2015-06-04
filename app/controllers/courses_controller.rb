@@ -1,7 +1,8 @@
+
 class CoursesController < ApplicationController
-  before_filter :userLoggedIn, except: [:index, :show]
-  before_filter :courseExists, except: [:new, :create, :index]
-  before_filter :authCourseEdit, only: [:update, :delete, :edit]
+    before_filter :userLoggedIn, except: [:index, :show]
+    before_filter :courseExists, except: [:new, :create, :index]
+    before_filter :authCourseEdit, only: [:update, :delete, :edit]
 
   def create
     user = getCurrentUser
@@ -26,9 +27,9 @@ class CoursesController < ApplicationController
 
   def update
     dropUsers
-    incorrectNames = addUsers
-    if !incorrectNames.empty?
-      flash[:message] = incorrectNames
+    incorrectEmails = addUsers
+    if !incorrectEmails.empty?
+      flash[:message] = incorrectEmails
     end
     redirect_to course_edit_path(@course)
     #form on the edit page submitted here
@@ -62,36 +63,35 @@ class CoursesController < ApplicationController
   def dropUsers
     drops = params[:drops]
     if drops
-      # FIXME: Can't we combine this into on DB access?
-      drops.each_key do |username|
-        drop = User.find_by(username: username)
+      drops.each_key do |email|
+        drop = User.find_by(email: email)
         @course.removeUser(drop)
       end
     end
   end
 
-  def parseNames
+  def parseEmails
     adds = params[:adds]
     addField = params[:add_field]
-    names = []
-    if adds then names += adds.values end
-    if addField then names << addField.to_s end
-    names.reject!(&:empty?)
-    return names
+    emails = []
+    if adds then emails += adds.values end
+    if addField then emails << addField.to_s end
+    emails.reject!(&:empty?)
+    return emails
   end
 
   def addUsers
-    incorrectNames = ""
-    names = parseNames
-    names.each do |name|
-      addUser = User.find_by(username: name)
+    incorrectEmails = ""
+    emails = parseEmails
+    emails.each do |email|
+      addUser = User.find_by(email: email)
       if !addUser.nil?
         @course.addUser(addUser, :student)
       else
-        incorrectNames += "Username could not be found: " + name + "\n"
+        incorrectEmails += "Email could not be found: " + email + "\n"
       end
     end
-    return incorrectNames
+    return incorrectEmails
   end
 
 end

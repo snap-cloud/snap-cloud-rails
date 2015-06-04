@@ -98,9 +98,9 @@ And /^(?:|my) "(.*?)" (is|are) valid$/ do |field|
 	flunk "Unimplemented"
 end
 
-#for things like <project's> <attribute> should be
+# for things like <project's> <attribute> should be
 Then /^(?:|I) should be "(.+)" page$/ do |target|
-	flunk "Unimplemented"
+  flunk "Unimplemented"
 end
 
 Given /the following projects exist/ do |project_table|

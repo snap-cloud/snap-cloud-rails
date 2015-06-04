@@ -7,6 +7,11 @@ class User < ActiveRecord::Base
 
   validates_length_of :about_me, maximum: 500, allow_blank: true
 
+  # Allow login via username or email.
+  attr_accessor :login
+
+  validates_length_of :about_me, maximum: 500, allow_blank: true
+
   # A user has many projects, and deleting user deletes projects of that user
   has_many :enrollments
   has_many :courses,  through: :enrollments
@@ -20,7 +25,6 @@ class User < ActiveRecord::Base
   def assignments
     self.courses.map(&:assignments).flatten
   end
-
 
 
   # Include default devise modules. Others available are:
@@ -70,5 +74,6 @@ class User < ActiveRecord::Base
             uniqueness: {
               case_sensitive: false
             }
+
 
 end

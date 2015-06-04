@@ -96,12 +96,12 @@ When(/^I try to visit the edit page for "(.*?)"$/) do |courseTitle|
 end
 
 Then(/^I should see that I need to be logged in to edit$/) do
-    text = "404"
-	if page.respond_to? :should
-    page.should have_content(text)
-  else
-    assert page.has_content?(text)
-  end
+  text = "404"
+  if page.respond_to? :should
+      page.should have_content(text)
+    else
+      assert page.has_content?(text)
+    end
 end
 
 Given(/^the following enrollments exist:$/) do |enrollmentTable|
@@ -111,24 +111,24 @@ Given(/^the following enrollments exist:$/) do |enrollmentTable|
 end
 
 Given(/^user "(.*?)" is enrolled as a teacher in "(.*?)"$/) do |teacheremail, c|
-   teacher = User.find_by_username(teacheremail)
+   teacher = User.find_by_email(teacheremail)
    course = Course.find_by_title(c)
    course.addUser(teacher, :teacher)
 end
 
 Given(/^user "(.*?)" is enrolled as a student in "(.*?)"$/) do |semail, c|
-   student = User.find_by_username(semail)
+   student = User.find_by_email(semail)
    course = Course.find_by_title(c)
    course.addUser(student, :student)
 end
 
 Then(/^I should see that I do not have permission to edit$/) do
-  	test = "404"
-	if page.respond_to? :should
-    	page.should have_content(text)
-  	else
-    	assert page.has_content?(text)
-  	end
+  test = "404"
+  if page.respond_to? :should
+      page.should have_content(text)
+    else
+      assert page.has_content?(text)
+    end
 end
 
 Then(/^I should see "(.*?)" enrolled$/) do |email|
@@ -153,16 +153,16 @@ When(/^I try to add "(.*?)"$/) do |email|
 end
 
 When(/^I try to add "(.*?)" and "(.*?)" at the same time$/) do |user1, user2|
- 	fill_in 'adds[1]', with: user1
- 	fill_in 'adds[2]', with: user2
+  fill_in 'adds[1]', with: user1
+  fill_in 'adds[2]', with: user2
 end
 
-Then(/^I should see "(.*?)" could not be found$/) do |name|
-  page.should have_content("Username could not be found: " + name)
+Then(/^I should see "(.*?)" could not be found$/) do |email|
+  page.should have_content("Email could not be found: " + email)
 end
 
 Then(/^I should not have any email errors$/) do
-  page.should have_no_content("Username could not be found: ")
+  page.should have_no_content("Email could not be found: ")
 end
 
 When(/^I try to visit the page for "(.*?)"$/) do |course|
