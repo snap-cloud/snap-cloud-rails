@@ -111,13 +111,13 @@ Given(/^the following enrollments exist:$/) do |enrollmentTable|
 end
 
 Given(/^user "(.*?)" is enrolled as a teacher in "(.*?)"$/) do |teacheremail, c|
-   teacher = User.find_by_email(teacheremail)
+   teacher = User.find_by_username(teacheremail)
    course = Course.find_by_title(c)
    course.addUser(teacher, :teacher)
 end
 
 Given(/^user "(.*?)" is enrolled as a student in "(.*?)"$/) do |semail, c|
-   student = User.find_by_email(semail)
+   student = User.find_by_username(semail)
    course = Course.find_by_title(c)
    course.addUser(student, :student)
 end
@@ -158,11 +158,11 @@ When(/^I try to add "(.*?)" and "(.*?)" at the same time$/) do |user1, user2|
 end
 
 Then(/^I should see "(.*?)" could not be found$/) do |email|
-  page.should have_content("Email could not be found: " + email)
+  page.should have_content("Username could not be found: " + email)
 end
 
 Then(/^I should not have any email errors$/) do
-  page.should have_no_content("Email could not be found: ")
+  page.should have_no_content("Username could not be found: ")
 end
 
 When(/^I try to visit the page for "(.*?)"$/) do |course|

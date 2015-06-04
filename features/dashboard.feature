@@ -26,8 +26,8 @@ Background:
   | id | title   |     description      | course_id | start_date | due_date   |
   | 1  | assign1 | "description for #1" |     1     | 1.day.ago  | 1.hour.ago |
 
-Given I am logged in as "linda@linda.com" with password "lindalinda"
-Given user "linda@linda.com" is enrolled as a student in "cs169"
+Given I am logged in as "linda" with password "lindalinda"
+Given user "linda" is enrolled as a student in "cs169"
 Given I am on the home page
 
 Scenario: Dashboard is visible upon logging in
