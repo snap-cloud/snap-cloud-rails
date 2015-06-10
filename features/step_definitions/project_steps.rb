@@ -89,18 +89,18 @@ Given(/^I go to the link "(.*?)"$/) do |link|
   visit link
 end
 
-And /^(?:|I) enter in "(.*?)" $/ do |entry|
-	flunk "Unimplemented"
+And(/^(?:|I) enter in "(.*?)" $/) do |entry|
+  flunk "Unimplemented"
 end
 
-# check if username/pw is valid, if signup is valid, etc.? 
-And /^(?:|my) "(.*?)" (is|are) valid$/ do |field|
-	flunk "Unimplemented"
+# check if username/pw is valid, if signup is valid, etc.?
+And (/^(?:|my) "(.*?)" (is|are) valid$/) do |field|
+  flunk "Unimplemented"
 end
 
-#for things like <project's> <attribute> should be 
+# for things like <project's> <attribute> should be
 Then /^(?:|I) should be "(.+)" page$/ do |target|
-	flunk "Unimplemented"
+  flunk "Unimplemented"
 end
 
 Given /the following projects exist/ do |project_table|
@@ -117,6 +117,10 @@ end
 
 Then /^(?:|I) press "(.*?)" $/ do |button|
   click_button(button)
+end
+
+Then /^(?:|I) press the search button $/ do
+  find('button[@name=Search]').click
 end
 
 Then(/^I follow "(.*?)"$/) do |link|

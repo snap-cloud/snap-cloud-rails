@@ -1,14 +1,34 @@
+/* Main Application CSS.
+   This is expected to be loaded on every page.
+  
+  This comment should contain notes and attributions as appropriate.
+  Footer basics:
+    http://mystrd.at/modern-clean-css-sticky-footer/
+  Micro Clearfix, same one used in bootstrap:
+    http://nicolasgallagher.com/micro-clearfix-hack/
+
+  
+*/
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
-/*  height: 100%;
-*/}
+    line-height: 1.7em;
+    color: #7f8c8d;
+    font-size: 12pt;
+    margin: 55px 0 3em 0; /* Margins for header and footer. */
+}
 
 .footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
   background: #111;
   padding: 1em;
-  position: static;
-  bottom: 0;
-  margin: auto;
-  width: 97.5%;
 }
 
 .run-snap-logo {
@@ -17,13 +37,30 @@ body {
   vertical-align: middle;
 }
 
+select.select-date {
+  float: left;
+  margin: .3em ; /* allow left align */
+}
+
+.clearfix:before,
+.clearfix:after {
+  content:"";
+  display:table;
+}
+.clearfix:after {
+  clear:both;
+}
+.clearfix {
+  zoom:1; /* For IE 6/7 (trigger hasLayout) */
+}
+
+/* nav bar search button / icon. */
+button.button-search {
+  border-radius: 2em;
+  padding: 0.5em;
+}
 
 @media (min-width: 48em) {
-  /* We increase the body font size */
-  body {
-    font-size: 16px;
-  }
-
   /* We want to give the content area some more padding */
   .content {
     padding: 1em;
