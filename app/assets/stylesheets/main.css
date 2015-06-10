@@ -54,6 +54,18 @@ select.select-date {
   zoom:1; /* For IE 6/7 (trigger hasLayout) */
 }
 
+/* nav bar search button / icon. */
+.nav-search-icon {
+  /* Get the wand to point the normal way */
+  color: #FFF;
+  background: none;
+}
+
+button.button-search {
+  border-radius: 2em;
+  padding: 0.5em;
+}
+
 @media (min-width: 48em) {
   /* We want to give the content area some more padding */
   .content {
