@@ -1,9 +1,4 @@
-<% content_for :head do %>
-  <%= stylesheet_link_tag "profile", "marketing" %>
-<% end %>
-
 <div style="letter-spacing:1px;">
-  <link rel="stylesheet" href="http://saeedalipoor.github.io/icono/icono.min.css">
 
   <h2 id="username">Edit <%= @user.username %>'s Profile</h2>
   <div class="pure-g profile-wrapper">
@@ -11,19 +6,19 @@
     <div class="pure-u-3-3" id="basic-info" style="letter-spacing:1px;">
       <h3 id="about">Edit Profile Picture</h3>
       <div class="profile-content">
-	<%= image_tag @user.avatar.url(:thumb) %>
-	<div>
-	  <%= f.file_field :avatar %>
-	</div>
+        <%= image_tag @user.avatar.url(:thumb) %>
+        <div>
+          <%= f.file_field :avatar %>
+        </div>
       </div>
     </div>
     <br>
     <div class="pure-u-3-3" id="about-me-box" style="letter-spacing:1px;">
       <h3 id="about">Edit About Me</h3>
       <div class="profile-content">
-	<h4 class="profile-content-text">
-	  <%= f.text_area :about_me, value: @about_me %>
-	</h4>
+        <h4 class="profile-content-text">
+          <%= f.text_area :about_me, value: @about_me %>
+        </h4>
       </div>
     </div>
     <div id="profile-edit-submit">
