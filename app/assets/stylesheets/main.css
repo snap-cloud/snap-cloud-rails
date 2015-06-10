@@ -4,6 +4,8 @@
   This comment should contain notes and attributions as appropriate.
   Footer basics:
     http://mystrd.at/modern-clean-css-sticky-footer/
+  Micro Clearfix, same one used in bootstrap:
+    http://nicolasgallagher.com/micro-clearfix-hack/
 
   
 */
@@ -35,6 +37,22 @@ body {
   vertical-align: middle;
 }
 
+select.select-date {
+  float: left;
+  margin: .3em ; /* allow left align */
+}
+
+.clearfix:before,
+.clearfix:after {
+  content:"";
+  display:table;
+}
+.clearfix:after {
+  clear:both;
+}
+.clearfix {
+  zoom:1; /* For IE 6/7 (trigger hasLayout) */
+}
 
 @media (min-width: 48em) {
   /* We want to give the content area some more padding */

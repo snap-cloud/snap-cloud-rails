@@ -24,7 +24,10 @@
       = f.password_field :password_confirmation, autocomplete: "off", class: 'pure-u-1'
       %label
         When were you born?
-      = date_select :user, :birthdate, start_year: 75.years.ago.year, end_year: 0.years.ago.year
+      = f.date_select(:birthdate,
+               options = { start_year: DateTime.now.year - 5, end_year: DateTime.now.year - 75, order: [:month, :day, :year], include_blank: true},
+               html_options = { class: 'select-date'})
+      .clearfix
       %em
         If you are less than 13 years old, you must have you parent's permission, and use your parent's email address.
     
