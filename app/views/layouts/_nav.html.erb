@@ -37,7 +37,8 @@
             <%= search_form_for Project.search, class: 'pure-form' do |f| %>
             <%= f.search_field :title_or_notes_or_user_username_cont,
             placeholder: "Search", class: "search pure-input-rounded" %>
-            <button type="submit" class="button-small pure-button button-search">
+            <button type="submit" class="button-small pure-button button-search"
+              name="Search">
               <i class="nav-search-icon fa fa-search"></i> 
             </button>
             <% end %>

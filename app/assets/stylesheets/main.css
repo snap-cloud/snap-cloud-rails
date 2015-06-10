@@ -55,12 +55,6 @@ select.select-date {
 }
 
 /* nav bar search button / icon. */
-.nav-search-icon {
-  /* Get the wand to point the normal way */
-  color: #FFF;
-  background: none;
-}
-
 button.button-search {
   border-radius: 2em;
   padding: 0.5em;

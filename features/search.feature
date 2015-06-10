@@ -20,7 +20,7 @@ Background:
 Scenario: Search for a user and their projects
   Given I can see the dashboard
   And I enter "testuser" for "q_title_or_notes_or_user_username_cont"
-  And I press "Search"
+  And I press the search button
   Then I will be on the search page
   And I should see "testuser"
   And I should see "ohsnap!"
@@ -31,7 +31,7 @@ Scenario: Search for a user and their projects
 Scenario: Search for projects by name
   Given I can see the dashboard
   And I enter "blah" for "q_title_or_notes_or_user_username_cont"
-  And I press "Search"
+  And I press the search button
   Then I will be on the search page
   And I should see "blah"
   And I should not see "hmmmmm"
@@ -40,7 +40,7 @@ Scenario: Search for projects by name
 Scenario: Search for projects by notes
   Given I can see the dashboard
   And I enter "game" for "q_title_or_notes_or_user_username_cont"
-  And I press "Search"
+  And I press the search button
   Then I will be on the search page
   And I should see "blah"
   And I should not see "ohsnap!"

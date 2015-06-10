@@ -13,7 +13,7 @@ Then /^(?:|I) should see the splash page$/ do
 end
 
 Then /^(?:|I) am on the snap page$/ do
-  visit "/snap/"
+  visit "/snap"
 end
 
 
