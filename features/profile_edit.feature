@@ -21,7 +21,7 @@ Scenario: View others profile edit page
   Then I should see "404"
 
 Scenario: View own profile edit page and submit
-  Given I am logged in as "test@example.com" with password "hellodolly"
+  Given I am logged in as "testuser" with password "hellodolly"
   And I am on the profile page for "testuser"
   Then I should see "testuser"
   And I should see "My Projects"

@@ -3,30 +3,25 @@
 <% end %>
 
 <div style="letter-spacing:1px;">
-  <link rel="stylesheet" href="http://saeedalipoor.github.io/icono/icono.min.css">
 
   <h2 id="username"><%= @user.username %>'s Profile</h2>
   <div style="float:right;">
     <% if not @user == current_user %>
-    <a id="report-profile" class="pure-button" style="background: rgb(202,60,60);" href="/users/<%= @user.id %>/edit">
-      <div>
-	<i class="icono-flag"></i>
-	Report
-      </div>
+    <a id="report-profile" class="pure-button button-error" href="#">
+      <i class="fa fa-flag-o"></i>
+      Report
     </a>
     <% else %>
     <a id="edit-profile" class="pure-button" href="/users/<%= @user.id %>/edit">
-      <div>
-	<i class="icono-gear"></i>
-	Edit
-      </div>
+      <i class="fa fa-cog"></i>
+      Edit
     </a>
     <% end %>
   </div>
   <div class="pure-g profile-wrapper">
     <div class="pure-u-1-3" id="basic-info">
       <div class="profile-content">
-	<%= image_tag @user.avatar.url(:thumb) %>
+        <%= image_tag @user.avatar.url(:thumb) %>
       </div>
     </div>
     <div class="pure-u-2-3" id="">

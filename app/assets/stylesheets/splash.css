@@ -29,11 +29,9 @@
  * -- SPLASH STYLES --
  * This is the blue top section that appears on the page.
  */
-
 .splash-container {
     background: white;
 }
-
 
 /* This is the main heading that appears on the blue section */
 .splash-head {

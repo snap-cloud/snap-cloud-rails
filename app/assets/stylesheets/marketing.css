@@ -1,13 +1,6 @@
 /*
  * -- BASE STYLES --
  */
-body {
-    line-height: 1.7em;
-    color: #7f8c8d;
-    font-size: 13px;
-    padding-top: 55px; /* Needed so pages don't load under the header. */
-}
-
 
 h1, h2, h3, h4, h5, h6,
 label {
@@ -23,29 +16,18 @@ label {
  * -- LAYOUT STYLES --
  * These are some useful classes which I will need
  */
+.l-box {
+    padding: 1em;
+}
+
+.l-box-lrg {
+    padding: 2em;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
 
 .is-center {
     text-align: center;
 }
-
-/*
- * -- PURE BUTTON STYLES --
- * I want my pure-button elements to look a little different
- */
-.pure-button {
-    background-color: #1f8dd6;
-    color: white;
-    padding: 0.5em 2em;
-    border-radius: 5px;
-}
-
-a.pure-button-primary {
-    background: white;
-    color: #1f8dd6;
-    border-radius: 5px;
-    font-size: 120%;
-}
-
 
 /*
  * -- SPLASH STYLES --
@@ -82,15 +64,6 @@ a.pure-button-primary {
     letter-spacing: 0.05em;
     opacity: 0.8;
 }
-
-.l-box {
-    padding: 1em;
-}
-
-.l-box-lrg {
-    padding: 2em;
-}
-
 
 /*
  * -- CONTENT STYLES --
@@ -137,17 +110,6 @@ a.pure-button-primary {
  * of the mobile styles.
  */
 @media (min-width: 48em) {
-
-    /* We increase the body font size */
-    body {
-        font-size: 16px;
-    }
-
-    /* We want to give the content area some more padding */
-    .content {
-        padding: 1em;
-    }
-
     /* We decrease the width of the .splash, since we have more width
     to work with */
     .splash {

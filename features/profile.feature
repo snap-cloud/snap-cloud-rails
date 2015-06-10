@@ -36,7 +36,7 @@ Scenario: Report a user profile
   And I should see an element "#report-profile"
 
 Scenario: View own profile when logged in
-  Given I am logged in as "test@example.com" with password "hellodolly"
+  Given I am logged in as "testuser" with password "hellodolly"
   And I am on the profile page for "testuser"
   Then I should see "testuser"
   And I should see "My Projects"
