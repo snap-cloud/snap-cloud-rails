@@ -1,9 +1,9 @@
-# [![snap-logo](public/snap_logo_sm.png)-Cloud][hk-app]
+# [![snap-logo](public/snap_logo_sm.png) Cloud][hk-app]
 An interactive, project sharing site for [Snap<i>!</i>][sbe].
 
 [![Code Climate](https://codeclimate.com/github/snap-cloud/snap-cloud/badges/gpa.svg)](https://codeclimate.com/github/snap-cloud/snap-cloud) [![Build Status](https://travis-ci.org/snap-cloud/snap-cloud.svg?branch=master)](https://travis-ci.org/snap-cloud/snap-cloud) [![Test Coverage](https://codeclimate.com/github/snap-cloud/snap-cloud/badges/coverage.svg)](https://codeclimate.com/github/snap-cloud/snap-cloud) [![Inline docs](http://inch-ci.org/github/snap-cloud/snap-cloud.svg?branch=master)](http://inch-ci.org/github/snap-cloud/snap-cloud) [![Dependency Status](https://gemnasium.com/snap-cloud/snap-cloud.svg)](https://gemnasium.com/snap-cloud/snap-cloud) [![security](https://hakiri.io/github/snap-cloud/snap-cloud/master.svg)](https://hakiri.io/github/snap-cloud/snap-cloud/master)
 
-# What is Snap<i>!</i>-Cloud?
+# What is Snap<i>!</i> Cloud?
 This section is `TODO`
 - Snap<i>!</i> GH Repo
 - Snap<i>!</i> homepage
@@ -35,7 +35,7 @@ The Heroku destination for the app is [`https://ucbsnap.herokuapp.com`][hk-app]
 * nodeJS (>= v0.10) and npm
 	* Used for `bower`
 * Ruby 2.2.1
-* imagemagick for testing profile and thumbnail management
+* `imagemagick` for testing profile and thumbnail management
 * OS X -- if you have `brew` there will be an install script sometime...
 
 ## Development Notes
