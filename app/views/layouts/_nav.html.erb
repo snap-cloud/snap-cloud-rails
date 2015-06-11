@@ -27,41 +27,40 @@
     </div>
   </div>
 
-    <div class="pure-u-1 pure-u-md-1-2">
-      <div class="pure-menu custom-menu-3 custom-can-transform pure-menu-horizontal">
-        <ul class="pure-menu-list right">
-          <li class="pure-menu-item pure-visible-xs pure-visible-sm">
-            <a href="/search" class="pure-menu-link">
-              Search <i class="fa fa-search"></i> 
-            </a>
-          </li>
-          <li class="pure-menu-item pure-hidden-xs pure-hidden-sm">
-            <%= search_form_for Project.search, class: 'pure-form' do |f| %>
-            <%= f.search_field :title_or_notes_or_user_username_cont,
-            placeholder: "Search", class: "search pure-input-rounded" %>
-            <button type="submit" class="button-small pure-button button-search"
-              name="Search">
-              <i class="nav-search-icon fa fa-search"></i> 
-            </button>
-            <% end %>
-          </li>
-          <% if current_user %>
-          <li class="pure-menu-item">
-            <%= link_to "Profile", user_profile_path(current_user.id), class: "pure-menu-link" %>
-          </li>
-          <li class="pure-menu-item">
-            <%= link_to "Logout", logout_path, class: "pure-menu-link" %>
-          </li>
-          <% else %>
-          <li class="pure-menu-item">
-            <%= link_to "Sign Up", signup_path, class: "pure-menu-link" %>
-          </li>
-          <li class="pure-menu-item">
-            <%= link_to "Sign In", login_path, class: "pure-menu-link" %>
-          </li>
+  <div class="pure-u-1 pure-u-md-1-2">
+    <div class="pure-menu custom-menu-3 custom-can-transform pure-menu-horizontal">
+      <ul class="pure-menu-list right">
+        <li class="pure-menu-item pure-visible-xs pure-visible-sm">
+          <a href="/search" class="pure-menu-link">
+            Search <i class="fa fa-search"></i> 
+          </a>
+        </li>
+        <li class="pure-menu-item pure-hidden-xs pure-hidden-sm">
+          <%= search_form_for Project.search, class: 'pure-form' do |f| %>
+          <%= f.search_field :title_or_notes_or_user_username_cont,
+          placeholder: "Search", class: "search pure-input-rounded" %>
+          <button type="submit" class="button-small pure-button button-search"
+          name="Search">
+            <i class="nav-search-icon fa fa-search"></i> 
+          </button>
           <% end %>
-        </ul>
-      </div>
+        </li>
+        <% if current_user %>
+        <li class="pure-menu-item">
+          <%= link_to "Profile", user_profile_path(current_user.id), class: "pure-menu-link" %>
+        </li>
+        <li class="pure-menu-item">
+          <%= link_to "Logout", logout_path, class: "pure-menu-link" %>
+        </li>
+        <% else %>
+        <li class="pure-menu-item">
+          <%= link_to "Sign Up", signup_path, class: "pure-menu-link" %>
+        </li>
+        <li class="pure-menu-item">
+          <%= link_to "Sign In", login_path, class: "pure-menu-link" %>
+        </li>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>
