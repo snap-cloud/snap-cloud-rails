@@ -10,48 +10,48 @@ https://github.com/yahoo/rework-pure-grids
 */
 /* pure-hidden-xs */
 @media screen and (max-width:35.438em) {
-    .pure-visible-sm { display:none !important }
-    .pure-visible-md { display:none !important }
-    .pure-visible-lg { display:none !important }
-    .pure-visible-xl { display:none !important }
-    .pure-hidden-xs  { display:none !important }
-    .pure-visible-xs { display:inherit !important }
+    .pure-g [class *= "pure-u"] .pure-visible-sm { display:none }
+    .pure-g [class *= "pure-u"] .pure-visible-md { display:none }
+    .pure-g [class *= "pure-u"] .pure-visible-lg { display:none }
+    .pure-g [class *= "pure-u"] .pure-visible-xl { display:none }
+    .pure-g [class *= "pure-u"] .pure-hidden-xs  { display:none }
+    .pure-g [class *= "pure-u"] .pure-visible-xs {  }
 }
 /* pure-hidden-sm */
 @media screen and (min-width:35.5em) and (max-width:47.938em) {
-    .pure-visible-xs { display:none !important }
-    .pure-visible-md { display:none !important }
-    .pure-visible-lg { display:none !important }
-    .pure-visible-xl { display:none !important }
-    .pure-hidden-sm  { display:none !important }
-    .pure-visible-sm { display:inherit !important }
+    .pure-g [class *= "pure-u"] .pure-visible-xs { display:none }
+    .pure-g [class *= "pure-u"] .pure-visible-md { display:none }
+    .pure-g [class *= "pure-u"] .pure-visible-lg { display:none }
+    .pure-g [class *= "pure-u"] .pure-visible-xl { display:none }
+    .pure-g [class *= "pure-u"] .pure-hidden-sm  { display:none }
+    .pure-g [class *= "pure-u"] .pure-visible-sm {  }
 }
 /* pure-hidden-md */
 @media screen and (min-width:48em) and (max-width:63.938em) {
-    .pure-visible-xs { display:none !important }
-    .pure-visible-sm { display:none !important }
-    .pure-visible-lg { display:none !important }
-    .pure-visible-xl { display:none !important }
-    .pure-hidden-md  { display:none !important }
-    .pure-visible-md { display:inherit !important }
+    .pure-g [class *= "pure-u"] .pure-visible-xs { display:none }
+    .pure-g [class *= "pure-u"] .pure-visible-sm { display:none }
+    .pure-g [class *= "pure-u"] .pure-visible-lg { display:none }
+    .pure-g [class *= "pure-u"] .pure-visible-xl { display:none }
+    .pure-g [class *= "pure-u"] .pure-hidden-md  { display:none }
+    .pure-g [class *= "pure-u"] .pure-visible-md {  }
 }
 /* pure-hidden-lg */
 @media screen and (min-width:64em) and (max-width:79.938em) {
-    .pure-visible-xs { display:none !important }
-    .pure-visible-sm { display:none !important }
-    .pure-visible-md { display:none !important }
-    .pure-visible-xl { display:none !important }
-    .pure-hidden-lg  { display:none !important }
-    .pure-visible-lg { display:inherit !important }
+    .pure-g [class *= "pure-u"] .pure-visible-xs { display:none }
+    .pure-g [class *= "pure-u"] .pure-visible-sm { display:none }
+    .pure-g [class *= "pure-u"] .pure-visible-md { display:none }
+    .pure-g [class *= "pure-u"] .pure-visible-xl { display:none }
+    .pure-g [class *= "pure-u"] .pure-hidden-lg  { display:none }
+    .pure-g [class *= "pure-u"] .pure-visible-lg {  }
 }
 /* pure-hidden-xl */
 @media screen and (min-width:80em) {
-    .pure-visible-xs { display:none !important }
-    .pure-visible-sm { display:none !important }
-    .pure-visible-md { display:none !important }
-    .pure-visible-lg { display:none !important }
-    .pure-hidden-xl  { display:none !important }
-    .pure-visible-xl { display:inherit !important }
+    .pure-g [class *= "pure-u"] .pure-visible-xs { display:none }
+    .pure-g [class *= "pure-u"] .pure-visible-sm { display:none }
+    .pure-g [class *= "pure-u"] .pure-visible-md { display:none }
+    .pure-g [class *= "pure-u"] .pure-visible-lg { display:none }
+    .pure-g [class *= "pure-u"] .pure-hidden-xl  { display:none }
+    .pure-g [class *= "pure-u"] .pure-visible-xl {  }
 }
 
 
