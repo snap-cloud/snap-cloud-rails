@@ -39,7 +39,6 @@ menu items to the right. */
   height: 2.75em;
 }
 
-/* TODO: Overflow-y scroll */
 .custom-wrapper.open {
   height: 20em;
 }
@@ -49,49 +48,49 @@ menu items to the right. */
 }
 
 .custom-toggle {
-    width: 34px;
-    height: 34px;
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: none;
+  width: 34px;
+  height: 34px;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
 }
 
 .custom-toggle .bar {
-    background-color: #777;
-    display: block;
-    width: 20px;
-    height: 2px;
-    border-radius: 100px;
-    position: absolute;
-    top: 1.5em;
-    right: 2em;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -ms-transition: all 0.5s;
-    transition: all 0.5s;
+  background-color: #777;
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 100px;
+  position: absolute;
+  top: 1.5em;
+  right: 2em;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 .custom-toggle .bar:first-child {
-    -webkit-transform: translateY(-6px);
-    -moz-transform: translateY(-6px);
-    -ms-transform: translateY(-6px);
-    transform: translateY(-6px);
+  -webkit-transform: translateY(-6px);
+  -moz-transform: translateY(-6px);
+  -ms-transform: translateY(-6px);
+  transform: translateY(-6px);
 }
 
 .custom-toggle.x .bar {
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .custom-toggle.x .bar:first-child {
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 /* TODO: MAKE LEFT LIST OF HEADER CENTERED */
@@ -103,10 +102,10 @@ ul.pure-menu-list {
 
 @media (max-width: 47.999em) {
   .custom-menu-3 {
-    text-align: left;
+  text-align: left;
   }
 
   .custom-toggle {
-    display: block;
+  display: block;
   }
 }
