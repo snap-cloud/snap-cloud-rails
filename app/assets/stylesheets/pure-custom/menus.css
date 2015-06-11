@@ -12,7 +12,9 @@ menu items to the right. */
 .main-menu {
   width: 100%;
   background: #003262;
-  padding: .3em;
+  padding: .3em .6em;
+  margin: 0 0 10px 0;
+  box-shadow: 0 5px 10px #CCC;
 }
 
 .pure-menu-item a {
@@ -36,8 +38,9 @@ menu items to the right. */
   transition: height 0.5s;
 }
 
+/* TODO: Overflow-y scroll */
 .custom-wrapper.open {
-  height: 14em;
+  height: 20em;
 }
 
 .custom-menu-3 {
