@@ -3,7 +3,7 @@
 $(document).ready(function() {
     var menu = document.getElementById('menu'),
         toggle = document.getElementById('toggle'),
-        WINDOW_CHANGE_EVENT = ('onorientationchange' in window) ? 'orientationchange':'resize';
+        WINDOW_CHANGE_EVENT = ('onorientationchange' in window) ? 'orientationchange' : 'resize';
 
     function toggleHorizontal() {
         [].forEach.call(
