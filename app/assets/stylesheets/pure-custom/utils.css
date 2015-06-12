@@ -4,54 +4,54 @@
 /*
 PART 1: Pure visible and hidden classes.
 
-Blissfully stolen from: https://github.com/yahoo/pure/issues/326
+Based off of: https://github.com/yahoo/pure/issues/326
 TODO: Be a good person and commit to:
 https://github.com/yahoo/rework-pure-grids
 */
 /* pure-hidden-xs */
-@media screen and (max-width:35.438em) {
+@media screen and (max-width: 35.438em) {
     .pure-g [class *= "pure-u"] .pure-visible-sm { display:none }
     .pure-g [class *= "pure-u"] .pure-visible-md { display:none }
     .pure-g [class *= "pure-u"] .pure-visible-lg { display:none }
     .pure-g [class *= "pure-u"] .pure-visible-xl { display:none }
     .pure-g [class *= "pure-u"] .pure-hidden-xs  { display:none }
-    .pure-g [class *= "pure-u"] .pure-visible-xs {  }
+    .pure-g [class *= "pure-u"] .pure-visible-xs { display: inherit }
 }
 /* pure-hidden-sm */
-@media screen and (min-width:35.5em) and (max-width:47.938em) {
+@media screen and (min-width: 35.5em) and (max-width: 47.938em) {
     .pure-g [class *= "pure-u"] .pure-visible-xs { display:none }
     .pure-g [class *= "pure-u"] .pure-visible-md { display:none }
     .pure-g [class *= "pure-u"] .pure-visible-lg { display:none }
     .pure-g [class *= "pure-u"] .pure-visible-xl { display:none }
     .pure-g [class *= "pure-u"] .pure-hidden-sm  { display:none }
-    .pure-g [class *= "pure-u"] .pure-visible-sm {  }
+    .pure-g [class *= "pure-u"] .pure-visible-sm { display: inherit }
 }
 /* pure-hidden-md */
-@media screen and (min-width:48em) and (max-width:63.938em) {
+@media screen and (min-width: 48em) and (max-width: 63.938em) {
     .pure-g [class *= "pure-u"] .pure-visible-xs { display:none }
     .pure-g [class *= "pure-u"] .pure-visible-sm { display:none }
     .pure-g [class *= "pure-u"] .pure-visible-lg { display:none }
     .pure-g [class *= "pure-u"] .pure-visible-xl { display:none }
     .pure-g [class *= "pure-u"] .pure-hidden-md  { display:none }
-    .pure-g [class *= "pure-u"] .pure-visible-md {  }
+    .pure-g [class *= "pure-u"] .pure-visible-md { display: inherit }
 }
 /* pure-hidden-lg */
-@media screen and (min-width:64em) and (max-width:79.938em) {
+@media screen and (min-width: 64em) and (max-width: 79.938em) {
     .pure-g [class *= "pure-u"] .pure-visible-xs { display:none }
     .pure-g [class *= "pure-u"] .pure-visible-sm { display:none }
     .pure-g [class *= "pure-u"] .pure-visible-md { display:none }
     .pure-g [class *= "pure-u"] .pure-visible-xl { display:none }
     .pure-g [class *= "pure-u"] .pure-hidden-lg  { display:none }
-    .pure-g [class *= "pure-u"] .pure-visible-lg {  }
+    .pure-g [class *= "pure-u"] .pure-visible-lg { display: inherit }
 }
 /* pure-hidden-xl */
-@media screen and (min-width:80em) {
+@media screen and (min-width: 80em) {
     .pure-g [class *= "pure-u"] .pure-visible-xs { display:none }
     .pure-g [class *= "pure-u"] .pure-visible-sm { display:none }
     .pure-g [class *= "pure-u"] .pure-visible-md { display:none }
     .pure-g [class *= "pure-u"] .pure-visible-lg { display:none }
     .pure-g [class *= "pure-u"] .pure-hidden-xl  { display:none }
-    .pure-g [class *= "pure-u"] .pure-visible-xl {  }
+    .pure-g [class *= "pure-u"] .pure-visible-xl { display: inherit }
 }
 
 
