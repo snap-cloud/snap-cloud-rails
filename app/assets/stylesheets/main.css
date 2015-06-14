@@ -1,25 +1,23 @@
 /* Main Application CSS.
    This is expected to be loaded on every page.
-  
+
   This comment should contain notes and attributions as appropriate.
   Footer basics:
     http://mystrd.at/modern-clean-css-sticky-footer/
-  Micro Clearfix, same one used in bootstrap:
-    http://nicolasgallagher.com/micro-clearfix-hack/
-
-  
 */
 
 html {
   position: relative;
   min-height: 100%;
+  /*max-width: 1680px;
+  margin: 0 auto;*/
 }
 
 body {
     line-height: 1.7em;
     color: #7f8c8d;
     font-size: 12pt;
-    margin: 55px 0 3em 0; /* Margins for header and footer. */
+    margin: 55px 0 0 0; /* Margins for header. */
 }
 
 .footer {
@@ -30,6 +28,16 @@ body {
   background: #111;
   padding: 1em;
 }
+
+/*
+When setting the primary font stack, apply it to the Pure grid units along
+with `html`, `button`, `input`, `select`, and `textarea`. Pure Grids use
+specific font stacks to ensure the greatest OS/browser compatibility.
+*/
+/*html, button, input, select, textarea,
+.pure-g [class *= "pure-u"] {
+}*/
+
 
 .run-snap-logo {
   width: 50px;
@@ -42,28 +50,20 @@ select.select-date {
   margin: .3em ; /* allow left align */
 }
 
-.clearfix:before,
-.clearfix:after {
-  content:"";
-  display:table;
-}
-.clearfix:after {
-  clear:both;
-}
-.clearfix {
-  zoom:1; /* For IE 6/7 (trigger hasLayout) */
-}
-
 /* nav bar search button / icon. */
 button.button-search {
   border-radius: 2em;
   padding: 0.5em;
+  min-width: 1em;
+  min-height: 1em;
+  max-width: 2em;
+  max-height: 2em;
 }
 
 @media (min-width: 48em) {
   /* We want to give the content area some more padding */
-  .content {
+/*  .content {
     padding: 1em;
-  }
+  }*/
 }
 
