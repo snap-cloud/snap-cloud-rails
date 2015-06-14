@@ -38,8 +38,9 @@ menu items to the right. */
   height: 2.75em;
 }
 
+/* TODO: Overflow-y scroll */
 .custom-wrapper.open {
-  height: 19em;
+  height: 20em;
 }
 
 .custom-menu-3 {
