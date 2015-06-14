@@ -4,7 +4,7 @@
       <a href="/" class="pure-menu-heading custom-brand">
         <%= image_tag "snap-logo.png", alt: "Snap! logo", class: "run-snap-logo" %>
       </a>
-      <a href="" class="custom-toggle" id="toggle" style="background:#FFF">
+      <a href="#" class="custom-toggle" id="toggle">
         <s class="bar"></s>
         <s class="bar"></s>
       </a>
@@ -30,18 +30,13 @@
   <div class="pure-u-1 pure-u-md-1-2">
     <div class="pure-menu custom-menu-3 custom-can-transform pure-menu-horizontal">
       <ul class="pure-menu-list right">
-        <li class="pure-menu-item pure-visible-xs pure-visible-sm">
-          <a href="/search" class="pure-menu-link">
-            Search <i class="fa fa-search"></i> 
-          </a>
-        </li>
-        <li class="pure-menu-item pure-hidden-xs pure-hidden-sm">
+        <li class="pure-menu-item">
           <%= search_form_for Project.search, class: 'pure-form' do |f| %>
           <%= f.search_field :title_or_notes_or_user_username_cont,
           placeholder: "Search", class: "search pure-input-rounded" %>
           <button type="submit" class="button-small pure-button button-search"
           name="Search">
-            <i class="nav-search-icon fa fa-search"></i> 
+            <i class="nav-search-icon fa fa-search"></i>
           </button>
           <% end %>
         </li>
