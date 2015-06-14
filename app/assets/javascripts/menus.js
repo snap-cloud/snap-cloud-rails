@@ -1,13 +1,14 @@
 // Slighty modified from the PureCSS website.
 // The controls the hamburger menu on small screens.
 $(document).ready(function() {
+    (function (window, document) {
     var menu = document.getElementById('menu'),
         toggle = document.getElementById('toggle'),
-        WINDOW_CHANGE_EVENT = ('onorientationchange' in window) ? 'orientationchange':'resize';
+        WINDOW_CHANGE_EVENT = ('onorientationchange' in window) ? 'orientationchange' : 'resize';
 
     function toggleHorizontal() {
         [].forEach.call(
-            document.getElementById('menu').querySelectorAll('.custom-can-transform'),
+            menu.querySelectorAll('.custom-can-transform'),
             function(el){
                 el.classList.toggle('pure-menu-horizontal');
             }
@@ -24,7 +25,7 @@ $(document).ready(function() {
             toggleHorizontal();
         }
         menu.classList.toggle('open');
-        document.getElementById('toggle').classList.toggle('x');
+        toggle.classList.toggle('x');
     };
 
     function closeMenu() {
@@ -33,12 +34,11 @@ $(document).ready(function() {
         }
     }
 
-    // Simple error handling incase something weird happens...
-    if (!menu || !toggle) { return; }
-
     toggle.addEventListener('click', function (e) {
         toggleMenu();
     });
 
     window.addEventListener(WINDOW_CHANGE_EVENT, closeMenu);
+    })(window, window.document);
+
 });

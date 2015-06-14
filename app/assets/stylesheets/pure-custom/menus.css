@@ -12,32 +12,35 @@ menu items to the right. */
 .main-menu {
   width: 100%;
   background: #003262;
-  padding: .3em;
+  padding: .3em .6em;
+  margin: 0 0 10px 0;
+  box-shadow: 0 5px 10px #CCC;
 }
 
-.pure-menu-item a {
+.pure-menu-link {
   background: none;
   border: none;
   color: #6FBEF3;
 }
 
-.pure-menu-item a:hover {
+.pure-menu-link:hover {
   background: none;
   border: none;
   color: #AECFE5;
 }
 
 .custom-wrapper {
-  -webkit-font-smoothing: antialiased;
   overflow: hidden;
   -webkit-transition: height 0.5s;
   -moz-transition: height 0.5s;
   -ms-transition: height 0.5s;
   transition: height 0.5s;
+  height: 2.75em;
 }
 
+/* TODO: Overflow-y scroll */
 .custom-wrapper.open {
-  height: 14em;
+  height: 20em;
 }
 
 .custom-menu-3 {
@@ -45,49 +48,48 @@ menu items to the right. */
 }
 
 .custom-toggle {
-    width: 34px;
-    height: 34px;
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: none;
+  width: 43px;
+  height: 43px;
+  display: block;
+  position: absolute;
+  margin: 4px;
+  border: 1px solid #CCC;
+  border-radius: 6px;
+  top: 0;
+  right: 25px;
+  display: none;
 }
 
 .custom-toggle .bar {
-    background-color: #777;
-    display: block;
-    width: 20px;
-    height: 2px;
-    border-radius: 100px;
-    position: absolute;
-    top: 18px;
-    right: 7px;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -ms-transition: all 0.5s;
-    transition: all 0.5s;
+  background-color: #777;
+  display: block;
+  width: 20px;
+  height: 3px;
+  border-radius: 3px;
+  position: absolute;
+  top: 22px;
+  right: 12.5px;
 }
 
 .custom-toggle .bar:first-child {
-    -webkit-transform: translateY(-6px);
-    -moz-transform: translateY(-6px);
-    -ms-transform: translateY(-6px);
-    transform: translateY(-6px);
+  -webkit-transform: translateY(-6px);
+  -moz-transform: translateY(-6px);
+  -ms-transform: translateY(-6px);
+  transform: translateY(-6px);
 }
 
 .custom-toggle.x .bar {
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .custom-toggle.x .bar:first-child {
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 /* TODO: MAKE LEFT LIST OF HEADER CENTERED */
