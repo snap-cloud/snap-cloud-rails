@@ -70,3 +70,11 @@ PART 2: Micro ClearFix, same one used in bootstrap:
 .clearfix {
   zoom:1; /* For IE 6/7 (trigger hasLayout) */
 }
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
