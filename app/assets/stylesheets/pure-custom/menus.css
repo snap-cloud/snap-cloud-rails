@@ -47,51 +47,6 @@ menu items to the right. */
   text-align: right;
 }
 
-.custom-toggle {
-  width: 43px;
-  height: 43px;
-  display: block;
-  position: absolute;
-  margin: 4px;
-  border: 1px solid #CCC;
-  border-radius: 6px;
-  top: 0;
-  right: 25px;
-  display: none;
-}
-
-.custom-toggle .bar {
-  background-color: #777;
-  display: block;
-  width: 20px;
-  height: 3px;
-  border-radius: 3px;
-  position: absolute;
-  top: 22px;
-  right: 12.5px;
-}
-
-.custom-toggle .bar:first-child {
-  -webkit-transform: translateY(-6px);
-  -moz-transform: translateY(-6px);
-  -ms-transform: translateY(-6px);
-  transform: translateY(-6px);
-}
-
-.custom-toggle.x .bar {
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-.custom-toggle.x .bar:first-child {
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-
 /* TODO: MAKE LEFT LIST OF HEADER CENTERED */
 ul.pure-menu-list {
   margin: auto;
@@ -99,12 +54,58 @@ ul.pure-menu-list {
   vertical-align: middle;
 }
 
+.custom-toggle {
+  display: none;
+}
+
+
 @media (max-width: 47.999em) {
   .custom-menu-3 {
     text-align: left;
   }
 
   .custom-toggle {
+    width: 43px;
+    height: 43px;
     display: block;
+    position: absolute;
+    margin: 4px;
+    border: 1px solid #CCC;
+    border-radius: 6px;
+    top: 0;
+    right: 25px;
   }
+
+  .custom-toggle .bar {
+    background-color: #777;
+    display: block;
+    width: 20px;
+    height: 3px;
+    border-radius: 3px;
+    position: absolute;
+    top: 22px;
+    right: 12.5px;
+  }
+
+  .custom-toggle .bar:first-child {
+    -webkit-transform: translateY(-6px);
+    -moz-transform: translateY(-6px);
+    -ms-transform: translateY(-6px);
+    transform: translateY(-6px);
+  }
+
+  .custom-toggle.x .bar {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  .custom-toggle.x .bar:first-child {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+  
 }

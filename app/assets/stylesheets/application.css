@@ -22,6 +22,18 @@
   *= require_self
 */
 
+/*
+   COLORS Reference:
+   Berkeley Color Palette:
+   http://brand.berkeley.edu/colors/
+
+   Snap! Colors:
+     - yellow: #FFDE17 rgb(255, 222, 23)
+     - brown:
+     - blue: #496AD5 rgb(73, 106, 213)
+
+ */
+
 /* TODO: Banish the marking file.... */
 label .left {
   text-align: left;

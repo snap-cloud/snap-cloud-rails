@@ -13,7 +13,7 @@
 
   <div class="pure-u-1 pure-u-md-11-24">
     <div class="pure-menu custom-can-transform pure-menu-horizontal">
-      <ul class="pure-menu-list left">
+      <ul class="pure-menu-list">
         <li class="pure-menu-item">
           <%= link_to "Create", "/snap", class: "pure-menu-link" %>
         </li>
@@ -29,7 +29,7 @@
 
   <div class="pure-u-1 pure-u-md-1-2">
     <div class="pure-menu custom-menu-3 custom-can-transform pure-menu-horizontal">
-      <ul class="pure-menu-list right">
+      <ul class="pure-menu-list">
         <li class="pure-menu-item">
           <%= search_form_for Project.search, class: 'pure-form' do |f| %>
           <%= f.search_field :title_or_notes_or_user_username_cont,
