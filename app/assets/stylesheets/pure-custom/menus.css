@@ -65,7 +65,6 @@ ul.pure-menu-list {
   }
 
   .custom-toggle {
-<<<<<<< HEAD
     width: 43px;
     height: 43px;
     display: block;
@@ -107,9 +106,6 @@ ul.pure-menu-list {
     -moz-transform: rotate(-45deg);
     -ms-transform: rotate(-45deg);
     transform: rotate(-45deg);
-=======
-    display: block;
->>>>>>> master
   }
   
 }
