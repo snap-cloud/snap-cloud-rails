@@ -55,10 +55,10 @@ class ApplicationController < ActionController::Base
     end
 
     def userLoggedIn
-      if getCurrentUser.nil?
+      if current_user.nil?
           redirect_to login_path and return
       else
-        @user = getCurrentUser
+        @user = current_user
       end
     end
 
