@@ -12,10 +12,10 @@
     %fieldset
       = devise_error_messages!
       %legend
-        Sign in to your <span class="snap">snap</span> account.
+        Sign in to your Snap<em>!</em> account.
       .pure-input-group
         = f.label "Username"
-        = f.text_field :login, autofocus: true, class: 'pure-u-1-1'
+        = f.text_field :username, autofocus: true, class: 'pure-u-1-1'
       .pure-input-group
         = f.label :password
         = f.password_field :password, autocomplete: "off", class: 'pure-u-1-1'

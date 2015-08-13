@@ -107,6 +107,7 @@ group :production do
 
   # Postgres DB
   gem 'pg'
+
   # Perf and other Heroku features
   gem 'rails_12factor'
 end

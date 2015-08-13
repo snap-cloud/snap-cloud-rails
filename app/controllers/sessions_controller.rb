@@ -1,16 +1,22 @@
 class SessionsController < Devise::SessionsController
   respond_to :json
-  # github.com/plataformatec/devise/blob/master/app/controllers/devise/sessions_controller.rb
 
   # POST /api/users/login
   # Resets the authentication token each time!
   # FIXME Won't allow you to login on two devices
   # at the same time (so does logout).
   def create
+    puts 'CREATE'
+    puts 'opts'
+    puts auth_options
     self.resource = warden.authenticate!(auth_options)
     sign_in(resource_name, resource)
 
     current_user.update authentication_token: nil
+
+    puts 'USER'
+    puts current_user
+    puts ''
 
     respond_to do |format|
       format.json {
@@ -22,21 +28,17 @@ class SessionsController < Devise::SessionsController
       }
       format.html {
         redirect_to '/', flash[:notice] => 'You have been logged in.'
-        # render html: {
-        #   user: current_user,
-        #   status: :ok,
-        #   authentication_token: current_user.authentication_token
-        # }
+        # TODO: embed auth token here...
       }
     end
   end
 
   def new
     super
-    flash[:notice] = "Invalid username/email or password"
+    flash[:notice] = "Invalid username or password"
   end
 
-  # DELETE /resource/sign_out
+  # DELETE /api/users/logout
   def destroy
     respond_to do |format|
       format.json {
