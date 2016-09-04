@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5'
+gem 'rails', '4.2.7.1'
 
 gem 'paperclip', git: "https://github.com/thoughtbot/paperclip.git"
 gem 'aws-sdk', '< 2.0'
