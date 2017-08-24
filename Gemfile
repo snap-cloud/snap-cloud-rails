@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7.1'
 
-gem 'paperclip', git: "https://github.com/thoughtbot/paperclip.git"
+gem 'paperclip', '< 5.0'
 gem 'aws-sdk', '< 2.0'
 
 # Embed v8 into Ruby. Sever-side JS processing.
