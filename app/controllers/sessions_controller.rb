@@ -6,17 +6,10 @@ class SessionsController < Devise::SessionsController
   # FIXME Won't allow you to login on two devices
   # at the same time (so does logout).
   def create
-    puts 'CREATE'
-    puts 'opts'
-    puts auth_options
     self.resource = warden.authenticate!(auth_options)
     sign_in(resource_name, resource)
 
     current_user.update authentication_token: nil
-
-    puts 'USER'
-    puts current_user
-    puts ''
 
     respond_to do |format|
       format.json {
@@ -27,8 +20,8 @@ class SessionsController < Devise::SessionsController
         }
       }
       format.html {
-        redirect_to '/', flash[:notice] => 'You have been logged in.'
-        # TODO: embed auth token here...
+        flash[:notice] = 'You have been logged in.'
+        redirect_to :home
       }
     end
   end
