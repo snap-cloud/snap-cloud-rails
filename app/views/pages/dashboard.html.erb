@@ -1,23 +1,23 @@
-  <!-- blank div for spacing -->
-  <div class="pure-u-1-24">
-  </div>
-
+<div class="row">
   <!-- navigation -->
-  <div class="pure-u-1-12">
-    <br><br><br><br>
-    <%= render 'navigation' %>
+  <div class="col-2">
+    <div class="my-5">
+      <%= render 'navigation' %>
+    </div>
   </div>
 
-  <!-- blank div for spacing -->
-  <div class="pure-u-1-24">
-  </div>
+  <div class="col-10">
+    <div class="row">
+      <div class="col-9">
+        <h1><%= @user.username %>'s Dashboard</h1>
+      </div>
+      <div class="col-3">
+        <a id="RunSnap" class="btn btn-primary btn-lg" href="/snap">
+          Run <%= image_tag "snap-logo.png", alt: "Snap!", class: "run-snap-logo" %>
+        </a>
+      </div>
+    </div>
 
-  <div class="pure-u-5-6" text-align="center">
-    <h2 class="user-header"><%= @user.username %>'s Dashboard</h2>
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <a id="RunSnap" class="pure-button" href="/snap">
-      Run <%= image_tag "snap-logo.png", alt: "Snap!", class: "run-snap-logo" %>
-    </a>
     <br>
     <br>
     <!-- a user's news feed -->
@@ -37,3 +37,6 @@
     <br>
     <br>
   </div>
+
+  <div class="col-1"></div>
+</div>
