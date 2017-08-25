@@ -15,6 +15,7 @@
 /*
   *= require pure/pure-min
   *= require pure/grids-responsive-min
+  *= require_tree ./pure-custom
   *= require font-awesome/css/font-awesome.min
   *= require marketing
   *= require main
