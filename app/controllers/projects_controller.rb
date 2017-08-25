@@ -77,7 +77,7 @@ class ProjectsController < ApplicationController
       # TODO: Handle multiple ownership
       @owner = User.find_by!(username: username)
       @project = Project.find_by!(owner: @owner.id, title: projectname)
-      if !@project.is_public && @project.owner != self.getCurrentUser.id
+      if !@project.is_public && @project.owner != self.current_user.id
         access_denied
       end
     end

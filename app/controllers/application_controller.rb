@@ -42,21 +42,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:username, :email, :password, :password_confirmation, :current_password) }
     end
 
-    # This method allows stubbing in rspec testing.
-    # FIXME -- name should be migrated to get_current_user
-    # TODO: can't we just stub current_user method?
-    def getCurrentUser
-      current_user
-    end
-
-    def userLoggedIn
-      if current_user.nil?
-          redirect_to login_path and return
-      else
-        @user = current_user
-      end
-    end
-
     def courseExists
       if params[:course_id]
         @course = Course.find(params[:course_id])
@@ -67,7 +52,7 @@ class ApplicationController < ActionController::Base
     end
 
     def authCourseEdit
-      if !@course.userRole(getCurrentUser).try(:teacher?)
+      if !@course.userRole(current_user).try(:teacher?)
         access_denied
       end
     end

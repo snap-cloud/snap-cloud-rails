@@ -1,5 +1,5 @@
 class AssignmentsController < ApplicationController
-  before_filter :userLoggedIn
+ before_action :authenticate_user!
   before_filter :courseExists, except: [:show]
   before_filter :assignmentExists, only: [:show, :edit, :update, :delete]
   before_filter :partOfCourse, only: [:show]

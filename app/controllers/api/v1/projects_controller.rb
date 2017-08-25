@@ -19,7 +19,7 @@ class Api::V1::ProjectsController < ProjectsController
         id = Integer(params[:user_id])
       rescue
       end
-      if !getCurrentUser.nil? && getCurrentUser.id == id
+      if !current_user.nil? && current_user.id == id
         respond_with Project.where(owner: id)
       else
         respond_with Project.where(owner: id, is_public: true)
@@ -35,10 +35,10 @@ class Api::V1::ProjectsController < ProjectsController
 
 
   def update
-    if self.getCurrentUser
+    if self.current_user
         project = Project.find_by_id(params[:id])
       if project
-        if project.owner == self.getCurrentUser.id
+        if project.owner == self.current_user.id
           project.update_attributes(params[:project_params])
           project.save
           render nothing: true, status: 204 #:no_content
@@ -56,7 +56,7 @@ class Api::V1::ProjectsController < ProjectsController
 
   def destroy
     project = Project.find(params[:id])
-    if project.owner == self.getCurrentUser.id
+    if project.owner == self.current_user.id
       project.destroy
       render nothing: true, status: 200 #:ok
     else
@@ -64,7 +64,7 @@ class Api::V1::ProjectsController < ProjectsController
     end
   end
 
-  def getCurrentUser
+  def current_user
     return current_user
   end
 

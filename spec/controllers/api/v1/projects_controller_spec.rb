@@ -32,19 +32,19 @@ describe Api::V1::ProjectsController do
       allow(request.env['warden']).to receive(:authenticate!).and_return(fakeuser)
       allow(controller).to receive(:current_user).and_return(fakeuser)
     end
-    
+
     it "should update the project when I own it and it exists" do
       user = User.create(email: "steven@berk.edu")
       proj = Project.create(title: "Test proj", owner:user.id)
       Project.any_instance.should_receive(:update_attributes)
-      Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user)
+      Api::V1::ProjectsController.any_instance.stub(:current_user).and_return(user)
       put :update, { project_params: proj.attributes, id:proj.id }
       expect(response.status).to eq(204)
     end
 
     it "should reject the request when I am not logged in" do
       proj = Project.create(title: "Test proj")
-      Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(nil)
+      Api::V1::ProjectsController.any_instance.stub(:current_user).and_return(nil)
       put :update, { project_params: proj.attributes, id:proj.id}
       expect(response.status).to eq(401)
     end
@@ -53,15 +53,15 @@ describe Api::V1::ProjectsController do
       user = User.create(email: "steven@berk.edu")
       not_users_id = user.id+1
       proj = Project.create(title: "Test proj", owner:(not_users_id))
-      Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user)
+      Api::V1::ProjectsController.any_instance.stub(:current_user).and_return(user)
       put :update, { project_params: proj.attributes, id:proj.id }
       expect(response.status).to eq(401)
-    end    
+    end
 
     it "should reject the request when the project doesn't exist" do
       user = User.create(email: "steven@berk.edu")
       proj = Project.create(title: "Test proj", owner:user.id)
-      Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user)
+      Api::V1::ProjectsController.any_instance.stub(:current_user).and_return(user)
       put :update, { project_params: proj.attributes, id:(proj.id+1) }
       expect(response.status).to eq(404)
     end
@@ -80,7 +80,7 @@ describe Api::V1::ProjectsController do
 
     it "should create a project for the user if user is present" do
       user1 = User.create(email: "linda@berk.edu")
-      Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user1)
+      Api::V1::ProjectsController.any_instance.stub(:current_user).and_return(user1)
 
       post :create, {project_params: {title: "test proj for user 1", owner:user1.id}}
       expect(response.status).to eq(200)
@@ -103,23 +103,23 @@ describe Api::V1::ProjectsController do
     it "should delete the project if user is an owner" do
       user1 = User.create(email: "linda@berk.edu")
       user2 = User.create(email: "ellen@berk.edu")
-      Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user1)
+      Api::V1::ProjectsController.any_instance.stub(:current_user).and_return(user1)
       user1_proj = Project.create(title: "user1 proj", owner:user1.id)
 
       delete :destroy, { id: user1_proj.id }
       expect(response.status).to eq(200)
     end
-    
-    it "should reject the request if user is not an owner" do 
+
+    it "should reject the request if user is not an owner" do
       user1 = User.create(email: "linda@berk.edu")
       user2 = User.create(email: "ellen@berk.edu")
-      Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user2)
+      Api::V1::ProjectsController.any_instance.stub(:current_user).and_return(user2)
       user1_proj = Project.create(title: "user1 proj", owner: user1.id)
 
       delete :destroy, { id: user1_proj.id }
       # FIXME -- Should probably be a 404.
       expect(response.status).to eq(401)
-    end 
+    end
   end
 
   describe "GET #index" do
@@ -137,7 +137,7 @@ describe Api::V1::ProjectsController do
     it "Should show all projects belonging to user if logged in" do
       user = User.create(email: "jwang@berk.edu")
       not_users_id = user.id+1
-      Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(user)
+      Api::V1::ProjectsController.any_instance.stub(:current_user).and_return(user)
       proj1 = Project.create(title: "user public", owner:user.id, is_public: 1)
       proj2 = Project.create(title: "user private", owner:user.id, is_public: 0)
       proj3 = Project.create(title: "nonuser public", owner:not_users_id, is_public: 1)
@@ -153,7 +153,7 @@ describe Api::V1::ProjectsController do
     it "should show only public projects if user not logged in" do
       user = User.create(email: "jwang@berk.edu")
       not_users_id = user.id+1
-      Api::V1::ProjectsController.any_instance.stub(:getCurrentUser).and_return(nil)
+      Api::V1::ProjectsController.any_instance.stub(:current_user).and_return(nil)
       proj1 = Project.create(title: "user public", owner:user.id, is_public: 1)
       proj2 = Project.create(title: "user private", owner:user.id, is_public: 0)
       proj3 = Project.create(title: "nonuser public", owner:not_users_id, is_public: 1)

@@ -1,5 +1,5 @@
 class SubmissionsController < ApplicationController
-  before_filter :userLoggedIn
+ before_action :authenticate_user!
   before_filter :courseExists
   before_filter :assignmentExists
   before_filter :partOfCourse
