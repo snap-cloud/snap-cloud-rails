@@ -2,9 +2,6 @@ class User < ActiveRecord::Base
   # use simple_token_authentication on users
   acts_as_token_authenticatable
 
-  # Allow login via username.
-  attr_accessor :username
-
   validates_length_of :about_me, maximum: 500, allow_blank: true
 
   # A user has many projects, and deleting user deletes projects of that user
@@ -12,15 +9,9 @@ class User < ActiveRecord::Base
   has_many :courses, through: :enrollments
   has_many :projects, class_name: "Project", foreign_key: :owner
 
-  # FIXME -- how do we handle projects with multiple owners?
-  # def projects
-  #   Project.where(owner: self.id).all
-  # end
-
   def assignments
     self.courses.map(&:assignments).flatten
   end
-
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
