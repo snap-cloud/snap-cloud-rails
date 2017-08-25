@@ -5,7 +5,10 @@
 // that code so it'll be compiled.
 
 window.$ = window.jQuery = require('jquery');
-require('jquery-ujs');
+window.$ = window.jQuery = require('jquery-ujs');
 
+require('popperjs');
+
+require('bootstrap');
 
 console.log('Hello World from Webpacker')
