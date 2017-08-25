@@ -41,10 +41,6 @@ gem 'figaro'
 # Search
 gem 'ransack'
 
-# App Monitoring
-# Exclude from :test ...there must be a better way to do this...
-gem 'newrelic_rpm', group: [:development, :production, :staging]
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -68,14 +64,13 @@ end
 group :development do
   gem 'byebug'
 
+  gem 'foreman'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  # gem 'web-console', '~> 2.0'
   # Custtom Error Pages in Dev Only
   gem "better_errors"
   gem "binding_of_caller"
@@ -103,7 +98,8 @@ group :staging do
   # Heh, we need a real staging enviornment...
 end
 
-group :production do
+group :production, :staging do
+  gem 'newrelic_rpm'
   # Page Caching
   gem 'rack-cache'
 
