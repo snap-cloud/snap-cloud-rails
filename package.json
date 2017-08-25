@@ -7,15 +7,13 @@
     "doc": "doc",
     "test": "test"
   },
-  "scripts": {
-    "postinstall": "./node_modules/bower/bin/bower install"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/snap-cloud/snap-cloud.git"
   },
   "author": "Michael Ball",
-  "license": "AGPL",
+  "license": "AGPL-1.0",
   "bugs": {
     "url": "https://github.com/snap-cloud/snap-cloud/issues"
   },
@@ -28,22 +26,25 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.0",
-    "bower": "^1.4.1",
-    "coffee-loader": "^0.8.0",
-    "coffee-script": "^1.12.7",
+    "bootstrap": "4.0.0-beta",
     "compression-webpack-plugin": "^1.0.0",
     "css-loader": "^0.28.5",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
+    "fontawesome": "^4.7.2",
     "glob": "^7.1.2",
+    "jquery": "^3.2.1",
+    "jquery-ujs": "^1.2.2",
     "js-yaml": "^3.9.1",
     "node-sass": "^4.5.3",
     "path-complete-extname": "^0.1.0",
+    "popper.js": "^1.11.0",
     "postcss-loader": "^2.0.6",
     "postcss-smart-import": "^0.7.5",
     "precss": "^2.0.0",
     "rails-erb-loader": "^5.1.0",
     "resolve-url-loader": "^2.1.0",
+    "retinajs": "^2.1.2",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "webpack": "^3.5.5",
@@ -51,7 +52,7 @@
     "webpack-merge": "^4.1.0"
   },
   "engine": {
-    "node": "0.12.x"
+    "node": ">7.0.0"
   },
   "devDependencies": {
     "webpack-dev-server": "^2.7.1"
