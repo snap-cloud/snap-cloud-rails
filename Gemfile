@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7.1'
 
+gem 'puma'
+gem 'pg'
+
 # TODO: Upgrade these in tandem.
 gem 'paperclip', '< 5.0'
 gem 'aws-sdk', '< 2.0'
@@ -103,12 +106,6 @@ end
 group :production do
   # Page Caching
   gem 'rack-cache'
-
-  # Use Puma as the app server
-  gem 'puma'
-
-  # Postgres DB
-  gem 'pg'
 
   # Perf and other Heroku features
   gem 'rails_12factor'
