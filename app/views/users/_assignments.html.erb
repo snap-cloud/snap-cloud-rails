@@ -1,10 +1,10 @@
 <!-- This is going to be a table which renders for each user
-    takes in :assignments as an argument--> 
+    takes in :assignments as an argument-->
 
-<!-- EDIT THIS --> 
+<!-- EDIT THIS -->
 
-<table class="pure-table"> 
-    <thead> 
+<table class="table">
+    <thead>
         <tr>
             <th> Your Assignments </th>
             <th> Course </th>
@@ -12,10 +12,10 @@
             <th> Last Updated </th>
             <th> Due Date</th>
         </tr>
-    </thead> 
+    </thead>
 
-    <tbody> 
-        <tr> <% locals[:assignments].each do |assignment| %> 
+    <tbody>
+        <tr> <% locals[:assignments].each do |assignment| %>
             <td> <a href="../assignments/<%=assignment.id%>"><%= assignment.title%></a>
                 <br> &nbsp;&nbsp;&nbsp;&nbsp; <%= assignment.description %></td></td>
             <!-- TODO: translate course_id into course name-->

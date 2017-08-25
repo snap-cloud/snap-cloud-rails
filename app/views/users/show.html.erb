@@ -5,13 +5,13 @@
 
   <div class="pure-u-1-12">
     <br><br><br><br>
-    <table class="pure-table">
+    <table class="table">
       <thead>
 	<tr>
 	  <th>Navigation</th>
 	</tr>
       </thead>
-      
+
       <tbody>
 	<tr> <td><a href="lol_nothing"> Profile </td></a></tr>
 	<tr> <td><a href="lol_nothing"> Friends </td></a></td></tr>
@@ -35,9 +35,9 @@
     Welcome back, <%= @user.email%>! <br><br>
     Member Since: <%= @user.created_at%> <br>
     Last Seen: <%= @user.last_sign_in_at ? @user.last_sign_in_at : 'N/A'%> <br><br>
-    
 
-    <table class="pure-table">
+
+    <table class="table">
       <thead>
 	<tr>
 	  <th>News Feed</th>
@@ -65,18 +65,18 @@
 
 <br><br>
 
-<table class="pure-table"> 
-  <thead> 
+<table class="table">
+  <thead>
     <tr>
       <th> Your Projects </th>
       <th> Visibility </th>
       <th> Date Created </th>
       <th> Last Modified </th>
     </tr>
-  </thead> 
+  </thead>
 
-  <tbody> 
-    <tr> <% @projects.each do |project| %> 
+  <tbody>
+    <tr> <% @projects.each do |project| %>
       <td> <a href="../projects/<%=project.id%>"><%= project.title %> </a>
         <br> &nbsp;&nbsp;&nbsp;&nbsp; <%= project.notes %></td>
       <td> <%= project.is_public ? "Public": "Private"%></td>
