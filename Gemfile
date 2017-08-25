@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7.1'
 
+# TODO: Upgrade these in tandem.
 gem 'paperclip', '< 5.0'
 gem 'aws-sdk', '< 2.0'
 
@@ -21,6 +22,7 @@ gem "devise"
 gem 'simple_token_authentication', '~> 1.0'
 
 # ASSETS
+gem 'webpacker'
 # Use SCSS for stylesheets
 # Includes the :sass compiler for CSS minification
 gem 'sass-rails', '~> 5.0'

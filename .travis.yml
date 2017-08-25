@@ -1,10 +1,9 @@
 language: ruby
 rvm:
-- 2.2.2
-- 2.1.6
-- 2.2.1
-- 2.2.0
+- 2.3.3
+- 2.4.1
 before_script:
+- npm install -g yarn # TODO: better install.
 - npm install
 script:
 - RAILS_ENV=test bundle exec rake db:migrate
