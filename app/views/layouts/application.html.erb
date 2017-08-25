@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-      <!-- FIXME: each page needs title... -->
+    <!-- FIXME: each page needs title... -->
     <title>Snap! Build Your Own Blocks</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta charset="utf-8">
@@ -18,18 +18,19 @@
 
     <%= yield :head %>
   </head>
-  <body>
+  <body class="snap-cloud-body">
 
     <%= render "layouts/nav" %>
-
-    <div class="container">
-      <%= yield %>
+    <div class="my-5">
+      <main class="container my-5">
+        <%= yield %>
+      </main>
     </div>
 
     <footer>
-      <nav class="navbar navbar-fixed-bottom navbar-dark bg-dark">
+      <nav class="navbar fixed-bottom navbar-dark bg-dark">
         <div class="container">
-          <div class="text-center navbar-text">
+          <div class="mx-auto navbar-text">
             University of California, Berkeley
           </div>
         </div>

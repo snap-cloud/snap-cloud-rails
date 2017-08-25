@@ -7,26 +7,14 @@
 */
 
 html {
-  position: relative;
   min-height: 100%;
-  /*max-width: 1680px;
-  margin: 0 auto;*/
+  position: relative;
 }
 
-body {
-    line-height: 1.7em;
-    color: #7f8c8d;
-    font-size: 12pt;
-    margin: 55px 0 0 0; /* Margins for header. */
-}
-
-.footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background: #111;
-  padding: 1em;
+.snap-cloud-body {
+  min-height: 100%;
+  color: #7f8c8d;
+  margin-top: 70px;
 }
 
 /*
