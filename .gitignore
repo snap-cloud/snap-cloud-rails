@@ -19,9 +19,8 @@ rerun.txt
 pickle-email-*.html
 public/snap_logo_sm.png
 
-# TODO Comment out these rules if you are OK with secrets being uploaded to the repo
-# config/initializers/secret_token.rb
-# config/secrets.yml
+config/initializers/secret_token.rb
+config/secrets.yml
 
 ## Environment normalization:
 /.bundle
@@ -32,10 +31,6 @@ public/snap_logo_sm.png
 /node_modules
 # npm lock file we wont use.
 package-lock.json
-
-# TODO: Clean these up soon.
-vendor/bower/
-!vendor/bower/.keep
 
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
