@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   get 'users/:id', to: 'users#profile', as: 'user_profile'
 
-  devise_for :users, path: 'api/users',
+  devise_for :users,
              controllers: { sessions: 'sessions',
                             registrations: 'registrations' },
              path_names: { sign_in: 'login',
@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resources :projects
   end
 
+  # TODO: Switch to resources :assignments
   get 'assignments/:course_id/new', to: 'assignments#new', as: 'assignment_new'
   post 'assignments/:course_id/create',      to: 'assignments#create', as: 'assignment_create'
   post 'assignments/:assignment_id/update',  to: 'assignments#update', as: 'assignment_update'
@@ -69,5 +70,4 @@ Rails.application.routes.draw do
       # Assignments / Submissions
     end
   end
-
 end
